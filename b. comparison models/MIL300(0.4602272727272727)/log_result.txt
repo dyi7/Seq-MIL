@@ -1,0 +1,903 @@
+2020-08-28 13:56:52,337: main_new_MIL300: INFO: Loading knowledge base ...
+2020-08-28 13:56:52,338: main_new_MIL300: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': 70,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_kb': 5,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 7634,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-08-28 13:56:52,338: main_new_MIL300: INFO: Loading data
+2020-08-28 13:56:56,752: main_new_MIL300: INFO: init_word_embedding
+2020-08-28 13:57:00,828: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:171: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-08-28 13:57:00,862: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:307: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-08-28 13:57:00,864: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:308: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-08-28 13:57:00,894: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:137: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-08-28 13:57:00,912: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:146: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-08-28 13:57:00,914: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-08-28 13:57:00,990: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-08-28 13:57:01,081: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0efa9b690>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0efa9b690>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,105: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-08-28 13:57:01,285: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0f0174a10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0f0174a10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,343: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:97: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-08-28 13:57:01,440: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eff8c090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eff8c090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,558: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eff8c090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eff8c090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,727: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eefd4a10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eefd4a10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,895: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eee77f90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0eee77f90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:01,979: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14e0eeff2cd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14e0eeff2cd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 13:57:02,041: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:353: The name tf.ceil is deprecated. Please use tf.math.ceil instead.
+
+2020-08-28 13:57:02,047: main_new_MIL300: INFO: Building f_cost...
+2020-08-28 13:57:02,093: main_new_MIL300: INFO: Done
+2020-08-28 13:57:02,094: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:383: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-08-28 13:57:02,100: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:384: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-08-28 13:57:02,105: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:385: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-08-28 13:57:02,112: main_new_MIL300: INFO: Building optimizers...
+2020-08-28 13:57:02,113: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:547: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-08-28 13:57:02,114: main_new_MIL300: INFO: Done
+2020-08-28 13:57:03,099: main_new_MIL300: INFO: correct_pred
+2020-08-28 13:57:03,101: main_new_MIL300: INFO: Done
+2020-08-28 13:57:03,102: main_new_MIL300: INFO: init variables
+2020-08-28 13:57:03,104: main_new_MIL300: INFO: Done
+2020-08-28 13:57:03,104: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:578: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-08-28 13:57:03,161: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_MIL300.py:587: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-08-28 13:57:11,179: main_new_MIL300: DEBUG: Epoch 0 Update 20 Cost 0.20375247299671173 L2 340.8026123046875 TIME 0.08466053009033203
+2020-08-28 13:57:22,772: main_new_MIL300: DEBUG: Epoch 0 Update 40 Cost 0.20190536975860596 L2 337.8898620605469 TIME 0.36438870429992676
+2020-08-28 13:57:31,430: main_new_MIL300: DEBUG: Epoch  0
+2020-08-28 13:57:31,431: main_new_MIL300: DEBUG: Valid cost  0.7142123959281228
+2020-08-28 13:57:31,431: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:57:31,431: main_new_MIL300: DEBUG: Test cost  0.7483018040657043
+2020-08-28 13:57:31,431: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:57:31,431: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:57:31,432: main_new_MIL300: INFO: Saving...
+2020-08-28 13:57:31,702: main_new_MIL300: INFO: results/_epoch_0_model.ckpt
+2020-08-28 13:57:31,725: main_new_MIL300: INFO: Done
+2020-08-28 13:57:31,726: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:57:31,726: main_new_MIL300: DEBUG: Training accuracy:  0.445985401459854
+2020-08-28 13:57:31,726: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:57:34,908: main_new_MIL300: DEBUG: Epoch 1 Update 60 Cost 0.18628093600273132 L2 335.02374267578125 TIME 0.49410438537597656
+2020-08-28 13:57:42,927: main_new_MIL300: DEBUG: Epoch 1 Update 80 Cost 0.18729084730148315 L2 332.0423583984375 TIME 0.788609504699707
+2020-08-28 13:57:53,334: main_new_MIL300: DEBUG: Epoch  1
+2020-08-28 13:57:53,334: main_new_MIL300: DEBUG: Valid cost  0.7108876596797596
+2020-08-28 13:57:53,334: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:57:53,335: main_new_MIL300: DEBUG: Test cost  0.7449770353057168
+2020-08-28 13:57:53,335: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:57:53,335: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:57:53,335: main_new_MIL300: INFO: Saving...
+2020-08-28 13:57:53,529: main_new_MIL300: INFO: results/_epoch_1_model.ckpt
+2020-08-28 13:57:53,551: main_new_MIL300: INFO: Done
+2020-08-28 13:57:53,552: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:57:53,552: main_new_MIL300: DEBUG: Training accuracy:  0.47737226277372263
+2020-08-28 13:57:53,552: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:57:55,876: main_new_MIL300: DEBUG: Epoch 2 Update 100 Cost 0.18208366632461548 L2 329.1226806640625 TIME 0.19806241989135742
+2020-08-28 13:58:02,890: main_new_MIL300: DEBUG: Epoch 2 Update 120 Cost 0.188066303730011 L2 326.0933837890625 TIME 0.6480777263641357
+2020-08-28 13:58:14,931: main_new_MIL300: DEBUG: Epoch  2
+2020-08-28 13:58:14,932: main_new_MIL300: DEBUG: Valid cost  0.707502007484436
+2020-08-28 13:58:14,932: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:58:14,932: main_new_MIL300: DEBUG: Test cost  0.7415913343429565
+2020-08-28 13:58:14,932: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:58:14,932: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:58:14,932: main_new_MIL300: INFO: Saving...
+2020-08-28 13:58:15,127: main_new_MIL300: INFO: results/_epoch_2_model.ckpt
+2020-08-28 13:58:15,151: main_new_MIL300: INFO: Done
+2020-08-28 13:58:15,151: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:58:15,151: main_new_MIL300: DEBUG: Training accuracy:  0.46204379562043796
+2020-08-28 13:58:15,151: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:58:16,195: main_new_MIL300: DEBUG: Epoch 3 Update 140 Cost 0.18033376336097717 L2 323.1321105957031 TIME 0.11214280128479004
+2020-08-28 13:58:22,694: main_new_MIL300: DEBUG: Epoch 3 Update 160 Cost 0.18379995226860046 L2 320.0648193359375 TIME 0.792534351348877
+2020-08-28 13:58:33,676: main_new_MIL300: DEBUG: Epoch 3 Update 180 Cost 0.18514661490917206 L2 316.92486572265625 TIME 0.23473119735717773
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: Epoch  3
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: Valid cost  0.7040692296895114
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: Test cost  0.7381585240364075
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:58:38,066: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:58:38,066: main_new_MIL300: INFO: Saving...
+2020-08-28 13:58:38,263: main_new_MIL300: INFO: results/_epoch_3_model.ckpt
+2020-08-28 13:58:38,286: main_new_MIL300: INFO: Done
+2020-08-28 13:58:38,287: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:58:38,287: main_new_MIL300: DEBUG: Training accuracy:  0.47007299270072994
+2020-08-28 13:58:38,287: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:58:42,448: main_new_MIL300: DEBUG: Epoch 4 Update 200 Cost 0.17694373428821564 L2 313.8425598144531 TIME 0.0712425708770752
+2020-08-28 13:58:53,503: main_new_MIL300: DEBUG: Epoch 4 Update 220 Cost 0.17420879006385803 L2 310.732177734375 TIME 0.08351445198059082
+2020-08-28 13:59:01,332: main_new_MIL300: DEBUG: Epoch  4
+2020-08-28 13:59:01,333: main_new_MIL300: DEBUG: Valid cost  0.7006013122471896
+2020-08-28 13:59:01,334: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:59:01,334: main_new_MIL300: DEBUG: Test cost  0.7346905469894409
+2020-08-28 13:59:01,334: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:59:01,334: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:59:01,334: main_new_MIL300: INFO: Saving...
+2020-08-28 13:59:01,527: main_new_MIL300: INFO: results/_epoch_4_model.ckpt
+2020-08-28 13:59:01,550: main_new_MIL300: INFO: Done
+2020-08-28 13:59:01,550: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:59:01,550: main_new_MIL300: DEBUG: Training accuracy:  0.4759124087591241
+2020-08-28 13:59:01,551: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:59:04,781: main_new_MIL300: DEBUG: Epoch 5 Update 240 Cost 0.1738722026348114 L2 307.70196533203125 TIME 0.3075988292694092
+2020-08-28 13:59:14,564: main_new_MIL300: DEBUG: Epoch 5 Update 260 Cost 0.1710662543773651 L2 304.5723876953125 TIME 0.2909975051879883
+2020-08-28 13:59:24,494: main_new_MIL300: DEBUG: Epoch  5
+2020-08-28 13:59:24,494: main_new_MIL300: DEBUG: Valid cost  0.6971076401797208
+2020-08-28 13:59:24,494: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:59:24,495: main_new_MIL300: DEBUG: Test cost  0.7311968532475558
+2020-08-28 13:59:24,495: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:59:24,495: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:59:24,495: main_new_MIL300: INFO: Saving...
+2020-08-28 13:59:24,686: main_new_MIL300: INFO: results/_epoch_5_model.ckpt
+2020-08-28 13:59:24,711: main_new_MIL300: INFO: Done
+2020-08-28 13:59:24,711: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:59:24,711: main_new_MIL300: DEBUG: Training accuracy:  0.47664233576642334
+2020-08-28 13:59:24,711: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:59:27,005: main_new_MIL300: DEBUG: Epoch 6 Update 280 Cost 0.1732824444770813 L2 301.5264587402344 TIME 0.14438915252685547
+2020-08-28 13:59:33,777: main_new_MIL300: DEBUG: Epoch 6 Update 300 Cost 0.1717078685760498 L2 298.3840637207031 TIME 0.15286850929260254
+2020-08-28 13:59:45,834: main_new_MIL300: DEBUG: Epoch  6
+2020-08-28 13:59:45,835: main_new_MIL300: DEBUG: Valid cost  0.6935978477651422
+2020-08-28 13:59:45,835: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 13:59:45,835: main_new_MIL300: DEBUG: Test cost  0.7276869849725203
+2020-08-28 13:59:45,835: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 13:59:45,836: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 13:59:45,836: main_new_MIL300: INFO: Saving...
+2020-08-28 13:59:46,029: main_new_MIL300: INFO: results/_epoch_6_model.ckpt
+2020-08-28 13:59:46,051: main_new_MIL300: INFO: Done
+2020-08-28 13:59:46,052: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 13:59:46,052: main_new_MIL300: DEBUG: Training accuracy:  0.4474452554744526
+2020-08-28 13:59:46,052: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 13:59:47,205: main_new_MIL300: DEBUG: Epoch 7 Update 320 Cost 0.16643747687339783 L2 295.3280944824219 TIME 0.20015335083007812
+2020-08-28 13:59:53,458: main_new_MIL300: DEBUG: Epoch 7 Update 340 Cost 0.16986317932605743 L2 292.1784973144531 TIME 0.15790724754333496
+2020-08-28 14:00:03,759: main_new_MIL300: DEBUG: Epoch 7 Update 360 Cost 0.15783745050430298 L2 288.9695129394531 TIME 0.15848135948181152
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: Epoch  7
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: Valid cost  0.6900796890258789
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: Test cost  0.7241688208146528
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:00:08,122: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:00:08,122: main_new_MIL300: INFO: Saving...
+2020-08-28 14:00:08,317: main_new_MIL300: INFO: results/_epoch_7_model.ckpt
+2020-08-28 14:00:08,340: main_new_MIL300: INFO: Done
+2020-08-28 14:00:08,340: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:00:08,340: main_new_MIL300: DEBUG: Training accuracy:  0.4656934306569343
+2020-08-28 14:00:08,340: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:00:12,588: main_new_MIL300: DEBUG: Epoch 8 Update 380 Cost 0.16961944103240967 L2 285.8337707519531 TIME 0.08746552467346191
+2020-08-28 14:00:23,622: main_new_MIL300: DEBUG: Epoch 8 Update 400 Cost 0.1648906171321869 L2 282.682861328125 TIME 0.12671256065368652
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: Epoch  8
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: Valid cost  0.6865607933564619
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: Test cost  0.7206498601219871
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:00:31,459: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:00:31,459: main_new_MIL300: INFO: Saving...
+2020-08-28 14:00:31,659: main_new_MIL300: INFO: results/_epoch_8_model.ckpt
+2020-08-28 14:00:31,682: main_new_MIL300: INFO: Done
+2020-08-28 14:00:31,682: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:00:31,683: main_new_MIL300: DEBUG: Training accuracy:  0.47737226277372263
+2020-08-28 14:00:31,683: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:00:34,990: main_new_MIL300: DEBUG: Epoch 9 Update 420 Cost 0.1598128080368042 L2 279.6256408691406 TIME 0.07414460182189941
+2020-08-28 14:00:43,841: main_new_MIL300: DEBUG: Epoch 9 Update 440 Cost 0.15326860547065735 L2 276.48004150390625 TIME 0.32022690773010254
+2020-08-28 14:00:54,132: main_new_MIL300: DEBUG: Epoch  9
+2020-08-28 14:00:54,134: main_new_MIL300: DEBUG: Valid cost  0.6830477064306085
+2020-08-28 14:00:54,134: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:00:54,134: main_new_MIL300: DEBUG: Test cost  0.7171367948705499
+2020-08-28 14:00:54,135: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:00:54,135: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:00:54,135: main_new_MIL300: INFO: Saving...
+2020-08-28 14:00:54,332: main_new_MIL300: INFO: results/_epoch_9_model.ckpt
+2020-08-28 14:00:54,355: main_new_MIL300: INFO: Done
+2020-08-28 14:00:54,355: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:00:54,356: main_new_MIL300: DEBUG: Training accuracy:  0.46058394160583943
+2020-08-28 14:00:54,356: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:00:56,611: main_new_MIL300: DEBUG: Epoch 10 Update 460 Cost 0.15173479914665222 L2 273.4297180175781 TIME 0.1796262264251709
+2020-08-28 14:01:03,369: main_new_MIL300: DEBUG: Epoch 10 Update 480 Cost 0.15266694128513336 L2 270.29376220703125 TIME 0.2325434684753418
+2020-08-28 14:01:17,671: main_new_MIL300: DEBUG: Epoch  10
+2020-08-28 14:01:17,672: main_new_MIL300: DEBUG: Valid cost  0.679546518759294
+2020-08-28 14:01:17,672: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:01:17,672: main_new_MIL300: DEBUG: Test cost  0.7136355530131947
+2020-08-28 14:01:17,672: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:01:17,672: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:01:17,673: main_new_MIL300: INFO: Saving...
+2020-08-28 14:01:17,871: main_new_MIL300: INFO: results/_epoch_10_model.ckpt
+2020-08-28 14:01:17,894: main_new_MIL300: INFO: Done
+2020-08-28 14:01:17,894: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:01:17,895: main_new_MIL300: DEBUG: Training accuracy:  0.47226277372262776
+2020-08-28 14:01:17,895: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:01:19,606: main_new_MIL300: DEBUG: Epoch 11 Update 500 Cost 0.1524028778076172 L2 267.2543029785156 TIME 0.23960208892822266
+2020-08-28 14:01:24,541: main_new_MIL300: DEBUG: Epoch 11 Update 520 Cost 0.15583652257919312 L2 264.1319274902344 TIME 0.6461887359619141
+2020-08-28 14:01:36,424: main_new_MIL300: DEBUG: Epoch 11 Update 540 Cost 0.15717048943042755 L2 260.9606018066406 TIME 0.12848138809204102
+2020-08-28 14:01:40,732: main_new_MIL300: DEBUG: Epoch  11
+2020-08-28 14:01:40,732: main_new_MIL300: DEBUG: Valid cost  0.6760630282488737
+2020-08-28 14:01:40,733: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:01:40,733: main_new_MIL300: DEBUG: Test cost  0.7101520516655662
+2020-08-28 14:01:40,733: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:01:40,734: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:01:40,734: main_new_MIL300: INFO: Saving...
+2020-08-28 14:01:40,930: main_new_MIL300: INFO: results/_epoch_11_model.ckpt
+2020-08-28 14:01:40,953: main_new_MIL300: INFO: Done
+2020-08-28 14:01:40,954: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:01:40,954: main_new_MIL300: DEBUG: Training accuracy:  0.472992700729927
+2020-08-28 14:01:40,954: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:01:45,504: main_new_MIL300: DEBUG: Epoch 12 Update 560 Cost 0.14893566071987152 L2 257.8713073730469 TIME 0.0448915958404541
+2020-08-28 14:01:55,061: main_new_MIL300: DEBUG: Epoch 12 Update 580 Cost 0.15094245970249176 L2 254.77615356445312 TIME 0.25945425033569336
+2020-08-28 14:02:02,778: main_new_MIL300: DEBUG: Epoch  12
+2020-08-28 14:02:02,779: main_new_MIL300: DEBUG: Valid cost  0.6726020032709296
+2020-08-28 14:02:02,779: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:02:02,779: main_new_MIL300: DEBUG: Test cost  0.7066910104318098
+2020-08-28 14:02:02,779: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:02:02,779: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:02:02,779: main_new_MIL300: INFO: Saving...
+2020-08-28 14:02:02,973: main_new_MIL300: INFO: results/_epoch_12_model.ckpt
+2020-08-28 14:02:02,996: main_new_MIL300: INFO: Done
+2020-08-28 14:02:02,997: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:02:02,997: main_new_MIL300: DEBUG: Training accuracy:  0.4802919708029197
+2020-08-28 14:02:02,997: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:02:06,799: main_new_MIL300: DEBUG: Epoch 13 Update 600 Cost 0.14216744899749756 L2 251.78115844726562 TIME 0.19573736190795898
+2020-08-28 14:02:14,387: main_new_MIL300: DEBUG: Epoch 13 Update 620 Cost 0.14937439560890198 L2 248.7080841064453 TIME 0.7152299880981445
+2020-08-28 14:02:24,348: main_new_MIL300: DEBUG: Epoch  13
+2020-08-28 14:02:24,349: main_new_MIL300: DEBUG: Valid cost  0.6691685752435164
+2020-08-28 14:02:24,349: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:02:24,349: main_new_MIL300: DEBUG: Test cost  0.7032575769857927
+2020-08-28 14:02:24,349: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:02:24,349: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:02:24,349: main_new_MIL300: INFO: Saving...
+2020-08-28 14:02:24,550: main_new_MIL300: INFO: results/_epoch_13_model.ckpt
+2020-08-28 14:02:24,573: main_new_MIL300: INFO: Done
+2020-08-28 14:02:24,574: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:02:24,574: main_new_MIL300: DEBUG: Training accuracy:  0.47226277372262776
+2020-08-28 14:02:24,574: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:02:26,521: main_new_MIL300: DEBUG: Epoch 14 Update 640 Cost 0.13538858294487 L2 245.7356719970703 TIME 0.20840167999267578
+2020-08-28 14:02:33,286: main_new_MIL300: DEBUG: Epoch 14 Update 660 Cost 0.14387094974517822 L2 242.6875457763672 TIME 0.4094583988189697
+2020-08-28 14:02:45,793: main_new_MIL300: DEBUG: Epoch  14
+2020-08-28 14:02:45,794: main_new_MIL300: DEBUG: Valid cost  0.6657665046778592
+2020-08-28 14:02:45,794: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:02:45,794: main_new_MIL300: DEBUG: Test cost  0.6998555118387396
+2020-08-28 14:02:45,795: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:02:45,795: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:02:45,795: main_new_MIL300: INFO: Saving...
+2020-08-28 14:02:46,002: main_new_MIL300: INFO: results/_epoch_14_model.ckpt
+2020-08-28 14:02:46,026: main_new_MIL300: INFO: Done
+2020-08-28 14:02:46,026: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:02:46,026: main_new_MIL300: DEBUG: Training accuracy:  0.46204379562043796
+2020-08-28 14:02:46,026: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:02:47,095: main_new_MIL300: DEBUG: Epoch 15 Update 680 Cost 0.14239585399627686 L2 239.7403564453125 TIME 0.19727706909179688
+2020-08-28 14:02:52,767: main_new_MIL300: DEBUG: Epoch 15 Update 700 Cost 0.13337501883506775 L2 236.7199249267578 TIME 0.8678267002105713
+2020-08-28 14:03:05,418: main_new_MIL300: DEBUG: Epoch 15 Update 720 Cost 0.1435192972421646 L2 233.65911865234375 TIME 0.17168331146240234
+2020-08-28 14:03:09,575: main_new_MIL300: DEBUG: Epoch  15
+2020-08-28 14:03:09,576: main_new_MIL300: DEBUG: Valid cost  0.6623996496200562
+2020-08-28 14:03:09,576: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:03:09,576: main_new_MIL300: DEBUG: Test cost  0.6964886296879161
+2020-08-28 14:03:09,576: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:03:09,576: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:03:09,576: main_new_MIL300: INFO: Saving...
+2020-08-28 14:03:09,629: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2020-08-28 14:03:09,793: main_new_MIL300: INFO: results/_epoch_15_model.ckpt
+2020-08-28 14:03:09,818: main_new_MIL300: INFO: Done
+2020-08-28 14:03:09,818: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:03:09,818: main_new_MIL300: DEBUG: Training accuracy:  0.472992700729927
+2020-08-28 14:03:09,818: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:03:14,288: main_new_MIL300: DEBUG: Epoch 16 Update 740 Cost 0.12203095108270645 L2 230.68435668945312 TIME 0.0910482406616211
+2020-08-28 14:03:25,204: main_new_MIL300: DEBUG: Epoch 16 Update 760 Cost 0.1350547969341278 L2 227.71029663085938 TIME 0.5359516143798828
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: Epoch  16
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: Valid cost  0.6590714346278798
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: Test cost  0.6931603876027194
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:03:33,040: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:03:33,041: main_new_MIL300: INFO: Saving...
+2020-08-28 14:03:33,257: main_new_MIL300: INFO: results/_epoch_16_model.ckpt
+2020-08-28 14:03:33,281: main_new_MIL300: INFO: Done
+2020-08-28 14:03:33,281: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:03:33,281: main_new_MIL300: DEBUG: Training accuracy:  0.4510948905109489
+2020-08-28 14:03:33,281: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:03:36,983: main_new_MIL300: DEBUG: Epoch 17 Update 780 Cost 0.12869441509246826 L2 224.83868408203125 TIME 0.22110962867736816
+2020-08-28 14:03:46,517: main_new_MIL300: DEBUG: Epoch 17 Update 800 Cost 0.12972478568553925 L2 221.89796447753906 TIME 0.264782190322876
+2020-08-28 14:03:57,842: main_new_MIL300: DEBUG: Epoch  17
+2020-08-28 14:03:57,842: main_new_MIL300: DEBUG: Valid cost  0.6557847694917158
+2020-08-28 14:03:57,842: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:03:57,843: main_new_MIL300: DEBUG: Test cost  0.6898737712339922
+2020-08-28 14:03:57,843: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:03:57,843: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:03:57,843: main_new_MIL300: INFO: Saving...
+2020-08-28 14:03:58,049: main_new_MIL300: INFO: results/_epoch_17_model.ckpt
+2020-08-28 14:03:58,075: main_new_MIL300: INFO: Done
+2020-08-28 14:03:58,076: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:03:58,076: main_new_MIL300: DEBUG: Training accuracy:  0.49416058394160584
+2020-08-28 14:03:58,076: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:04:00,659: main_new_MIL300: DEBUG: Epoch 18 Update 820 Cost 0.1270534247159958 L2 219.05941772460938 TIME 0.24672484397888184
+2020-08-28 14:04:07,535: main_new_MIL300: DEBUG: Epoch 18 Update 840 Cost 0.13059061765670776 L2 216.15414428710938 TIME 0.8340978622436523
+2020-08-28 14:04:20,422: main_new_MIL300: DEBUG: Epoch  18
+2020-08-28 14:04:20,423: main_new_MIL300: DEBUG: Valid cost  0.6525427970019254
+2020-08-28 14:04:20,423: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:04:20,423: main_new_MIL300: DEBUG: Test cost  0.6866317608139731
+2020-08-28 14:04:20,423: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:04:20,423: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:04:20,423: main_new_MIL300: INFO: Saving...
+2020-08-28 14:04:20,638: main_new_MIL300: INFO: results/_epoch_18_model.ckpt
+2020-08-28 14:04:20,668: main_new_MIL300: INFO: Done
+2020-08-28 14:04:20,668: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:04:20,668: main_new_MIL300: DEBUG: Training accuracy:  0.464963503649635
+2020-08-28 14:04:20,668: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:04:21,793: main_new_MIL300: DEBUG: Epoch 19 Update 860 Cost 0.12419906258583069 L2 213.3503875732422 TIME 0.22629952430725098
+2020-08-28 14:04:27,465: main_new_MIL300: DEBUG: Epoch 19 Update 880 Cost 0.12776823341846466 L2 210.48231506347656 TIME 0.15396428108215332
+2020-08-28 14:04:37,762: main_new_MIL300: DEBUG: Epoch 19 Update 900 Cost 0.13047856092453003 L2 207.58155822753906 TIME 0.18474531173706055
+2020-08-28 14:04:42,159: main_new_MIL300: DEBUG: Epoch  19
+2020-08-28 14:04:42,160: main_new_MIL300: DEBUG: Valid cost  0.6493480422280051
+2020-08-28 14:04:42,160: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:04:42,160: main_new_MIL300: DEBUG: Test cost  0.6834370006214489
+2020-08-28 14:04:42,160: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:04:42,160: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:04:42,160: main_new_MIL300: INFO: Saving...
+2020-08-28 14:04:42,367: main_new_MIL300: INFO: results/_epoch_19_model.ckpt
+2020-08-28 14:04:42,392: main_new_MIL300: INFO: Done
+2020-08-28 14:04:42,392: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:04:42,392: main_new_MIL300: DEBUG: Training accuracy:  0.4781021897810219
+2020-08-28 14:04:42,392: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:04:46,623: main_new_MIL300: DEBUG: Epoch 20 Update 920 Cost 0.10907020419836044 L2 204.7672882080078 TIME 0.07911872863769531
+2020-08-28 14:04:56,478: main_new_MIL300: DEBUG: Epoch 20 Update 940 Cost 0.12217926979064941 L2 201.9585418701172 TIME 0.520190954208374
+2020-08-28 14:05:04,044: main_new_MIL300: DEBUG: Epoch  20
+2020-08-28 14:05:04,044: main_new_MIL300: DEBUG: Valid cost  0.6462026563557711
+2020-08-28 14:05:04,044: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:05:04,045: main_new_MIL300: DEBUG: Test cost  0.6802916472608392
+2020-08-28 14:05:04,045: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:05:04,045: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:05:04,045: main_new_MIL300: INFO: Saving...
+2020-08-28 14:05:04,256: main_new_MIL300: INFO: results/_epoch_20_model.ckpt
+2020-08-28 14:05:04,279: main_new_MIL300: INFO: Done
+2020-08-28 14:05:04,280: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:05:04,280: main_new_MIL300: DEBUG: Training accuracy:  0.454014598540146
+2020-08-28 14:05:04,280: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:05:08,041: main_new_MIL300: DEBUG: Epoch 21 Update 960 Cost 0.11839844286441803 L2 199.25106811523438 TIME 0.25800466537475586
+2020-08-28 14:05:14,981: main_new_MIL300: DEBUG: Epoch 21 Update 980 Cost 0.12075680494308472 L2 196.4831085205078 TIME 0.7562882900238037
+2020-08-28 14:05:26,456: main_new_MIL300: DEBUG: Epoch  21
+2020-08-28 14:05:26,457: main_new_MIL300: DEBUG: Valid cost  0.6431082758036527
+2020-08-28 14:05:26,457: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:05:26,457: main_new_MIL300: DEBUG: Test cost  0.6771972612901167
+2020-08-28 14:05:26,457: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:05:26,457: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:05:26,457: main_new_MIL300: INFO: Saving...
+2020-08-28 14:05:26,671: main_new_MIL300: INFO: results/_epoch_21_model.ckpt
+2020-08-28 14:05:26,694: main_new_MIL300: INFO: Done
+2020-08-28 14:05:26,695: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:05:26,695: main_new_MIL300: DEBUG: Training accuracy:  0.46934306569343065
+2020-08-28 14:05:26,695: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:05:29,336: main_new_MIL300: DEBUG: Epoch 22 Update 1000 Cost 0.11568891257047653 L2 193.81549072265625 TIME 0.13317418098449707
+2020-08-28 14:05:35,744: main_new_MIL300: DEBUG: Epoch 22 Update 1020 Cost 0.12056984007358551 L2 191.0896453857422 TIME 0.6278102397918701
+2020-08-28 14:05:48,776: main_new_MIL300: DEBUG: Epoch  22
+2020-08-28 14:05:48,777: main_new_MIL300: DEBUG: Valid cost  0.6400670138272372
+2020-08-28 14:05:48,777: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:05:48,777: main_new_MIL300: DEBUG: Test cost  0.6741560318253257
+2020-08-28 14:05:48,777: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:05:48,777: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:05:48,777: main_new_MIL300: INFO: Saving...
+2020-08-28 14:05:48,992: main_new_MIL300: INFO: results/_epoch_22_model.ckpt
+2020-08-28 14:05:49,017: main_new_MIL300: INFO: Done
+2020-08-28 14:05:49,017: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:05:49,017: main_new_MIL300: DEBUG: Training accuracy:  0.47737226277372263
+2020-08-28 14:05:49,017: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:05:50,024: main_new_MIL300: DEBUG: Epoch 23 Update 1040 Cost 0.1155087798833847 L2 188.46295166015625 TIME 0.2523033618927002
+2020-08-28 14:05:55,568: main_new_MIL300: DEBUG: Epoch 23 Update 1060 Cost 0.11041692644357681 L2 185.78025817871094 TIME 0.13216185569763184
+2020-08-28 14:06:06,773: main_new_MIL300: DEBUG: Epoch 23 Update 1080 Cost 0.11822909116744995 L2 183.07093811035156 TIME 0.14323878288269043
+2020-08-28 14:06:11,343: main_new_MIL300: DEBUG: Epoch  23
+2020-08-28 14:06:11,344: main_new_MIL300: DEBUG: Valid cost  0.6370803171938116
+2020-08-28 14:06:11,344: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:06:11,344: main_new_MIL300: DEBUG: Test cost  0.6711693406105042
+2020-08-28 14:06:11,345: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:06:11,345: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:06:11,345: main_new_MIL300: INFO: Saving...
+2020-08-28 14:06:11,565: main_new_MIL300: INFO: results/_epoch_23_model.ckpt
+2020-08-28 14:06:11,588: main_new_MIL300: INFO: Done
+2020-08-28 14:06:11,588: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:06:11,589: main_new_MIL300: DEBUG: Training accuracy:  0.47007299270072994
+2020-08-28 14:06:11,589: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:06:16,155: main_new_MIL300: DEBUG: Epoch 24 Update 1100 Cost 0.10358812659978867 L2 180.4464111328125 TIME 0.13312745094299316
+2020-08-28 14:06:27,265: main_new_MIL300: DEBUG: Epoch 24 Update 1120 Cost 0.107767753303051 L2 177.830810546875 TIME 0.18622899055480957
+2020-08-28 14:06:34,778: main_new_MIL300: DEBUG: Epoch  24
+2020-08-28 14:06:34,779: main_new_MIL300: DEBUG: Valid cost  0.6341493129730225
+2020-08-28 14:06:34,779: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:06:34,779: main_new_MIL300: DEBUG: Test cost  0.6682383905757557
+2020-08-28 14:06:34,779: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 14:06:34,779: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:06:34,779: main_new_MIL300: INFO: Saving...
+2020-08-28 14:06:34,989: main_new_MIL300: INFO: results/_epoch_24_model.ckpt
+2020-08-28 14:06:35,013: main_new_MIL300: INFO: Done
+2020-08-28 14:06:35,014: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:06:35,014: main_new_MIL300: DEBUG: Training accuracy:  0.4744525547445255
+2020-08-28 14:06:35,014: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:06:38,503: main_new_MIL300: DEBUG: Epoch 25 Update 1140 Cost 0.10893052071332932 L2 175.31324768066406 TIME 0.2588517665863037
+2020-08-28 14:06:46,967: main_new_MIL300: DEBUG: Epoch 25 Update 1160 Cost 0.10889336466789246 L2 172.74302673339844 TIME 0.1511974334716797
+2020-08-28 14:06:56,346: main_new_MIL300: DEBUG: Epoch  25
+2020-08-28 14:06:56,347: main_new_MIL300: DEBUG: Valid cost  0.6312753774903037
+2020-08-28 14:06:56,347: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:06:56,348: main_new_MIL300: DEBUG: Test cost  0.6596826152368025
+2020-08-28 14:06:56,348: main_new_MIL300: DEBUG: Test accuracy  0.42613636363636365
+2020-08-28 14:06:56,348: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:06:56,348: main_new_MIL300: INFO: Saving...
+2020-08-28 14:06:56,550: main_new_MIL300: INFO: results/_epoch_25_model.ckpt
+2020-08-28 14:06:56,575: main_new_MIL300: INFO: Done
+2020-08-28 14:06:56,576: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:06:56,576: main_new_MIL300: DEBUG: Training accuracy:  0.47007299270072994
+2020-08-28 14:06:56,576: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:06:59,020: main_new_MIL300: DEBUG: Epoch 26 Update 1180 Cost 0.10515882074832916 L2 170.26939392089844 TIME 0.24527359008789062
+2020-08-28 14:07:06,638: main_new_MIL300: DEBUG: Epoch 26 Update 1200 Cost 0.10263900458812714 L2 167.74505615234375 TIME 0.6762411594390869
+2020-08-28 14:07:19,648: main_new_MIL300: DEBUG: Epoch  26
+2020-08-28 14:07:19,649: main_new_MIL300: DEBUG: Valid cost  0.628459399396723
+2020-08-28 14:07:19,649: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:07:19,649: main_new_MIL300: DEBUG: Test cost  0.6511848839846525
+2020-08-28 14:07:19,649: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:07:19,649: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:07:19,649: main_new_MIL300: INFO: Saving...
+2020-08-28 14:07:19,861: main_new_MIL300: INFO: results/_epoch_26_model.ckpt
+2020-08-28 14:07:19,884: main_new_MIL300: INFO: Done
+2020-08-28 14:07:19,884: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:07:19,884: main_new_MIL300: DEBUG: Training accuracy:  0.4664233576642336
+2020-08-28 14:07:19,884: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:07:21,077: main_new_MIL300: DEBUG: Epoch 27 Update 1220 Cost 0.10018549114465714 L2 165.3158721923828 TIME 0.12555241584777832
+2020-08-28 14:07:27,056: main_new_MIL300: DEBUG: Epoch 27 Update 1240 Cost 0.10894157737493515 L2 162.83807373046875 TIME 0.900951623916626
+2020-08-28 14:07:36,346: main_new_MIL300: DEBUG: Epoch 27 Update 1260 Cost 0.09352730959653854 L2 160.33909606933594 TIME 0.1994948387145996
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: Epoch  27
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: Valid cost  0.625702207738703
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: Test cost  0.6484277248382568
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:07:40,497: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:07:40,497: main_new_MIL300: INFO: Saving...
+2020-08-28 14:07:40,699: main_new_MIL300: INFO: results/_epoch_27_model.ckpt
+2020-08-28 14:07:40,723: main_new_MIL300: INFO: Done
+2020-08-28 14:07:40,723: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:07:40,723: main_new_MIL300: DEBUG: Training accuracy:  0.45985401459854014
+2020-08-28 14:07:40,723: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:07:44,890: main_new_MIL300: DEBUG: Epoch 28 Update 1280 Cost 0.10563802719116211 L2 157.92152404785156 TIME 0.06177258491516113
+2020-08-28 14:07:54,313: main_new_MIL300: DEBUG: Epoch 28 Update 1300 Cost 0.10366993397474289 L2 155.5152130126953 TIME 0.1511070728302002
+2020-08-28 14:08:02,184: main_new_MIL300: DEBUG: Epoch  28
+2020-08-28 14:08:02,184: main_new_MIL300: DEBUG: Valid cost  0.6230042739347978
+2020-08-28 14:08:02,184: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:08:02,184: main_new_MIL300: DEBUG: Test cost  0.6457298072901639
+2020-08-28 14:08:02,184: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:08:02,185: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:08:02,187: main_new_MIL300: INFO: Saving...
+2020-08-28 14:08:02,395: main_new_MIL300: INFO: results/_epoch_28_model.ckpt
+2020-08-28 14:08:02,422: main_new_MIL300: INFO: Done
+2020-08-28 14:08:02,423: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:08:02,423: main_new_MIL300: DEBUG: Training accuracy:  0.4562043795620438
+2020-08-28 14:08:02,423: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:08:05,511: main_new_MIL300: DEBUG: Epoch 29 Update 1320 Cost 0.09537980705499649 L2 153.20196533203125 TIME 0.30379509925842285
+2020-08-28 14:08:15,183: main_new_MIL300: DEBUG: Epoch 29 Update 1340 Cost 0.10169617831707001 L2 150.84315490722656 TIME 0.5974209308624268
+2020-08-28 14:08:24,469: main_new_MIL300: DEBUG: Epoch  29
+2020-08-28 14:08:24,470: main_new_MIL300: DEBUG: Valid cost  0.6203663078221408
+2020-08-28 14:08:24,471: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:08:24,471: main_new_MIL300: DEBUG: Test cost  0.6430919007821516
+2020-08-28 14:08:24,471: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:08:24,471: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:08:24,471: main_new_MIL300: INFO: Saving...
+2020-08-28 14:08:24,681: main_new_MIL300: INFO: results/_epoch_29_model.ckpt
+2020-08-28 14:08:24,705: main_new_MIL300: INFO: Done
+2020-08-28 14:08:24,705: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:08:24,705: main_new_MIL300: DEBUG: Training accuracy:  0.4708029197080292
+2020-08-28 14:08:24,706: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:08:26,687: main_new_MIL300: DEBUG: Epoch 30 Update 1360 Cost 0.0943078100681305 L2 148.57574462890625 TIME 0.09424114227294922
+2020-08-28 14:08:33,039: main_new_MIL300: DEBUG: Epoch 30 Update 1380 Cost 0.0906558483839035 L2 146.2647247314453 TIME 0.1282498836517334
+2020-08-28 14:08:45,262: main_new_MIL300: DEBUG: Epoch  30
+2020-08-28 14:08:45,263: main_new_MIL300: DEBUG: Valid cost  0.6177886399355802
+2020-08-28 14:08:45,263: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:08:45,263: main_new_MIL300: DEBUG: Test cost  0.6405142708258196
+2020-08-28 14:08:45,263: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:08:45,263: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:08:45,264: main_new_MIL300: INFO: Saving...
+2020-08-28 14:08:45,476: main_new_MIL300: INFO: results/_epoch_30_model.ckpt
+2020-08-28 14:08:45,500: main_new_MIL300: INFO: Done
+2020-08-28 14:08:45,501: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:08:45,501: main_new_MIL300: DEBUG: Training accuracy:  0.4905109489051095
+2020-08-28 14:08:45,501: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:08:46,520: main_new_MIL300: DEBUG: Epoch 31 Update 1400 Cost 0.09204265475273132 L2 144.0435028076172 TIME 0.18080711364746094
+2020-08-28 14:08:53,074: main_new_MIL300: DEBUG: Epoch 31 Update 1420 Cost 0.08841338008642197 L2 141.78038024902344 TIME 0.8239550590515137
+2020-08-28 14:09:03,111: main_new_MIL300: DEBUG: Epoch 31 Update 1440 Cost 0.06977704912424088 L2 139.5004119873047 TIME 0.14619088172912598
+2020-08-28 14:09:07,432: main_new_MIL300: DEBUG: Epoch  31
+2020-08-28 14:09:07,433: main_new_MIL300: DEBUG: Valid cost  0.6152711456472223
+2020-08-28 14:09:07,433: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:09:07,433: main_new_MIL300: DEBUG: Test cost  0.6379968144676902
+2020-08-28 14:09:07,433: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:09:07,433: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:09:07,433: main_new_MIL300: INFO: Saving...
+2020-08-28 14:09:07,645: main_new_MIL300: INFO: results/_epoch_31_model.ckpt
+2020-08-28 14:09:07,669: main_new_MIL300: INFO: Done
+2020-08-28 14:09:07,669: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:09:07,669: main_new_MIL300: DEBUG: Training accuracy:  0.48905109489051096
+2020-08-28 14:09:07,669: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:09:11,929: main_new_MIL300: DEBUG: Epoch 32 Update 1460 Cost 0.08199553936719894 L2 137.2974395751953 TIME 0.07349681854248047
+2020-08-28 14:09:22,906: main_new_MIL300: DEBUG: Epoch 32 Update 1480 Cost 0.09110743552446365 L2 135.10711669921875 TIME 0.14014029502868652
+2020-08-28 14:09:30,427: main_new_MIL300: DEBUG: Epoch  32
+2020-08-28 14:09:30,428: main_new_MIL300: DEBUG: Valid cost  0.6128143613988702
+2020-08-28 14:09:30,428: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:09:30,428: main_new_MIL300: DEBUG: Test cost  0.635540095242587
+2020-08-28 14:09:30,428: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:09:30,428: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:09:30,428: main_new_MIL300: INFO: Saving...
+2020-08-28 14:09:30,648: main_new_MIL300: INFO: results/_epoch_32_model.ckpt
+2020-08-28 14:09:30,672: main_new_MIL300: INFO: Done
+2020-08-28 14:09:30,672: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:09:30,673: main_new_MIL300: DEBUG: Training accuracy:  0.4751824817518248
+2020-08-28 14:09:30,673: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:09:34,026: main_new_MIL300: DEBUG: Epoch 33 Update 1500 Cost 0.0927780270576477 L2 133.00393676757812 TIME 0.20703649520874023
+2020-08-28 14:09:43,021: main_new_MIL300: DEBUG: Epoch 33 Update 1520 Cost 0.08544344455003738 L2 130.8617706298828 TIME 0.41966795921325684
+2020-08-28 14:09:52,716: main_new_MIL300: DEBUG: Epoch  33
+2020-08-28 14:09:52,718: main_new_MIL300: DEBUG: Valid cost  0.6104181679812345
+2020-08-28 14:09:52,718: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:09:52,718: main_new_MIL300: DEBUG: Test cost  0.6331439451737837
+2020-08-28 14:09:52,718: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:09:52,718: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:09:52,718: main_new_MIL300: INFO: Saving...
+2020-08-28 14:09:52,922: main_new_MIL300: INFO: results/_epoch_33_model.ckpt
+2020-08-28 14:09:52,951: main_new_MIL300: INFO: Done
+2020-08-28 14:09:52,951: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:09:52,951: main_new_MIL300: DEBUG: Training accuracy:  0.4781021897810219
+2020-08-28 14:09:52,951: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:09:54,957: main_new_MIL300: DEBUG: Epoch 34 Update 1540 Cost 0.08567812293767929 L2 128.8048095703125 TIME 0.23501038551330566
+2020-08-28 14:10:00,607: main_new_MIL300: DEBUG: Epoch 34 Update 1560 Cost 0.08587606996297836 L2 126.71047973632812 TIME 0.13409733772277832
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: Epoch  34
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: Valid cost  0.6080824082547968
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: Test cost  0.6308082233775746
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:10:15,599: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:10:15,599: main_new_MIL300: INFO: Saving...
+2020-08-28 14:10:15,811: main_new_MIL300: INFO: results/_epoch_34_model.ckpt
+2020-08-28 14:10:15,834: main_new_MIL300: INFO: Done
+2020-08-28 14:10:15,834: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:10:15,834: main_new_MIL300: DEBUG: Training accuracy:  0.48832116788321167
+2020-08-28 14:10:15,834: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:10:17,179: main_new_MIL300: DEBUG: Epoch 35 Update 1580 Cost 0.08362715691328049 L2 124.6996841430664 TIME 0.2286815643310547
+2020-08-28 14:10:22,186: main_new_MIL300: DEBUG: Epoch 35 Update 1600 Cost 0.08384473621845245 L2 122.65304565429688 TIME 0.13200950622558594
+2020-08-28 14:10:33,262: main_new_MIL300: DEBUG: Epoch 35 Update 1620 Cost 0.08698514103889465 L2 120.59364318847656 TIME 0.21877336502075195
+2020-08-28 14:10:37,713: main_new_MIL300: DEBUG: Epoch  35
+2020-08-28 14:10:37,714: main_new_MIL300: DEBUG: Valid cost  0.6058069250800393
+2020-08-28 14:10:37,714: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:10:37,714: main_new_MIL300: DEBUG: Test cost  0.6285327889702537
+2020-08-28 14:10:37,714: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:10:37,714: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:10:37,715: main_new_MIL300: INFO: Saving...
+2020-08-28 14:10:37,925: main_new_MIL300: INFO: results/_epoch_35_model.ckpt
+2020-08-28 14:10:37,948: main_new_MIL300: INFO: Done
+2020-08-28 14:10:37,948: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:10:37,948: main_new_MIL300: DEBUG: Training accuracy:  0.48905109489051096
+2020-08-28 14:10:37,949: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:10:42,413: main_new_MIL300: DEBUG: Epoch 36 Update 1640 Cost 0.0793231651186943 L2 118.60568237304688 TIME 0.10644817352294922
+2020-08-28 14:10:52,540: main_new_MIL300: DEBUG: Epoch 36 Update 1660 Cost 0.07480670511722565 L2 116.63136291503906 TIME 0.14363622665405273
+2020-08-28 14:11:00,145: main_new_MIL300: DEBUG: Epoch  36
+2020-08-28 14:11:00,146: main_new_MIL300: DEBUG: Valid cost  0.6035913554104891
+2020-08-28 14:11:00,146: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:11:00,146: main_new_MIL300: DEBUG: Test cost  0.6263172843239524
+2020-08-28 14:11:00,146: main_new_MIL300: DEBUG: Test accuracy  0.4318181818181818
+2020-08-28 14:11:00,147: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:11:00,147: main_new_MIL300: INFO: Saving...
+2020-08-28 14:11:00,354: main_new_MIL300: INFO: results/_epoch_36_model.ckpt
+2020-08-28 14:11:00,377: main_new_MIL300: INFO: Done
+2020-08-28 14:11:00,377: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:11:00,378: main_new_MIL300: DEBUG: Training accuracy:  0.48394160583941603
+2020-08-28 14:11:00,378: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:11:03,356: main_new_MIL300: DEBUG: Epoch 37 Update 1680 Cost 0.0761364996433258 L2 114.73754119873047 TIME 0.11453509330749512
+2020-08-28 14:11:11,674: main_new_MIL300: DEBUG: Epoch 37 Update 1700 Cost 0.06892559677362442 L2 112.81048583984375 TIME 0.17765021324157715
+2020-08-28 14:11:22,191: main_new_MIL300: DEBUG: Epoch  37
+2020-08-28 14:11:22,192: main_new_MIL300: DEBUG: Valid cost  0.6014354445717551
+2020-08-28 14:11:22,192: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 14:11:22,193: main_new_MIL300: DEBUG: Test cost  0.6184796094894409
+2020-08-28 14:11:22,193: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:11:22,193: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:11:22,193: main_new_MIL300: INFO: Saving...
+2020-08-28 14:11:22,406: main_new_MIL300: INFO: results/_epoch_37_model.ckpt
+2020-08-28 14:11:22,430: main_new_MIL300: INFO: Done
+2020-08-28 14:11:22,430: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:11:22,430: main_new_MIL300: DEBUG: Training accuracy:  0.4678832116788321
+2020-08-28 14:11:22,430: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:11:24,997: main_new_MIL300: DEBUG: Epoch 38 Update 1720 Cost 0.07425219565629959 L2 110.9619140625 TIME 0.1338505744934082
+2020-08-28 14:11:31,280: main_new_MIL300: DEBUG: Epoch 38 Update 1740 Cost 0.07580533623695374 L2 109.08174133300781 TIME 0.12432360649108887
+2020-08-28 14:11:43,880: main_new_MIL300: DEBUG: Epoch  38
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: Valid cost  0.6050206206061624
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: Valid accuracy  0.44886363636363635
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: Test cost  0.6163830215280707
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:11:43,881: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:11:43,881: main_new_MIL300: DEBUG: bad_counter:  1
+2020-08-28 14:11:43,882: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:11:43,882: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:11:43,882: main_new_MIL300: DEBUG: Training accuracy:  0.49343065693430654
+2020-08-28 14:11:43,882: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:11:44,969: main_new_MIL300: DEBUG: Epoch 39 Update 1760 Cost 0.0724177211523056 L2 107.27828979492188 TIME 0.1184530258178711
+2020-08-28 14:11:49,397: main_new_MIL300: DEBUG: Epoch 39 Update 1780 Cost 0.06524261832237244 L2 105.44468688964844 TIME 0.1798543930053711
+2020-08-28 14:12:01,884: main_new_MIL300: DEBUG: Epoch 39 Update 1800 Cost 0.07848989218473434 L2 103.60120391845703 TIME 0.19863533973693848
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: Epoch  39
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: Valid cost  0.61434621702541
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: Valid accuracy  0.4375
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: Test cost  0.6143450086767023
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:12:06,035: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:12:06,036: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:12:06,036: main_new_MIL300: DEBUG: bad_counter:  2
+2020-08-28 14:12:06,036: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:12:06,036: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:12:06,036: main_new_MIL300: DEBUG: Training accuracy:  0.5021897810218978
+2020-08-28 14:12:06,036: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:12:10,493: main_new_MIL300: DEBUG: Epoch 40 Update 1820 Cost 0.0776049792766571 L2 101.82359313964844 TIME 0.07255101203918457
+2020-08-28 14:12:21,456: main_new_MIL300: DEBUG: Epoch 40 Update 1840 Cost 0.07828529924154282 L2 100.0598373413086 TIME 0.2387545108795166
+2020-08-28 14:12:29,212: main_new_MIL300: DEBUG: Epoch  40
+2020-08-28 14:12:29,213: main_new_MIL300: DEBUG: Valid cost  0.618048061024059
+2020-08-28 14:12:29,213: main_new_MIL300: DEBUG: Valid accuracy  0.4318181818181818
+2020-08-28 14:12:29,213: main_new_MIL300: DEBUG: Test cost  0.6066832759163596
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: Test accuracy  0.4431818181818182
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:12:29,214: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: bad_counter:  3
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: Training accuracy:  0.4802919708029197
+2020-08-28 14:12:29,214: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:12:32,400: main_new_MIL300: DEBUG: Epoch 41 Update 1860 Cost 0.06919698417186737 L2 98.36964416503906 TIME 0.44861936569213867
+2020-08-28 14:12:40,019: main_new_MIL300: DEBUG: Epoch 41 Update 1880 Cost 0.06834661960601807 L2 96.65144348144531 TIME 0.7142903804779053
+2020-08-28 14:12:50,619: main_new_MIL300: DEBUG: Epoch  41
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: Valid cost  0.6104437925598838
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: Valid accuracy  0.4375
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: Test cost  0.6104427196762778
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:12:50,620: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: bad_counter:  4
+2020-08-28 14:12:50,620: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:12:50,621: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:12:50,621: main_new_MIL300: DEBUG: Training accuracy:  0.5007299270072992
+2020-08-28 14:12:50,621: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:12:52,851: main_new_MIL300: DEBUG: Epoch 42 Update 1900 Cost 0.0687749981880188 L2 95.00492095947266 TIME 0.2283790111541748
+2020-08-28 14:12:59,614: main_new_MIL300: DEBUG: Epoch 42 Update 1920 Cost 0.06543685495853424 L2 93.33171081542969 TIME 0.826345682144165
+2020-08-28 14:13:12,461: main_new_MIL300: DEBUG: Epoch  42
+2020-08-28 14:13:12,462: main_new_MIL300: DEBUG: Valid cost  0.6142599799416282
+2020-08-28 14:13:12,462: main_new_MIL300: DEBUG: Valid accuracy  0.4318181818181818
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: Test cost  0.6085771322250366
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:13:12,463: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: bad_counter:  5
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: Training accuracy:  0.5065693430656935
+2020-08-28 14:13:12,463: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:13:13,569: main_new_MIL300: DEBUG: Epoch 43 Update 1940 Cost 0.06463860720396042 L2 91.72826385498047 TIME 0.22588562965393066
+2020-08-28 14:13:18,597: main_new_MIL300: DEBUG: Epoch 43 Update 1960 Cost 0.06507216393947601 L2 90.09953308105469 TIME 0.2581760883331299
+2020-08-28 14:13:30,715: main_new_MIL300: DEBUG: Epoch 43 Update 1980 Cost 0.07092005759477615 L2 88.46366882324219 TIME 0.2184584140777588
+2020-08-28 14:13:35,054: main_new_MIL300: DEBUG: Epoch  43
+2020-08-28 14:13:35,054: main_new_MIL300: DEBUG: Valid cost  0.6124504804611206
+2020-08-28 14:13:35,054: main_new_MIL300: DEBUG: Valid accuracy  0.4318181818181818
+2020-08-28 14:13:35,054: main_new_MIL300: DEBUG: Test cost  0.6067676869305697
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:13:35,055: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: bad_counter:  6
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: Training accuracy:  0.4948905109489051
+2020-08-28 14:13:35,055: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:13:39,523: main_new_MIL300: DEBUG: Epoch 44 Update 2000 Cost 0.06347523629665375 L2 86.88765716552734 TIME 0.07920670509338379
+2020-08-28 14:13:50,698: main_new_MIL300: DEBUG: Epoch 44 Update 2020 Cost 0.07327165454626083 L2 85.32543182373047 TIME 0.5333003997802734
+2020-08-28 14:13:58,495: main_new_MIL300: DEBUG: Epoch  44
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: Valid cost  0.6163779659704729
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: Valid accuracy  0.42613636363636365
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: Test cost  0.6050133759325201
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: Test accuracy  0.4375
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:13:58,496: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: bad_counter:  7
+2020-08-28 14:13:58,496: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:13:58,497: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:13:58,497: main_new_MIL300: DEBUG: Training accuracy:  0.48759124087591244
+2020-08-28 14:13:58,497: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:14:01,511: main_new_MIL300: DEBUG: Epoch 45 Update 2040 Cost 0.0656859278678894 L2 83.82974243164062 TIME 0.1813654899597168
+2020-08-28 14:14:11,168: main_new_MIL300: DEBUG: Epoch 45 Update 2060 Cost 0.062425363808870316 L2 82.31060791015625 TIME 0.961193323135376
+2020-08-28 14:14:22,431: main_new_MIL300: DEBUG: Epoch  45
+2020-08-28 14:14:22,432: main_new_MIL300: DEBUG: Valid cost  0.6089962395754728
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: Valid accuracy  0.4318181818181818
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: Test cost  0.5976317253979769
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: Test accuracy  0.4431818181818182
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:14:22,433: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: bad_counter:  8
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: Training accuracy:  0.47883211678832116
+2020-08-28 14:14:22,433: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:14:24,631: main_new_MIL300: DEBUG: Epoch 46 Update 2080 Cost 0.06044900044798851 L2 80.8562240600586 TIME 0.21578240394592285
+2020-08-28 14:14:31,746: main_new_MIL300: DEBUG: Epoch 46 Update 2100 Cost 0.06095832586288452 L2 79.37957763671875 TIME 0.6815567016601562
+2020-08-28 14:14:43,407: main_new_MIL300: DEBUG: Epoch  46
+2020-08-28 14:14:43,407: main_new_MIL300: DEBUG: Valid cost  0.5959864150394093
+2020-08-28 14:14:43,408: main_new_MIL300: DEBUG: Valid accuracy  0.4431818181818182
+2020-08-28 14:14:43,408: main_new_MIL300: DEBUG: Test cost  0.5789401233196259
+2020-08-28 14:14:43,408: main_new_MIL300: DEBUG: Test accuracy  0.4602272727272727
+2020-08-28 14:14:43,408: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:14:43,408: main_new_MIL300: INFO: Saving...
+2020-08-28 14:14:43,611: main_new_MIL300: INFO: results/_epoch_38_model.ckpt
+2020-08-28 14:14:43,635: main_new_MIL300: INFO: Done
+2020-08-28 14:14:43,635: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:14:43,635: main_new_MIL300: DEBUG: Training accuracy:  0.5167883211678832
+2020-08-28 14:14:43,635: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:14:44,747: main_new_MIL300: DEBUG: Epoch 47 Update 2120 Cost 0.061502985656261444 L2 77.96588134765625 TIME 0.1926124095916748
+2020-08-28 14:14:51,174: main_new_MIL300: DEBUG: Epoch 47 Update 2140 Cost 0.05953346565365791 L2 76.53108978271484 TIME 0.18207526206970215
+2020-08-28 14:15:02,528: main_new_MIL300: DEBUG: Epoch 47 Update 2160 Cost 0.06423812359571457 L2 75.09124755859375 TIME 0.14135336875915527
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: Epoch  47
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: Valid cost  0.600074670531533
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: Valid accuracy  0.4375
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: Test cost  0.5716648101806641
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: Test accuracy  0.4659090909090909
+2020-08-28 14:15:06,835: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:15:06,836: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:15:06,836: main_new_MIL300: DEBUG: bad_counter:  9
+2020-08-28 14:15:06,836: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:15:06,836: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:15:06,836: main_new_MIL300: DEBUG: Training accuracy:  0.47956204379562045
+2020-08-28 14:15:06,836: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:15:11,427: main_new_MIL300: DEBUG: Epoch 48 Update 2180 Cost 0.056871745735406876 L2 73.70548248291016 TIME 0.09858250617980957
+2020-08-28 14:15:22,443: main_new_MIL300: DEBUG: Epoch 48 Update 2200 Cost 0.06206662580370903 L2 72.33306121826172 TIME 0.4908766746520996
+2020-08-28 14:15:30,460: main_new_MIL300: DEBUG: Epoch  48
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: Valid cost  0.6098966165022417
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: Valid accuracy  0.42613636363636365
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: Test cost  0.5701231739737771
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: Test accuracy  0.4659090909090909
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:15:30,462: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:15:30,462: main_new_MIL300: DEBUG: bad_counter:  10
+2020-08-28 14:15:30,463: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:15:30,463: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:15:30,463: main_new_MIL300: DEBUG: Training accuracy:  0.4905109489051095
+2020-08-28 14:15:30,463: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:15:34,263: main_new_MIL300: DEBUG: Epoch 49 Update 2220 Cost 0.04928175359964371 L2 71.0201416015625 TIME 0.19520878791809082
+2020-08-28 14:15:42,817: main_new_MIL300: DEBUG: Epoch 49 Update 2240 Cost 0.05110327526926994 L2 69.68792724609375 TIME 0.7013154029846191
+2020-08-28 14:15:53,796: main_new_MIL300: DEBUG: Epoch  49
+2020-08-28 14:15:53,797: main_new_MIL300: DEBUG: Valid cost  0.6084057905457236
+2020-08-28 14:15:53,797: main_new_MIL300: DEBUG: Valid accuracy  0.42613636363636365
+2020-08-28 14:15:53,797: main_new_MIL300: DEBUG: Test cost  0.5686323588544672
+2020-08-28 14:15:53,797: main_new_MIL300: DEBUG: Test accuracy  0.4659090909090909
+2020-08-28 14:15:53,797: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 14:15:53,798: main_new_MIL300: INFO: wait_counter max, need to half the lr
+2020-08-28 14:15:53,798: main_new_MIL300: DEBUG: bad_counter:  11
+2020-08-28 14:15:53,798: main_new_MIL300: DEBUG: lrate change to:   0.04
+2020-08-28 14:15:53,798: main_new_MIL300: INFO: Early Stop!
+2020-08-28 14:15:53,798: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 14:15:53,798: main_new_MIL300: DEBUG: Training accuracy:  0.4927007299270073
+2020-08-28 14:15:53,798: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 14:15:53,835: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2020-08-28 14:15:53,840: tensorflow: INFO: Restoring parameters from results/_epoch_38_model.ckpt
+2020-08-28 14:15:54,086: main_new_MIL300: INFO: ================================================================================
+2020-08-28 14:15:54,087: main_new_MIL300: INFO: Final Result
+2020-08-28 14:15:54,087: main_new_MIL300: INFO: ================================================================================
+2020-08-28 14:15:54,087: main_new_MIL300: DEBUG: best epoch   46
+2020-08-28 14:15:57,015: main_new_MIL300: DEBUG: Valid cost   0.5959864150394093
+2020-08-28 14:15:57,016: main_new_MIL300: DEBUG: Valid accuracy   0.4431818181818182
+2020-08-28 14:15:59,116: main_new_MIL300: DEBUG: Test cost   0.5789401233196259
+2020-08-28 14:15:59,116: main_new_MIL300: DEBUG: Test accuracy   0.4602272727272727
+2020-08-28 14:16:09,513: main_new_MIL300: DEBUG: Train cost   0.5479149197139879
+2020-08-28 14:16:09,514: main_new_MIL300: DEBUG: Train accuracy   0.4912408759124088
+2020-08-28 15:05:26,399: main_new_MIL300: INFO: Loading knowledge base ...
+2020-08-28 15:05:26,400: main_new_MIL300: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': 70,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 150,
+ 'dim_kb': 5,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 7634,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-08-28 15:05:26,400: main_new_MIL300: INFO: Loading data
+2020-08-28 15:05:30,678: main_new_MIL300: INFO: init_word_embedding
+2020-08-28 15:05:35,654: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0309b1450>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0309b1450>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:35,891: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0ee2e1750>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14e0ee2e1750>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,068: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee2e1ad0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee2e1ad0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,207: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee2e1ad0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee2e1ad0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,382: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee8f5e90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e0ee8f5e90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,523: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e036a32a50>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14e036a32a50>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,720: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14e0eefda5d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14e0eefda5d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-08-28 15:05:36,775: main_new_MIL300: INFO: Building f_cost...
+2020-08-28 15:05:36,814: main_new_MIL300: INFO: Done
+2020-08-28 15:05:36,822: main_new_MIL300: INFO: Building optimizers...
+2020-08-28 15:05:36,822: main_new_MIL300: INFO: Done
+2020-08-28 15:05:37,820: main_new_MIL300: INFO: correct_pred
+2020-08-28 15:05:37,821: main_new_MIL300: INFO: Done
+2020-08-28 15:05:37,822: main_new_MIL300: INFO: init variables
+2020-08-28 15:05:37,824: main_new_MIL300: INFO: Done
+2020-08-28 15:05:50,351: main_new_MIL300: DEBUG: Epoch 0 Update 20 Cost 0.36665597558021545 L2 706.6446533203125 TIME 0.1284019947052002
+2020-08-28 15:06:12,877: main_new_MIL300: DEBUG: Epoch 0 Update 40 Cost 0.377695232629776 L2 698.9188842773438 TIME 0.22737574577331543
+2020-08-28 15:06:31,529: main_new_MIL300: DEBUG: Epoch  0
+2020-08-28 15:06:31,530: main_new_MIL300: DEBUG: Valid cost  0.8940638953989203
+2020-08-28 15:06:31,530: main_new_MIL300: DEBUG: Valid accuracy  0.45454545454545453
+2020-08-28 15:06:31,531: main_new_MIL300: DEBUG: Test cost  0.9281495430252769
+2020-08-28 15:06:31,531: main_new_MIL300: DEBUG: Test accuracy  0.42045454545454547
+2020-08-28 15:06:31,531: main_new_MIL300: DEBUG: learning_rate:  0.04
+2020-08-28 15:06:31,531: main_new_MIL300: INFO: Saving...
+2020-08-28 15:06:31,767: main_new_MIL300: INFO: results/_epoch_0_model.ckpt
+2020-08-28 15:06:31,787: main_new_MIL300: INFO: Done
+2020-08-28 15:06:31,788: main_new_MIL300: DEBUG: Seen samples:  1370
+2020-08-28 15:06:31,788: main_new_MIL300: DEBUG: Training accuracy:  0.45985401459854014
+2020-08-28 15:06:31,788: main_new_MIL300: DEBUG: results/Saved loss_plot pickle
+2020-08-28 15:06:37,166: main_new_MIL300: DEBUG: Epoch 1 Update 60 Cost 0.3706699013710022 L2 691.3372192382812 TIME 0.6781642436981201
+2020-08-28 15:06:58,682: main_new_MIL300: DEBUG: Epoch 1 Update 80 Cost 0.36798688769340515 L2 683.472412109375 TIME 2.0881197452545166
+2020-08-28 15:07:03,736: root: ERROR: Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+2020-08-28 15:07:03,783: root: INFO: 
+Unfortunately, your original traceback can not be constructed.
+

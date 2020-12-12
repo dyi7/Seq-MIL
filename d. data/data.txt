@@ -1,0 +1,30 @@
+Before writing paper:
+
+news set:  train (2006-10-20 -- 2012-6-21) (news_set/train.csv)   --> (news_set/train(originalwrong).csv)          
+           valid (2012-5-22 -- 2013-4-11)  (news_set/valid.csv)   --> (news_set/valid(originalwrong).csv)                
+           test  (2013-2-12 -- 2013-11-20) (news_set/test.csv)    --> (news_set/test(originalwrong).csv)                    
+price set:  train (2006-11-20 -- 2012-6-27) (price_set/train_label.csv)  -->(price_set/train_label(original wrong).csv)
+            valid (2012-6-28 -- 2013-3-13)  (price_set/valid_label.csv)  -->(price_set/valid_label(original wrong).csv)
+            test  (2013-3-14 -- 2013-11-20) (price_set/test_label.csv)  -->(price_set/test_label(original wrong).csv)
+ 
+vocab_cased_title.pickle: 7634
+
+
+
+
+
+
+
+After writing paper:
+ 
+(change the date  & both news and price set, the same date;  change the file names:: vocab size/files changed)
+news set:  train (2006-10-20 -- 2012-6-21) (news_set/train.csv)             
+           valid (2012-6-22 -- 2013-3-11)  (news_set/valid.csv)                 
+           test  (2013-3-12 -- 2013-11-20) (news_set/test.csv)   
+
+                 
+price set:  train (2006-10-20 -- 2012-6-21) (price_set/train(1020)_label.csv) 
+            valid (2012-6-22 -- 2013-3-11)  (price_set/valid(1020)_label.csv)  
+            test  (2013-3-12 -- 2013-11-21) (price_set/test(1020)_label.csv)  
+
+vocab_cased_new_title.pickle:7283 

@@ -1,0 +1,124 @@
+2020-06-17 13:25:57,987: main_new_WLSTM: INFO: Loading knowledge base ...
+2020-06-17 13:25:57,988: main_new_WLSTM: INFO: Reload options
+2020-06-17 13:25:57,990: main_new_WLSTM: DEBUG: {'CNN_filter': 128,
+ 'CNN_kernel': 3,
+ 'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': 70,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'delay1': 3,
+ 'delay2': 7,
+ 'delay_tech': 5,
+ 'dictionary': 'news_set/vocab_cased_abstract.pickle',
+ 'dim': 100,
+ 'dim_kb': 5,
+ 'dim_word': 300,
+ 'dispFreq': 20,
+ 'embedding': 'vectors.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'last_layer': 'LSTM',
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': True,
+ 'saveFreq': 45,
+ 'save_model': 'results/LSTM_models/',
+ 'saveto': './models/.npz',
+ 'tech_data': 'technical.csv',
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-06-17 13:25:57,991: main_new_WLSTM: INFO: Loading data
+2020-06-17 13:26:02,551: main_new_WLSTM: INFO: init_word_embedding
+2020-06-17 13:27:38,519: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:405: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-06-17 13:27:38,764: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:416: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-06-17 13:27:38,765: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:417: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-06-17 13:27:38,884: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:315: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-06-17 13:27:38,894: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:320: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-06-17 13:27:39,154: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:329: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-06-17 13:27:39,758: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:380: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-06-17 13:27:39,760: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-06-17 13:27:39,835: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-06-17 13:27:40,362: main_new_WLSTM: INFO: Building f_cost...
+2020-06-17 13:27:40,383: main_new_WLSTM: INFO: Done
+2020-06-17 13:27:40,383: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:542: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-06-17 13:27:40,387: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:543: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-06-17 13:27:40,390: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:544: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-06-17 13:27:40,395: main_new_WLSTM: INFO: Building optimizers...
+2020-06-17 13:27:40,395: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:720: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+2020-06-17 13:27:40,396: main_new_WLSTM: INFO: Done
+2020-06-17 13:27:40,396: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:725: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2020-06-17 13:27:41,791: main_new_WLSTM: INFO: correct_pred
+2020-06-17 13:27:41,793: main_new_WLSTM: INFO: Done
+2020-06-17 13:27:41,794: main_new_WLSTM: INFO: init variables
+2020-06-17 13:27:41,796: main_new_WLSTM: INFO: Done
+2020-06-17 13:27:41,796: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:752: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-06-17 13:27:41,863: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_WLSTM.py:761: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-06-17 13:27:44,702: main_new_WLSTM: INFO: Reload history error
+2020-06-17 13:28:09,683: main_new_WLSTM: DEBUG: Epoch 0 Update 20 Cost 9.32105541229248 L2 1835.511962890625 TIME 0.1204524040222168
+2020-06-17 13:28:59,960: main_new_WLSTM: DEBUG: Epoch 0 Update 40 Cost 4.041101932525635 L2 784.09228515625 TIME 1.484133243560791
+2020-06-17 13:29:18,572: main_new_WLSTM: DEBUG: Epoch  0
+2020-06-17 13:29:18,573: main_new_WLSTM: DEBUG: Valid cost  2.4855432510375977
+2020-06-17 13:29:18,573: main_new_WLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-17 13:29:18,573: main_new_WLSTM: DEBUG: Test cost  2.441355661912398
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: learning_rate:  0.04
+2020-06-17 13:29:18,574: main_new_WLSTM: INFO: wait_counter max, need to half the lr
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: bad_counter:  1
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: lrate change to:   0.04
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: Seen samples:  1370
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: Training accuracy:  0.5116788321167883
+2020-06-17 13:29:18,574: main_new_WLSTM: DEBUG: results/WLSTM_models/Saved loss_plot pickle
+2020-06-17 13:29:32,739: main_new_WLSTM: DEBUG: Epoch 1 Update 60 Cost 2.35697865486145 L2 269.1850891113281 TIME 0.34473538398742676
+2020-06-17 13:30:17,056: main_new_WLSTM: DEBUG: Epoch 1 Update 80 Cost 1.3229031562805176 L2 120.76080322265625 TIME 2.258979082107544
+2020-06-17 13:30:44,663: main_new_WLSTM: DEBUG: Epoch  1
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: Valid cost  1.8495934984900735
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: Test cost  1.770317630334334
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: learning_rate:  0.04
+2020-06-17 13:30:44,665: main_new_WLSTM: INFO: wait_counter max, need to half the lr
+2020-06-17 13:30:44,665: main_new_WLSTM: DEBUG: bad_counter:  2
+2020-06-17 13:30:44,666: main_new_WLSTM: DEBUG: lrate change to:   0.04
+2020-06-17 13:30:44,666: main_new_WLSTM: DEBUG: Seen samples:  1370
+2020-06-17 13:30:44,666: main_new_WLSTM: DEBUG: Training accuracy:  0.5138686131386861
+2020-06-17 13:30:44,666: main_new_WLSTM: DEBUG: results/WLSTM_models/Saved loss_plot pickle
+2020-06-17 13:30:52,748: main_new_WLSTM: DEBUG: Epoch 2 Update 100 Cost 1.2563960552215576 L2 149.84291076660156 TIME 0.32712864875793457
+2020-06-17 13:31:30,940: main_new_WLSTM: DEBUG: Epoch 2 Update 120 Cost 0.855320394039154 L2 48.20787811279297 TIME 2.5094711780548096

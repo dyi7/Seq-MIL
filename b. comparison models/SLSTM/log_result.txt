@@ -1,0 +1,1477 @@
+2020-06-19 10:16:23,707: main_new_SLSTM: INFO: Loading knowledge base ...
+2020-06-19 10:16:23,708: main_new_SLSTM: DEBUG: {'CNN_filter': 64,
+ 'CNN_kernel': 3,
+ 'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': 30,
+ 'cut_sentence': 30,
+ 'cut_word': 30,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'delay1': 3,
+ 'delay2': 7,
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 100,
+ 'dim_kb': 5,
+ 'dim_word': 300,
+ 'dispFreq': 20,
+ 'embedding': 'vectors.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'last_layer': 'LSTM',
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': True,
+ 'saveFreq': 45,
+ 'save_model': 'results/S_LSTM_models/',
+ 'saveto': './models1111/.npz',
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-06-19 10:16:23,708: main_new_SLSTM: INFO: Loading data
+2020-06-19 10:16:28,194: main_new_SLSTM: INFO: init_word_embedding
+2020-06-19 10:18:02,749: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:460: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-06-19 10:18:02,989: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:470: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-06-19 10:18:02,991: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:473: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-06-19 10:18:03,039: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:426: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-06-19 10:18:03,055: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:436: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-06-19 10:18:03,058: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-06-19 10:18:03,135: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-06-19 10:18:03,417: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-06-19 10:18:03,615: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:348: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-06-19 10:18:04,575: main_new_SLSTM: INFO: Building f_cost...
+2020-06-19 10:18:04,594: main_new_SLSTM: INFO: Done
+2020-06-19 10:18:04,594: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:604: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-06-19 10:18:04,601: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:605: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-06-19 10:18:04,606: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:606: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-06-19 10:18:04,613: main_new_SLSTM: INFO: Building optimizers...
+2020-06-19 10:18:04,614: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:783: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+2020-06-19 10:18:04,615: main_new_SLSTM: INFO: Done
+2020-06-19 10:18:04,615: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:786: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2020-06-19 10:18:06,069: main_new_SLSTM: INFO: correct_pred
+2020-06-19 10:18:06,070: main_new_SLSTM: INFO: Done
+2020-06-19 10:18:06,071: main_new_SLSTM: INFO: init variables
+2020-06-19 10:18:06,073: main_new_SLSTM: INFO: Done
+2020-06-19 10:18:06,073: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:813: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-06-19 10:18:06,157: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_new_SLSTM.py:820: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-06-19 10:18:30,563: main_new_SLSTM: DEBUG: Epoch 0 Update 20 Cost 8.33649730682373 L2 6386.560546875 TIME 0.20598149299621582
+2020-06-19 10:19:08,928: main_new_SLSTM: DEBUG: Epoch 0 Update 40 Cost 8.33980941772461 L2 6839.70849609375 TIME 1.82161283493042
+2020-06-19 10:19:36,489: main_new_SLSTM: DEBUG: Epoch  0
+2020-06-19 10:19:36,491: main_new_SLSTM: DEBUG: Valid cost  9.610585126009854
+2020-06-19 10:19:36,491: main_new_SLSTM: DEBUG: Valid accuracy  0.45454545454545453
+2020-06-19 10:19:36,491: main_new_SLSTM: DEBUG: Test cost  9.82078066739169
+2020-06-19 10:19:36,491: main_new_SLSTM: DEBUG: Test accuracy  0.42045454545454547
+2020-06-19 10:19:36,491: main_new_SLSTM: DEBUG: learning_rate:  0.04
+2020-06-19 10:19:36,491: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:19:37,194: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_0_model.ckpt
+2020-06-19 10:19:37,308: main_new_SLSTM: INFO: Done
+2020-06-19 10:19:37,308: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:19:37,308: main_new_SLSTM: DEBUG: Training accuracy:  0.5124087591240876
+2020-06-19 10:19:37,308: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:19:52,738: main_new_SLSTM: DEBUG: Epoch 1 Update 60 Cost 9.753801345825195 L2 7983.05029296875 TIME 0.7810342311859131
+2020-06-19 10:20:32,901: main_new_SLSTM: DEBUG: Epoch 1 Update 80 Cost 14.481428146362305 L2 13501.5986328125 TIME 3.2348759174346924
+2020-06-19 10:21:08,579: main_new_SLSTM: DEBUG: Epoch  1
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: Valid cost  17.567517714066938
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: Valid accuracy  0.4659090909090909
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: Test cost  17.60719767483798
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: Test accuracy  0.4318181818181818
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: learning_rate:  0.04
+2020-06-19 10:21:08,580: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 10:21:08,580: main_new_SLSTM: DEBUG: bad_counter:  1
+2020-06-19 10:21:08,797: main_new_SLSTM: DEBUG: lrate change to:   0.02
+2020-06-19 10:21:08,797: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:21:08,797: main_new_SLSTM: DEBUG: Training accuracy:  0.4897810218978102
+2020-06-19 10:21:08,797: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:21:18,184: main_new_SLSTM: DEBUG: Epoch 2 Update 100 Cost 18.491233825683594 L2 17437.341796875 TIME 1.2501428127288818
+2020-06-19 10:21:43,731: main_new_SLSTM: DEBUG: Epoch 2 Update 120 Cost 17.484176635742188 L2 16340.3466796875 TIME 3.5288472175598145
+2020-06-19 10:22:29,450: main_new_SLSTM: DEBUG: Epoch  2
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: Valid cost  15.374889200383967
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: Valid accuracy  0.5397727272727273
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: Test cost  15.332900307395242
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: learning_rate:  0.02
+2020-06-19 10:22:29,452: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 10:22:29,452: main_new_SLSTM: DEBUG: bad_counter:  2
+2020-06-19 10:22:29,602: main_new_SLSTM: DEBUG: lrate change to:   0.01
+2020-06-19 10:22:29,602: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:22:29,602: main_new_SLSTM: DEBUG: Training accuracy:  0.5145985401459854
+2020-06-19 10:22:29,602: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:22:34,020: main_new_SLSTM: DEBUG: Epoch 3 Update 140 Cost 15.567344665527344 L2 14304.80078125 TIME 0.1572704315185547
+2020-06-19 10:22:55,816: main_new_SLSTM: DEBUG: Epoch 3 Update 160 Cost 13.300468444824219 L2 12523.5634765625 TIME 3.301832437515259
+2020-06-19 10:23:41,497: main_new_SLSTM: DEBUG: Epoch 3 Update 180 Cost 12.118454933166504 L2 10986.427734375 TIME 0.2950756549835205
+2020-06-19 10:23:54,893: main_new_SLSTM: DEBUG: Epoch  3
+2020-06-19 10:23:54,894: main_new_SLSTM: DEBUG: Valid cost  11.635386033491654
+2020-06-19 10:23:54,894: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:23:54,895: main_new_SLSTM: DEBUG: Test cost  11.608325177972967
+2020-06-19 10:23:54,895: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:23:54,895: main_new_SLSTM: DEBUG: learning_rate:  0.01
+2020-06-19 10:23:54,895: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 10:23:54,895: main_new_SLSTM: DEBUG: bad_counter:  3
+2020-06-19 10:23:55,081: main_new_SLSTM: DEBUG: lrate change to:   0.005
+2020-06-19 10:23:55,082: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:23:55,082: main_new_SLSTM: DEBUG: Training accuracy:  0.5116788321167883
+2020-06-19 10:23:55,082: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:24:11,007: main_new_SLSTM: DEBUG: Epoch 4 Update 200 Cost 10.811177253723145 L2 10119.1455078125 TIME 0.29186487197875977
+2020-06-19 10:24:51,742: main_new_SLSTM: DEBUG: Epoch 4 Update 220 Cost 9.849973678588867 L2 9187.98828125 TIME 0.4695703983306885
+2020-06-19 10:25:18,423: main_new_SLSTM: DEBUG: Epoch  4
+2020-06-19 10:25:18,424: main_new_SLSTM: DEBUG: Valid cost  9.642410278320312
+2020-06-19 10:25:18,424: main_new_SLSTM: DEBUG: Valid accuracy  0.45454545454545453
+2020-06-19 10:25:18,425: main_new_SLSTM: DEBUG: Test cost  9.66109258478338
+2020-06-19 10:25:18,425: main_new_SLSTM: DEBUG: Test accuracy  0.42045454545454547
+2020-06-19 10:25:18,425: main_new_SLSTM: DEBUG: learning_rate:  0.005
+2020-06-19 10:25:18,425: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 10:25:18,425: main_new_SLSTM: DEBUG: bad_counter:  4
+2020-06-19 10:25:18,569: main_new_SLSTM: DEBUG: lrate change to:   0.0025
+2020-06-19 10:25:18,569: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:25:18,569: main_new_SLSTM: DEBUG: Training accuracy:  0.49562043795620436
+2020-06-19 10:25:18,569: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:25:32,133: main_new_SLSTM: DEBUG: Epoch 5 Update 240 Cost 9.13782024383545 L2 8520.2197265625 TIME 0.6266098022460938
+2020-06-19 10:26:02,763: main_new_SLSTM: DEBUG: Epoch 5 Update 260 Cost 8.8453369140625 L2 7985.4296875 TIME 2.7035629749298096
+2020-06-19 10:26:39,364: main_new_SLSTM: DEBUG: Epoch  5
+2020-06-19 10:26:39,365: main_new_SLSTM: DEBUG: Valid cost  8.377947547219016
+2020-06-19 10:26:39,366: main_new_SLSTM: DEBUG: Valid accuracy  0.5397727272727273
+2020-06-19 10:26:39,366: main_new_SLSTM: DEBUG: Test cost  8.370161750099875
+2020-06-19 10:26:39,366: main_new_SLSTM: DEBUG: Test accuracy  0.5909090909090909
+2020-06-19 10:26:39,366: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:26:39,366: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:26:39,964: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_1_model.ckpt
+2020-06-19 10:26:40,057: main_new_SLSTM: INFO: Done
+2020-06-19 10:26:40,058: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:26:40,058: main_new_SLSTM: DEBUG: Training accuracy:  0.5204379562043796
+2020-06-19 10:26:40,058: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:26:48,802: main_new_SLSTM: DEBUG: Epoch 6 Update 280 Cost 8.269393920898438 L2 7476.72412109375 TIME 0.2635371685028076
+2020-06-19 10:27:22,131: main_new_SLSTM: DEBUG: Epoch 6 Update 300 Cost 7.613630294799805 L2 6985.76220703125 TIME 3.2748756408691406
+2020-06-19 10:27:59,039: main_new_SLSTM: DEBUG: Epoch  6
+2020-06-19 10:27:59,040: main_new_SLSTM: DEBUG: Valid cost  7.329709053039551
+2020-06-19 10:27:59,040: main_new_SLSTM: DEBUG: Valid accuracy  0.45454545454545453
+2020-06-19 10:27:59,040: main_new_SLSTM: DEBUG: Test cost  7.331824649464
+2020-06-19 10:27:59,040: main_new_SLSTM: DEBUG: Test accuracy  0.4318181818181818
+2020-06-19 10:27:59,040: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:27:59,040: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:27:59,534: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_2_model.ckpt
+2020-06-19 10:27:59,624: main_new_SLSTM: INFO: Done
+2020-06-19 10:27:59,624: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:27:59,624: main_new_SLSTM: DEBUG: Training accuracy:  0.5014598540145986
+2020-06-19 10:27:59,625: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:28:03,918: main_new_SLSTM: DEBUG: Epoch 7 Update 320 Cost 7.42299747467041 L2 6547.93994140625 TIME 0.712543249130249
+2020-06-19 10:28:20,204: main_new_SLSTM: DEBUG: Epoch 7 Update 340 Cost 6.827953338623047 L2 6133.49609375 TIME 0.39261388778686523
+2020-06-19 10:29:10,359: main_new_SLSTM: DEBUG: Epoch 7 Update 360 Cost 6.614465236663818 L2 5682.35595703125 TIME 0.2976267337799072
+2020-06-19 10:29:23,843: main_new_SLSTM: DEBUG: Epoch  7
+2020-06-19 10:29:23,845: main_new_SLSTM: DEBUG: Valid cost  6.3536482724276455
+2020-06-19 10:29:23,845: main_new_SLSTM: DEBUG: Valid accuracy  0.5284090909090909
+2020-06-19 10:29:23,845: main_new_SLSTM: DEBUG: Test cost  6.358210303566673
+2020-06-19 10:29:23,845: main_new_SLSTM: DEBUG: Test accuracy  0.4431818181818182
+2020-06-19 10:29:23,845: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:29:23,845: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:29:24,381: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_3_model.ckpt
+2020-06-19 10:29:24,486: main_new_SLSTM: INFO: Done
+2020-06-19 10:29:24,486: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:29:24,486: main_new_SLSTM: DEBUG: Training accuracy:  0.5313868613138686
+2020-06-19 10:29:24,486: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:29:43,241: main_new_SLSTM: DEBUG: Epoch 8 Update 380 Cost 6.281856060028076 L2 5286.2978515625 TIME 0.22597169876098633
+2020-06-19 10:30:25,129: main_new_SLSTM: DEBUG: Epoch 8 Update 400 Cost 5.7772016525268555 L2 4924.6162109375 TIME 1.1174914836883545
+2020-06-19 10:30:51,629: main_new_SLSTM: DEBUG: Epoch  8
+2020-06-19 10:30:51,630: main_new_SLSTM: DEBUG: Valid cost  5.511573964899236
+2020-06-19 10:30:51,630: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:30:51,630: main_new_SLSTM: DEBUG: Test cost  5.50047475641424
+2020-06-19 10:30:51,630: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:30:51,630: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:30:51,630: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:30:52,132: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_4_model.ckpt
+2020-06-19 10:30:52,219: main_new_SLSTM: INFO: Done
+2020-06-19 10:30:52,220: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:30:52,220: main_new_SLSTM: DEBUG: Training accuracy:  0.5094890510948905
+2020-06-19 10:30:52,220: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:31:07,690: main_new_SLSTM: DEBUG: Epoch 9 Update 420 Cost 5.355255603790283 L2 4591.662109375 TIME 1.268303632736206
+2020-06-19 10:31:37,661: main_new_SLSTM: DEBUG: Epoch 9 Update 440 Cost 5.093305587768555 L2 4256.8955078125 TIME 2.817861318588257
+2020-06-19 10:32:15,608: main_new_SLSTM: DEBUG: Epoch  9
+2020-06-19 10:32:15,609: main_new_SLSTM: DEBUG: Valid cost  4.874544143676758
+2020-06-19 10:32:15,609: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:32:15,609: main_new_SLSTM: DEBUG: Test cost  4.835262385281649
+2020-06-19 10:32:15,609: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:32:15,609: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:32:15,610: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:32:16,101: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_5_model.ckpt
+2020-06-19 10:32:16,188: main_new_SLSTM: INFO: Done
+2020-06-19 10:32:16,189: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:32:16,189: main_new_SLSTM: DEBUG: Training accuracy:  0.5080291970802919
+2020-06-19 10:32:16,189: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:32:23,225: main_new_SLSTM: DEBUG: Epoch 10 Update 460 Cost 4.780193328857422 L2 3975.42333984375 TIME 0.6199095249176025
+2020-06-19 10:32:51,994: main_new_SLSTM: DEBUG: Epoch 10 Update 480 Cost 4.549674987792969 L2 3716.335693359375 TIME 0.41316652297973633
+2020-06-19 10:33:36,410: main_new_SLSTM: DEBUG: Epoch  10
+2020-06-19 10:33:36,412: main_new_SLSTM: DEBUG: Valid cost  4.211046348918568
+2020-06-19 10:33:36,412: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:33:36,412: main_new_SLSTM: DEBUG: Test cost  4.195577621459961
+2020-06-19 10:33:36,412: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:33:36,412: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:33:36,412: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:33:37,050: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_6_model.ckpt
+2020-06-19 10:33:37,173: main_new_SLSTM: INFO: Done
+2020-06-19 10:33:37,174: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:33:37,174: main_new_SLSTM: DEBUG: Training accuracy:  0.48175182481751827
+2020-06-19 10:33:37,174: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:33:40,385: main_new_SLSTM: DEBUG: Epoch 11 Update 500 Cost 4.19606876373291 L2 3463.2587890625 TIME 0.37953925132751465
+2020-06-19 10:34:07,542: main_new_SLSTM: DEBUG: Epoch 11 Update 520 Cost 3.9543240070343018 L2 3216.65185546875 TIME 2.4443206787109375
+2020-06-19 10:34:55,654: main_new_SLSTM: DEBUG: Epoch 11 Update 540 Cost 3.683025360107422 L2 2979.6884765625 TIME 0.30333614349365234
+2020-06-19 10:35:08,914: main_new_SLSTM: DEBUG: Epoch  11
+2020-06-19 10:35:08,916: main_new_SLSTM: DEBUG: Valid cost  3.6765142354098233
+2020-06-19 10:35:08,916: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:35:08,916: main_new_SLSTM: DEBUG: Test cost  3.657993294975974
+2020-06-19 10:35:08,916: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:35:08,916: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:35:08,916: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:35:09,529: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_7_model.ckpt
+2020-06-19 10:35:09,640: main_new_SLSTM: INFO: Done
+2020-06-19 10:35:09,640: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:35:09,641: main_new_SLSTM: DEBUG: Training accuracy:  0.5328467153284672
+2020-06-19 10:35:09,641: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:35:27,776: main_new_SLSTM: DEBUG: Epoch 12 Update 560 Cost 3.459080457687378 L2 2764.060302734375 TIME 0.20426201820373535
+2020-06-19 10:36:05,411: main_new_SLSTM: DEBUG: Epoch 12 Update 580 Cost 3.2699549198150635 L2 2545.114990234375 TIME 0.2696061134338379
+2020-06-19 10:36:31,558: main_new_SLSTM: DEBUG: Epoch  12
+2020-06-19 10:36:31,559: main_new_SLSTM: DEBUG: Valid cost  3.170600565997037
+2020-06-19 10:36:31,559: main_new_SLSTM: DEBUG: Valid accuracy  0.5340909090909091
+2020-06-19 10:36:31,559: main_new_SLSTM: DEBUG: Test cost  3.168472658504139
+2020-06-19 10:36:31,559: main_new_SLSTM: DEBUG: Test accuracy  0.5397727272727273
+2020-06-19 10:36:31,559: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:36:31,559: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:36:32,068: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_8_model.ckpt
+2020-06-19 10:36:32,154: main_new_SLSTM: INFO: Done
+2020-06-19 10:36:32,155: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:36:32,155: main_new_SLSTM: DEBUG: Training accuracy:  0.5175182481751824
+2020-06-19 10:36:32,155: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:36:44,089: main_new_SLSTM: DEBUG: Epoch 13 Update 600 Cost 3.099822521209717 L2 2344.34716796875 TIME 0.42435264587402344
+2020-06-19 10:37:23,772: main_new_SLSTM: DEBUG: Epoch 13 Update 620 Cost 2.834484100341797 L2 2159.86572265625 TIME 2.8203864097595215
+2020-06-19 10:37:56,239: main_new_SLSTM: DEBUG: Epoch  13
+2020-06-19 10:37:56,240: main_new_SLSTM: DEBUG: Valid cost  2.7556974671103736
+2020-06-19 10:37:56,240: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:37:56,240: main_new_SLSTM: DEBUG: Test cost  2.742717569524592
+2020-06-19 10:37:56,240: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:37:56,240: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:37:56,240: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:37:56,737: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_9_model.ckpt
+2020-06-19 10:37:56,826: main_new_SLSTM: INFO: Done
+2020-06-19 10:37:56,827: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:37:56,827: main_new_SLSTM: DEBUG: Training accuracy:  0.4948905109489051
+2020-06-19 10:37:56,827: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:38:04,736: main_new_SLSTM: DEBUG: Epoch 14 Update 640 Cost 2.706115484237671 L2 1982.7861328125 TIME 0.5716407299041748
+2020-06-19 10:38:40,394: main_new_SLSTM: DEBUG: Epoch 14 Update 660 Cost 2.483386993408203 L2 1800.4483642578125 TIME 1.0699377059936523
+2020-06-19 10:39:22,315: main_new_SLSTM: DEBUG: Epoch  14
+2020-06-19 10:39:22,316: main_new_SLSTM: DEBUG: Valid cost  2.3556278402155097
+2020-06-19 10:39:22,316: main_new_SLSTM: DEBUG: Valid accuracy  0.4602272727272727
+2020-06-19 10:39:22,316: main_new_SLSTM: DEBUG: Test cost  2.3538346724076704
+2020-06-19 10:39:22,316: main_new_SLSTM: DEBUG: Test accuracy  0.5340909090909091
+2020-06-19 10:39:22,316: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:39:22,316: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:39:22,814: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_10_model.ckpt
+2020-06-19 10:39:22,902: main_new_SLSTM: INFO: Done
+2020-06-19 10:39:22,902: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:39:22,903: main_new_SLSTM: DEBUG: Training accuracy:  0.5051094890510949
+2020-06-19 10:39:22,903: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:39:28,872: main_new_SLSTM: DEBUG: Epoch 15 Update 680 Cost 2.3946096897125244 L2 1633.9635009765625 TIME 1.1707637310028076
+2020-06-19 10:39:51,152: main_new_SLSTM: DEBUG: Epoch 15 Update 700 Cost 2.189568281173706 L2 1489.66748046875 TIME 2.5226821899414062
+2020-06-19 10:40:37,796: main_new_SLSTM: DEBUG: Epoch 15 Update 720 Cost 2.2668204307556152 L2 1355.033203125 TIME 0.3176155090332031
+2020-06-19 10:40:51,006: main_new_SLSTM: DEBUG: Epoch  15
+2020-06-19 10:40:51,008: main_new_SLSTM: DEBUG: Valid cost  2.0440254428169946
+2020-06-19 10:40:51,008: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:40:51,008: main_new_SLSTM: DEBUG: Test cost  2.031490781090476
+2020-06-19 10:40:51,008: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:40:51,008: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:40:51,009: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:40:51,597: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_11_model.ckpt
+2020-06-19 10:40:51,706: main_new_SLSTM: INFO: Done
+2020-06-19 10:40:51,706: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:40:51,707: main_new_SLSTM: DEBUG: Training accuracy:  0.49708029197080295
+2020-06-19 10:40:51,707: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:41:08,936: main_new_SLSTM: DEBUG: Epoch 16 Update 740 Cost 1.9576915502548218 L2 1243.7811279296875 TIME 0.32036733627319336
+2020-06-19 10:41:55,058: main_new_SLSTM: DEBUG: Epoch 16 Update 760 Cost 1.8389575481414795 L2 1140.326416015625 TIME 0.2483530044555664
+2020-06-19 10:42:21,523: main_new_SLSTM: DEBUG: Epoch  16
+2020-06-19 10:42:21,525: main_new_SLSTM: DEBUG: Valid cost  1.8073043389753862
+2020-06-19 10:42:21,525: main_new_SLSTM: DEBUG: Valid accuracy  0.4772727272727273
+2020-06-19 10:42:21,525: main_new_SLSTM: DEBUG: Test cost  1.8044875535097988
+2020-06-19 10:42:21,525: main_new_SLSTM: DEBUG: Test accuracy  0.4659090909090909
+2020-06-19 10:42:21,525: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:42:21,525: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:42:22,030: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_12_model.ckpt
+2020-06-19 10:42:22,120: main_new_SLSTM: INFO: Done
+2020-06-19 10:42:22,120: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:42:22,120: main_new_SLSTM: DEBUG: Training accuracy:  0.5218978102189781
+2020-06-19 10:42:22,120: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:42:36,367: main_new_SLSTM: DEBUG: Epoch 17 Update 780 Cost 1.7675995826721191 L2 1038.1024169921875 TIME 1.3320164680480957
+2020-06-19 10:43:06,791: main_new_SLSTM: DEBUG: Epoch 17 Update 800 Cost 1.6656700372695923 L2 944.70849609375 TIME 3.155418634414673
+2020-06-19 10:43:42,905: main_new_SLSTM: DEBUG: Epoch  17
+2020-06-19 10:43:42,906: main_new_SLSTM: DEBUG: Valid cost  1.5922836607152766
+2020-06-19 10:43:42,906: main_new_SLSTM: DEBUG: Valid accuracy  0.4943181818181818
+2020-06-19 10:43:42,906: main_new_SLSTM: DEBUG: Test cost  1.5853039459748701
+2020-06-19 10:43:42,906: main_new_SLSTM: DEBUG: Test accuracy  0.5454545454545454
+2020-06-19 10:43:42,906: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:43:42,907: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:43:43,469: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_13_model.ckpt
+2020-06-19 10:43:43,558: main_new_SLSTM: INFO: Done
+2020-06-19 10:43:43,558: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:43:43,559: main_new_SLSTM: DEBUG: Training accuracy:  0.5233576642335767
+2020-06-19 10:43:43,559: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:43:53,205: main_new_SLSTM: DEBUG: Epoch 18 Update 820 Cost 1.5867595672607422 L2 859.78076171875 TIME 1.2507147789001465
+2020-06-19 10:44:18,943: main_new_SLSTM: DEBUG: Epoch 18 Update 840 Cost 1.5022441148757935 L2 778.4439697265625 TIME 0.22033119201660156
+2020-06-19 10:45:09,543: main_new_SLSTM: DEBUG: Epoch  18
+2020-06-19 10:45:09,544: main_new_SLSTM: DEBUG: Valid cost  1.4087365432219072
+2020-06-19 10:45:09,544: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:45:09,544: main_new_SLSTM: DEBUG: Test cost  1.3965077616951682
+2020-06-19 10:45:09,544: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:45:09,544: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:45:09,544: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:45:10,047: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_14_model.ckpt
+2020-06-19 10:45:10,157: main_new_SLSTM: INFO: Done
+2020-06-19 10:45:10,158: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:45:10,158: main_new_SLSTM: DEBUG: Training accuracy:  0.4912408759124088
+2020-06-19 10:45:10,158: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:45:15,558: main_new_SLSTM: DEBUG: Epoch 19 Update 860 Cost 1.344592809677124 L2 699.8983154296875 TIME 1.1894855499267578
+2020-06-19 10:45:37,060: main_new_SLSTM: DEBUG: Epoch 19 Update 880 Cost 1.3060426712036133 L2 621.5192260742188 TIME 0.9260988235473633
+2020-06-19 10:46:23,733: main_new_SLSTM: DEBUG: Epoch 19 Update 900 Cost 1.261059045791626 L2 546.0369262695312 TIME 0.28475499153137207
+2020-06-19 10:46:36,716: main_new_SLSTM: DEBUG: Epoch  19
+2020-06-19 10:46:36,717: main_new_SLSTM: DEBUG: Valid cost  1.2344224019484087
+2020-06-19 10:46:36,717: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:46:36,718: main_new_SLSTM: DEBUG: Test cost  1.2240253578532825
+2020-06-19 10:46:36,718: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:46:36,718: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:46:36,718: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:46:36,908: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2020-06-19 10:46:37,242: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_15_model.ckpt
+2020-06-19 10:46:37,333: main_new_SLSTM: INFO: Done
+2020-06-19 10:46:37,333: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:46:37,333: main_new_SLSTM: DEBUG: Training accuracy:  0.5240875912408759
+2020-06-19 10:46:37,334: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:46:54,001: main_new_SLSTM: DEBUG: Epoch 20 Update 920 Cost 1.1531181335449219 L2 488.540283203125 TIME 0.2243332862854004
+2020-06-19 10:47:32,141: main_new_SLSTM: DEBUG: Epoch 20 Update 940 Cost 1.0919711589813232 L2 425.0482482910156 TIME 0.67578125
+2020-06-19 10:47:59,058: main_new_SLSTM: DEBUG: Epoch  20
+2020-06-19 10:47:59,059: main_new_SLSTM: DEBUG: Valid cost  1.1090172204104336
+2020-06-19 10:47:59,059: main_new_SLSTM: DEBUG: Valid accuracy  0.45454545454545453
+2020-06-19 10:47:59,059: main_new_SLSTM: DEBUG: Test cost  1.112502629106695
+2020-06-19 10:47:59,059: main_new_SLSTM: DEBUG: Test accuracy  0.42045454545454547
+2020-06-19 10:47:59,059: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:47:59,059: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:47:59,600: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_16_model.ckpt
+2020-06-19 10:47:59,709: main_new_SLSTM: INFO: Done
+2020-06-19 10:47:59,710: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:47:59,710: main_new_SLSTM: DEBUG: Training accuracy:  0.5299270072992701
+2020-06-19 10:47:59,710: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:48:13,314: main_new_SLSTM: DEBUG: Epoch 21 Update 960 Cost 1.1067008972167969 L2 374.2133483886719 TIME 0.6700646877288818
+2020-06-19 10:48:52,542: main_new_SLSTM: DEBUG: Epoch 21 Update 980 Cost 1.0427004098892212 L2 323.37786865234375 TIME 3.2004282474517822
+2020-06-19 10:49:26,434: main_new_SLSTM: DEBUG: Epoch  21
+2020-06-19 10:49:26,436: main_new_SLSTM: DEBUG: Valid cost  0.9954689090902155
+2020-06-19 10:49:26,436: main_new_SLSTM: DEBUG: Valid accuracy  0.4375
+2020-06-19 10:49:26,436: main_new_SLSTM: DEBUG: Test cost  0.9940997416322882
+2020-06-19 10:49:26,436: main_new_SLSTM: DEBUG: Test accuracy  0.44886363636363635
+2020-06-19 10:49:26,436: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:49:26,436: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:49:26,980: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_17_model.ckpt
+2020-06-19 10:49:27,075: main_new_SLSTM: INFO: Done
+2020-06-19 10:49:27,075: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:49:27,076: main_new_SLSTM: DEBUG: Training accuracy:  0.502919708029197
+2020-06-19 10:49:27,076: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:49:35,891: main_new_SLSTM: DEBUG: Epoch 22 Update 1000 Cost 0.9776568412780762 L2 279.86834716796875 TIME 0.3468296527862549
+2020-06-19 10:50:05,350: main_new_SLSTM: DEBUG: Epoch 22 Update 1020 Cost 0.9225071668624878 L2 237.5178680419922 TIME 3.3839023113250732
+2020-06-19 10:50:48,648: main_new_SLSTM: DEBUG: Epoch  22
+2020-06-19 10:50:48,650: main_new_SLSTM: DEBUG: Valid cost  0.9044403271241621
+2020-06-19 10:50:48,650: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:50:48,650: main_new_SLSTM: DEBUG: Test cost  0.8895155679095875
+2020-06-19 10:50:48,650: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:50:48,650: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:50:48,650: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:50:49,188: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_18_model.ckpt
+2020-06-19 10:50:49,297: main_new_SLSTM: INFO: Done
+2020-06-19 10:50:49,298: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:50:49,298: main_new_SLSTM: DEBUG: Training accuracy:  0.5306569343065694
+2020-06-19 10:50:49,298: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:50:55,314: main_new_SLSTM: DEBUG: Epoch 23 Update 1040 Cost 0.89898681640625 L2 201.4797821044922 TIME 0.6529965400695801
+2020-06-19 10:51:21,457: main_new_SLSTM: DEBUG: Epoch 23 Update 1060 Cost 0.8395100831985474 L2 171.15982055664062 TIME 3.2211756706237793
+2020-06-19 10:52:01,695: main_new_SLSTM: DEBUG: Epoch 23 Update 1080 Cost 0.8153373599052429 L2 145.65390014648438 TIME 0.31614089012145996
+2020-06-19 10:52:15,198: main_new_SLSTM: DEBUG: Epoch  23
+2020-06-19 10:52:15,199: main_new_SLSTM: DEBUG: Valid cost  0.8349800543351606
+2020-06-19 10:52:15,199: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:52:15,199: main_new_SLSTM: DEBUG: Test cost  0.8287920626727018
+2020-06-19 10:52:15,199: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:52:15,199: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:52:15,199: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:52:15,826: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_19_model.ckpt
+2020-06-19 10:52:15,932: main_new_SLSTM: INFO: Done
+2020-06-19 10:52:15,932: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:52:15,932: main_new_SLSTM: DEBUG: Training accuracy:  0.5102189781021897
+2020-06-19 10:52:15,932: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:52:32,539: main_new_SLSTM: DEBUG: Epoch 24 Update 1100 Cost 0.8557395339012146 L2 125.06280517578125 TIME 0.29633474349975586
+2020-06-19 10:53:16,314: main_new_SLSTM: DEBUG: Epoch 24 Update 1120 Cost 0.7750391364097595 L2 107.28477478027344 TIME 0.7560231685638428
+2020-06-19 10:53:42,908: main_new_SLSTM: DEBUG: Epoch  24
+2020-06-19 10:53:42,909: main_new_SLSTM: DEBUG: Valid cost  0.796889684417031
+2020-06-19 10:53:42,909: main_new_SLSTM: DEBUG: Valid accuracy  0.45454545454545453
+2020-06-19 10:53:42,909: main_new_SLSTM: DEBUG: Test cost  0.7969616759907115
+2020-06-19 10:53:42,909: main_new_SLSTM: DEBUG: Test accuracy  0.42045454545454547
+2020-06-19 10:53:42,909: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:53:42,910: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:53:43,427: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_20_model.ckpt
+2020-06-19 10:53:43,511: main_new_SLSTM: INFO: Done
+2020-06-19 10:53:43,511: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:53:43,512: main_new_SLSTM: DEBUG: Training accuracy:  0.5138686131386861
+2020-06-19 10:53:43,512: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:53:57,825: main_new_SLSTM: DEBUG: Epoch 25 Update 1140 Cost 0.8031244874000549 L2 92.60627746582031 TIME 0.6845262050628662
+2020-06-19 10:54:32,434: main_new_SLSTM: DEBUG: Epoch 25 Update 1160 Cost 0.7506637573242188 L2 80.97593688964844 TIME 1.1615629196166992
+2020-06-19 10:55:06,878: main_new_SLSTM: DEBUG: Epoch  25
+2020-06-19 10:55:06,879: main_new_SLSTM: DEBUG: Valid cost  0.7756202112544667
+2020-06-19 10:55:06,879: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:55:06,879: main_new_SLSTM: DEBUG: Test cost  0.7594026760621504
+2020-06-19 10:55:06,879: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:55:06,879: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:55:06,879: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:55:07,523: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_21_model.ckpt
+2020-06-19 10:55:07,635: main_new_SLSTM: INFO: Done
+2020-06-19 10:55:07,636: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:55:07,636: main_new_SLSTM: DEBUG: Training accuracy:  0.5277372262773723
+2020-06-19 10:55:07,636: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:55:17,846: main_new_SLSTM: DEBUG: Epoch 26 Update 1180 Cost 0.7638221979141235 L2 72.01565551757812 TIME 2.149508237838745
+2020-06-19 10:55:45,851: main_new_SLSTM: DEBUG: Epoch 26 Update 1200 Cost 0.7631167769432068 L2 63.29467010498047 TIME 1.0914411544799805
+2020-06-19 10:56:29,734: main_new_SLSTM: DEBUG: Epoch  26
+2020-06-19 10:56:29,735: main_new_SLSTM: DEBUG: Valid cost  0.748219446702437
+2020-06-19 10:56:29,735: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:56:29,735: main_new_SLSTM: DEBUG: Test cost  0.7375268881971185
+2020-06-19 10:56:29,735: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:56:29,735: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:56:29,735: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:56:30,279: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_22_model.ckpt
+2020-06-19 10:56:30,372: main_new_SLSTM: INFO: Done
+2020-06-19 10:56:30,373: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:56:30,373: main_new_SLSTM: DEBUG: Training accuracy:  0.5138686131386861
+2020-06-19 10:56:30,373: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:56:34,705: main_new_SLSTM: DEBUG: Epoch 27 Update 1220 Cost 0.7447051405906677 L2 55.7283935546875 TIME 1.0087010860443115
+2020-06-19 10:57:02,870: main_new_SLSTM: DEBUG: Epoch 27 Update 1240 Cost 0.7343851923942566 L2 48.33432388305664 TIME 3.0880513191223145
+2020-06-19 10:57:46,610: main_new_SLSTM: DEBUG: Epoch 27 Update 1260 Cost 0.7399737238883972 L2 42.0822639465332 TIME 0.28243160247802734
+2020-06-19 10:57:59,903: main_new_SLSTM: DEBUG: Epoch  27
+2020-06-19 10:57:59,904: main_new_SLSTM: DEBUG: Valid cost  0.7310517484491522
+2020-06-19 10:57:59,904: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:57:59,904: main_new_SLSTM: DEBUG: Test cost  0.723369685086337
+2020-06-19 10:57:59,904: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:57:59,904: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:57:59,904: main_new_SLSTM: INFO: Saving...
+2020-06-19 10:58:00,443: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_23_model.ckpt
+2020-06-19 10:58:00,535: main_new_SLSTM: INFO: Done
+2020-06-19 10:58:00,536: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:58:00,536: main_new_SLSTM: DEBUG: Training accuracy:  0.5328467153284672
+2020-06-19 10:58:00,536: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:58:17,128: main_new_SLSTM: DEBUG: Epoch 28 Update 1280 Cost 0.7786762714385986 L2 37.232242584228516 TIME 0.09836196899414062
+2020-06-19 10:58:57,849: main_new_SLSTM: DEBUG: Epoch 28 Update 1300 Cost 0.7020341753959656 L2 33.42367172241211 TIME 1.4277732372283936
+2020-06-19 10:59:24,904: main_new_SLSTM: DEBUG: Epoch  28
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: Valid cost  0.7324397780678489
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: Test cost  0.7160246588967063
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: learning_rate:  0.0025
+2020-06-19 10:59:24,906: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 10:59:24,906: main_new_SLSTM: DEBUG: bad_counter:  5
+2020-06-19 10:59:25,119: main_new_SLSTM: DEBUG: lrate change to:   0.00125
+2020-06-19 10:59:25,119: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 10:59:25,119: main_new_SLSTM: DEBUG: Training accuracy:  0.518978102189781
+2020-06-19 10:59:25,119: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 10:59:39,278: main_new_SLSTM: DEBUG: Epoch 29 Update 1320 Cost 0.7237583994865417 L2 31.25193977355957 TIME 1.2448220252990723
+2020-06-19 11:00:11,760: main_new_SLSTM: DEBUG: Epoch 29 Update 1340 Cost 0.7060637474060059 L2 29.410947799682617 TIME 0.6960361003875732
+2020-06-19 11:00:49,372: main_new_SLSTM: DEBUG: Epoch  29
+2020-06-19 11:00:49,374: main_new_SLSTM: DEBUG: Valid cost  0.7275785316120494
+2020-06-19 11:00:49,374: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:00:49,374: main_new_SLSTM: DEBUG: Test cost  0.7114642695947127
+2020-06-19 11:00:49,374: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:00:49,374: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:00:49,374: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:00:49,886: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_24_model.ckpt
+2020-06-19 11:00:49,973: main_new_SLSTM: INFO: Done
+2020-06-19 11:00:49,974: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:00:49,974: main_new_SLSTM: DEBUG: Training accuracy:  0.5291970802919708
+2020-06-19 11:00:49,974: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:01:01,815: main_new_SLSTM: DEBUG: Epoch 30 Update 1360 Cost 0.7960895299911499 L2 27.548095703125 TIME 0.6692192554473877
+2020-06-19 11:01:33,118: main_new_SLSTM: DEBUG: Epoch 30 Update 1380 Cost 0.7070017457008362 L2 26.31589126586914 TIME 3.169492244720459
+2020-06-19 11:02:20,828: main_new_SLSTM: DEBUG: Epoch  30
+2020-06-19 11:02:20,829: main_new_SLSTM: DEBUG: Valid cost  0.7155880765481428
+2020-06-19 11:02:20,829: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:02:20,829: main_new_SLSTM: DEBUG: Test cost  0.7054443901235407
+2020-06-19 11:02:20,829: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:02:20,829: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:02:20,829: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:02:21,394: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_25_model.ckpt
+2020-06-19 11:02:21,507: main_new_SLSTM: INFO: Done
+2020-06-19 11:02:21,508: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:02:21,508: main_new_SLSTM: DEBUG: Training accuracy:  0.5058394160583941
+2020-06-19 11:02:21,508: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:02:24,965: main_new_SLSTM: DEBUG: Epoch 31 Update 1400 Cost 0.7559565901756287 L2 24.619070053100586 TIME 0.605499267578125
+2020-06-19 11:02:48,807: main_new_SLSTM: DEBUG: Epoch 31 Update 1420 Cost 0.7131394147872925 L2 23.009963989257812 TIME 3.01737904548645
+2020-06-19 11:03:29,193: main_new_SLSTM: DEBUG: Epoch 31 Update 1440 Cost 0.9356985688209534 L2 21.517236709594727 TIME 0.28781557083129883
+2020-06-19 11:03:42,228: main_new_SLSTM: DEBUG: Epoch  31
+2020-06-19 11:03:42,230: main_new_SLSTM: DEBUG: Valid cost  0.7133951458063993
+2020-06-19 11:03:42,230: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:03:42,230: main_new_SLSTM: DEBUG: Test cost  0.7019263289191506
+2020-06-19 11:03:42,230: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:03:42,230: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:03:42,230: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:03:42,753: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_26_model.ckpt
+2020-06-19 11:03:42,840: main_new_SLSTM: INFO: Done
+2020-06-19 11:03:42,840: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:03:42,840: main_new_SLSTM: DEBUG: Training accuracy:  0.5167883211678832
+2020-06-19 11:03:42,840: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:04:00,672: main_new_SLSTM: DEBUG: Epoch 32 Update 1460 Cost 0.717705249786377 L2 20.336702346801758 TIME 0.22346067428588867
+2020-06-19 11:04:44,935: main_new_SLSTM: DEBUG: Epoch 32 Update 1480 Cost 0.6883732080459595 L2 19.133098602294922 TIME 0.262831449508667
+2020-06-19 11:05:11,282: main_new_SLSTM: DEBUG: Epoch  32
+2020-06-19 11:05:11,283: main_new_SLSTM: DEBUG: Valid cost  0.7085239670493386
+2020-06-19 11:05:11,283: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:05:11,284: main_new_SLSTM: DEBUG: Test cost  0.6997606537558816
+2020-06-19 11:05:11,284: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:05:11,284: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:05:11,284: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:05:11,811: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_27_model.ckpt
+2020-06-19 11:05:11,903: main_new_SLSTM: INFO: Done
+2020-06-19 11:05:11,904: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:05:11,904: main_new_SLSTM: DEBUG: Training accuracy:  0.5138686131386861
+2020-06-19 11:05:11,904: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:05:27,912: main_new_SLSTM: DEBUG: Epoch 33 Update 1500 Cost 0.7269811630249023 L2 18.049898147583008 TIME 0.48867249488830566
+2020-06-19 11:06:00,441: main_new_SLSTM: DEBUG: Epoch 33 Update 1520 Cost 0.7257333993911743 L2 17.132511138916016 TIME 0.4722311496734619
+2020-06-19 11:06:35,581: main_new_SLSTM: DEBUG: Epoch  33
+2020-06-19 11:06:35,582: main_new_SLSTM: DEBUG: Valid cost  0.7057171193036166
+2020-06-19 11:06:35,582: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:06:35,582: main_new_SLSTM: DEBUG: Test cost  0.6989861618388783
+2020-06-19 11:06:35,582: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:06:35,582: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:06:35,583: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:06:36,110: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_28_model.ckpt
+2020-06-19 11:06:36,219: main_new_SLSTM: INFO: Done
+2020-06-19 11:06:36,220: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:06:36,220: main_new_SLSTM: DEBUG: Training accuracy:  0.5364963503649635
+2020-06-19 11:06:36,220: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:06:44,915: main_new_SLSTM: DEBUG: Epoch 34 Update 1540 Cost 0.7140669226646423 L2 16.151426315307617 TIME 0.4761781692504883
+2020-06-19 11:07:14,474: main_new_SLSTM: DEBUG: Epoch 34 Update 1560 Cost 0.6914215683937073 L2 15.274188995361328 TIME 0.7715156078338623
+2020-06-19 11:08:04,527: main_new_SLSTM: DEBUG: Epoch  34
+2020-06-19 11:08:04,529: main_new_SLSTM: DEBUG: Valid cost  0.7048968293450095
+2020-06-19 11:08:04,529: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:08:04,529: main_new_SLSTM: DEBUG: Test cost  0.6952631365169178
+2020-06-19 11:08:04,529: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:08:04,529: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:08:04,529: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:08:05,049: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_29_model.ckpt
+2020-06-19 11:08:05,137: main_new_SLSTM: INFO: Done
+2020-06-19 11:08:05,138: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:08:05,138: main_new_SLSTM: DEBUG: Training accuracy:  0.5364963503649635
+2020-06-19 11:08:05,138: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:08:11,309: main_new_SLSTM: DEBUG: Epoch 35 Update 1580 Cost 0.705335259437561 L2 14.515923500061035 TIME 1.097280502319336
+2020-06-19 11:08:32,639: main_new_SLSTM: DEBUG: Epoch 35 Update 1600 Cost 0.7038408517837524 L2 13.82243824005127 TIME 1.1162199974060059
+2020-06-19 11:09:17,503: main_new_SLSTM: DEBUG: Epoch 35 Update 1620 Cost 0.6290796399116516 L2 13.068083763122559 TIME 0.3000819683074951
+2020-06-19 11:09:30,647: main_new_SLSTM: DEBUG: Epoch  35
+2020-06-19 11:09:30,648: main_new_SLSTM: DEBUG: Valid cost  0.702148740941828
+2020-06-19 11:09:30,648: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:09:30,649: main_new_SLSTM: DEBUG: Test cost  0.694901780648665
+2020-06-19 11:09:30,649: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:09:30,649: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:09:30,649: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:09:31,166: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_30_model.ckpt
+2020-06-19 11:09:31,257: main_new_SLSTM: INFO: Done
+2020-06-19 11:09:31,258: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:09:31,258: main_new_SLSTM: DEBUG: Training accuracy:  0.5306569343065694
+2020-06-19 11:09:31,258: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:09:47,468: main_new_SLSTM: DEBUG: Epoch 36 Update 1640 Cost 0.7158153653144836 L2 12.358881950378418 TIME 0.23053884506225586
+2020-06-19 11:10:28,876: main_new_SLSTM: DEBUG: Epoch 36 Update 1660 Cost 0.6794225573539734 L2 11.706409454345703 TIME 1.4689807891845703
+2020-06-19 11:10:55,184: main_new_SLSTM: DEBUG: Epoch  36
+2020-06-19 11:10:55,185: main_new_SLSTM: DEBUG: Valid cost  0.7017720179124312
+2020-06-19 11:10:55,185: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:10:55,186: main_new_SLSTM: DEBUG: Test cost  0.6921650225465948
+2020-06-19 11:10:55,186: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:10:55,186: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:10:55,186: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:10:55,730: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_31_model.ckpt
+2020-06-19 11:10:55,819: main_new_SLSTM: INFO: Done
+2020-06-19 11:10:55,819: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:10:55,819: main_new_SLSTM: DEBUG: Training accuracy:  0.5291970802919708
+2020-06-19 11:10:55,820: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:11:07,191: main_new_SLSTM: DEBUG: Epoch 37 Update 1680 Cost 0.6803208589553833 L2 11.136021614074707 TIME 1.2996587753295898
+2020-06-19 11:11:42,532: main_new_SLSTM: DEBUG: Epoch 37 Update 1700 Cost 0.6884546279907227 L2 10.631874084472656 TIME 3.2001359462738037
+2020-06-19 11:12:18,229: main_new_SLSTM: DEBUG: Epoch  37
+2020-06-19 11:12:18,230: main_new_SLSTM: DEBUG: Valid cost  0.6994451609524813
+2020-06-19 11:12:18,230: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:12:18,230: main_new_SLSTM: DEBUG: Test cost  0.692517177625136
+2020-06-19 11:12:18,230: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:12:18,230: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:12:18,230: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:12:18,884: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_32_model.ckpt
+2020-06-19 11:12:19,001: main_new_SLSTM: INFO: Done
+2020-06-19 11:12:19,002: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:12:19,002: main_new_SLSTM: DEBUG: Training accuracy:  0.5445255474452555
+2020-06-19 11:12:19,002: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:12:27,098: main_new_SLSTM: DEBUG: Epoch 38 Update 1720 Cost 0.7152488231658936 L2 10.095728874206543 TIME 0.5540497303009033
+2020-06-19 11:12:54,438: main_new_SLSTM: DEBUG: Epoch 38 Update 1740 Cost 0.6868086457252502 L2 9.652840614318848 TIME 0.9867744445800781
+2020-06-19 11:13:41,080: main_new_SLSTM: DEBUG: Epoch  38
+2020-06-19 11:13:41,081: main_new_SLSTM: DEBUG: Valid cost  0.6984342011538419
+2020-06-19 11:13:41,081: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:13:41,081: main_new_SLSTM: DEBUG: Test cost  0.6916866952722723
+2020-06-19 11:13:41,081: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:13:41,081: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:13:41,082: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:13:41,613: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_33_model.ckpt
+2020-06-19 11:13:41,720: main_new_SLSTM: INFO: Done
+2020-06-19 11:13:41,720: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:13:41,721: main_new_SLSTM: DEBUG: Training accuracy:  0.5335766423357664
+2020-06-19 11:13:41,721: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:13:45,372: main_new_SLSTM: DEBUG: Epoch 39 Update 1760 Cost 0.6673964262008667 L2 9.214110374450684 TIME 0.35015201568603516
+2020-06-19 11:14:03,987: main_new_SLSTM: DEBUG: Epoch 39 Update 1780 Cost 0.6889743804931641 L2 8.816031455993652 TIME 1.1107709407806396
+2020-06-19 11:14:48,383: main_new_SLSTM: DEBUG: Epoch 39 Update 1800 Cost 0.7275567054748535 L2 8.374675750732422 TIME 0.3068697452545166
+2020-06-19 11:15:01,375: main_new_SLSTM: DEBUG: Epoch  39
+2020-06-19 11:15:01,376: main_new_SLSTM: DEBUG: Valid cost  0.6976938247680664
+2020-06-19 11:15:01,376: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:15:01,376: main_new_SLSTM: DEBUG: Test cost  0.6898000077767805
+2020-06-19 11:15:01,376: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:15:01,377: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:15:01,377: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:15:01,898: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_34_model.ckpt
+2020-06-19 11:15:01,988: main_new_SLSTM: INFO: Done
+2020-06-19 11:15:01,989: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:15:01,989: main_new_SLSTM: DEBUG: Training accuracy:  0.5328467153284672
+2020-06-19 11:15:01,989: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:15:18,323: main_new_SLSTM: DEBUG: Epoch 40 Update 1820 Cost 0.718737781047821 L2 7.98961877822876 TIME 0.20982885360717773
+2020-06-19 11:15:59,412: main_new_SLSTM: DEBUG: Epoch 40 Update 1840 Cost 0.7173783779144287 L2 7.647188663482666 TIME 0.3031458854675293
+2020-06-19 11:16:25,591: main_new_SLSTM: DEBUG: Epoch  40
+2020-06-19 11:16:25,593: main_new_SLSTM: DEBUG: Valid cost  0.6973416046662764
+2020-06-19 11:16:25,593: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:16:25,593: main_new_SLSTM: DEBUG: Test cost  0.6884105855768378
+2020-06-19 11:16:25,593: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:16:25,593: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:16:25,593: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:16:26,115: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_35_model.ckpt
+2020-06-19 11:16:26,201: main_new_SLSTM: INFO: Done
+2020-06-19 11:16:26,201: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:16:26,201: main_new_SLSTM: DEBUG: Training accuracy:  0.5343065693430656
+2020-06-19 11:16:26,202: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:16:40,872: main_new_SLSTM: DEBUG: Epoch 41 Update 1860 Cost 0.709158182144165 L2 7.300479412078857 TIME 0.7705016136169434
+2020-06-19 11:17:09,430: main_new_SLSTM: DEBUG: Epoch 41 Update 1880 Cost 0.6818965673446655 L2 6.997200012207031 TIME 0.21985411643981934
+2020-06-19 11:17:48,207: main_new_SLSTM: DEBUG: Epoch  41
+2020-06-19 11:17:48,208: main_new_SLSTM: DEBUG: Valid cost  0.6967379234053872
+2020-06-19 11:17:48,208: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:17:48,208: main_new_SLSTM: DEBUG: Test cost  0.6876653974706476
+2020-06-19 11:17:48,208: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:17:48,208: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:17:48,209: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:17:48,721: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_36_model.ckpt
+2020-06-19 11:17:48,810: main_new_SLSTM: INFO: Done
+2020-06-19 11:17:48,811: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:17:48,811: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:17:48,811: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:17:56,597: main_new_SLSTM: DEBUG: Epoch 42 Update 1900 Cost 0.6886416673660278 L2 6.702491760253906 TIME 0.8091177940368652
+2020-06-19 11:18:25,995: main_new_SLSTM: DEBUG: Epoch 42 Update 1920 Cost 0.6937332153320312 L2 6.387706756591797 TIME 3.2852165699005127
+2020-06-19 11:19:08,480: main_new_SLSTM: DEBUG: Epoch  42
+2020-06-19 11:19:08,481: main_new_SLSTM: DEBUG: Valid cost  0.6952643665400419
+2020-06-19 11:19:08,482: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:19:08,482: main_new_SLSTM: DEBUG: Test cost  0.6882320859215476
+2020-06-19 11:19:08,482: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:19:08,482: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:19:08,482: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:19:09,007: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_37_model.ckpt
+2020-06-19 11:19:09,102: main_new_SLSTM: INFO: Done
+2020-06-19 11:19:09,102: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:19:09,102: main_new_SLSTM: DEBUG: Training accuracy:  0.5386861313868613
+2020-06-19 11:19:09,102: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:19:14,095: main_new_SLSTM: DEBUG: Epoch 43 Update 1940 Cost 0.7161810398101807 L2 6.084771156311035 TIME 0.5254454612731934
+2020-06-19 11:19:41,803: main_new_SLSTM: DEBUG: Epoch 43 Update 1960 Cost 0.6851975917816162 L2 5.843164920806885 TIME 2.7355806827545166
+2020-06-19 11:20:22,098: main_new_SLSTM: DEBUG: Epoch 43 Update 1980 Cost 0.6540866494178772 L2 5.58242130279541 TIME 0.302715539932251
+2020-06-19 11:20:35,443: main_new_SLSTM: DEBUG: Epoch  43
+2020-06-19 11:20:35,444: main_new_SLSTM: DEBUG: Valid cost  0.6952427896586332
+2020-06-19 11:20:35,445: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:20:35,445: main_new_SLSTM: DEBUG: Test cost  0.686597612771121
+2020-06-19 11:20:35,445: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:20:35,445: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:20:35,445: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:20:35,987: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_38_model.ckpt
+2020-06-19 11:20:36,080: main_new_SLSTM: INFO: Done
+2020-06-19 11:20:36,081: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:20:36,081: main_new_SLSTM: DEBUG: Training accuracy:  0.5328467153284672
+2020-06-19 11:20:36,081: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:20:52,687: main_new_SLSTM: DEBUG: Epoch 44 Update 2000 Cost 0.6637331247329712 L2 5.388113498687744 TIME 0.23556804656982422
+2020-06-19 11:21:35,494: main_new_SLSTM: DEBUG: Epoch 44 Update 2020 Cost 0.6787171363830566 L2 5.14542293548584 TIME 0.5076320171356201
+2020-06-19 11:22:02,068: main_new_SLSTM: DEBUG: Epoch  44
+2020-06-19 11:22:02,069: main_new_SLSTM: DEBUG: Valid cost  0.695595074783672
+2020-06-19 11:22:02,069: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:22:02,069: main_new_SLSTM: DEBUG: Test cost  0.6856446699662642
+2020-06-19 11:22:02,069: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:22:02,069: main_new_SLSTM: DEBUG: learning_rate:  0.00125
+2020-06-19 11:22:02,070: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 11:22:02,070: main_new_SLSTM: DEBUG: bad_counter:  6
+2020-06-19 11:22:02,231: main_new_SLSTM: DEBUG: lrate change to:   0.000625
+2020-06-19 11:22:02,231: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:22:02,231: main_new_SLSTM: DEBUG: Training accuracy:  0.5386861313868613
+2020-06-19 11:22:02,231: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:22:15,266: main_new_SLSTM: DEBUG: Epoch 45 Update 2040 Cost 0.7240025401115417 L2 4.998540878295898 TIME 0.4449007511138916
+2020-06-19 11:22:51,689: main_new_SLSTM: DEBUG: Epoch 45 Update 2060 Cost 0.6880446672439575 L2 4.876272201538086 TIME 1.0616741180419922
+2020-06-19 11:23:30,423: main_new_SLSTM: DEBUG: Epoch  45
+2020-06-19 11:23:30,424: main_new_SLSTM: DEBUG: Valid cost  0.6939822381192987
+2020-06-19 11:23:30,424: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:23:30,424: main_new_SLSTM: DEBUG: Test cost  0.6867878437042236
+2020-06-19 11:23:30,424: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:23:30,424: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:23:30,424: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:23:30,964: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_39_model.ckpt
+2020-06-19 11:23:31,055: main_new_SLSTM: INFO: Done
+2020-06-19 11:23:31,055: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:23:31,055: main_new_SLSTM: DEBUG: Training accuracy:  0.535036496350365
+2020-06-19 11:23:31,055: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:23:41,290: main_new_SLSTM: DEBUG: Epoch 46 Update 2080 Cost 0.7116461396217346 L2 4.727338790893555 TIME 0.9071285724639893
+2020-06-19 11:24:09,792: main_new_SLSTM: DEBUG: Epoch 46 Update 2100 Cost 0.6752011775970459 L2 4.615954875946045 TIME 2.6647350788116455
+2020-06-19 11:24:54,968: main_new_SLSTM: DEBUG: Epoch  46
+2020-06-19 11:24:54,969: main_new_SLSTM: DEBUG: Valid cost  0.6936465176669034
+2020-06-19 11:24:54,970: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:24:54,970: main_new_SLSTM: DEBUG: Test cost  0.6869373213161122
+2020-06-19 11:24:54,970: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:24:54,970: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:24:54,970: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:24:55,494: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_40_model.ckpt
+2020-06-19 11:24:55,589: main_new_SLSTM: INFO: Done
+2020-06-19 11:24:55,590: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:24:55,590: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 11:24:55,590: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:24:59,790: main_new_SLSTM: DEBUG: Epoch 47 Update 2120 Cost 0.6529382467269897 L2 4.47924280166626 TIME 0.3560047149658203
+2020-06-19 11:25:25,138: main_new_SLSTM: DEBUG: Epoch 47 Update 2140 Cost 0.687315821647644 L2 4.376567363739014 TIME 2.401362419128418
+2020-06-19 11:26:10,586: main_new_SLSTM: DEBUG: Epoch 47 Update 2160 Cost 0.6065857410430908 L2 4.250571250915527 TIME 0.2792961597442627
+2020-06-19 11:26:23,732: main_new_SLSTM: DEBUG: Epoch  47
+2020-06-19 11:26:23,733: main_new_SLSTM: DEBUG: Valid cost  0.6934940923344005
+2020-06-19 11:26:23,733: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:26:23,733: main_new_SLSTM: DEBUG: Test cost  0.6860273968089711
+2020-06-19 11:26:23,733: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:26:23,733: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:26:23,734: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:26:24,370: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_41_model.ckpt
+2020-06-19 11:26:24,481: main_new_SLSTM: INFO: Done
+2020-06-19 11:26:24,481: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:26:24,481: main_new_SLSTM: DEBUG: Training accuracy:  0.5386861313868613
+2020-06-19 11:26:24,482: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:26:42,660: main_new_SLSTM: DEBUG: Epoch 48 Update 2180 Cost 0.6963114738464355 L2 4.165144443511963 TIME 0.170576810836792
+2020-06-19 11:27:26,346: main_new_SLSTM: DEBUG: Epoch 48 Update 2200 Cost 0.7337755560874939 L2 4.0344953536987305 TIME 0.6884338855743408
+2020-06-19 11:27:52,730: main_new_SLSTM: DEBUG: Epoch  48
+2020-06-19 11:27:52,732: main_new_SLSTM: DEBUG: Valid cost  0.6933247717944059
+2020-06-19 11:27:52,732: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:27:52,732: main_new_SLSTM: DEBUG: Test cost  0.6855906356464733
+2020-06-19 11:27:52,732: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:27:52,732: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:27:52,732: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:27:53,367: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_42_model.ckpt
+2020-06-19 11:27:53,477: main_new_SLSTM: INFO: Done
+2020-06-19 11:27:53,478: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:27:53,478: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:27:53,478: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:28:08,426: main_new_SLSTM: DEBUG: Epoch 49 Update 2220 Cost 0.6764319539070129 L2 3.933600425720215 TIME 1.2607009410858154
+2020-06-19 11:28:43,353: main_new_SLSTM: DEBUG: Epoch 49 Update 2240 Cost 0.6862310171127319 L2 3.8629372119903564 TIME 2.8834033012390137
+2020-06-19 11:29:20,539: main_new_SLSTM: DEBUG: Epoch  49
+2020-06-19 11:29:20,541: main_new_SLSTM: DEBUG: Valid cost  0.6930085312236439
+2020-06-19 11:29:20,541: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:29:20,541: main_new_SLSTM: DEBUG: Test cost  0.6877140348607843
+2020-06-19 11:29:20,541: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:29:20,541: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:29:20,541: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:29:21,058: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_43_model.ckpt
+2020-06-19 11:29:21,150: main_new_SLSTM: INFO: Done
+2020-06-19 11:29:21,151: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:29:21,151: main_new_SLSTM: DEBUG: Training accuracy:  0.5328467153284672
+2020-06-19 11:29:21,151: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:29:28,350: main_new_SLSTM: DEBUG: Epoch 50 Update 2260 Cost 0.7066752910614014 L2 3.7437613010406494 TIME 0.571352481842041
+2020-06-19 11:30:01,518: main_new_SLSTM: DEBUG: Epoch 50 Update 2280 Cost 0.6880035400390625 L2 3.6609466075897217 TIME 3.0827620029449463
+2020-06-19 11:30:43,262: main_new_SLSTM: DEBUG: Epoch  50
+2020-06-19 11:30:43,263: main_new_SLSTM: DEBUG: Valid cost  0.6927233229983937
+2020-06-19 11:30:43,263: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:30:43,263: main_new_SLSTM: DEBUG: Test cost  0.6870254386555065
+2020-06-19 11:30:43,263: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:30:43,264: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:30:43,264: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:30:43,906: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_44_model.ckpt
+2020-06-19 11:30:44,014: main_new_SLSTM: INFO: Done
+2020-06-19 11:30:44,014: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:30:44,015: main_new_SLSTM: DEBUG: Training accuracy:  0.5394160583941606
+2020-06-19 11:30:44,015: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:30:49,502: main_new_SLSTM: DEBUG: Epoch 51 Update 2300 Cost 0.6808069348335266 L2 3.5615758895874023 TIME 1.408334732055664
+2020-06-19 11:31:08,787: main_new_SLSTM: DEBUG: Epoch 51 Update 2320 Cost 0.6926553249359131 L2 3.4760358333587646 TIME 1.4418694972991943
+2020-06-19 11:31:53,535: main_new_SLSTM: DEBUG: Epoch 51 Update 2340 Cost 0.6727931499481201 L2 3.3908088207244873 TIME 0.31022024154663086
+2020-06-19 11:32:06,874: main_new_SLSTM: DEBUG: Epoch  51
+2020-06-19 11:32:06,876: main_new_SLSTM: DEBUG: Valid cost  0.692596738988703
+2020-06-19 11:32:06,876: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:32:06,876: main_new_SLSTM: DEBUG: Test cost  0.6852123032916676
+2020-06-19 11:32:06,876: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:32:06,876: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:32:06,876: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:32:07,498: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_45_model.ckpt
+2020-06-19 11:32:07,614: main_new_SLSTM: INFO: Done
+2020-06-19 11:32:07,615: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:32:07,615: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 11:32:07,615: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:32:22,531: main_new_SLSTM: DEBUG: Epoch 52 Update 2360 Cost 0.6818525195121765 L2 3.315882921218872 TIME 0.5011262893676758
+2020-06-19 11:33:10,862: main_new_SLSTM: DEBUG: Epoch 52 Update 2380 Cost 0.722725510597229 L2 3.2340087890625 TIME 1.1254818439483643
+2020-06-19 11:33:37,356: main_new_SLSTM: DEBUG: Epoch  52
+2020-06-19 11:33:37,357: main_new_SLSTM: DEBUG: Valid cost  0.692333308133212
+2020-06-19 11:33:37,357: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:33:37,357: main_new_SLSTM: DEBUG: Test cost  0.685500600121238
+2020-06-19 11:33:37,357: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:33:37,357: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:33:37,358: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:33:37,875: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_46_model.ckpt
+2020-06-19 11:33:37,964: main_new_SLSTM: INFO: Done
+2020-06-19 11:33:37,965: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:33:37,965: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 11:33:37,965: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:33:53,419: main_new_SLSTM: DEBUG: Epoch 53 Update 2400 Cost 0.7017790079116821 L2 3.1544902324676514 TIME 0.7132325172424316
+2020-06-19 11:34:32,744: main_new_SLSTM: DEBUG: Epoch 53 Update 2420 Cost 0.6763924360275269 L2 3.069946765899658 TIME 3.3860812187194824
+2020-06-19 11:35:05,996: main_new_SLSTM: DEBUG: Epoch  53
+2020-06-19 11:35:05,997: main_new_SLSTM: DEBUG: Valid cost  0.6921520883386786
+2020-06-19 11:35:05,997: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:35:05,998: main_new_SLSTM: DEBUG: Test cost  0.6851877190849998
+2020-06-19 11:35:05,998: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:35:05,998: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:35:05,998: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:35:06,531: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_47_model.ckpt
+2020-06-19 11:35:06,621: main_new_SLSTM: INFO: Done
+2020-06-19 11:35:06,622: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:35:06,622: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:35:06,622: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:35:15,021: main_new_SLSTM: DEBUG: Epoch 54 Update 2440 Cost 0.7206521034240723 L2 2.9923858642578125 TIME 1.4541938304901123
+2020-06-19 11:35:51,366: main_new_SLSTM: DEBUG: Epoch 54 Update 2460 Cost 0.6796436309814453 L2 2.9319570064544678 TIME 0.6884374618530273
+2020-06-19 11:36:30,419: main_new_SLSTM: DEBUG: Epoch  54
+2020-06-19 11:36:30,420: main_new_SLSTM: DEBUG: Valid cost  0.691953100941398
+2020-06-19 11:36:30,420: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:36:30,421: main_new_SLSTM: DEBUG: Test cost  0.6854907165874135
+2020-06-19 11:36:30,421: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:36:30,421: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:36:30,421: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:36:30,933: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_48_model.ckpt
+2020-06-19 11:36:31,024: main_new_SLSTM: INFO: Done
+2020-06-19 11:36:31,025: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:36:31,025: main_new_SLSTM: DEBUG: Training accuracy:  0.5437956204379562
+2020-06-19 11:36:31,025: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:36:36,405: main_new_SLSTM: DEBUG: Epoch 55 Update 2480 Cost 0.7127213478088379 L2 2.85789155960083 TIME 1.282703161239624
+2020-06-19 11:36:59,557: main_new_SLSTM: DEBUG: Epoch 55 Update 2500 Cost 0.6724108457565308 L2 2.789208173751831 TIME 2.6892659664154053
+2020-06-19 11:37:38,845: main_new_SLSTM: DEBUG: Epoch 55 Update 2520 Cost 0.6457957625389099 L2 2.709818124771118 TIME 0.3365333080291748
+2020-06-19 11:37:51,980: main_new_SLSTM: DEBUG: Epoch  55
+2020-06-19 11:37:51,981: main_new_SLSTM: DEBUG: Valid cost  0.6917755928906527
+2020-06-19 11:37:51,981: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:37:51,981: main_new_SLSTM: DEBUG: Test cost  0.6853491501374678
+2020-06-19 11:37:51,981: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:37:51,981: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:37:51,981: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:37:52,583: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_49_model.ckpt
+2020-06-19 11:37:52,677: main_new_SLSTM: INFO: Done
+2020-06-19 11:37:52,677: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:37:52,677: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 11:37:52,678: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:38:09,786: main_new_SLSTM: DEBUG: Epoch 56 Update 2540 Cost 0.7296785712242126 L2 2.649003744125366 TIME 0.1027066707611084
+2020-06-19 11:38:51,139: main_new_SLSTM: DEBUG: Epoch 56 Update 2560 Cost 0.6740214228630066 L2 2.5852444171905518 TIME 1.8052761554718018
+2020-06-19 11:39:17,558: main_new_SLSTM: DEBUG: Epoch  56
+2020-06-19 11:39:17,560: main_new_SLSTM: DEBUG: Valid cost  0.6916958364573392
+2020-06-19 11:39:17,560: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:39:17,560: main_new_SLSTM: DEBUG: Test cost  0.6845913258465853
+2020-06-19 11:39:17,560: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:39:17,560: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:39:17,560: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:39:18,071: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_50_model.ckpt
+2020-06-19 11:39:18,265: main_new_SLSTM: INFO: Done
+2020-06-19 11:39:18,266: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:39:18,266: main_new_SLSTM: DEBUG: Training accuracy:  0.5437956204379562
+2020-06-19 11:39:18,266: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:39:32,804: main_new_SLSTM: DEBUG: Epoch 57 Update 2580 Cost 0.7433285117149353 L2 2.541912794113159 TIME 1.1822905540466309
+2020-06-19 11:40:10,962: main_new_SLSTM: DEBUG: Epoch 57 Update 2600 Cost 0.6865261197090149 L2 2.4859073162078857 TIME 0.26827120780944824
+2020-06-19 11:40:45,206: main_new_SLSTM: DEBUG: Epoch  57
+2020-06-19 11:40:45,208: main_new_SLSTM: DEBUG: Valid cost  0.691549994728782
+2020-06-19 11:40:45,208: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:40:45,208: main_new_SLSTM: DEBUG: Test cost  0.6857643019069325
+2020-06-19 11:40:45,208: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:40:45,208: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:40:45,208: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:40:45,737: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_51_model.ckpt
+2020-06-19 11:40:45,830: main_new_SLSTM: INFO: Done
+2020-06-19 11:40:45,831: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:40:45,831: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 11:40:45,831: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:40:55,100: main_new_SLSTM: DEBUG: Epoch 58 Update 2620 Cost 0.7003078460693359 L2 2.421898603439331 TIME 0.5128207206726074
+2020-06-19 11:41:23,881: main_new_SLSTM: DEBUG: Epoch 58 Update 2640 Cost 0.6763111352920532 L2 2.3713576793670654 TIME 3.21448016166687
+2020-06-19 11:42:12,354: main_new_SLSTM: DEBUG: Epoch  58
+2020-06-19 11:42:12,355: main_new_SLSTM: DEBUG: Valid cost  0.6913954344662753
+2020-06-19 11:42:12,355: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:42:12,355: main_new_SLSTM: DEBUG: Test cost  0.684788855639371
+2020-06-19 11:42:12,355: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:42:12,355: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:42:12,355: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:42:12,873: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_52_model.ckpt
+2020-06-19 11:42:12,961: main_new_SLSTM: INFO: Done
+2020-06-19 11:42:12,962: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:42:12,962: main_new_SLSTM: DEBUG: Training accuracy:  0.5467153284671533
+2020-06-19 11:42:12,962: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:42:17,560: main_new_SLSTM: DEBUG: Epoch 59 Update 2660 Cost 0.7005470991134644 L2 2.311675548553467 TIME 1.0204832553863525
+2020-06-19 11:42:41,620: main_new_SLSTM: DEBUG: Epoch 59 Update 2680 Cost 0.7102493047714233 L2 2.252587080001831 TIME 3.511448860168457
+2020-06-19 11:43:18,670: main_new_SLSTM: DEBUG: Epoch 59 Update 2700 Cost 0.7772383689880371 L2 2.1893420219421387 TIME 0.3123335838317871
+2020-06-19 11:43:31,722: main_new_SLSTM: DEBUG: Epoch  59
+2020-06-19 11:43:31,724: main_new_SLSTM: DEBUG: Valid cost  0.6912456425753507
+2020-06-19 11:43:31,724: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:43:31,724: main_new_SLSTM: DEBUG: Test cost  0.6849003488367255
+2020-06-19 11:43:31,724: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:43:31,724: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:43:31,724: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:43:32,255: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_53_model.ckpt
+2020-06-19 11:43:32,351: main_new_SLSTM: INFO: Done
+2020-06-19 11:43:32,352: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:43:32,352: main_new_SLSTM: DEBUG: Training accuracy:  0.535036496350365
+2020-06-19 11:43:32,352: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:43:50,690: main_new_SLSTM: DEBUG: Epoch 60 Update 2720 Cost 0.7348108291625977 L2 2.1371047496795654 TIME 0.19504928588867188
+2020-06-19 11:44:39,783: main_new_SLSTM: DEBUG: Epoch 60 Update 2740 Cost 0.6716261506080627 L2 2.0764317512512207 TIME 1.5665156841278076
+2020-06-19 11:45:06,124: main_new_SLSTM: DEBUG: Epoch  60
+2020-06-19 11:45:06,126: main_new_SLSTM: DEBUG: Valid cost  0.6911746155131947
+2020-06-19 11:45:06,126: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:45:06,126: main_new_SLSTM: DEBUG: Test cost  0.6841206875714388
+2020-06-19 11:45:06,126: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:45:06,126: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:45:06,126: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:45:06,643: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_54_model.ckpt
+2020-06-19 11:45:06,732: main_new_SLSTM: INFO: Done
+2020-06-19 11:45:06,732: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:45:06,732: main_new_SLSTM: DEBUG: Training accuracy:  0.5394160583941606
+2020-06-19 11:45:06,732: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:45:20,866: main_new_SLSTM: DEBUG: Epoch 61 Update 2760 Cost 0.6649624109268188 L2 2.0322928428649902 TIME 1.2303738594055176
+2020-06-19 11:45:59,091: main_new_SLSTM: DEBUG: Epoch 61 Update 2780 Cost 0.6877375841140747 L2 1.987963080406189 TIME 1.9460363388061523
+2020-06-19 11:46:31,867: main_new_SLSTM: DEBUG: Epoch  61
+2020-06-19 11:46:31,868: main_new_SLSTM: DEBUG: Valid cost  0.6911181103099476
+2020-06-19 11:46:31,868: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:46:31,868: main_new_SLSTM: DEBUG: Test cost  0.6838294809514825
+2020-06-19 11:46:31,868: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:46:31,868: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:46:31,868: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:46:32,391: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_55_model.ckpt
+2020-06-19 11:46:32,482: main_new_SLSTM: INFO: Done
+2020-06-19 11:46:32,483: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:46:32,483: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 11:46:32,483: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:46:40,271: main_new_SLSTM: DEBUG: Epoch 62 Update 2800 Cost 0.7013649940490723 L2 1.9446005821228027 TIME 1.0256025791168213
+2020-06-19 11:47:12,637: main_new_SLSTM: DEBUG: Epoch 62 Update 2820 Cost 0.6960197687149048 L2 1.9100806713104248 TIME 3.0485363006591797
+2020-06-19 11:47:57,817: main_new_SLSTM: DEBUG: Epoch  62
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: Valid cost  0.6912034533240579
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: Test cost  0.6833118958906694
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: learning_rate:  0.000625
+2020-06-19 11:47:57,819: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 11:47:57,819: main_new_SLSTM: DEBUG: bad_counter:  7
+2020-06-19 11:47:57,985: main_new_SLSTM: DEBUG: lrate change to:   0.0003125
+2020-06-19 11:47:57,986: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:47:57,986: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:47:57,986: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:48:03,822: main_new_SLSTM: DEBUG: Epoch 63 Update 2840 Cost 0.7303785085678101 L2 1.8757061958312988 TIME 0.5187296867370605
+2020-06-19 11:48:27,618: main_new_SLSTM: DEBUG: Epoch 63 Update 2860 Cost 0.6860376000404358 L2 1.8476407527923584 TIME 2.88834547996521
+2020-06-19 11:49:07,644: main_new_SLSTM: DEBUG: Epoch 63 Update 2880 Cost 0.7368931174278259 L2 1.8122459650039673 TIME 0.2941267490386963
+2020-06-19 11:49:20,670: main_new_SLSTM: DEBUG: Epoch  63
+2020-06-19 11:49:20,671: main_new_SLSTM: DEBUG: Valid cost  0.6908680904995311
+2020-06-19 11:49:20,671: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:49:20,671: main_new_SLSTM: DEBUG: Test cost  0.6843366839668967
+2020-06-19 11:49:20,671: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:49:20,671: main_new_SLSTM: DEBUG: learning_rate:  0.0003125
+2020-06-19 11:49:20,671: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:49:21,184: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_56_model.ckpt
+2020-06-19 11:49:21,277: main_new_SLSTM: INFO: Done
+2020-06-19 11:49:21,277: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:49:21,278: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 11:49:21,278: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:49:39,852: main_new_SLSTM: DEBUG: Epoch 64 Update 2900 Cost 0.7226460576057434 L2 1.7834669351577759 TIME 0.1376817226409912
+2020-06-19 11:50:20,113: main_new_SLSTM: DEBUG: Epoch 64 Update 2920 Cost 0.7028438448905945 L2 1.7533009052276611 TIME 0.32017993927001953
+2020-06-19 11:50:46,599: main_new_SLSTM: DEBUG: Epoch  64
+2020-06-19 11:50:46,600: main_new_SLSTM: DEBUG: Valid cost  0.6908130862496116
+2020-06-19 11:50:46,600: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:50:46,600: main_new_SLSTM: DEBUG: Test cost  0.6847992539405823
+2020-06-19 11:50:46,600: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:50:46,600: main_new_SLSTM: DEBUG: learning_rate:  0.0003125
+2020-06-19 11:50:46,600: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:50:47,119: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_57_model.ckpt
+2020-06-19 11:50:47,214: main_new_SLSTM: INFO: Done
+2020-06-19 11:50:47,214: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:50:47,214: main_new_SLSTM: DEBUG: Training accuracy:  0.5394160583941606
+2020-06-19 11:50:47,215: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:51:00,425: main_new_SLSTM: DEBUG: Epoch 65 Update 2940 Cost 0.7093808650970459 L2 1.7265595197677612 TIME 0.43564748764038086
+2020-06-19 11:51:33,875: main_new_SLSTM: DEBUG: Epoch 65 Update 2960 Cost 0.7128359079360962 L2 1.7026158571243286 TIME 0.6136178970336914
+2020-06-19 11:52:13,145: main_new_SLSTM: DEBUG: Epoch  65
+2020-06-19 11:52:13,146: main_new_SLSTM: DEBUG: Valid cost  0.6907786456021395
+2020-06-19 11:52:13,146: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:52:13,146: main_new_SLSTM: DEBUG: Test cost  0.6850561878897927
+2020-06-19 11:52:13,146: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:52:13,146: main_new_SLSTM: DEBUG: learning_rate:  0.0003125
+2020-06-19 11:52:13,146: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:52:13,799: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_58_model.ckpt
+2020-06-19 11:52:13,912: main_new_SLSTM: INFO: Done
+2020-06-19 11:52:13,913: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:52:13,913: main_new_SLSTM: DEBUG: Training accuracy:  0.5401459854014599
+2020-06-19 11:52:13,913: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:52:21,704: main_new_SLSTM: DEBUG: Epoch 66 Update 2980 Cost 0.7222086787223816 L2 1.6766011714935303 TIME 0.5557296276092529
+2020-06-19 11:52:53,704: main_new_SLSTM: DEBUG: Epoch 66 Update 3000 Cost 0.6745641827583313 L2 1.6536338329315186 TIME 1.0030186176300049
+2020-06-19 11:53:39,390: main_new_SLSTM: DEBUG: Epoch  66
+2020-06-19 11:53:39,391: main_new_SLSTM: DEBUG: Valid cost  0.690727786584334
+2020-06-19 11:53:39,392: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:53:39,392: main_new_SLSTM: DEBUG: Test cost  0.6849884336644952
+2020-06-19 11:53:39,392: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:53:39,392: main_new_SLSTM: DEBUG: learning_rate:  0.0003125
+2020-06-19 11:53:39,392: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:53:40,026: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_59_model.ckpt
+2020-06-19 11:53:40,142: main_new_SLSTM: INFO: Done
+2020-06-19 11:53:40,142: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:53:40,143: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:53:40,143: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:53:44,650: main_new_SLSTM: DEBUG: Epoch 67 Update 3020 Cost 0.6569584608078003 L2 1.6318012475967407 TIME 0.34780192375183105
+2020-06-19 11:54:09,475: main_new_SLSTM: DEBUG: Epoch 67 Update 3040 Cost 0.6789314150810242 L2 1.621777892112732 TIME 3.2839386463165283
+2020-06-19 11:54:55,630: main_new_SLSTM: DEBUG: Epoch 67 Update 3060 Cost 0.6666478514671326 L2 1.592815637588501 TIME 0.30158138275146484
+2020-06-19 11:55:08,744: main_new_SLSTM: DEBUG: Epoch  67
+2020-06-19 11:55:08,745: main_new_SLSTM: DEBUG: Valid cost  0.690824031829834
+2020-06-19 11:55:08,745: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:55:08,745: main_new_SLSTM: DEBUG: Test cost  0.6857341798869047
+2020-06-19 11:55:08,746: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:55:08,746: main_new_SLSTM: DEBUG: learning_rate:  0.0003125
+2020-06-19 11:55:08,746: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 11:55:08,746: main_new_SLSTM: DEBUG: bad_counter:  8
+2020-06-19 11:55:08,904: main_new_SLSTM: DEBUG: lrate change to:   0.00015625
+2020-06-19 11:55:08,905: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:55:08,905: main_new_SLSTM: DEBUG: Training accuracy:  0.5401459854014599
+2020-06-19 11:55:08,905: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:55:24,600: main_new_SLSTM: DEBUG: Epoch 68 Update 3080 Cost 0.6549975275993347 L2 1.578902006149292 TIME 0.21683812141418457
+2020-06-19 11:56:06,495: main_new_SLSTM: DEBUG: Epoch 68 Update 3100 Cost 0.7272195219993591 L2 1.5664913654327393 TIME 0.7708163261413574
+2020-06-19 11:56:33,451: main_new_SLSTM: DEBUG: Epoch  68
+2020-06-19 11:56:33,452: main_new_SLSTM: DEBUG: Valid cost  0.690727786584334
+2020-06-19 11:56:33,452: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:56:33,452: main_new_SLSTM: DEBUG: Test cost  0.6853550130670721
+2020-06-19 11:56:33,452: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:56:33,452: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 11:56:33,452: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:56:33,978: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_60_model.ckpt
+2020-06-19 11:56:34,089: main_new_SLSTM: INFO: Done
+2020-06-19 11:56:34,089: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:56:34,089: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:56:34,090: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:56:46,614: main_new_SLSTM: DEBUG: Epoch 69 Update 3120 Cost 0.7028458118438721 L2 1.551416277885437 TIME 1.0217905044555664
+2020-06-19 11:57:16,758: main_new_SLSTM: DEBUG: Epoch 69 Update 3140 Cost 0.6822994947433472 L2 1.5416655540466309 TIME 2.84613299369812
+2020-06-19 11:57:55,926: main_new_SLSTM: DEBUG: Epoch  69
+2020-06-19 11:57:55,927: main_new_SLSTM: DEBUG: Valid cost  0.6907029747962952
+2020-06-19 11:57:55,927: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:57:55,927: main_new_SLSTM: DEBUG: Test cost  0.6853070259094238
+2020-06-19 11:57:55,927: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:57:55,927: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 11:57:55,927: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:57:56,443: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_61_model.ckpt
+2020-06-19 11:57:56,555: main_new_SLSTM: INFO: Done
+2020-06-19 11:57:56,555: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:57:56,555: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 11:57:56,556: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:58:06,092: main_new_SLSTM: DEBUG: Epoch 70 Update 3160 Cost 0.7131991982460022 L2 1.5269966125488281 TIME 0.6253199577331543
+2020-06-19 11:58:32,015: main_new_SLSTM: DEBUG: Epoch 70 Update 3180 Cost 0.696677565574646 L2 1.5160632133483887 TIME 2.4875259399414062
+2020-06-19 11:59:22,087: main_new_SLSTM: DEBUG: Epoch  70
+2020-06-19 11:59:22,088: main_new_SLSTM: DEBUG: Valid cost  0.6906040473417803
+2020-06-19 11:59:22,088: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 11:59:22,088: main_new_SLSTM: DEBUG: Test cost  0.6847670457579873
+2020-06-19 11:59:22,088: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 11:59:22,088: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 11:59:22,088: main_new_SLSTM: INFO: Saving...
+2020-06-19 11:59:22,736: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_62_model.ckpt
+2020-06-19 11:59:22,852: main_new_SLSTM: INFO: Done
+2020-06-19 11:59:22,853: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 11:59:22,853: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 11:59:22,854: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 11:59:28,737: main_new_SLSTM: DEBUG: Epoch 71 Update 3200 Cost 0.7246556878089905 L2 1.500945806503296 TIME 0.699162483215332
+2020-06-19 11:59:50,427: main_new_SLSTM: DEBUG: Epoch 71 Update 3220 Cost 0.6900928020477295 L2 1.4901667833328247 TIME 3.1803061962127686
+2020-06-19 12:00:34,214: main_new_SLSTM: DEBUG: Epoch 71 Update 3240 Cost 0.6093271970748901 L2 1.4768297672271729 TIME 0.3202388286590576
+2020-06-19 12:00:47,232: main_new_SLSTM: DEBUG: Epoch  71
+2020-06-19 12:00:47,233: main_new_SLSTM: DEBUG: Valid cost  0.6905890757387335
+2020-06-19 12:00:47,234: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:00:47,234: main_new_SLSTM: DEBUG: Test cost  0.6848410909826105
+2020-06-19 12:00:47,234: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:00:47,234: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:00:47,234: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:00:47,767: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_63_model.ckpt
+2020-06-19 12:00:47,860: main_new_SLSTM: INFO: Done
+2020-06-19 12:00:47,860: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:00:47,860: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:00:47,860: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:01:05,734: main_new_SLSTM: DEBUG: Epoch 72 Update 3260 Cost 0.6559992432594299 L2 1.4657257795333862 TIME 0.24610018730163574
+2020-06-19 12:01:45,926: main_new_SLSTM: DEBUG: Epoch 72 Update 3280 Cost 0.7044422030448914 L2 1.4528990983963013 TIME 0.30080437660217285
+2020-06-19 12:02:12,324: main_new_SLSTM: DEBUG: Epoch  72
+2020-06-19 12:02:12,326: main_new_SLSTM: DEBUG: Valid cost  0.6905377127907493
+2020-06-19 12:02:12,326: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:02:12,326: main_new_SLSTM: DEBUG: Test cost  0.6845858313820579
+2020-06-19 12:02:12,326: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:02:12,326: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:02:12,326: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:02:12,863: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_64_model.ckpt
+2020-06-19 12:02:12,954: main_new_SLSTM: INFO: Done
+2020-06-19 12:02:12,954: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:02:12,954: main_new_SLSTM: DEBUG: Training accuracy:  0.5408759124087591
+2020-06-19 12:02:12,955: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:02:24,854: main_new_SLSTM: DEBUG: Epoch 73 Update 3300 Cost 0.7052285671234131 L2 1.4416202306747437 TIME 1.2805829048156738
+2020-06-19 12:02:59,603: main_new_SLSTM: DEBUG: Epoch 73 Update 3320 Cost 0.6754686832427979 L2 1.4319431781768799 TIME 3.2508108615875244
+2020-06-19 12:03:35,849: main_new_SLSTM: DEBUG: Epoch  73
+2020-06-19 12:03:35,850: main_new_SLSTM: DEBUG: Valid cost  0.6905106197703968
+2020-06-19 12:03:35,850: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:03:35,850: main_new_SLSTM: DEBUG: Test cost  0.6845369989221747
+2020-06-19 12:03:35,850: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:03:35,850: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:03:35,850: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:03:36,383: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_65_model.ckpt
+2020-06-19 12:03:36,473: main_new_SLSTM: INFO: Done
+2020-06-19 12:03:36,473: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:03:36,474: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 12:03:36,474: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:03:46,550: main_new_SLSTM: DEBUG: Epoch 74 Update 3340 Cost 0.6923507452011108 L2 1.4195016622543335 TIME 2.1533384323120117
+2020-06-19 12:04:11,533: main_new_SLSTM: DEBUG: Epoch 74 Update 3360 Cost 0.7131174802780151 L2 1.4096720218658447 TIME 0.5070505142211914
+2020-06-19 12:05:02,542: main_new_SLSTM: DEBUG: Epoch  74
+2020-06-19 12:05:02,544: main_new_SLSTM: DEBUG: Valid cost  0.6904780214483087
+2020-06-19 12:05:02,544: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:05:02,544: main_new_SLSTM: DEBUG: Test cost  0.6844061071222479
+2020-06-19 12:05:02,544: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:05:02,544: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:05:02,544: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:05:03,182: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_66_model.ckpt
+2020-06-19 12:05:03,293: main_new_SLSTM: INFO: Done
+2020-06-19 12:05:03,294: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:05:03,294: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:05:03,294: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:05:07,000: main_new_SLSTM: DEBUG: Epoch 75 Update 3380 Cost 0.6905931234359741 L2 1.39798104763031 TIME 0.9855167865753174
+2020-06-19 12:05:28,963: main_new_SLSTM: DEBUG: Epoch 75 Update 3400 Cost 0.6999118328094482 L2 1.3897045850753784 TIME 3.171769142150879
+2020-06-19 12:06:16,722: main_new_SLSTM: DEBUG: Epoch 75 Update 3420 Cost 0.681606113910675 L2 1.3766474723815918 TIME 0.301685094833374
+2020-06-19 12:06:29,715: main_new_SLSTM: DEBUG: Epoch  75
+2020-06-19 12:06:29,716: main_new_SLSTM: DEBUG: Valid cost  0.690470587123524
+2020-06-19 12:06:29,717: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:06:29,717: main_new_SLSTM: DEBUG: Test cost  0.6846281290054321
+2020-06-19 12:06:29,717: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:06:29,717: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:06:29,717: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:06:30,232: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_67_model.ckpt
+2020-06-19 12:06:30,321: main_new_SLSTM: INFO: Done
+2020-06-19 12:06:30,322: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:06:30,322: main_new_SLSTM: DEBUG: Training accuracy:  0.5401459854014599
+2020-06-19 12:06:30,322: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:06:49,322: main_new_SLSTM: DEBUG: Epoch 76 Update 3440 Cost 0.6871568560600281 L2 1.3661282062530518 TIME 0.1603257656097412
+2020-06-19 12:07:26,314: main_new_SLSTM: DEBUG: Epoch 76 Update 3460 Cost 0.7243475317955017 L2 1.356677532196045 TIME 0.6830542087554932
+2020-06-19 12:07:52,776: main_new_SLSTM: DEBUG: Epoch  76
+2020-06-19 12:07:52,777: main_new_SLSTM: DEBUG: Valid cost  0.6904439655217257
+2020-06-19 12:07:52,777: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:07:52,777: main_new_SLSTM: DEBUG: Test cost  0.6845747991041704
+2020-06-19 12:07:52,777: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:07:52,777: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:07:52,778: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:07:53,417: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_68_model.ckpt
+2020-06-19 12:07:53,531: main_new_SLSTM: INFO: Done
+2020-06-19 12:07:53,532: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:07:53,532: main_new_SLSTM: DEBUG: Training accuracy:  0.5401459854014599
+2020-06-19 12:07:53,532: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:08:08,287: main_new_SLSTM: DEBUG: Epoch 77 Update 3480 Cost 0.6948236227035522 L2 1.3468537330627441 TIME 0.5479249954223633
+2020-06-19 12:08:44,082: main_new_SLSTM: DEBUG: Epoch 77 Update 3500 Cost 0.6704531311988831 L2 1.3372962474822998 TIME 2.524986982345581
+2020-06-19 12:09:22,726: main_new_SLSTM: DEBUG: Epoch  77
+2020-06-19 12:09:22,727: main_new_SLSTM: DEBUG: Valid cost  0.690418693152341
+2020-06-19 12:09:22,727: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:09:22,727: main_new_SLSTM: DEBUG: Test cost  0.684530334039168
+2020-06-19 12:09:22,727: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:09:22,727: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:09:22,727: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:09:23,266: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_69_model.ckpt
+2020-06-19 12:09:23,357: main_new_SLSTM: INFO: Done
+2020-06-19 12:09:23,357: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:09:23,358: main_new_SLSTM: DEBUG: Training accuracy:  0.5408759124087591
+2020-06-19 12:09:23,358: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:09:34,240: main_new_SLSTM: DEBUG: Epoch 78 Update 3520 Cost 0.6973657608032227 L2 1.3246567249298096 TIME 1.252701997756958
+2020-06-19 12:10:03,144: main_new_SLSTM: DEBUG: Epoch 78 Update 3540 Cost 0.673452615737915 L2 1.3153176307678223 TIME 3.1673998832702637
+2020-06-19 12:10:51,895: main_new_SLSTM: DEBUG: Epoch  78
+2020-06-19 12:10:51,897: main_new_SLSTM: DEBUG: Valid cost  0.690376650203358
+2020-06-19 12:10:51,897: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:10:51,897: main_new_SLSTM: DEBUG: Test cost  0.6842573556033048
+2020-06-19 12:10:51,897: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:10:51,897: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:10:51,897: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:10:52,430: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_70_model.ckpt
+2020-06-19 12:10:52,523: main_new_SLSTM: INFO: Done
+2020-06-19 12:10:52,523: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:10:52,524: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:10:52,524: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:10:56,207: main_new_SLSTM: DEBUG: Epoch 79 Update 3560 Cost 0.7041763663291931 L2 1.3043779134750366 TIME 0.6880393028259277
+2020-06-19 12:11:15,573: main_new_SLSTM: DEBUG: Epoch 79 Update 3580 Cost 0.6689175367355347 L2 1.2963014841079712 TIME 3.3485021591186523
+2020-06-19 12:12:04,645: main_new_SLSTM: DEBUG: Epoch 79 Update 3600 Cost 0.6636694073677063 L2 1.2846527099609375 TIME 0.2825779914855957
+2020-06-19 12:12:17,810: main_new_SLSTM: DEBUG: Epoch  79
+2020-06-19 12:12:17,811: main_new_SLSTM: DEBUG: Valid cost  0.690351361578161
+2020-06-19 12:12:17,812: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:12:17,812: main_new_SLSTM: DEBUG: Test cost  0.683963493867354
+2020-06-19 12:12:17,812: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:12:17,812: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:12:17,812: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:12:18,338: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_71_model.ckpt
+2020-06-19 12:12:18,429: main_new_SLSTM: INFO: Done
+2020-06-19 12:12:18,429: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:12:18,430: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:12:18,430: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:12:36,398: main_new_SLSTM: DEBUG: Epoch 80 Update 3620 Cost 0.6790957450866699 L2 1.275881052017212 TIME 0.16772079467773438
+2020-06-19 12:13:16,550: main_new_SLSTM: DEBUG: Epoch 80 Update 3640 Cost 0.6697304844856262 L2 1.2661036252975464 TIME 1.585219383239746
+2020-06-19 12:13:42,750: main_new_SLSTM: DEBUG: Epoch  80
+2020-06-19 12:13:42,751: main_new_SLSTM: DEBUG: Valid cost  0.6903378963470459
+2020-06-19 12:13:42,751: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:13:42,751: main_new_SLSTM: DEBUG: Test cost  0.6841909289360046
+2020-06-19 12:13:42,751: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:13:42,752: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:13:42,752: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:13:43,278: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_72_model.ckpt
+2020-06-19 12:13:43,376: main_new_SLSTM: INFO: Done
+2020-06-19 12:13:43,377: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:13:43,377: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:13:43,377: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:13:58,350: main_new_SLSTM: DEBUG: Epoch 81 Update 3660 Cost 0.6885000467300415 L2 1.2610957622528076 TIME 0.6057374477386475
+2020-06-19 12:14:27,797: main_new_SLSTM: DEBUG: Epoch 81 Update 3680 Cost 0.6706011295318604 L2 1.2528008222579956 TIME 0.5098905563354492
+2020-06-19 12:15:06,502: main_new_SLSTM: DEBUG: Epoch  81
+2020-06-19 12:15:06,503: main_new_SLSTM: DEBUG: Valid cost  0.6903287280689586
+2020-06-19 12:15:06,503: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:15:06,503: main_new_SLSTM: DEBUG: Test cost  0.6842862909490411
+2020-06-19 12:15:06,504: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:15:06,504: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:15:06,504: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:15:07,147: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_73_model.ckpt
+2020-06-19 12:15:07,269: main_new_SLSTM: INFO: Done
+2020-06-19 12:15:07,270: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:15:07,270: main_new_SLSTM: DEBUG: Training accuracy:  0.5394160583941606
+2020-06-19 12:15:07,270: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:15:17,605: main_new_SLSTM: DEBUG: Epoch 82 Update 3700 Cost 0.7017114758491516 L2 1.2421380281448364 TIME 0.9200859069824219
+2020-06-19 12:15:41,595: main_new_SLSTM: DEBUG: Epoch 82 Update 3720 Cost 0.6839812994003296 L2 1.24026358127594 TIME 0.5142257213592529
+2020-06-19 12:16:30,790: main_new_SLSTM: DEBUG: Epoch  82
+2020-06-19 12:16:30,792: main_new_SLSTM: DEBUG: Valid cost  0.690319765697826
+2020-06-19 12:16:30,792: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:16:30,792: main_new_SLSTM: DEBUG: Test cost  0.6843891685659235
+2020-06-19 12:16:30,792: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:16:30,792: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:16:30,792: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:16:31,444: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_74_model.ckpt
+2020-06-19 12:16:31,553: main_new_SLSTM: INFO: Done
+2020-06-19 12:16:31,554: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:16:31,554: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:16:31,554: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:16:34,859: main_new_SLSTM: DEBUG: Epoch 83 Update 3740 Cost 0.7080707550048828 L2 1.225431203842163 TIME 0.1526033878326416
+2020-06-19 12:16:57,185: main_new_SLSTM: DEBUG: Epoch 83 Update 3760 Cost 0.6997480988502502 L2 1.2155405282974243 TIME 1.3394544124603271
+2020-06-19 12:17:43,282: main_new_SLSTM: DEBUG: Epoch 83 Update 3780 Cost 0.7080588936805725 L2 1.2060375213623047 TIME 0.32065272331237793
+2020-06-19 12:17:56,306: main_new_SLSTM: DEBUG: Epoch  83
+2020-06-19 12:17:56,307: main_new_SLSTM: DEBUG: Valid cost  0.690279630097476
+2020-06-19 12:17:56,307: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:17:56,307: main_new_SLSTM: DEBUG: Test cost  0.684128078547391
+2020-06-19 12:17:56,307: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:17:56,307: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:17:56,307: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:17:56,946: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_75_model.ckpt
+2020-06-19 12:17:57,060: main_new_SLSTM: INFO: Done
+2020-06-19 12:17:57,061: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:17:57,061: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:17:57,061: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:18:12,752: main_new_SLSTM: DEBUG: Epoch 84 Update 3800 Cost 0.7454749941825867 L2 1.1979889869689941 TIME 0.2658202648162842
+2020-06-19 12:18:54,346: main_new_SLSTM: DEBUG: Epoch 84 Update 3820 Cost 0.7155635356903076 L2 1.1866426467895508 TIME 1.1418547630310059
+2020-06-19 12:19:20,659: main_new_SLSTM: DEBUG: Epoch  84
+2020-06-19 12:19:20,660: main_new_SLSTM: DEBUG: Valid cost  0.6902606433088129
+2020-06-19 12:19:20,660: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:19:20,660: main_new_SLSTM: DEBUG: Test cost  0.684182958169417
+2020-06-19 12:19:20,660: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:19:20,660: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:19:20,660: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:19:21,182: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_76_model.ckpt
+2020-06-19 12:19:21,295: main_new_SLSTM: INFO: Done
+2020-06-19 12:19:21,296: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:19:21,296: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 12:19:21,296: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:19:36,359: main_new_SLSTM: DEBUG: Epoch 85 Update 3840 Cost 0.6991889476776123 L2 1.1791023015975952 TIME 1.6236588954925537
+2020-06-19 12:20:13,976: main_new_SLSTM: DEBUG: Epoch 85 Update 3860 Cost 0.6644988059997559 L2 1.1688894033432007 TIME 2.6077308654785156
+2020-06-19 12:20:46,652: main_new_SLSTM: DEBUG: Epoch  85
+2020-06-19 12:20:46,654: main_new_SLSTM: DEBUG: Valid cost  0.6902567473324862
+2020-06-19 12:20:46,654: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:20:46,654: main_new_SLSTM: DEBUG: Test cost  0.6844143704934553
+2020-06-19 12:20:46,654: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:20:46,654: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:20:46,654: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:20:47,284: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_77_model.ckpt
+2020-06-19 12:20:47,391: main_new_SLSTM: INFO: Done
+2020-06-19 12:20:47,391: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:20:47,392: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:20:47,392: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:20:56,533: main_new_SLSTM: DEBUG: Epoch 86 Update 3880 Cost 0.6509493589401245 L2 1.1583349704742432 TIME 0.3713841438293457
+2020-06-19 12:21:29,971: main_new_SLSTM: DEBUG: Epoch 86 Update 3900 Cost 0.6646178960800171 L2 1.1510519981384277 TIME 3.1005921363830566
+2020-06-19 12:22:09,259: main_new_SLSTM: DEBUG: Epoch  86
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: Valid cost  0.6902643442153931
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: Test cost  0.684641653841192
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: learning_rate:  0.00015625
+2020-06-19 12:22:09,261: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 12:22:09,261: main_new_SLSTM: DEBUG: bad_counter:  9
+2020-06-19 12:22:09,426: main_new_SLSTM: DEBUG: lrate change to:   7.8125e-05
+2020-06-19 12:22:09,426: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:22:09,426: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:22:09,426: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:22:13,860: main_new_SLSTM: DEBUG: Epoch 87 Update 3920 Cost 0.7041726112365723 L2 1.1387584209442139 TIME 0.5941269397735596
+2020-06-19 12:22:38,312: main_new_SLSTM: DEBUG: Epoch 87 Update 3940 Cost 0.7015883326530457 L2 1.1337296962738037 TIME 0.5377199649810791
+2020-06-19 12:23:25,850: main_new_SLSTM: DEBUG: Epoch 87 Update 3960 Cost 0.723221480846405 L2 1.126776933670044 TIME 0.3009824752807617
+2020-06-19 12:23:39,108: main_new_SLSTM: DEBUG: Epoch  87
+2020-06-19 12:23:39,109: main_new_SLSTM: DEBUG: Valid cost  0.6902535666118969
+2020-06-19 12:23:39,109: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:23:39,109: main_new_SLSTM: DEBUG: Test cost  0.684648567979986
+2020-06-19 12:23:39,110: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:23:39,110: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:23:39,110: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:23:39,639: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_78_model.ckpt
+2020-06-19 12:23:39,732: main_new_SLSTM: INFO: Done
+2020-06-19 12:23:39,732: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:23:39,732: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:23:39,732: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:23:55,310: main_new_SLSTM: DEBUG: Epoch 88 Update 3980 Cost 0.7502961158752441 L2 1.121107816696167 TIME 0.21856474876403809
+2020-06-19 12:24:36,899: main_new_SLSTM: DEBUG: Epoch 88 Update 4000 Cost 0.6845698356628418 L2 1.115604043006897 TIME 0.7600970268249512
+2020-06-19 12:25:03,200: main_new_SLSTM: DEBUG: Epoch  88
+2020-06-19 12:25:03,202: main_new_SLSTM: DEBUG: Valid cost  0.6902334473349832
+2020-06-19 12:25:03,202: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:25:03,202: main_new_SLSTM: DEBUG: Test cost  0.6845682642676614
+2020-06-19 12:25:03,202: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:25:03,202: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:25:03,202: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:25:03,732: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_79_model.ckpt
+2020-06-19 12:25:03,825: main_new_SLSTM: INFO: Done
+2020-06-19 12:25:03,826: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:25:03,826: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 12:25:03,826: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:25:17,150: main_new_SLSTM: DEBUG: Epoch 89 Update 4020 Cost 0.6951025128364563 L2 1.1096019744873047 TIME 1.0037336349487305
+2020-06-19 12:25:54,091: main_new_SLSTM: DEBUG: Epoch 89 Update 4040 Cost 0.7100515365600586 L2 1.105193853378296 TIME 1.9296660423278809
+2020-06-19 12:26:31,003: main_new_SLSTM: DEBUG: Epoch  89
+2020-06-19 12:26:31,004: main_new_SLSTM: DEBUG: Valid cost  0.6902114369652488
+2020-06-19 12:26:31,004: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:26:31,004: main_new_SLSTM: DEBUG: Test cost  0.6844878846948798
+2020-06-19 12:26:31,005: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:26:31,005: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:26:31,005: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:26:31,536: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_80_model.ckpt
+2020-06-19 12:26:31,630: main_new_SLSTM: INFO: Done
+2020-06-19 12:26:31,630: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:26:31,630: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:26:31,630: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:26:39,436: main_new_SLSTM: DEBUG: Epoch 90 Update 4060 Cost 0.6870988011360168 L2 1.0985710620880127 TIME 0.29222583770751953
+2020-06-19 12:27:08,990: main_new_SLSTM: DEBUG: Epoch 90 Update 4080 Cost 0.7042591571807861 L2 1.0933607816696167 TIME 3.071490526199341
+2020-06-19 12:27:55,959: main_new_SLSTM: DEBUG: Epoch  90
+2020-06-19 12:27:55,960: main_new_SLSTM: DEBUG: Valid cost  0.6902018243616278
+2020-06-19 12:27:55,960: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:27:55,960: main_new_SLSTM: DEBUG: Test cost  0.6844905885783109
+2020-06-19 12:27:55,960: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:27:55,960: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:27:55,961: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:27:56,579: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_81_model.ckpt
+2020-06-19 12:27:56,689: main_new_SLSTM: INFO: Done
+2020-06-19 12:27:56,690: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:27:56,690: main_new_SLSTM: DEBUG: Training accuracy:  0.5408759124087591
+2020-06-19 12:27:56,690: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:28:02,219: main_new_SLSTM: DEBUG: Epoch 91 Update 4100 Cost 0.6731168031692505 L2 1.0878360271453857 TIME 0.8446450233459473
+2020-06-19 12:28:21,787: main_new_SLSTM: DEBUG: Epoch 91 Update 4120 Cost 0.7000335454940796 L2 1.0828936100006104 TIME 0.42777252197265625
+2020-06-19 12:29:04,243: main_new_SLSTM: DEBUG: Epoch 91 Update 4140 Cost 0.6718177795410156 L2 1.0773742198944092 TIME 0.31210780143737793
+2020-06-19 12:29:17,501: main_new_SLSTM: DEBUG: Epoch  91
+2020-06-19 12:29:17,502: main_new_SLSTM: DEBUG: Valid cost  0.6901845769448713
+2020-06-19 12:29:17,503: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:29:17,503: main_new_SLSTM: DEBUG: Test cost  0.6844361532818187
+2020-06-19 12:29:17,503: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:29:17,503: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:29:17,503: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:29:18,056: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_82_model.ckpt
+2020-06-19 12:29:18,150: main_new_SLSTM: INFO: Done
+2020-06-19 12:29:18,150: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:29:18,150: main_new_SLSTM: DEBUG: Training accuracy:  0.5423357664233577
+2020-06-19 12:29:18,150: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:29:35,772: main_new_SLSTM: DEBUG: Epoch 92 Update 4160 Cost 0.7438456416130066 L2 1.0731757879257202 TIME 0.26607728004455566
+2020-06-19 12:30:12,628: main_new_SLSTM: DEBUG: Epoch 92 Update 4180 Cost 0.7067133784294128 L2 1.069148302078247 TIME 1.5514898300170898
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: Epoch  92
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: Valid cost  0.6901880665258928
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: Test cost  0.6845224879004739
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: learning_rate:  7.8125e-05
+2020-06-19 12:30:39,109: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 12:30:39,109: main_new_SLSTM: DEBUG: bad_counter:  10
+2020-06-19 12:30:39,325: main_new_SLSTM: DEBUG: lrate change to:   3.90625e-05
+2020-06-19 12:30:39,326: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:30:39,326: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:30:39,326: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:30:51,366: main_new_SLSTM: DEBUG: Epoch 93 Update 4200 Cost 0.6892789006233215 L2 1.0648764371871948 TIME 0.2832300662994385
+2020-06-19 12:31:23,080: main_new_SLSTM: DEBUG: Epoch 93 Update 4220 Cost 0.7018687725067139 L2 1.0626575946807861 TIME 3.2819340229034424
+2020-06-19 12:31:59,488: main_new_SLSTM: DEBUG: Epoch  93
+2020-06-19 12:31:59,489: main_new_SLSTM: DEBUG: Valid cost  0.6901781775734641
+2020-06-19 12:31:59,489: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:31:59,490: main_new_SLSTM: DEBUG: Test cost  0.6844889196482572
+2020-06-19 12:31:59,490: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:31:59,490: main_new_SLSTM: DEBUG: learning_rate:  3.90625e-05
+2020-06-19 12:31:59,490: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:32:00,027: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_83_model.ckpt
+2020-06-19 12:32:00,140: main_new_SLSTM: INFO: Done
+2020-06-19 12:32:00,141: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:32:00,141: main_new_SLSTM: DEBUG: Training accuracy:  0.5408759124087591
+2020-06-19 12:32:00,141: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:32:11,665: main_new_SLSTM: DEBUG: Epoch 94 Update 4240 Cost 0.6842684149742126 L2 1.0600008964538574 TIME 0.75752854347229
+2020-06-19 12:32:36,780: main_new_SLSTM: DEBUG: Epoch 94 Update 4260 Cost 0.6806274652481079 L2 1.0578880310058594 TIME 3.0273797512054443
+2020-06-19 12:33:26,876: main_new_SLSTM: DEBUG: Epoch  94
+2020-06-19 12:33:26,878: main_new_SLSTM: DEBUG: Valid cost  0.6901562268083746
+2020-06-19 12:33:26,878: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:33:26,878: main_new_SLSTM: DEBUG: Test cost  0.6843334111300382
+2020-06-19 12:33:26,878: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:33:26,878: main_new_SLSTM: DEBUG: learning_rate:  3.90625e-05
+2020-06-19 12:33:26,878: main_new_SLSTM: INFO: Saving...
+2020-06-19 12:33:27,413: main_new_SLSTM: INFO: results/S_LSTM_models/_epoch_84_model.ckpt
+2020-06-19 12:33:27,506: main_new_SLSTM: INFO: Done
+2020-06-19 12:33:27,506: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:33:27,506: main_new_SLSTM: DEBUG: Training accuracy:  0.5416058394160584
+2020-06-19 12:33:27,506: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:33:33,362: main_new_SLSTM: DEBUG: Epoch 95 Update 4280 Cost 0.6856870055198669 L2 1.0550665855407715 TIME 0.5616307258605957
+2020-06-19 12:33:53,556: main_new_SLSTM: DEBUG: Epoch 95 Update 4300 Cost 0.7143621444702148 L2 1.053471565246582 TIME 0.4721860885620117
+2020-06-19 12:34:44,042: main_new_SLSTM: DEBUG: Epoch 95 Update 4320 Cost 0.7945634722709656 L2 1.050457239151001 TIME 0.2846701145172119
+2020-06-19 12:34:57,488: main_new_SLSTM: DEBUG: Epoch  95
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: Valid cost  0.6901603286916559
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: Valid accuracy  0.5454545454545454
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: Test cost  0.6844101494008844
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: Test accuracy  0.5795454545454546
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: learning_rate:  3.90625e-05
+2020-06-19 12:34:57,490: main_new_SLSTM: INFO: wait_counter max, need to half the lr
+2020-06-19 12:34:57,490: main_new_SLSTM: DEBUG: bad_counter:  11
+2020-06-19 12:34:57,702: main_new_SLSTM: DEBUG: lrate change to:   1.953125e-05
+2020-06-19 12:34:57,702: main_new_SLSTM: INFO: Early Stop!
+2020-06-19 12:34:57,702: main_new_SLSTM: DEBUG: Seen samples:  1370
+2020-06-19 12:34:57,702: main_new_SLSTM: DEBUG: Training accuracy:  0.5430656934306569
+2020-06-19 12:34:57,702: main_new_SLSTM: DEBUG: results/S_LSTM_models/Saved loss_plot pickle
+2020-06-19 12:34:57,769: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2020-06-19 12:34:57,775: tensorflow: INFO: Restoring parameters from results/S_LSTM_models/_epoch_84_model.ckpt
+2020-06-19 12:34:58,317: main_new_SLSTM: INFO: ================================================================================
+2020-06-19 12:34:58,318: main_new_SLSTM: INFO: Final Result
+2020-06-19 12:34:58,318: main_new_SLSTM: INFO: ================================================================================
+2020-06-19 12:34:58,318: main_new_SLSTM: DEBUG: best epoch   94
+2020-06-19 12:35:06,461: main_new_SLSTM: DEBUG: Valid cost   0.6901562268083746
+2020-06-19 12:35:06,461: main_new_SLSTM: DEBUG: Valid accuracy   0.5454545454545454
+2020-06-19 12:35:12,612: main_new_SLSTM: DEBUG: Test cost   0.6843334111300382
+2020-06-19 12:35:12,614: main_new_SLSTM: DEBUG: Test accuracy   0.5795454545454546
+2020-06-19 12:35:50,652: main_new_SLSTM: DEBUG: Train cost   0.6907082907474824
+2020-06-19 12:35:50,653: main_new_SLSTM: DEBUG: Train accuracy   0.5416058394160584

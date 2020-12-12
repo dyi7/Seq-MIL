@@ -1,0 +1,542 @@
+2020-09-11 13:11:33,822: att_linsoft: INFO: Loading knowledge base ...
+2020-09-11 13:11:33,823: att_linsoft: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_kb': 5,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/MIL/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-09-11 13:11:33,823: att_linsoft: INFO: Loading data
+2020-09-11 13:11:37,957: att_linsoft: INFO: init_word_embedding
+2020-09-11 13:11:41,848: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:180: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-09-11 13:11:41,922: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:266: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-09-11 13:11:41,925: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:267: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-09-11 13:11:41,952: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:288: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-09-11 13:11:41,975: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:154: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-09-11 13:11:41,976: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-09-11 13:11:42,056: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-09-11 13:11:42,137: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14dfcfd1bd10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14dfcfd1bd10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,161: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-09-11 13:11:42,332: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14dfcfcd5110>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14dfcfcd5110>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,391: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:100: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-09-11 13:11:42,486: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfcf35ced0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfcf35ced0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,605: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfcf35ced0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfcf35ced0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,748: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceb0efd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceb0efd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,866: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfce9e1a10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfce9e1a10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:42,930: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14dfd00c1150>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14dfd00c1150>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:43,048: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceabfa90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceabfa90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:43,081: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14dfcfd193d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14dfcfd193d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:43,199: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceabf1d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14dfceabf1d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-11 13:11:43,211: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:327: The name tf.ceil is deprecated. Please use tf.math.ceil instead.
+
+2020-09-11 13:11:43,217: att_linsoft: INFO: Building f_cost...
+2020-09-11 13:11:43,256: att_linsoft: INFO: Done
+2020-09-11 13:11:43,256: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:354: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-09-11 13:11:43,261: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:355: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-09-11 13:11:43,264: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:356: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-09-11 13:11:43,272: att_linsoft: INFO: Building optimizers...
+2020-09-11 13:11:43,272: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:514: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-09-11 13:11:43,274: att_linsoft: INFO: Done
+2020-09-11 13:11:44,180: att_linsoft: INFO: correct_pred
+2020-09-11 13:11:44,181: att_linsoft: INFO: Done
+2020-09-11 13:11:44,182: att_linsoft: INFO: init variables
+2020-09-11 13:11:44,184: att_linsoft: INFO: Done
+2020-09-11 13:11:44,184: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:545: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-09-11 13:11:44,242: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_linsoft.py:554: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-09-11 13:11:51,975: att_linsoft: DEBUG: Epoch 0 Update 20 Cost 0.043791066855192184 L2 60.850765228271484 TIME 0.0922238826751709
+2020-09-11 13:12:00,094: att_linsoft: DEBUG: Epoch 0 Update 40 Cost 0.05613360553979874 L2 60.44255828857422 TIME 0.5975203514099121
+2020-09-11 13:12:08,932: att_linsoft: DEBUG: Epoch  0
+2020-09-11 13:12:08,933: att_linsoft: DEBUG: Valid cost  0.5871164256876166
+2020-09-11 13:12:08,934: att_linsoft: DEBUG: Valid accuracy  0.4431818181818182
+2020-09-11 13:12:08,934: att_linsoft: DEBUG: Test cost  0.6098434274846857
+2020-09-11 13:12:08,934: att_linsoft: DEBUG: Test accuracy  0.42045454545454547
+2020-09-11 13:12:08,934: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:12:08,934: att_linsoft: INFO: Saving...
+2020-09-11 13:12:09,296: att_linsoft: INFO: results/MIL/_epoch_0_model.ckpt
+2020-09-11 13:12:09,347: att_linsoft: INFO: Done
+2020-09-11 13:12:09,348: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:12:09,348: att_linsoft: DEBUG: Training accuracy:  0.4985401459854015
+2020-09-11 13:12:09,348: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:12:12,547: att_linsoft: DEBUG: Epoch 1 Update 60 Cost 0.05130288004875183 L2 60.039939880371094 TIME 0.17795634269714355
+2020-09-11 13:12:19,816: att_linsoft: DEBUG: Epoch 1 Update 80 Cost 0.056084372103214264 L2 59.620201110839844 TIME 0.06606197357177734
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: Epoch  1
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: Valid cost  0.5866444165056403
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: Valid accuracy  0.4431818181818182
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: Test cost  0.6093714128841053
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: Test accuracy  0.42045454545454547
+2020-09-11 13:12:29,858: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:12:29,858: att_linsoft: INFO: Saving...
+2020-09-11 13:12:30,120: att_linsoft: INFO: results/MIL/_epoch_1_model.ckpt
+2020-09-11 13:12:30,167: att_linsoft: INFO: Done
+2020-09-11 13:12:30,167: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:12:30,168: att_linsoft: DEBUG: Training accuracy:  0.4664233576642336
+2020-09-11 13:12:30,168: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:12:31,975: att_linsoft: DEBUG: Epoch 2 Update 100 Cost 0.049622997641563416 L2 59.20821762084961 TIME 0.37288713455200195
+2020-09-11 13:12:38,357: att_linsoft: DEBUG: Epoch 2 Update 120 Cost 0.04691055417060852 L2 58.77971267700195 TIME 0.6996738910675049
+2020-09-11 13:12:49,855: att_linsoft: DEBUG: Epoch  2
+2020-09-11 13:12:49,856: att_linsoft: DEBUG: Valid cost  0.5861612937667153
+2020-09-11 13:12:49,857: att_linsoft: DEBUG: Valid accuracy  0.4431818181818182
+2020-09-11 13:12:49,857: att_linsoft: DEBUG: Test cost  0.5975245941768993
+2020-09-11 13:12:49,857: att_linsoft: DEBUG: Test accuracy  0.4318181818181818
+2020-09-11 13:12:49,857: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:12:49,857: att_linsoft: INFO: Saving...
+2020-09-11 13:12:50,127: att_linsoft: INFO: results/MIL/_epoch_2_model.ckpt
+2020-09-11 13:12:50,174: att_linsoft: INFO: Done
+2020-09-11 13:12:50,174: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:12:50,175: att_linsoft: DEBUG: Training accuracy:  0.5175182481751824
+2020-09-11 13:12:50,175: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:12:51,523: att_linsoft: DEBUG: Epoch 3 Update 140 Cost 0.05420584976673126 L2 58.35984802246094 TIME 0.22423315048217773
+2020-09-11 13:12:57,859: att_linsoft: DEBUG: Epoch 3 Update 160 Cost 0.04397996515035629 L2 57.9239387512207 TIME 0.5656321048736572
+2020-09-11 13:13:07,992: att_linsoft: DEBUG: Epoch 3 Update 180 Cost 0.028759194537997246 L2 57.47658920288086 TIME 0.13809418678283691
+2020-09-11 13:13:12,435: att_linsoft: DEBUG: Epoch  3
+2020-09-11 13:13:12,435: att_linsoft: DEBUG: Valid cost  0.5856693278659474
+2020-09-11 13:13:12,435: att_linsoft: DEBUG: Valid accuracy  0.4431818181818182
+2020-09-11 13:13:12,435: att_linsoft: DEBUG: Test cost  0.5970326391133395
+2020-09-11 13:13:12,437: att_linsoft: DEBUG: Test accuracy  0.4318181818181818
+2020-09-11 13:13:12,437: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:13:12,437: att_linsoft: INFO: Saving...
+2020-09-11 13:13:12,738: att_linsoft: INFO: results/MIL/_epoch_3_model.ckpt
+2020-09-11 13:13:12,792: att_linsoft: INFO: Done
+2020-09-11 13:13:12,792: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:13:12,792: att_linsoft: DEBUG: Training accuracy:  0.47956204379562045
+2020-09-11 13:13:12,792: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:13:16,986: att_linsoft: DEBUG: Epoch 4 Update 200 Cost 0.04851815104484558 L2 57.03630065917969 TIME 0.04963207244873047
+2020-09-11 13:13:27,438: att_linsoft: DEBUG: Epoch 4 Update 220 Cost 0.04478192701935768 L2 56.59089279174805 TIME 0.42656636238098145
+2020-09-11 13:13:35,117: att_linsoft: DEBUG: Epoch  4
+2020-09-11 13:13:35,118: att_linsoft: DEBUG: Valid cost  0.585169564593922
+2020-09-11 13:13:35,118: att_linsoft: DEBUG: Valid accuracy  0.4431818181818182
+2020-09-11 13:13:35,118: att_linsoft: DEBUG: Test cost  0.5851692394776777
+2020-09-11 13:13:35,118: att_linsoft: DEBUG: Test accuracy  0.4431818181818182
+2020-09-11 13:13:35,119: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:13:35,119: att_linsoft: INFO: Saving...
+2020-09-11 13:13:35,395: att_linsoft: INFO: results/MIL/_epoch_4_model.ckpt
+2020-09-11 13:13:35,449: att_linsoft: INFO: Done
+2020-09-11 13:13:35,449: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:13:35,450: att_linsoft: DEBUG: Training accuracy:  0.491970802919708
+2020-09-11 13:13:35,450: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:13:38,555: att_linsoft: DEBUG: Epoch 5 Update 240 Cost 0.04309523478150368 L2 56.15580749511719 TIME 0.20690011978149414
+2020-09-11 13:13:46,322: att_linsoft: DEBUG: Epoch 5 Update 260 Cost 0.04536913335323334 L2 55.70533752441406 TIME 0.21942758560180664
+2020-09-11 13:13:56,912: att_linsoft: DEBUG: Epoch  5
+2020-09-11 13:13:56,913: att_linsoft: DEBUG: Valid cost  0.5789815946058794
+2020-09-11 13:13:56,913: att_linsoft: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-11 13:13:56,913: att_linsoft: DEBUG: Test cost  0.5789812369780107
+2020-09-11 13:13:56,914: att_linsoft: DEBUG: Test accuracy  0.44886363636363635
+2020-09-11 13:13:56,914: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:13:56,914: att_linsoft: INFO: Saving...
+2020-09-11 13:13:57,189: att_linsoft: INFO: results/MIL/_epoch_5_model.ckpt
+2020-09-11 13:13:57,245: att_linsoft: INFO: Done
+2020-09-11 13:13:57,245: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:13:57,246: att_linsoft: DEBUG: Training accuracy:  0.5226277372262774
+2020-09-11 13:13:57,246: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:13:59,293: att_linsoft: DEBUG: Epoch 6 Update 280 Cost 0.04765106365084648 L2 55.265743255615234 TIME 0.17814183235168457
+2020-09-11 13:14:06,831: att_linsoft: DEBUG: Epoch 6 Update 300 Cost 0.04491983354091644 L2 54.811031341552734 TIME 0.6260206699371338
+2020-09-11 13:14:17,960: att_linsoft: DEBUG: Epoch  6
+2020-09-11 13:14:17,961: att_linsoft: DEBUG: Valid cost  0.5784702842885797
+2020-09-11 13:14:17,962: att_linsoft: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-11 13:14:17,962: att_linsoft: DEBUG: Test cost  0.5727881789207458
+2020-09-11 13:14:17,962: att_linsoft: DEBUG: Test accuracy  0.45454545454545453
+2020-09-11 13:14:17,962: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:14:17,962: att_linsoft: INFO: Saving...
+2020-09-11 13:14:18,248: att_linsoft: INFO: results/MIL/_epoch_6_model.ckpt
+2020-09-11 13:14:18,298: att_linsoft: INFO: Done
+2020-09-11 13:14:18,298: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:14:18,298: att_linsoft: DEBUG: Training accuracy:  0.518978102189781
+2020-09-11 13:14:18,299: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:14:19,593: att_linsoft: DEBUG: Epoch 7 Update 320 Cost 0.04593384265899658 L2 54.3676872253418 TIME 0.07474899291992188
+2020-09-11 13:14:23,696: att_linsoft: DEBUG: Epoch 7 Update 340 Cost 0.0469716414809227 L2 53.909576416015625 TIME 0.06629490852355957
+2020-09-11 13:14:34,922: att_linsoft: DEBUG: Epoch 7 Update 360 Cost 0.06673694401979446 L2 53.4415283203125 TIME 0.1785905361175537
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: Epoch  7
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: Valid cost  0.572273005138744
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: Valid accuracy  0.45454545454545453
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: Test cost  0.5779545198787343
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: Test accuracy  0.44886363636363635
+2020-09-11 13:14:39,142: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:14:39,142: att_linsoft: INFO: Saving...
+2020-09-11 13:14:39,440: att_linsoft: INFO: results/MIL/_epoch_7_model.ckpt
+2020-09-11 13:14:39,493: att_linsoft: INFO: Done
+2020-09-11 13:14:39,494: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:14:39,494: att_linsoft: DEBUG: Training accuracy:  0.5124087591240876
+2020-09-11 13:14:39,494: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:14:43,528: att_linsoft: DEBUG: Epoch 8 Update 380 Cost 0.05984700098633766 L2 52.982906341552734 TIME 0.06593441963195801
+2020-09-11 13:14:53,346: att_linsoft: DEBUG: Epoch 8 Update 400 Cost 0.045101553201675415 L2 52.520816802978516 TIME 0.1764225959777832
+2020-09-11 13:15:01,053: att_linsoft: DEBUG: Epoch  8
+2020-09-11 13:15:01,054: att_linsoft: DEBUG: Valid cost  0.5490271611647173
+2020-09-11 13:15:01,054: att_linsoft: DEBUG: Valid accuracy  0.4772727272727273
+2020-09-11 13:15:01,054: att_linsoft: DEBUG: Test cost  0.5660722743381154
+2020-09-11 13:15:01,054: att_linsoft: DEBUG: Test accuracy  0.4602272727272727
+2020-09-11 13:15:01,054: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:15:01,054: att_linsoft: INFO: Saving...
+2020-09-11 13:15:01,320: att_linsoft: INFO: results/MIL/_epoch_8_model.ckpt
+2020-09-11 13:15:01,370: att_linsoft: INFO: Done
+2020-09-11 13:15:01,370: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:15:01,370: att_linsoft: DEBUG: Training accuracy:  0.5058394160583941
+2020-09-11 13:15:01,371: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:15:04,238: att_linsoft: DEBUG: Epoch 9 Update 420 Cost 0.04480058699846268 L2 52.07118606567383 TIME 0.18125176429748535
+2020-09-11 13:15:11,826: att_linsoft: DEBUG: Epoch 9 Update 440 Cost 0.03831980377435684 L2 51.607276916503906 TIME 0.4086942672729492
+2020-09-11 13:15:21,938: att_linsoft: DEBUG: Epoch  9
+2020-09-11 13:15:21,939: att_linsoft: DEBUG: Valid cost  0.5314608053727583
+2020-09-11 13:15:21,939: att_linsoft: DEBUG: Valid accuracy  0.4943181818181818
+2020-09-11 13:15:21,939: att_linsoft: DEBUG: Test cost  0.5598696036772295
+2020-09-11 13:15:21,939: att_linsoft: DEBUG: Test accuracy  0.4659090909090909
+2020-09-11 13:15:21,939: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:15:21,939: att_linsoft: INFO: Saving...
+2020-09-11 13:15:22,204: att_linsoft: INFO: results/MIL/_epoch_9_model.ckpt
+2020-09-11 13:15:22,252: att_linsoft: INFO: Done
+2020-09-11 13:15:22,252: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:15:22,252: att_linsoft: DEBUG: Training accuracy:  0.5087591240875913
+2020-09-11 13:15:22,253: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:15:24,564: att_linsoft: DEBUG: Epoch 10 Update 460 Cost 0.046837080270051956 L2 51.15618896484375 TIME 0.11158084869384766
+2020-09-11 13:15:30,675: att_linsoft: DEBUG: Epoch 10 Update 480 Cost 0.04160725325345993 L2 50.69108963012695 TIME 0.5261683464050293
+2020-09-11 13:15:43,596: att_linsoft: DEBUG: Epoch  10
+2020-09-11 13:15:43,598: att_linsoft: DEBUG: Valid cost  0.5025294314731251
+2020-09-11 13:15:43,599: att_linsoft: DEBUG: Valid accuracy  0.5227272727272727
+2020-09-11 13:15:43,599: att_linsoft: DEBUG: Test cost  0.5366200371222063
+2020-09-11 13:15:43,599: att_linsoft: DEBUG: Test accuracy  0.48863636363636365
+2020-09-11 13:15:43,599: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:15:43,599: att_linsoft: INFO: Saving...
+2020-09-11 13:15:43,896: att_linsoft: INFO: results/MIL/_epoch_10_model.ckpt
+2020-09-11 13:15:43,948: att_linsoft: INFO: Done
+2020-09-11 13:15:43,949: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:15:43,949: att_linsoft: DEBUG: Training accuracy:  0.5058394160583941
+2020-09-11 13:15:43,949: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:15:45,169: att_linsoft: DEBUG: Epoch 11 Update 500 Cost 0.04263227805495262 L2 50.23905944824219 TIME 0.20035481452941895
+2020-09-11 13:15:51,749: att_linsoft: DEBUG: Epoch 11 Update 520 Cost 0.04239483177661896 L2 49.773372650146484 TIME 0.11484909057617188
+2020-09-11 13:16:01,535: att_linsoft: DEBUG: Epoch 11 Update 540 Cost 0.03799165412783623 L2 49.2990837097168 TIME 0.13874554634094238
+2020-09-11 13:16:05,802: att_linsoft: DEBUG: Epoch  11
+2020-09-11 13:16:05,802: att_linsoft: DEBUG: Valid cost  0.5133701237765226
+2020-09-11 13:16:05,802: att_linsoft: DEBUG: Valid accuracy  0.5113636363636364
+2020-09-11 13:16:05,802: att_linsoft: DEBUG: Test cost  0.5304152802987532
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: Test accuracy  0.4943181818181818
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:16:05,803: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: bad_counter:  1
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: Training accuracy:  0.48905109489051096
+2020-09-11 13:16:05,803: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:16:09,718: att_linsoft: DEBUG: Epoch 12 Update 560 Cost 0.04442863538861275 L2 48.83564758300781 TIME 0.08089756965637207
+2020-09-11 13:16:18,725: att_linsoft: DEBUG: Epoch 12 Update 580 Cost 0.043018583208322525 L2 48.369998931884766 TIME 0.13834643363952637
+2020-09-11 13:16:26,336: att_linsoft: DEBUG: Epoch  12
+2020-09-11 13:16:26,338: att_linsoft: DEBUG: Valid cost  0.4958019229498776
+2020-09-11 13:16:26,338: att_linsoft: DEBUG: Valid accuracy  0.5284090909090909
+2020-09-11 13:16:26,338: att_linsoft: DEBUG: Test cost  0.5071652775461023
+2020-09-11 13:16:26,338: att_linsoft: DEBUG: Test accuracy  0.5170454545454546
+2020-09-11 13:16:26,338: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:16:26,338: att_linsoft: INFO: Saving...
+2020-09-11 13:16:26,621: att_linsoft: INFO: results/MIL/_epoch_11_model.ckpt
+2020-09-11 13:16:26,671: att_linsoft: INFO: Done
+2020-09-11 13:16:26,672: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:16:26,672: att_linsoft: DEBUG: Training accuracy:  0.5072992700729927
+2020-09-11 13:16:26,672: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:16:29,892: att_linsoft: DEBUG: Epoch 13 Update 600 Cost 0.04772259294986725 L2 47.91811752319336 TIME 0.2012951374053955
+2020-09-11 13:16:37,306: att_linsoft: DEBUG: Epoch 13 Update 620 Cost 0.043734125792980194 L2 47.45307922363281 TIME 0.5706708431243896
+2020-09-11 13:16:47,266: att_linsoft: DEBUG: Epoch  13
+2020-09-11 13:16:47,267: att_linsoft: DEBUG: Valid cost  0.47255268692970276
+2020-09-11 13:16:47,267: att_linsoft: DEBUG: Valid accuracy  0.5511363636363636
+2020-09-11 13:16:47,267: att_linsoft: DEBUG: Test cost  0.49527966434305365
+2020-09-11 13:16:47,267: att_linsoft: DEBUG: Test accuracy  0.5284090909090909
+2020-09-11 13:16:47,267: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:16:47,267: att_linsoft: INFO: Saving...
+2020-09-11 13:16:47,562: att_linsoft: INFO: results/MIL/_epoch_12_model.ckpt
+2020-09-11 13:16:47,617: att_linsoft: INFO: Done
+2020-09-11 13:16:47,618: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:16:47,618: att_linsoft: DEBUG: Training accuracy:  0.5138686131386861
+2020-09-11 13:16:47,618: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:16:50,114: att_linsoft: DEBUG: Epoch 14 Update 640 Cost 0.043513111770153046 L2 47.001949310302734 TIME 0.18079519271850586
+2020-09-11 13:16:57,574: att_linsoft: DEBUG: Epoch 14 Update 660 Cost 0.04702451080083847 L2 46.538002014160156 TIME 0.6830062866210938
+2020-09-11 13:17:09,291: att_linsoft: DEBUG: Epoch  14
+2020-09-11 13:17:09,292: att_linsoft: DEBUG: Valid cost  0.4777139181440527
+2020-09-11 13:17:09,292: att_linsoft: DEBUG: Valid accuracy  0.5454545454545454
+2020-09-11 13:17:09,292: att_linsoft: DEBUG: Test cost  0.5231681845404885
+2020-09-11 13:17:09,292: att_linsoft: DEBUG: Test accuracy  0.5
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:17:09,293: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: bad_counter:  2
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: Training accuracy:  0.5218978102189781
+2020-09-11 13:17:09,293: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:17:10,412: att_linsoft: DEBUG: Epoch 15 Update 680 Cost 0.039302192628383636 L2 46.0881233215332 TIME 0.14716315269470215
+2020-09-11 13:17:15,803: att_linsoft: DEBUG: Epoch 15 Update 700 Cost 0.04032060131430626 L2 45.62562561035156 TIME 0.17621445655822754
+2020-09-11 13:17:25,794: att_linsoft: DEBUG: Epoch 15 Update 720 Cost 0.049254465848207474 L2 45.15559387207031 TIME 0.17475485801696777
+2020-09-11 13:17:30,124: att_linsoft: DEBUG: Epoch  15
+2020-09-11 13:17:30,125: att_linsoft: DEBUG: Valid cost  0.46014994382858276
+2020-09-11 13:17:30,125: att_linsoft: DEBUG: Valid accuracy  0.5625
+2020-09-11 13:17:30,125: att_linsoft: DEBUG: Test cost  0.5396951274438337
+2020-09-11 13:17:30,125: att_linsoft: DEBUG: Test accuracy  0.48295454545454547
+2020-09-11 13:17:30,125: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:17:30,125: att_linsoft: INFO: Saving...
+2020-09-11 13:17:30,402: att_linsoft: INFO: results/MIL/_epoch_13_model.ckpt
+2020-09-11 13:17:30,452: att_linsoft: INFO: Done
+2020-09-11 13:17:30,452: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:17:30,452: att_linsoft: DEBUG: Training accuracy:  0.5182481751824818
+2020-09-11 13:17:30,452: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:17:34,551: att_linsoft: DEBUG: Epoch 16 Update 740 Cost 0.029015349224209785 L2 44.697364807128906 TIME 0.0524899959564209
+2020-09-11 13:17:45,318: att_linsoft: DEBUG: Epoch 16 Update 760 Cost 0.03624386712908745 L2 44.23786926269531 TIME 0.16511058807373047
+2020-09-11 13:17:52,546: att_linsoft: DEBUG: Epoch  16
+2020-09-11 13:17:52,547: att_linsoft: DEBUG: Valid cost  0.4596339193257419
+2020-09-11 13:17:52,547: att_linsoft: DEBUG: Valid accuracy  0.5625
+2020-09-11 13:17:52,547: att_linsoft: DEBUG: Test cost  0.5221336754885587
+2020-09-11 13:17:52,547: att_linsoft: DEBUG: Test accuracy  0.5
+2020-09-11 13:17:52,547: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:17:52,547: att_linsoft: INFO: Saving...
+2020-09-11 13:17:52,833: att_linsoft: INFO: results/MIL/_epoch_14_model.ckpt
+2020-09-11 13:17:52,897: att_linsoft: INFO: Done
+2020-09-11 13:17:52,897: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:17:52,897: att_linsoft: DEBUG: Training accuracy:  0.5211678832116788
+2020-09-11 13:17:52,897: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:17:56,106: att_linsoft: DEBUG: Epoch 17 Update 780 Cost 0.03940531611442566 L2 43.792816162109375 TIME 0.43486523628234863
+2020-09-11 13:18:04,106: att_linsoft: DEBUG: Epoch 17 Update 800 Cost 0.04292391240596771 L2 43.335693359375 TIME 0.6657204627990723
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: Epoch  17
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: Valid cost  0.4648027718067169
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: Valid accuracy  0.5568181818181818
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: Test cost  0.5500297979875044
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: Test accuracy  0.4715909090909091
+2020-09-11 13:18:13,805: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:18:13,805: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:18:13,806: att_linsoft: DEBUG: bad_counter:  3
+2020-09-11 13:18:13,806: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:18:13,806: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:18:13,806: att_linsoft: DEBUG: Training accuracy:  0.5167883211678832
+2020-09-11 13:18:13,806: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:18:15,633: att_linsoft: DEBUG: Epoch 18 Update 820 Cost 0.0427049845457077 L2 42.89309310913086 TIME 0.17546749114990234
+2020-09-11 13:18:22,074: att_linsoft: DEBUG: Epoch 18 Update 840 Cost 0.03872646018862724 L2 42.438690185546875 TIME 0.5018677711486816
+2020-09-11 13:18:33,664: att_linsoft: DEBUG: Epoch  18
+2020-09-11 13:18:33,665: att_linsoft: DEBUG: Valid cost  0.46997511657801544
+2020-09-11 13:18:33,665: att_linsoft: DEBUG: Valid accuracy  0.5511363636363636
+2020-09-11 13:18:33,665: att_linsoft: DEBUG: Test cost  0.5324748917059465
+2020-09-11 13:18:33,665: att_linsoft: DEBUG: Test accuracy  0.48863636363636365
+2020-09-11 13:18:33,665: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:18:33,666: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:18:33,666: att_linsoft: DEBUG: bad_counter:  4
+2020-09-11 13:18:33,666: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:18:33,666: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:18:33,666: att_linsoft: DEBUG: Training accuracy:  0.5255474452554745
+2020-09-11 13:18:33,666: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:18:35,225: att_linsoft: DEBUG: Epoch 19 Update 860 Cost 0.03725690767168999 L2 41.99880599975586 TIME 0.24025487899780273
+2020-09-11 13:18:40,125: att_linsoft: DEBUG: Epoch 19 Update 880 Cost 0.04202757403254509 L2 41.54744338989258 TIME 0.13136649131774902
+2020-09-11 13:18:49,978: att_linsoft: DEBUG: Epoch 19 Update 900 Cost 0.020551467314362526 L2 41.089481353759766 TIME 0.15343356132507324
+2020-09-11 13:18:54,101: att_linsoft: DEBUG: Epoch  19
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Valid cost  0.480833194472573
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Valid accuracy  0.5397727272727273
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Test cost  0.5092420469630848
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Test accuracy  0.5113636363636364
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:18:54,102: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: bad_counter:  5
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: Training accuracy:  0.518978102189781
+2020-09-11 13:18:54,102: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:18:58,298: att_linsoft: DEBUG: Epoch 20 Update 920 Cost 0.03366021439433098 L2 40.643760681152344 TIME 0.09582376480102539
+2020-09-11 13:19:09,049: att_linsoft: DEBUG: Epoch 20 Update 940 Cost 0.05069402977824211 L2 40.19755554199219 TIME 0.11463642120361328
+2020-09-11 13:19:16,423: att_linsoft: DEBUG: Epoch  20
+2020-09-11 13:19:16,423: att_linsoft: DEBUG: Valid cost  0.4746502502398057
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: Valid accuracy  0.5454545454545454
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: Test cost  0.4860136834057895
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: Test accuracy  0.5340909090909091
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:19:16,424: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: bad_counter:  6
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: Training accuracy:  0.5167883211678832
+2020-09-11 13:19:16,424: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:19:19,639: att_linsoft: DEBUG: Epoch 21 Update 960 Cost 0.03613677993416786 L2 39.766029357910156 TIME 0.1093595027923584
+2020-09-11 13:19:27,197: att_linsoft: DEBUG: Epoch 21 Update 980 Cost 0.03841792047023773 L2 39.323490142822266 TIME 0.21598219871520996
+2020-09-11 13:19:37,524: att_linsoft: DEBUG: Epoch  21
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Valid cost  0.4684719199484045
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Valid accuracy  0.5511363636363636
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Test cost  0.4968808184970509
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Test accuracy  0.5227272727272727
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:19:37,526: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: bad_counter:  7
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: Training accuracy:  0.5233576642335767
+2020-09-11 13:19:37,526: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:19:39,370: att_linsoft: DEBUG: Epoch 22 Update 1000 Cost 0.04195553809404373 L2 38.895668029785156 TIME 0.2067883014678955
+2020-09-11 13:19:45,854: att_linsoft: DEBUG: Epoch 22 Update 1020 Cost 0.03673345595598221 L2 38.45708465576172 TIME 0.8754496574401855
+2020-09-11 13:19:57,444: att_linsoft: DEBUG: Epoch  22
+2020-09-11 13:19:57,445: att_linsoft: DEBUG: Valid cost  0.4509350061416626
+2020-09-11 13:19:57,445: att_linsoft: DEBUG: Valid accuracy  0.5681818181818182
+2020-09-11 13:19:57,445: att_linsoft: DEBUG: Test cost  0.47934389114379883
+2020-09-11 13:19:57,445: att_linsoft: DEBUG: Test accuracy  0.5397727272727273
+2020-09-11 13:19:57,446: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:19:57,446: att_linsoft: INFO: Saving...
+2020-09-11 13:19:57,531: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2020-09-11 13:19:57,738: att_linsoft: INFO: results/MIL/_epoch_15_model.ckpt
+2020-09-11 13:19:57,794: att_linsoft: INFO: Done
+2020-09-11 13:19:57,795: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:19:57,795: att_linsoft: DEBUG: Training accuracy:  0.5065693430656935
+2020-09-11 13:19:57,795: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:19:58,955: att_linsoft: DEBUG: Epoch 23 Update 1040 Cost 0.03527075797319412 L2 38.03313446044922 TIME 0.08999061584472656
+2020-09-11 13:20:04,209: att_linsoft: DEBUG: Epoch 23 Update 1060 Cost 0.0350552499294281 L2 37.59872817993164 TIME 0.23096609115600586
+2020-09-11 13:20:14,182: att_linsoft: DEBUG: Epoch 23 Update 1080 Cost 0.031918205320835114 L2 37.158592224121094 TIME 0.17576003074645996
+2020-09-11 13:20:18,427: att_linsoft: DEBUG: Epoch  23
+2020-09-11 13:20:18,428: att_linsoft: DEBUG: Valid cost  0.4504489411007274
+2020-09-11 13:20:18,428: att_linsoft: DEBUG: Valid accuracy  0.5681818181818182
+2020-09-11 13:20:18,428: att_linsoft: DEBUG: Test cost  0.47317602417685767
+2020-09-11 13:20:18,428: att_linsoft: DEBUG: Test accuracy  0.5454545454545454
+2020-09-11 13:20:18,428: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:20:18,428: att_linsoft: INFO: Saving...
+2020-09-11 13:20:18,713: att_linsoft: INFO: results/MIL/_epoch_16_model.ckpt
+2020-09-11 13:20:18,764: att_linsoft: INFO: Done
+2020-09-11 13:20:18,764: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:20:18,765: att_linsoft: DEBUG: Training accuracy:  0.516058394160584
+2020-09-11 13:20:18,765: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:20:22,711: att_linsoft: DEBUG: Epoch 24 Update 1100 Cost 0.0317060761153698 L2 36.73081970214844 TIME 0.0824894905090332
+2020-09-11 13:20:30,920: att_linsoft: DEBUG: Epoch 24 Update 1120 Cost 0.05109643191099167 L2 36.3031120300293 TIME 0.08750581741333008
+2020-09-11 13:20:38,617: att_linsoft: DEBUG: Epoch  24
+2020-09-11 13:20:38,618: att_linsoft: DEBUG: Valid cost  0.44428668780760333
+2020-09-11 13:20:38,618: att_linsoft: DEBUG: Valid accuracy  0.5738636363636364
+2020-09-11 13:20:38,618: att_linsoft: DEBUG: Test cost  0.46133196353912354
+2020-09-11 13:20:38,618: att_linsoft: DEBUG: Test accuracy  0.5568181818181818
+2020-09-11 13:20:38,618: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:20:38,618: att_linsoft: INFO: Saving...
+2020-09-11 13:20:38,912: att_linsoft: INFO: results/MIL/_epoch_17_model.ckpt
+2020-09-11 13:20:38,964: att_linsoft: INFO: Done
+2020-09-11 13:20:38,965: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:20:38,965: att_linsoft: DEBUG: Training accuracy:  0.5080291970802919
+2020-09-11 13:20:38,965: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:20:41,453: att_linsoft: DEBUG: Epoch 25 Update 1140 Cost 0.036700084805488586 L2 35.890071868896484 TIME 0.23093461990356445
+2020-09-11 13:20:48,716: att_linsoft: DEBUG: Epoch 25 Update 1160 Cost 0.036487504839897156 L2 35.46700668334961 TIME 0.6295723915100098
+2020-09-11 13:20:58,894: att_linsoft: DEBUG: Epoch  25
+2020-09-11 13:20:58,895: att_linsoft: DEBUG: Valid cost  0.45517579262906854
+2020-09-11 13:20:58,896: att_linsoft: DEBUG: Valid accuracy  0.5625
+2020-09-11 13:20:58,896: att_linsoft: DEBUG: Test cost  0.4665392583066767
+2020-09-11 13:20:58,896: att_linsoft: DEBUG: Test accuracy  0.5511363636363636
+2020-09-11 13:20:58,896: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:20:58,896: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:20:58,896: att_linsoft: DEBUG: bad_counter:  8
+2020-09-11 13:20:58,897: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:20:58,897: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:20:58,897: att_linsoft: DEBUG: Training accuracy:  0.4927007299270073
+2020-09-11 13:20:58,897: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:21:00,615: att_linsoft: DEBUG: Epoch 26 Update 1180 Cost 0.04003344476222992 L2 35.058528900146484 TIME 0.11386370658874512
+2020-09-11 13:21:06,686: att_linsoft: DEBUG: Epoch 26 Update 1200 Cost 0.043576620519161224 L2 34.640281677246094 TIME 0.177412748336792
+2020-09-11 13:21:18,229: att_linsoft: DEBUG: Epoch  26
+2020-09-11 13:21:18,229: att_linsoft: DEBUG: Valid cost  0.44334379922259937
+2020-09-11 13:21:18,230: att_linsoft: DEBUG: Valid accuracy  0.5738636363636364
+2020-09-11 13:21:18,230: att_linsoft: DEBUG: Test cost  0.46038907766342163
+2020-09-11 13:21:18,230: att_linsoft: DEBUG: Test accuracy  0.5568181818181818
+2020-09-11 13:21:18,230: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:21:18,230: att_linsoft: INFO: Saving...
+2020-09-11 13:21:18,523: att_linsoft: INFO: results/MIL/_epoch_18_model.ckpt
+2020-09-11 13:21:18,574: att_linsoft: INFO: Done
+2020-09-11 13:21:18,575: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:21:18,575: att_linsoft: DEBUG: Training accuracy:  0.5109489051094891
+2020-09-11 13:21:18,575: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:21:19,755: att_linsoft: DEBUG: Epoch 27 Update 1220 Cost 0.035873040556907654 L2 34.23649978637695 TIME 0.17078638076782227
+2020-09-11 13:21:23,964: att_linsoft: DEBUG: Epoch 27 Update 1240 Cost 0.03816625103354454 L2 33.82322692871094 TIME 0.2566382884979248
+2020-09-11 13:21:37,133: att_linsoft: DEBUG: Epoch 27 Update 1260 Cost 0.016706468537449837 L2 33.40504455566406 TIME 0.10550618171691895
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: Epoch  27
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: Valid cost  0.4485635486516086
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: Valid accuracy  0.5681818181818182
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: Test cost  0.45992704142223706
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: Test accuracy  0.5568181818181818
+2020-09-11 13:21:41,393: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:21:41,394: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:21:41,394: att_linsoft: DEBUG: bad_counter:  9
+2020-09-11 13:21:41,394: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:21:41,394: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:21:41,394: att_linsoft: DEBUG: Training accuracy:  0.5080291970802919
+2020-09-11 13:21:41,394: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:21:45,134: att_linsoft: DEBUG: Epoch 28 Update 1280 Cost 0.0365062914788723 L2 32.999061584472656 TIME 0.07732176780700684
+2020-09-11 13:21:54,045: att_linsoft: DEBUG: Epoch 28 Update 1300 Cost 0.04453517869114876 L2 32.59364318847656 TIME 0.1560661792755127
+2020-09-11 13:22:01,902: att_linsoft: DEBUG: Epoch  28
+2020-09-11 13:22:01,903: att_linsoft: DEBUG: Valid cost  0.45947173779661005
+2020-09-11 13:22:01,903: att_linsoft: DEBUG: Valid accuracy  0.5568181818181818
+2020-09-11 13:22:01,903: att_linsoft: DEBUG: Test cost  0.4651534015482122
+2020-09-11 13:22:01,903: att_linsoft: DEBUG: Test accuracy  0.5511363636363636
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:22:01,904: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: bad_counter:  10
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: Training accuracy:  0.5138686131386861
+2020-09-11 13:22:01,904: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:22:05,149: att_linsoft: DEBUG: Epoch 29 Update 1320 Cost 0.038606129586696625 L2 32.202552795410156 TIME 0.20139646530151367
+2020-09-11 13:22:11,106: att_linsoft: DEBUG: Epoch 29 Update 1340 Cost 0.02840656414628029 L2 31.80242347717285 TIME 0.23783636093139648
+2020-09-11 13:22:22,502: att_linsoft: DEBUG: Epoch  29
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Valid cost  0.44765938412059436
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Valid accuracy  0.5681818181818182
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Test cost  0.4533410532908006
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Test accuracy  0.5625
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: learning_rate:  0.04
+2020-09-11 13:22:22,503: att_linsoft: INFO: wait_counter max, need to half the lr
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: bad_counter:  11
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: lrate change to:   0.04
+2020-09-11 13:22:22,503: att_linsoft: INFO: Early Stop!
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Seen samples:  1370
+2020-09-11 13:22:22,503: att_linsoft: DEBUG: Training accuracy:  0.5153284671532846
+2020-09-11 13:22:22,504: att_linsoft: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-11 13:22:22,536: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2020-09-11 13:22:22,543: tensorflow: INFO: Restoring parameters from results/MIL/_epoch_18_model.ckpt
+2020-09-11 13:22:22,934: att_linsoft: INFO: ================================================================================
+2020-09-11 13:22:22,934: att_linsoft: INFO: Final Result
+2020-09-11 13:22:22,935: att_linsoft: INFO: ================================================================================
+2020-09-11 13:22:22,935: att_linsoft: DEBUG: best epoch   26
+2020-09-11 13:22:26,027: att_linsoft: DEBUG: Valid cost   0.44334379922259937
+2020-09-11 13:22:26,027: att_linsoft: DEBUG: Valid accuracy   0.5738636363636364
+2020-09-11 13:22:28,240: att_linsoft: DEBUG: Test cost   0.46038907766342163
+2020-09-11 13:22:28,241: att_linsoft: DEBUG: Test accuracy   0.5568181818181818
+2020-09-11 13:22:38,411: att_linsoft: DEBUG: Train cost   0.5062449158597602
+2020-09-11 13:22:38,418: att_linsoft: DEBUG: Train accuracy   0.5109489051094891

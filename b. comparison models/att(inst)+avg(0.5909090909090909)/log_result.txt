@@ -1,0 +1,845 @@
+2020-09-10 14:36:59,802: att_avg: INFO: Loading knowledge base ...
+2020-09-10 14:36:59,804: att_avg: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_kb': 5,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/MIL/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-09-10 14:36:59,805: att_avg: INFO: Loading data
+2020-09-10 14:37:05,185: att_avg: INFO: init_word_embedding
+2020-09-10 14:37:10,171: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:180: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-09-10 14:37:10,249: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:266: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-09-10 14:37:10,251: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:267: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-09-10 14:37:10,275: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:288: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-09-10 14:37:10,296: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:154: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-09-10 14:37:10,297: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-09-10 14:37:10,388: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-09-10 14:37:10,485: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x15407f873c90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x15407f873c90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:10,507: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-09-10 14:37:10,718: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x15408095a590>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x15408095a590>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:10,781: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:100: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-09-10 14:37:10,897: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407efa0d10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407efa0d10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,035: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407efa0d10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407efa0d10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,209: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407f153e50>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407f153e50>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,348: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407eeaf850>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407eeaf850>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,418: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x15407f8637d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x15407f8637d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,562: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407f8b5a90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407f8b5a90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,590: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x15407f8b5850>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x15407f8b5850>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:37:11,731: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407ded0e50>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x15407ded0e50>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:33,752: att_avg: INFO: Loading knowledge base ...
+2020-09-10 14:38:33,754: att_avg: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train.csv', 'price_set/train_label.csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_kb': 5,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'kb_dicts': [],
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 5000,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/MIL/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test.csv', 'price_set/test_label.csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate.csv', 'price_set/validate_label.csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-09-10 14:38:33,754: att_avg: INFO: Loading data
+2020-09-10 14:38:39,124: att_avg: INFO: init_word_embedding
+2020-09-10 14:38:44,102: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:180: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-09-10 14:38:44,183: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:266: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-09-10 14:38:44,185: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:267: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-09-10 14:38:44,214: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:288: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-09-10 14:38:44,237: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:154: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-09-10 14:38:44,239: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-09-10 14:38:44,336: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-09-10 14:38:44,437: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14b3653afe10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14b3653afe10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:44,463: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-09-10 14:38:44,677: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14b3644f8f90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14b3644f8f90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:44,743: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:100: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-09-10 14:38:44,863: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b3644f8cd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b3644f8cd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,004: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b3644f8cd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b3644f8cd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,181: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b363e3e710>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b363e3e710>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,325: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b363e3e710>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b363e3e710>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,412: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14b364509790>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14b364509790>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,572: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b364e71490>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b364e71490>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,605: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14b364e71250>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14b364e71250>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,753: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b364509790>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14b364509790>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-09-10 14:38:45,765: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:326: The name tf.ceil is deprecated. Please use tf.math.ceil instead.
+
+2020-09-10 14:38:45,771: att_avg: INFO: Building f_cost...
+2020-09-10 14:38:45,813: att_avg: INFO: Done
+2020-09-10 14:38:45,814: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:353: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-09-10 14:38:45,819: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:354: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-09-10 14:38:45,823: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:355: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-09-10 14:38:45,831: att_avg: INFO: Building optimizers...
+2020-09-10 14:38:45,831: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:513: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-09-10 14:38:45,833: att_avg: INFO: Done
+2020-09-10 14:38:46,994: att_avg: INFO: correct_pred
+2020-09-10 14:38:46,995: att_avg: INFO: Done
+2020-09-10 14:38:46,996: att_avg: INFO: init variables
+2020-09-10 14:38:46,999: att_avg: INFO: Done
+2020-09-10 14:38:46,999: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:544: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-09-10 14:38:47,064: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/att_avg.py:553: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-09-10 14:38:55,475: att_avg: DEBUG: Epoch 0 Update 20 Cost 0.05041608214378357 L2 60.7509880065918 TIME 0.1200716495513916
+2020-09-10 14:39:04,154: att_avg: DEBUG: Epoch 0 Update 40 Cost 0.0490475594997406 L2 60.34446716308594 TIME 0.06795477867126465
+2020-09-10 14:39:12,370: att_avg: DEBUG: Epoch  0
+2020-09-10 14:39:12,371: att_avg: DEBUG: Valid cost  0.5813616243275729
+2020-09-10 14:39:12,371: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:39:12,371: att_avg: DEBUG: Test cost  0.6097720075737346
+2020-09-10 14:39:12,372: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:39:12,372: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:39:12,372: att_avg: INFO: Saving...
+2020-09-10 14:39:12,724: att_avg: INFO: results/MIL/_epoch_0_model.ckpt
+2020-09-10 14:39:12,782: att_avg: INFO: Done
+2020-09-10 14:39:12,782: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:39:12,783: att_avg: DEBUG: Training accuracy:  0.46715328467153283
+2020-09-10 14:39:12,783: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:39:15,885: att_avg: DEBUG: Epoch 1 Update 60 Cost 0.046239614486694336 L2 59.943485260009766 TIME 0.41727399826049805
+2020-09-10 14:39:24,693: att_avg: DEBUG: Epoch 1 Update 80 Cost 0.05353977531194687 L2 59.52553939819336 TIME 0.5734696388244629
+2020-09-10 14:39:33,482: att_avg: DEBUG: Epoch  1
+2020-09-10 14:39:33,482: att_avg: DEBUG: Valid cost  0.5808921402150934
+2020-09-10 14:39:33,482: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:39:33,482: att_avg: DEBUG: Test cost  0.6149842820384286
+2020-09-10 14:39:33,482: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:39:33,482: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:39:33,483: att_avg: INFO: Saving...
+2020-09-10 14:39:33,745: att_avg: INFO: results/MIL/_epoch_1_model.ckpt
+2020-09-10 14:39:33,793: att_avg: INFO: Done
+2020-09-10 14:39:33,793: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:39:33,793: att_avg: DEBUG: Training accuracy:  0.491970802919708
+2020-09-10 14:39:33,793: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:39:35,797: att_avg: DEBUG: Epoch 2 Update 100 Cost 0.045841820538043976 L2 59.1152229309082 TIME 0.16382694244384766
+2020-09-10 14:39:42,642: att_avg: DEBUG: Epoch 2 Update 120 Cost 0.05312841385602951 L2 58.6885871887207 TIME 0.3401033878326416
+2020-09-10 14:39:55,425: att_avg: DEBUG: Epoch  2
+2020-09-10 14:39:55,426: att_avg: DEBUG: Valid cost  0.5804117213595997
+2020-09-10 14:39:55,427: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:39:55,427: att_avg: DEBUG: Test cost  0.6145038198341023
+2020-09-10 14:39:55,427: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:39:55,427: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:39:55,427: att_avg: INFO: Saving...
+2020-09-10 14:39:55,698: att_avg: INFO: results/MIL/_epoch_2_model.ckpt
+2020-09-10 14:39:55,754: att_avg: INFO: Done
+2020-09-10 14:39:55,754: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:39:55,755: att_avg: DEBUG: Training accuracy:  0.481021897810219
+2020-09-10 14:39:55,755: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:39:56,994: att_avg: DEBUG: Epoch 3 Update 140 Cost 0.04791949316859245 L2 58.27052307128906 TIME 0.22628211975097656
+2020-09-10 14:40:02,238: att_avg: DEBUG: Epoch 3 Update 160 Cost 0.04518934339284897 L2 57.83637619018555 TIME 1.064988613128662
+2020-09-10 14:40:12,780: att_avg: DEBUG: Epoch 3 Update 180 Cost 0.042064085602760315 L2 57.39094924926758 TIME 0.18141937255859375
+2020-09-10 14:40:17,013: att_avg: DEBUG: Epoch  3
+2020-09-10 14:40:17,013: att_avg: DEBUG: Valid cost  0.5799221938306635
+2020-09-10 14:40:17,013: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:40:17,013: att_avg: DEBUG: Test cost  0.6083324334838174
+2020-09-10 14:40:17,013: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:40:17,014: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:40:17,014: att_avg: INFO: Saving...
+2020-09-10 14:40:17,273: att_avg: INFO: results/MIL/_epoch_3_model.ckpt
+2020-09-10 14:40:17,319: att_avg: INFO: Done
+2020-09-10 14:40:17,319: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:40:17,319: att_avg: DEBUG: Training accuracy:  0.454014598540146
+2020-09-10 14:40:17,319: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:40:21,075: att_avg: DEBUG: Epoch 4 Update 200 Cost 0.041835904121398926 L2 56.952545166015625 TIME 0.10834789276123047
+2020-09-10 14:40:30,527: att_avg: DEBUG: Epoch 4 Update 220 Cost 0.047101713716983795 L2 56.50899887084961 TIME 0.1894683837890625
+2020-09-10 14:40:38,342: att_avg: DEBUG: Epoch  4
+2020-09-10 14:40:38,343: att_avg: DEBUG: Valid cost  0.579425036907196
+2020-09-10 14:40:38,343: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:40:38,343: att_avg: DEBUG: Test cost  0.6078351925719868
+2020-09-10 14:40:38,343: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:40:38,343: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:40:38,343: att_avg: INFO: Saving...
+2020-09-10 14:40:38,598: att_avg: INFO: results/MIL/_epoch_4_model.ckpt
+2020-09-10 14:40:38,645: att_avg: INFO: Done
+2020-09-10 14:40:38,645: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:40:38,645: att_avg: DEBUG: Training accuracy:  0.49562043795620436
+2020-09-10 14:40:38,645: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:40:41,549: att_avg: DEBUG: Epoch 5 Update 240 Cost 0.04931169003248215 L2 56.07572937011719 TIME 0.19975566864013672
+2020-09-10 14:40:48,847: att_avg: DEBUG: Epoch 5 Update 260 Cost 0.04658742994070053 L2 55.62712097167969 TIME 0.3416435718536377
+2020-09-10 14:40:58,524: att_avg: DEBUG: Epoch  5
+2020-09-10 14:40:58,525: att_avg: DEBUG: Valid cost  0.578921377658844
+2020-09-10 14:40:58,525: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:40:58,525: att_avg: DEBUG: Test cost  0.6073314872655001
+2020-09-10 14:40:58,525: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:40:58,525: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:40:58,525: att_avg: INFO: Saving...
+2020-09-10 14:40:58,770: att_avg: INFO: results/MIL/_epoch_5_model.ckpt
+2020-09-10 14:40:58,815: att_avg: INFO: Done
+2020-09-10 14:40:58,815: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:40:58,815: att_avg: DEBUG: Training accuracy:  0.4832116788321168
+2020-09-10 14:40:58,815: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:41:00,615: att_avg: DEBUG: Epoch 6 Update 280 Cost 0.04386672377586365 L2 55.18938446044922 TIME 0.15456652641296387
+2020-09-10 14:41:06,545: att_avg: DEBUG: Epoch 6 Update 300 Cost 0.048638325184583664 L2 54.73655700683594 TIME 0.6169042587280273
+2020-09-10 14:41:18,674: att_avg: DEBUG: Epoch  6
+2020-09-10 14:41:18,675: att_avg: DEBUG: Valid cost  0.5784125436436046
+2020-09-10 14:41:18,675: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:41:18,675: att_avg: DEBUG: Test cost  0.6068226153200323
+2020-09-10 14:41:18,675: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:41:18,675: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:41:18,675: att_avg: INFO: Saving...
+2020-09-10 14:41:18,932: att_avg: INFO: results/MIL/_epoch_6_model.ckpt
+2020-09-10 14:41:18,977: att_avg: INFO: Done
+2020-09-10 14:41:18,978: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:41:18,978: att_avg: DEBUG: Training accuracy:  0.4912408759124088
+2020-09-10 14:41:18,978: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:41:20,002: att_avg: DEBUG: Epoch 7 Update 320 Cost 0.04967135190963745 L2 54.29507827758789 TIME 0.19466447830200195
+2020-09-10 14:41:25,267: att_avg: DEBUG: Epoch 7 Update 340 Cost 0.04318811744451523 L2 53.83882522583008 TIME 0.14592242240905762
+2020-09-10 14:41:35,811: att_avg: DEBUG: Epoch 7 Update 360 Cost 0.04004674777388573 L2 53.372764587402344 TIME 0.20301485061645508
+2020-09-10 14:41:40,054: att_avg: DEBUG: Epoch  7
+2020-09-10 14:41:40,054: att_avg: DEBUG: Valid cost  0.5778995806520636
+2020-09-10 14:41:40,054: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:41:40,054: att_avg: DEBUG: Test cost  0.6119914163242687
+2020-09-10 14:41:40,054: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:41:40,055: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:41:40,055: att_avg: INFO: Saving...
+2020-09-10 14:41:40,320: att_avg: INFO: results/MIL/_epoch_7_model.ckpt
+2020-09-10 14:41:40,369: att_avg: INFO: Done
+2020-09-10 14:41:40,370: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:41:40,370: att_avg: DEBUG: Training accuracy:  0.4686131386861314
+2020-09-10 14:41:40,370: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:41:43,987: att_avg: DEBUG: Epoch 8 Update 380 Cost 0.039808567613363266 L2 52.91599655151367 TIME 0.0730893611907959
+2020-09-10 14:41:53,625: att_avg: DEBUG: Epoch 8 Update 400 Cost 0.05212553218007088 L2 52.45580291748047 TIME 0.4543800354003906
+2020-09-10 14:42:01,405: att_avg: DEBUG: Epoch  8
+2020-09-10 14:42:01,405: att_avg: DEBUG: Valid cost  0.5773833773352883
+2020-09-10 14:42:01,405: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:42:01,405: att_avg: DEBUG: Test cost  0.6114751913330772
+2020-09-10 14:42:01,405: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:42:01,405: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:42:01,405: att_avg: INFO: Saving...
+2020-09-10 14:42:01,671: att_avg: INFO: results/MIL/_epoch_8_model.ckpt
+2020-09-10 14:42:01,716: att_avg: INFO: Done
+2020-09-10 14:42:01,716: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:42:01,717: att_avg: DEBUG: Training accuracy:  0.46277372262773725
+2020-09-10 14:42:01,717: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:42:04,797: att_avg: DEBUG: Epoch 9 Update 420 Cost 0.04352189600467682 L2 52.007991790771484 TIME 0.25025439262390137
+2020-09-10 14:42:12,841: att_avg: DEBUG: Epoch 9 Update 440 Cost 0.05203486979007721 L2 51.54598617553711 TIME 0.6593832969665527
+2020-09-10 14:42:22,615: att_avg: DEBUG: Epoch  9
+2020-09-10 14:42:22,616: att_avg: DEBUG: Valid cost  0.5768650228326971
+2020-09-10 14:42:22,616: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:42:22,616: att_avg: DEBUG: Test cost  0.6109567989002574
+2020-09-10 14:42:22,616: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:42:22,616: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:42:22,616: att_avg: INFO: Saving...
+2020-09-10 14:42:22,879: att_avg: INFO: results/MIL/_epoch_9_model.ckpt
+2020-09-10 14:42:22,924: att_avg: INFO: Done
+2020-09-10 14:42:22,924: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:42:22,924: att_avg: DEBUG: Training accuracy:  0.4708029197080292
+2020-09-10 14:42:22,924: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:42:25,356: att_avg: DEBUG: Epoch 10 Update 460 Cost 0.04806174337863922 L2 51.09675216674805 TIME 0.15819215774536133
+2020-09-10 14:42:31,062: att_avg: DEBUG: Epoch 10 Update 480 Cost 0.047830477356910706 L2 50.633583068847656 TIME 0.14253616333007812
+2020-09-10 14:42:42,286: att_avg: DEBUG: Epoch  10
+2020-09-10 14:42:42,287: att_avg: DEBUG: Valid cost  0.5763452811674639
+2020-09-10 14:42:42,288: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:42:42,288: att_avg: DEBUG: Test cost  0.6104370084675875
+2020-09-10 14:42:42,288: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:42:42,288: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:42:42,288: att_avg: INFO: Saving...
+2020-09-10 14:42:42,550: att_avg: INFO: results/MIL/_epoch_10_model.ckpt
+2020-09-10 14:42:42,601: att_avg: INFO: Done
+2020-09-10 14:42:42,601: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:42:42,601: att_avg: DEBUG: Training accuracy:  0.49343065693430654
+2020-09-10 14:42:42,601: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:42:43,999: att_avg: DEBUG: Epoch 11 Update 500 Cost 0.04510907083749771 L2 50.183406829833984 TIME 0.18852567672729492
+2020-09-10 14:42:48,421: att_avg: DEBUG: Epoch 11 Update 520 Cost 0.05112585425376892 L2 49.719669342041016 TIME 0.2260603904724121
+2020-09-10 14:42:58,862: att_avg: DEBUG: Epoch 11 Update 540 Cost 0.051303546875715256 L2 49.247283935546875 TIME 0.12268590927124023
+2020-09-10 14:43:03,100: att_avg: DEBUG: Epoch  11
+2020-09-10 14:43:03,100: att_avg: DEBUG: Valid cost  0.5758248134092852
+2020-09-10 14:43:03,100: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:43:03,100: att_avg: DEBUG: Test cost  0.6042346791787581
+2020-09-10 14:43:03,100: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:43:03,100: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:43:03,101: att_avg: INFO: Saving...
+2020-09-10 14:43:03,370: att_avg: INFO: results/MIL/_epoch_11_model.ckpt
+2020-09-10 14:43:03,417: att_avg: INFO: Done
+2020-09-10 14:43:03,418: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:43:03,418: att_avg: DEBUG: Training accuracy:  0.49708029197080295
+2020-09-10 14:43:03,418: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:43:07,266: att_avg: DEBUG: Epoch 12 Update 560 Cost 0.044392868876457214 L2 48.785736083984375 TIME 0.04745626449584961
+2020-09-10 14:43:15,622: att_avg: DEBUG: Epoch 12 Update 580 Cost 0.04299645498394966 L2 48.32197952270508 TIME 0.18030595779418945
+2020-09-10 14:43:23,445: att_avg: DEBUG: Epoch  12
+2020-09-10 14:43:23,445: att_avg: DEBUG: Valid cost  0.5753045840696855
+2020-09-10 14:43:23,445: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:43:23,445: att_avg: DEBUG: Test cost  0.6037144254554402
+2020-09-10 14:43:23,445: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:43:23,445: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:43:23,446: att_avg: INFO: Saving...
+2020-09-10 14:43:23,706: att_avg: INFO: results/MIL/_epoch_12_model.ckpt
+2020-09-10 14:43:23,755: att_avg: INFO: Done
+2020-09-10 14:43:23,755: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:43:23,755: att_avg: DEBUG: Training accuracy:  0.47153284671532847
+2020-09-10 14:43:23,755: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:43:26,861: att_avg: DEBUG: Epoch 13 Update 600 Cost 0.04519861564040184 L2 47.871891021728516 TIME 0.1833791732788086
+2020-09-10 14:43:34,704: att_avg: DEBUG: Epoch 13 Update 620 Cost 0.043715983629226685 L2 47.408775329589844 TIME 0.5747778415679932
+2020-09-10 14:43:45,204: att_avg: DEBUG: Epoch  13
+2020-09-10 14:43:45,204: att_avg: DEBUG: Valid cost  0.5747851133346558
+2020-09-10 14:43:45,204: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:43:45,205: att_avg: DEBUG: Test cost  0.603194919499484
+2020-09-10 14:43:45,205: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:43:45,205: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:43:45,205: att_avg: INFO: Saving...
+2020-09-10 14:43:45,472: att_avg: INFO: results/MIL/_epoch_13_model.ckpt
+2020-09-10 14:43:45,518: att_avg: INFO: Done
+2020-09-10 14:43:45,519: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:43:45,519: att_avg: DEBUG: Training accuracy:  0.5065693430656935
+2020-09-10 14:43:45,519: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:43:47,331: att_avg: DEBUG: Epoch 14 Update 640 Cost 0.035992443561553955 L2 46.95954513549805 TIME 0.1802518367767334
+2020-09-10 14:43:52,190: att_avg: DEBUG: Epoch 14 Update 660 Cost 0.05326438695192337 L2 46.49746322631836 TIME 0.21145081520080566
+2020-09-10 14:44:05,721: att_avg: DEBUG: Epoch  14
+2020-09-10 14:44:05,722: att_avg: DEBUG: Valid cost  0.5742670731111006
+2020-09-10 14:44:05,722: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:44:05,722: att_avg: DEBUG: Test cost  0.6026768792759288
+2020-09-10 14:44:05,723: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:44:05,723: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:44:05,723: att_avg: INFO: Saving...
+2020-09-10 14:44:05,980: att_avg: INFO: results/MIL/_epoch_14_model.ckpt
+2020-09-10 14:44:06,023: att_avg: INFO: Done
+2020-09-10 14:44:06,024: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:44:06,024: att_avg: DEBUG: Training accuracy:  0.4846715328467153
+2020-09-10 14:44:06,024: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:44:07,066: att_avg: DEBUG: Epoch 15 Update 680 Cost 0.04053359851241112 L2 46.04935073852539 TIME 0.09219670295715332
+2020-09-10 14:44:12,802: att_avg: DEBUG: Epoch 15 Update 700 Cost 0.03905128687620163 L2 45.58868408203125 TIME 0.5691592693328857
+2020-09-10 14:44:23,271: att_avg: DEBUG: Epoch 15 Update 720 Cost 0.04924263060092926 L2 45.12052536010742 TIME 0.1853771209716797
+2020-09-10 14:44:27,680: att_avg: DEBUG: Epoch  15
+2020-09-10 14:44:27,681: att_avg: DEBUG: Valid cost  0.5737509348175742
+2020-09-10 14:44:27,681: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:44:27,681: att_avg: DEBUG: Test cost  0.6021606813777577
+2020-09-10 14:44:27,681: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:44:27,681: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:44:27,681: att_avg: INFO: Saving...
+2020-09-10 14:44:27,770: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2020-09-10 14:44:27,966: att_avg: INFO: results/MIL/_epoch_15_model.ckpt
+2020-09-10 14:44:28,013: att_avg: INFO: Done
+2020-09-10 14:44:28,014: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:44:28,014: att_avg: DEBUG: Training accuracy:  0.4948905109489051
+2020-09-10 14:44:28,014: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:44:31,710: att_avg: DEBUG: Epoch 16 Update 740 Cost 0.035677921026945114 L2 44.66408157348633 TIME 0.09942984580993652
+2020-09-10 14:44:41,503: att_avg: DEBUG: Epoch 16 Update 760 Cost 0.040936533361673355 L2 44.206390380859375 TIME 0.09305095672607422
+2020-09-10 14:44:48,740: att_avg: DEBUG: Epoch  16
+2020-09-10 14:44:48,741: att_avg: DEBUG: Valid cost  0.5732374082912098
+2020-09-10 14:44:48,741: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:44:48,741: att_avg: DEBUG: Test cost  0.6073289567773993
+2020-09-10 14:44:48,741: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:44:48,741: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:44:48,741: att_avg: INFO: Saving...
+2020-09-10 14:44:49,028: att_avg: INFO: results/MIL/_epoch_16_model.ckpt
+2020-09-10 14:44:49,072: att_avg: INFO: Done
+2020-09-10 14:44:49,072: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:44:49,072: att_avg: DEBUG: Training accuracy:  0.4802919708029197
+2020-09-10 14:44:49,072: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:44:51,769: att_avg: DEBUG: Epoch 17 Update 780 Cost 0.04439347982406616 L2 43.7630729675293 TIME 0.17309308052062988
+2020-09-10 14:44:58,082: att_avg: DEBUG: Epoch 17 Update 800 Cost 0.04916055500507355 L2 43.307708740234375 TIME 0.11912894248962402
+2020-09-10 14:45:08,764: att_avg: DEBUG: Epoch  17
+2020-09-10 14:45:08,764: att_avg: DEBUG: Valid cost  0.5670449408617887
+2020-09-10 14:45:08,764: att_avg: DEBUG: Valid accuracy  0.45454545454545453
+2020-09-10 14:45:08,764: att_avg: DEBUG: Test cost  0.6125000742348757
+2020-09-10 14:45:08,764: att_avg: DEBUG: Test accuracy  0.4090909090909091
+2020-09-10 14:45:08,764: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:45:08,765: att_avg: INFO: Saving...
+2020-09-10 14:45:09,059: att_avg: INFO: results/MIL/_epoch_17_model.ckpt
+2020-09-10 14:45:09,103: att_avg: INFO: Done
+2020-09-10 14:45:09,104: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:45:09,104: att_avg: DEBUG: Training accuracy:  0.47007299270072994
+2020-09-10 14:45:09,104: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:45:11,310: att_avg: DEBUG: Epoch 18 Update 820 Cost 0.04019595682621002 L2 42.86680221557617 TIME 0.19514775276184082
+2020-09-10 14:45:19,417: att_avg: DEBUG: Epoch 18 Update 840 Cost 0.04371283948421478 L2 42.41414260864258 TIME 0.6986310482025146
+2020-09-10 14:45:30,945: att_avg: DEBUG: Epoch  18
+2020-09-10 14:45:30,946: att_avg: DEBUG: Valid cost  0.555174242366444
+2020-09-10 14:45:30,946: att_avg: DEBUG: Valid accuracy  0.4659090909090909
+2020-09-10 14:45:30,946: att_avg: DEBUG: Test cost  0.6063111966306513
+2020-09-10 14:45:30,946: att_avg: DEBUG: Test accuracy  0.4147727272727273
+2020-09-10 14:45:30,946: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:45:30,946: att_avg: INFO: Saving...
+2020-09-10 14:45:31,232: att_avg: INFO: results/MIL/_epoch_18_model.ckpt
+2020-09-10 14:45:31,283: att_avg: INFO: Done
+2020-09-10 14:45:31,284: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:45:31,284: att_avg: DEBUG: Training accuracy:  0.48613138686131385
+2020-09-10 14:45:31,284: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:45:32,743: att_avg: DEBUG: Epoch 19 Update 860 Cost 0.04724729806184769 L2 41.97597885131836 TIME 0.20624589920043945
+2020-09-10 14:45:37,543: att_avg: DEBUG: Epoch 19 Update 880 Cost 0.045771244913339615 L2 41.52631378173828 TIME 0.17667031288146973
+2020-09-10 14:45:48,906: att_avg: DEBUG: Epoch 19 Update 900 Cost 0.033876705914735794 L2 41.070068359375 TIME 0.17119741439819336
+2020-09-10 14:45:53,213: att_avg: DEBUG: Epoch  19
+2020-09-10 14:45:53,213: att_avg: DEBUG: Valid cost  0.5546710057692095
+2020-09-10 14:45:53,214: att_avg: DEBUG: Valid accuracy  0.4659090909090909
+2020-09-10 14:45:53,214: att_avg: DEBUG: Test cost  0.6001261147585782
+2020-09-10 14:45:53,214: att_avg: DEBUG: Test accuracy  0.42045454545454547
+2020-09-10 14:45:53,214: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:45:53,214: att_avg: INFO: Saving...
+2020-09-10 14:45:53,504: att_avg: INFO: results/MIL/_epoch_19_model.ckpt
+2020-09-10 14:45:53,551: att_avg: INFO: Done
+2020-09-10 14:45:53,551: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:45:53,552: att_avg: DEBUG: Training accuracy:  0.4854014598540146
+2020-09-10 14:45:53,552: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:45:57,280: att_avg: DEBUG: Epoch 20 Update 920 Cost 0.04699025675654411 L2 40.62602233886719 TIME 0.10811138153076172
+2020-09-10 14:46:06,953: att_avg: DEBUG: Epoch 20 Update 940 Cost 0.038923222571611404 L2 40.18146514892578 TIME 0.12254977226257324
+2020-09-10 14:46:14,188: att_avg: DEBUG: Epoch  20
+2020-09-10 14:46:14,189: att_avg: DEBUG: Valid cost  0.5655357783490961
+2020-09-10 14:46:14,189: att_avg: DEBUG: Valid accuracy  0.45454545454545453
+2020-09-10 14:46:14,189: att_avg: DEBUG: Test cost  0.5825817639177496
+2020-09-10 14:46:14,190: att_avg: DEBUG: Test accuracy  0.4375
+2020-09-10 14:46:14,190: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:46:14,190: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:46:14,190: att_avg: DEBUG: bad_counter:  1
+2020-09-10 14:46:14,190: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:46:14,190: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:46:14,190: att_avg: DEBUG: Training accuracy:  0.49635036496350365
+2020-09-10 14:46:14,190: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:46:17,257: att_avg: DEBUG: Epoch 21 Update 960 Cost 0.044887345284223557 L2 39.75154495239258 TIME 0.13423609733581543
+2020-09-10 14:46:23,732: att_avg: DEBUG: Epoch 21 Update 980 Cost 0.04091307520866394 L2 39.31060791015625 TIME 0.14109420776367188
+2020-09-10 14:46:33,935: att_avg: DEBUG: Epoch  21
+2020-09-10 14:46:33,937: att_avg: DEBUG: Valid cost  0.5707233168862083
+2020-09-10 14:46:33,937: att_avg: DEBUG: Valid accuracy  0.44886363636363635
+2020-09-10 14:46:33,937: att_avg: DEBUG: Test cost  0.5877692591060292
+2020-09-10 14:46:33,937: att_avg: DEBUG: Test accuracy  0.4318181818181818
+2020-09-10 14:46:33,937: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:46:33,937: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:46:33,937: att_avg: DEBUG: bad_counter:  2
+2020-09-10 14:46:33,937: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:46:33,937: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:46:33,937: att_avg: DEBUG: Training accuracy:  0.47664233576642334
+2020-09-10 14:46:33,937: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:46:36,145: att_avg: DEBUG: Epoch 22 Update 1000 Cost 0.04070008918642998 L2 38.88432312011719 TIME 0.17499685287475586
+2020-09-10 14:46:42,662: att_avg: DEBUG: Epoch 22 Update 1020 Cost 0.03922976925969124 L2 38.44734191894531 TIME 0.6949799060821533
+2020-09-10 14:46:53,719: att_avg: DEBUG: Epoch  22
+2020-09-10 14:46:53,721: att_avg: DEBUG: Valid cost  0.5475067713043906
+2020-09-10 14:46:53,721: att_avg: DEBUG: Valid accuracy  0.4715909090909091
+2020-09-10 14:46:53,721: att_avg: DEBUG: Test cost  0.5872799591584639
+2020-09-10 14:46:53,721: att_avg: DEBUG: Test accuracy  0.4318181818181818
+2020-09-10 14:46:53,721: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:46:53,721: att_avg: INFO: Saving...
+2020-09-10 14:46:54,017: att_avg: INFO: results/MIL/_epoch_20_model.ckpt
+2020-09-10 14:46:54,062: att_avg: INFO: Done
+2020-09-10 14:46:54,063: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:46:54,063: att_avg: DEBUG: Training accuracy:  0.45985401459854014
+2020-09-10 14:46:54,063: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:46:55,431: att_avg: DEBUG: Epoch 23 Update 1040 Cost 0.03901840001344681 L2 38.0248908996582 TIME 0.43028998374938965
+2020-09-10 14:47:00,700: att_avg: DEBUG: Epoch 23 Update 1060 Cost 0.040051136165857315 L2 37.592018127441406 TIME 0.08810877799987793
+2020-09-10 14:47:09,959: att_avg: DEBUG: Epoch 23 Update 1080 Cost 0.03191783279180527 L2 37.153438568115234 TIME 0.14813566207885742
+2020-09-10 14:47:14,258: att_avg: DEBUG: Epoch  23
+2020-09-10 14:47:14,259: att_avg: DEBUG: Valid cost  0.5527046756310896
+2020-09-10 14:47:14,259: att_avg: DEBUG: Valid accuracy  0.4659090909090909
+2020-09-10 14:47:14,259: att_avg: DEBUG: Test cost  0.586796061559157
+2020-09-10 14:47:14,259: att_avg: DEBUG: Test accuracy  0.4318181818181818
+2020-09-10 14:47:14,259: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:47:14,259: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:47:14,259: att_avg: DEBUG: bad_counter:  3
+2020-09-10 14:47:14,260: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:47:14,260: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:47:14,260: att_avg: DEBUG: Training accuracy:  0.5021897810218978
+2020-09-10 14:47:14,260: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:47:17,873: att_avg: DEBUG: Epoch 24 Update 1100 Cost 0.03836866840720177 L2 36.72716522216797 TIME 0.07681465148925781
+2020-09-10 14:47:29,022: att_avg: DEBUG: Epoch 24 Update 1120 Cost 0.04639086127281189 L2 36.300968170166016 TIME 0.16379952430725098
+2020-09-10 14:47:36,549: att_avg: DEBUG: Epoch  24
+2020-09-10 14:47:36,550: att_avg: DEBUG: Valid cost  0.5238172899593007
+2020-09-10 14:47:36,550: att_avg: DEBUG: Valid accuracy  0.4943181818181818
+2020-09-10 14:47:36,550: att_avg: DEBUG: Test cost  0.5749540708281777
+2020-09-10 14:47:36,550: att_avg: DEBUG: Test accuracy  0.4431818181818182
+2020-09-10 14:47:36,550: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:47:36,550: att_avg: INFO: Saving...
+2020-09-10 14:47:36,835: att_avg: INFO: results/MIL/_epoch_21_model.ckpt
+2020-09-10 14:47:36,880: att_avg: INFO: Done
+2020-09-10 14:47:36,880: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:47:36,880: att_avg: DEBUG: Training accuracy:  0.49708029197080295
+2020-09-10 14:47:36,880: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:47:39,621: att_avg: DEBUG: Epoch 25 Update 1140 Cost 0.04044918715953827 L2 35.889339447021484 TIME 0.13616585731506348
+2020-09-10 14:47:48,450: att_avg: DEBUG: Epoch 25 Update 1160 Cost 0.032740093767642975 L2 35.46772384643555 TIME 0.1707594394683838
+2020-09-10 14:47:58,647: att_avg: DEBUG: Epoch  25
+2020-09-10 14:47:58,648: att_avg: DEBUG: Valid cost  0.523344798521562
+2020-09-10 14:47:58,649: att_avg: DEBUG: Valid accuracy  0.4943181818181818
+2020-09-10 14:47:58,649: att_avg: DEBUG: Test cost  0.5574361031705682
+2020-09-10 14:47:58,649: att_avg: DEBUG: Test accuracy  0.4602272727272727
+2020-09-10 14:47:58,649: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:47:58,649: att_avg: INFO: Saving...
+2020-09-10 14:47:58,926: att_avg: INFO: results/MIL/_epoch_22_model.ckpt
+2020-09-10 14:47:58,972: att_avg: INFO: Done
+2020-09-10 14:47:58,972: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:47:58,972: att_avg: DEBUG: Training accuracy:  0.49635036496350365
+2020-09-10 14:47:58,972: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:48:01,121: att_avg: DEBUG: Epoch 26 Update 1180 Cost 0.037536151707172394 L2 35.060604095458984 TIME 0.21732473373413086
+2020-09-10 14:48:07,293: att_avg: DEBUG: Epoch 26 Update 1200 Cost 0.04732627421617508 L2 34.643760681152344 TIME 0.599055290222168
+2020-09-10 14:48:19,818: att_avg: DEBUG: Epoch  26
+2020-09-10 14:48:19,818: att_avg: DEBUG: Valid cost  0.5171965523199602
+2020-09-10 14:48:19,818: att_avg: DEBUG: Valid accuracy  0.5
+2020-09-10 14:48:19,818: att_avg: DEBUG: Test cost  0.5626515095884149
+2020-09-10 14:48:19,818: att_avg: DEBUG: Test accuracy  0.45454545454545453
+2020-09-10 14:48:19,818: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:48:19,819: att_avg: INFO: Saving...
+2020-09-10 14:48:20,114: att_avg: INFO: results/MIL/_epoch_23_model.ckpt
+2020-09-10 14:48:20,159: att_avg: INFO: Done
+2020-09-10 14:48:20,159: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:48:20,159: att_avg: DEBUG: Training accuracy:  0.5014598540145986
+2020-09-10 14:48:20,159: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:48:21,288: att_avg: DEBUG: Epoch 27 Update 1220 Cost 0.04087064415216446 L2 34.24128723144531 TIME 0.06635904312133789
+2020-09-10 14:48:25,962: att_avg: DEBUG: Epoch 27 Update 1240 Cost 0.030669238418340683 L2 33.829383850097656 TIME 0.1809394359588623
+2020-09-10 14:48:36,249: att_avg: DEBUG: Epoch 27 Update 1260 Cost 0.016711389645934105 L2 33.412513732910156 TIME 0.12688565254211426
+2020-09-10 14:48:40,503: att_avg: DEBUG: Epoch  27
+2020-09-10 14:48:40,503: att_avg: DEBUG: Valid cost  0.5167364478111267
+2020-09-10 14:48:40,503: att_avg: DEBUG: Valid accuracy  0.5
+2020-09-10 14:48:40,503: att_avg: DEBUG: Test cost  0.5337822789495642
+2020-09-10 14:48:40,503: att_avg: DEBUG: Test accuracy  0.48295454545454547
+2020-09-10 14:48:40,503: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:48:40,503: att_avg: INFO: Saving...
+2020-09-10 14:48:40,777: att_avg: INFO: results/MIL/_epoch_24_model.ckpt
+2020-09-10 14:48:40,821: att_avg: INFO: Done
+2020-09-10 14:48:40,821: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:48:40,821: att_avg: DEBUG: Training accuracy:  0.4905109489051095
+2020-09-10 14:48:40,822: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:48:44,970: att_avg: DEBUG: Epoch 28 Update 1280 Cost 0.03650793060660362 L2 33.00782012939453 TIME 0.07721281051635742
+2020-09-10 14:48:54,088: att_avg: DEBUG: Epoch 28 Update 1300 Cost 0.03512844815850258 L2 32.60365295410156 TIME 0.11060476303100586
+2020-09-10 14:49:01,394: att_avg: DEBUG: Epoch  28
+2020-09-10 14:49:01,395: att_avg: DEBUG: Valid cost  0.521964663808996
+2020-09-10 14:49:01,395: att_avg: DEBUG: Valid accuracy  0.4943181818181818
+2020-09-10 14:49:01,395: att_avg: DEBUG: Test cost  0.5162831869992343
+2020-09-10 14:49:01,395: att_avg: DEBUG: Test accuracy  0.5
+2020-09-10 14:49:01,396: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:49:01,396: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:49:01,396: att_avg: DEBUG: bad_counter:  4
+2020-09-10 14:49:01,396: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:49:01,396: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:49:01,396: att_avg: DEBUG: Training accuracy:  0.4802919708029197
+2020-09-10 14:49:01,396: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:49:04,730: att_avg: DEBUG: Epoch 29 Update 1320 Cost 0.03611208125948906 L2 32.21377944946289 TIME 0.12292695045471191
+2020-09-10 14:49:14,554: att_avg: DEBUG: Epoch 29 Update 1340 Cost 0.03965990990400314 L2 31.814891815185547 TIME 0.820915699005127
+2020-09-10 14:49:24,207: att_avg: DEBUG: Epoch  29
+2020-09-10 14:49:24,208: att_avg: DEBUG: Valid cost  0.5385631702163003
+2020-09-10 14:49:24,209: att_avg: DEBUG: Valid accuracy  0.4772727272727273
+2020-09-10 14:49:24,209: att_avg: DEBUG: Test cost  0.5044725645672191
+2020-09-10 14:49:24,209: att_avg: DEBUG: Test accuracy  0.5113636363636364
+2020-09-10 14:49:24,209: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:49:24,209: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:49:24,209: att_avg: DEBUG: bad_counter:  5
+2020-09-10 14:49:24,209: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:49:24,209: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:49:24,209: att_avg: DEBUG: Training accuracy:  0.4802919708029197
+2020-09-10 14:49:24,209: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:49:26,543: att_avg: DEBUG: Epoch 30 Update 1360 Cost 0.036970194429159164 L2 31.43012237548828 TIME 0.18073272705078125
+2020-09-10 14:49:33,574: att_avg: DEBUG: Epoch 30 Update 1380 Cost 0.03552167862653732 L2 31.036590576171875 TIME 0.6771600246429443
+2020-09-10 14:49:45,526: att_avg: DEBUG: Epoch  30
+2020-09-10 14:49:45,527: att_avg: DEBUG: Valid cost  0.5153958363966509
+2020-09-10 14:49:45,527: att_avg: DEBUG: Valid accuracy  0.5
+2020-09-10 14:49:45,527: att_avg: DEBUG: Test cost  0.49266886711120605
+2020-09-10 14:49:45,527: att_avg: DEBUG: Test accuracy  0.5227272727272727
+2020-09-10 14:49:45,527: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:49:45,527: att_avg: INFO: Saving...
+2020-09-10 14:49:45,811: att_avg: INFO: results/MIL/_epoch_25_model.ckpt
+2020-09-10 14:49:45,859: att_avg: INFO: Done
+2020-09-10 14:49:45,860: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:49:45,860: att_avg: DEBUG: Training accuracy:  0.48175182481751827
+2020-09-10 14:49:45,860: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:49:46,915: att_avg: DEBUG: Epoch 31 Update 1400 Cost 0.035332147032022476 L2 30.657054901123047 TIME 0.0827798843383789
+2020-09-10 14:49:51,680: att_avg: DEBUG: Epoch 31 Update 1420 Cost 0.0401395708322525 L2 30.268991470336914 TIME 0.3634369373321533
+2020-09-10 14:50:01,670: att_avg: DEBUG: Epoch 31 Update 1440 Cost 0.02827650122344494 L2 29.87668228149414 TIME 0.22129297256469727
+2020-09-10 14:50:05,951: att_avg: DEBUG: Epoch  31
+2020-09-10 14:50:05,952: att_avg: DEBUG: Valid cost  0.5376899675889448
+2020-09-10 14:50:05,952: att_avg: DEBUG: Valid accuracy  0.4772727272727273
+2020-09-10 14:50:05,953: att_avg: DEBUG: Test cost  0.49791753833944147
+2020-09-10 14:50:05,953: att_avg: DEBUG: Test accuracy  0.5170454545454546
+2020-09-10 14:50:05,953: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:50:05,953: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:50:05,953: att_avg: DEBUG: bad_counter:  6
+2020-09-10 14:50:05,953: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:50:05,953: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:50:05,953: att_avg: DEBUG: Training accuracy:  0.48832116788321167
+2020-09-10 14:50:05,953: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:50:09,753: att_avg: DEBUG: Epoch 32 Update 1460 Cost 0.028085077181458473 L2 29.49623680114746 TIME 0.10776138305664062
+2020-09-10 14:50:19,302: att_avg: DEBUG: Epoch 32 Update 1480 Cost 0.028680382296442986 L2 29.116670608520508 TIME 0.1868419647216797
+2020-09-10 14:50:26,716: att_avg: DEBUG: Epoch  32
+2020-09-10 14:50:26,716: att_avg: DEBUG: Valid cost  0.525900277224454
+2020-09-10 14:50:26,717: att_avg: DEBUG: Valid accuracy  0.48863636363636365
+2020-09-10 14:50:26,717: att_avg: DEBUG: Test cost  0.5145369280468334
+2020-09-10 14:50:26,717: att_avg: DEBUG: Test accuracy  0.5
+2020-09-10 14:50:26,717: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:50:26,717: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:50:26,717: att_avg: DEBUG: bad_counter:  7
+2020-09-10 14:50:26,717: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:50:26,717: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:50:26,717: att_avg: DEBUG: Training accuracy:  0.4781021897810219
+2020-09-10 14:50:26,717: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:50:29,690: att_avg: DEBUG: Epoch 33 Update 1500 Cost 0.036879535764455795 L2 28.75088119506836 TIME 0.22574067115783691
+2020-09-10 14:50:37,061: att_avg: DEBUG: Epoch 33 Update 1520 Cost 0.03919176384806633 L2 28.37697982788086 TIME 0.6972949504852295
+2020-09-10 14:50:46,496: att_avg: DEBUG: Epoch  33
+2020-09-10 14:50:46,497: att_avg: DEBUG: Valid cost  0.5197996876456521
+2020-09-10 14:50:46,497: att_avg: DEBUG: Valid accuracy  0.4943181818181818
+2020-09-10 14:50:46,497: att_avg: DEBUG: Test cost  0.508436303247105
+2020-09-10 14:50:46,497: att_avg: DEBUG: Test accuracy  0.5056818181818182
+2020-09-10 14:50:46,497: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:50:46,497: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:50:46,497: att_avg: DEBUG: bad_counter:  8
+2020-09-10 14:50:46,497: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:50:46,497: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:50:46,498: att_avg: DEBUG: Training accuracy:  0.4985401459854015
+2020-09-10 14:50:46,498: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:50:48,686: att_avg: DEBUG: Epoch 34 Update 1540 Cost 0.03401117026805878 L2 28.016691207885742 TIME 0.15013885498046875
+2020-09-10 14:50:55,937: att_avg: DEBUG: Epoch 34 Update 1560 Cost 0.03382772579789162 L2 27.648544311523438 TIME 0.2528834342956543
+2020-09-10 14:51:07,396: att_avg: DEBUG: Epoch  34
+2020-09-10 14:51:07,397: att_avg: DEBUG: Valid cost  0.5250699791041288
+2020-09-10 14:51:07,397: att_avg: DEBUG: Valid accuracy  0.48863636363636365
+2020-09-10 14:51:07,397: att_avg: DEBUG: Test cost  0.490979327396913
+2020-09-10 14:51:07,397: att_avg: DEBUG: Test accuracy  0.5227272727272727
+2020-09-10 14:51:07,397: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:51:07,397: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:51:07,398: att_avg: DEBUG: bad_counter:  9
+2020-09-10 14:51:07,398: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:51:07,398: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:51:07,398: att_avg: DEBUG: Training accuracy:  0.5080291970802919
+2020-09-10 14:51:07,398: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:51:08,424: att_avg: DEBUG: Epoch 35 Update 1580 Cost 0.03115145117044449 L2 27.293832778930664 TIME 0.19231677055358887
+2020-09-10 14:51:13,390: att_avg: DEBUG: Epoch 35 Update 1600 Cost 0.03471937030553818 L2 26.931486129760742 TIME 0.36852288246154785
+2020-09-10 14:51:23,140: att_avg: DEBUG: Epoch 35 Update 1620 Cost 0.03995201364159584 L2 26.56553077697754 TIME 0.16567254066467285
+2020-09-10 14:51:27,481: att_avg: DEBUG: Epoch  35
+2020-09-10 14:51:27,482: att_avg: DEBUG: Valid cost  0.5417112599719655
+2020-09-10 14:51:27,482: att_avg: DEBUG: Valid accuracy  0.4715909090909091
+2020-09-10 14:51:27,482: att_avg: DEBUG: Test cost  0.5019387656992133
+2020-09-10 14:51:27,482: att_avg: DEBUG: Test accuracy  0.5113636363636364
+2020-09-10 14:51:27,482: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:51:27,482: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:51:27,482: att_avg: DEBUG: bad_counter:  10
+2020-09-10 14:51:27,483: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:51:27,483: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:51:27,483: att_avg: DEBUG: Training accuracy:  0.4905109489051095
+2020-09-10 14:51:27,483: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:51:31,412: att_avg: DEBUG: Epoch 36 Update 1640 Cost 0.026442451402544975 L2 26.210981369018555 TIME 0.07151293754577637
+2020-09-10 14:51:40,738: att_avg: DEBUG: Epoch 36 Update 1660 Cost 0.02940203808248043 L2 25.85757827758789 TIME 0.1751537322998047
+2020-09-10 14:51:48,402: att_avg: DEBUG: Epoch  36
+2020-09-10 14:51:48,403: att_avg: DEBUG: Valid cost  0.5072237036444924
+2020-09-10 14:51:48,403: att_avg: DEBUG: Valid accuracy  0.5056818181818182
+2020-09-10 14:51:48,403: att_avg: DEBUG: Test cost  0.4844966395334764
+2020-09-10 14:51:48,403: att_avg: DEBUG: Test accuracy  0.5284090909090909
+2020-09-10 14:51:48,403: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:51:48,404: att_avg: INFO: Saving...
+2020-09-10 14:51:48,681: att_avg: INFO: results/MIL/_epoch_26_model.ckpt
+2020-09-10 14:51:48,737: att_avg: INFO: Done
+2020-09-10 14:51:48,737: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:51:48,738: att_avg: DEBUG: Training accuracy:  0.4846715328467153
+2020-09-10 14:51:48,738: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:51:51,876: att_avg: DEBUG: Epoch 37 Update 1680 Cost 0.02776169776916504 L2 25.517314910888672 TIME 0.23453807830810547
+2020-09-10 14:52:01,231: att_avg: DEBUG: Epoch 37 Update 1700 Cost 0.04008734971284866 L2 25.169830322265625 TIME 0.6087102890014648
+2020-09-10 14:52:11,248: att_avg: DEBUG: Epoch  37
+2020-09-10 14:52:11,248: att_avg: DEBUG: Valid cost  0.5068345882675864
+2020-09-10 14:52:11,248: att_avg: DEBUG: Valid accuracy  0.5056818181818182
+2020-09-10 14:52:11,248: att_avg: DEBUG: Test cost  0.444334783337333
+2020-09-10 14:52:11,249: att_avg: DEBUG: Test accuracy  0.5681818181818182
+2020-09-10 14:52:11,249: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:52:11,249: att_avg: INFO: Saving...
+2020-09-10 14:52:11,531: att_avg: INFO: results/MIL/_epoch_27_model.ckpt
+2020-09-10 14:52:11,580: att_avg: INFO: Done
+2020-09-10 14:52:11,581: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:52:11,581: att_avg: DEBUG: Training accuracy:  0.49708029197080295
+2020-09-10 14:52:11,581: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:52:13,504: att_avg: DEBUG: Epoch 38 Update 1720 Cost 0.031170181930065155 L2 24.835277557373047 TIME 0.161604642868042
+2020-09-10 14:52:19,461: att_avg: DEBUG: Epoch 38 Update 1740 Cost 0.03849942609667778 L2 24.493749618530273 TIME 0.1331322193145752
+2020-09-10 14:52:31,420: att_avg: DEBUG: Epoch  38
+2020-09-10 14:52:31,421: att_avg: DEBUG: Valid cost  0.5007711242545735
+2020-09-10 14:52:31,421: att_avg: DEBUG: Valid accuracy  0.5113636363636364
+2020-09-10 14:52:31,421: att_avg: DEBUG: Test cost  0.432589514689012
+2020-09-10 14:52:31,422: att_avg: DEBUG: Test accuracy  0.5795454545454546
+2020-09-10 14:52:31,422: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:52:31,422: att_avg: INFO: Saving...
+2020-09-10 14:52:31,703: att_avg: INFO: results/MIL/_epoch_28_model.ckpt
+2020-09-10 14:52:31,752: att_avg: INFO: Done
+2020-09-10 14:52:31,752: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:52:31,753: att_avg: DEBUG: Training accuracy:  0.5131386861313869
+2020-09-10 14:52:31,753: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:52:32,933: att_avg: DEBUG: Epoch 39 Update 1760 Cost 0.03458481654524803 L2 24.16494369506836 TIME 0.10764098167419434
+2020-09-10 14:52:38,315: att_avg: DEBUG: Epoch 39 Update 1780 Cost 0.03566700220108032 L2 23.82939338684082 TIME 0.8471870422363281
+2020-09-10 14:52:46,941: att_avg: DEBUG: Epoch 39 Update 1800 Cost 0.025081520900130272 L2 23.49077033996582 TIME 0.19518709182739258
+2020-09-10 14:52:51,220: att_avg: DEBUG: Epoch  39
+2020-09-10 14:52:51,221: att_avg: DEBUG: Valid cost  0.5003970753062855
+2020-09-10 14:52:51,221: att_avg: DEBUG: Valid accuracy  0.5113636363636364
+2020-09-10 14:52:51,221: att_avg: DEBUG: Test cost  0.43221545761281793
+2020-09-10 14:52:51,221: att_avg: DEBUG: Test accuracy  0.5795454545454546
+2020-09-10 14:52:51,221: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:52:51,222: att_avg: INFO: Saving...
+2020-09-10 14:52:51,503: att_avg: INFO: results/MIL/_epoch_29_model.ckpt
+2020-09-10 14:52:51,546: att_avg: INFO: Done
+2020-09-10 14:52:51,547: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:52:51,547: att_avg: DEBUG: Training accuracy:  0.5109489051094891
+2020-09-10 14:52:51,547: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:52:55,728: att_avg: DEBUG: Epoch 40 Update 1820 Cost 0.011582691222429276 L2 23.162992477416992 TIME 0.05551719665527344
+2020-09-10 14:53:06,387: att_avg: DEBUG: Epoch 40 Update 1840 Cost 0.02553786151111126 L2 22.836576461791992 TIME 0.4340648651123047
+2020-09-10 14:53:14,111: att_avg: DEBUG: Epoch  40
+2020-09-10 14:53:14,112: att_avg: DEBUG: Valid cost  0.5000307343222878
+2020-09-10 14:53:14,112: att_avg: DEBUG: Valid accuracy  0.5113636363636364
+2020-09-10 14:53:14,113: att_avg: DEBUG: Test cost  0.4204854369163513
+2020-09-10 14:53:14,113: att_avg: DEBUG: Test accuracy  0.5909090909090909
+2020-09-10 14:53:14,113: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:53:14,113: att_avg: INFO: Saving...
+2020-09-10 14:53:14,392: att_avg: INFO: results/MIL/_epoch_30_model.ckpt
+2020-09-10 14:53:14,440: att_avg: INFO: Done
+2020-09-10 14:53:14,441: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:53:14,441: att_avg: DEBUG: Training accuracy:  0.4927007299270073
+2020-09-10 14:53:14,441: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:53:17,713: att_avg: DEBUG: Epoch 41 Update 1860 Cost 0.033762477338314056 L2 22.522539138793945 TIME 0.1896824836730957
+2020-09-10 14:53:25,409: att_avg: DEBUG: Epoch 41 Update 1880 Cost 0.029852885752916336 L2 22.20210838317871 TIME 0.17193293571472168
+2020-09-10 14:53:34,962: att_avg: DEBUG: Epoch  41
+2020-09-10 14:53:34,963: att_avg: DEBUG: Valid cost  0.4769446470520713
+2020-09-10 14:53:34,963: att_avg: DEBUG: Valid accuracy  0.5340909090909091
+2020-09-10 14:53:34,963: att_avg: DEBUG: Test cost  0.4258084297180176
+2020-09-10 14:53:34,963: att_avg: DEBUG: Test accuracy  0.5852272727272727
+2020-09-10 14:53:34,963: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:53:34,963: att_avg: INFO: Saving...
+2020-09-10 14:53:35,241: att_avg: INFO: results/MIL/_epoch_31_model.ckpt
+2020-09-10 14:53:35,284: att_avg: INFO: Done
+2020-09-10 14:53:35,284: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:53:35,284: att_avg: DEBUG: Training accuracy:  0.5481751824817518
+2020-09-10 14:53:35,284: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:53:37,507: att_avg: DEBUG: Epoch 42 Update 1900 Cost 0.03219907730817795 L2 21.893863677978516 TIME 0.19679903984069824
+2020-09-10 14:53:43,922: att_avg: DEBUG: Epoch 42 Update 1920 Cost 0.02454175241291523 L2 21.57945442199707 TIME 0.11278867721557617
+2020-09-10 14:53:55,418: att_avg: DEBUG: Epoch  42
+2020-09-10 14:53:55,420: att_avg: DEBUG: Valid cost  0.476593478159471
+2020-09-10 14:53:55,420: att_avg: DEBUG: Valid accuracy  0.5340909090909091
+2020-09-10 14:53:55,420: att_avg: DEBUG: Test cost  0.4311390600421212
+2020-09-10 14:53:55,420: att_avg: DEBUG: Test accuracy  0.5795454545454546
+2020-09-10 14:53:55,420: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:53:55,420: att_avg: INFO: Saving...
+2020-09-10 14:53:55,704: att_avg: INFO: results/MIL/_epoch_32_model.ckpt
+2020-09-10 14:53:55,749: att_avg: INFO: Done
+2020-09-10 14:53:55,749: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:53:55,749: att_avg: DEBUG: Training accuracy:  0.5153284671532846
+2020-09-10 14:53:55,749: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:53:56,902: att_avg: DEBUG: Epoch 43 Update 1940 Cost 0.03064047172665596 L2 21.27699851989746 TIME 0.1586313247680664
+2020-09-10 14:54:02,213: att_avg: DEBUG: Epoch 43 Update 1960 Cost 0.029235336929559708 L2 20.96860122680664 TIME 0.6720952987670898
+2020-09-10 14:54:13,873: att_avg: DEBUG: Epoch 43 Update 1980 Cost 0.05033024027943611 L2 20.657657623291016 TIME 0.14992451667785645
+2020-09-10 14:54:18,139: att_avg: DEBUG: Epoch  43
+2020-09-10 14:54:18,139: att_avg: DEBUG: Valid cost  0.4648863131349737
+2020-09-10 14:54:18,139: att_avg: DEBUG: Valid accuracy  0.5454545454545454
+2020-09-10 14:54:18,140: att_avg: DEBUG: Test cost  0.4478409940546209
+2020-09-10 14:54:18,140: att_avg: DEBUG: Test accuracy  0.5625
+2020-09-10 14:54:18,140: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:54:18,140: att_avg: INFO: Saving...
+2020-09-10 14:54:18,421: att_avg: INFO: results/MIL/_epoch_33_model.ckpt
+2020-09-10 14:54:18,468: att_avg: INFO: Done
+2020-09-10 14:54:18,468: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:54:18,469: att_avg: DEBUG: Training accuracy:  0.4905109489051095
+2020-09-10 14:54:18,469: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:54:22,554: att_avg: DEBUG: Epoch 44 Update 2000 Cost 0.030179454013705254 L2 20.356891632080078 TIME 0.07423877716064453
+2020-09-10 14:54:31,215: att_avg: DEBUG: Epoch 44 Update 2020 Cost 0.031206684187054634 L2 20.057621002197266 TIME 0.41492342948913574
+2020-09-10 14:54:38,883: att_avg: DEBUG: Epoch  44
+2020-09-10 14:54:38,883: att_avg: DEBUG: Valid cost  0.4645503515546972
+2020-09-10 14:54:38,883: att_avg: DEBUG: Valid accuracy  0.5454545454545454
+2020-09-10 14:54:38,883: att_avg: DEBUG: Test cost  0.4418232170018283
+2020-09-10 14:54:38,883: att_avg: DEBUG: Test accuracy  0.5681818181818182
+2020-09-10 14:54:38,883: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:54:38,884: att_avg: INFO: Saving...
+2020-09-10 14:54:39,161: att_avg: INFO: results/MIL/_epoch_34_model.ckpt
+2020-09-10 14:54:39,207: att_avg: INFO: Done
+2020-09-10 14:54:39,207: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:54:39,207: att_avg: DEBUG: Training accuracy:  0.5116788321167883
+2020-09-10 14:54:39,207: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:54:42,152: att_avg: DEBUG: Epoch 45 Update 2040 Cost 0.027386043220758438 L2 19.769954681396484 TIME 0.42565464973449707
+2020-09-10 14:54:49,870: att_avg: DEBUG: Epoch 45 Update 2060 Cost 0.029740652069449425 L2 19.476661682128906 TIME 0.1701061725616455
+2020-09-10 14:54:59,407: att_avg: DEBUG: Epoch  45
+2020-09-10 14:54:59,409: att_avg: DEBUG: Valid cost  0.46990382129495795
+2020-09-10 14:54:59,409: att_avg: DEBUG: Valid accuracy  0.5397727272727273
+2020-09-10 14:54:59,409: att_avg: DEBUG: Test cost  0.44717668945139105
+2020-09-10 14:54:59,409: att_avg: DEBUG: Test accuracy  0.5625
+2020-09-10 14:54:59,409: att_avg: DEBUG: learning_rate:  0.04
+2020-09-10 14:54:59,409: att_avg: INFO: wait_counter max, need to half the lr
+2020-09-10 14:54:59,409: att_avg: DEBUG: bad_counter:  11
+2020-09-10 14:54:59,409: att_avg: DEBUG: lrate change to:   0.04
+2020-09-10 14:54:59,409: att_avg: INFO: Early Stop!
+2020-09-10 14:54:59,409: att_avg: DEBUG: Seen samples:  1370
+2020-09-10 14:54:59,409: att_avg: DEBUG: Training accuracy:  0.5255474452554745
+2020-09-10 14:54:59,409: att_avg: DEBUG: results/MIL/Saved loss_plot pickle
+2020-09-10 14:54:59,444: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2020-09-10 14:54:59,448: tensorflow: INFO: Restoring parameters from results/MIL/_epoch_34_model.ckpt
+2020-09-10 14:54:59,751: att_avg: INFO: ================================================================================
+2020-09-10 14:54:59,752: att_avg: INFO: Final Result
+2020-09-10 14:54:59,752: att_avg: INFO: ================================================================================
+2020-09-10 14:54:59,752: att_avg: DEBUG: best epoch   44
+2020-09-10 14:55:02,855: att_avg: DEBUG: Valid cost   0.4645503515546972
+2020-09-10 14:55:02,855: att_avg: DEBUG: Valid accuracy   0.5454545454545454
+2020-09-10 14:55:05,023: att_avg: DEBUG: Test cost   0.4418232170018283
+2020-09-10 14:55:05,024: att_avg: DEBUG: Test accuracy   0.5681818181818182
+2020-09-10 14:55:15,000: att_avg: DEBUG: Train cost   0.4990520988067571
+2020-09-10 14:55:15,001: att_avg: DEBUG: Train accuracy   0.5109489051094891
