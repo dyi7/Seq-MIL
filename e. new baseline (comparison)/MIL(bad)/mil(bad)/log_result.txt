@@ -1,0 +1,390 @@
+2020-12-27 11:53:34,712: main_mil_4: INFO: Loading knowledge base ...
+2020-12-27 11:53:34,713: main_mil_4: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'alpha_balance': 0.04,
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train(originalwrong).csv',
+              'price_set/train_label(original wrong).csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'keep_prob': 0.5,
+ 'lrate': 0.04,
+ 'max_epochs': 300,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/mil/',
+ 'saveto': './models/.npz',
+ 'tech_data': [],
+ 'test_datasets': ['news_set/test(originalwrong).csv',
+                   'price_set/test_label(original wrong).csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate(originalwrong).csv',
+                    'price_set/validate_label(original wrong).csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-12-27 11:53:34,713: main_mil_4: INFO: Loading data
+2020-12-27 11:53:38,737: main_mil_4: INFO: init_word_embedding
+2020-12-27 11:53:42,697: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:200: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-12-27 11:53:42,770: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:286: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-12-27 11:53:42,771: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:287: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-12-27 11:53:42,796: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:308: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-12-27 11:53:42,818: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:174: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-12-27 11:53:42,819: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-12-27 11:53:42,892: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-12-27 11:53:42,971: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14d112540bd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14d112540bd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:42,993: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-12-27 11:53:43,155: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14d1117e9550>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14d1117e9550>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,213: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:120: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-12-27 11:53:43,304: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1111bde50>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1111bde50>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,416: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1111bf250>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1111bf250>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,556: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1121a01d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1121a01d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,669: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d110fbe410>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d110fbe410>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,730: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14d1111ee110>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14d1111ee110>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,846: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d111817810>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d111817810>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,873: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14d1117e9490>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14d1117e9490>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:43,991: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1117e9550>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14d1117e9550>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-27 11:53:44,001: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:346: The name tf.ceil is deprecated. Please use tf.math.ceil instead.
+
+2020-12-27 11:53:44,006: main_mil_4: INFO: Building f_cost...
+2020-12-27 11:53:44,042: main_mil_4: INFO: Done
+2020-12-27 11:53:44,042: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:373: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-12-27 11:53:44,046: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:374: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-12-27 11:53:44,049: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:375: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-12-27 11:53:44,054: main_mil_4: INFO: Building optimizers...
+2020-12-27 11:53:44,054: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:525: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-12-27 11:53:44,056: main_mil_4: INFO: Done
+2020-12-27 11:53:44,926: main_mil_4: INFO: correct_pred
+2020-12-27 11:53:44,927: main_mil_4: INFO: Done
+2020-12-27 11:53:44,928: main_mil_4: INFO: init variables
+2020-12-27 11:53:44,930: main_mil_4: INFO: Done
+2020-12-27 11:53:44,930: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:556: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-12-27 11:53:44,986: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_4.py:562: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-12-27 11:53:52,322: main_mil_4: DEBUG: Epoch 0 Update 20 Cost 0.0436546690762043 L2 60.555049896240234 TIME 0.11653614044189453
+2020-12-27 11:54:00,239: main_mil_4: DEBUG: Epoch 0 Update 40 Cost 0.048925623297691345 L2 60.14891052246094 TIME 0.0955812931060791
+2020-12-27 11:54:08,158: main_mil_4: DEBUG: Epoch  0
+2020-12-27 11:54:08,159: main_mil_4: DEBUG: Valid cost  0.5869495922868903
+2020-12-27 11:54:08,159: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:54:08,159: main_mil_4: DEBUG: Test cost  0.5983086932789196
+2020-12-27 11:54:08,159: main_mil_4: DEBUG: Test accuracy  0.4318181818181818
+2020-12-27 11:54:08,159: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:54:08,160: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:54:08,160: main_mil_4: DEBUG: Training accuracy:  0.5007299270072992
+2020-12-27 11:54:08,160: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:54:11,201: main_mil_4: DEBUG: Epoch 1 Update 60 Cost 0.04865914583206177 L2 59.74838638305664 TIME 0.1558222770690918
+2020-12-27 11:54:18,871: main_mil_4: DEBUG: Epoch 1 Update 80 Cost 0.05469665676355362 L2 59.33086013793945 TIME 0.16297483444213867
+2020-12-27 11:54:28,515: main_mil_4: DEBUG: Epoch  1
+2020-12-27 11:54:28,516: main_mil_4: DEBUG: Valid cost  0.5864804549650713
+2020-12-27 11:54:28,516: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:54:28,516: main_mil_4: DEBUG: Test cost  0.5978397835384716
+2020-12-27 11:54:28,516: main_mil_4: DEBUG: Test accuracy  0.4318181818181818
+2020-12-27 11:54:28,516: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:54:28,517: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:54:28,517: main_mil_4: DEBUG: Training accuracy:  0.5036496350364964
+2020-12-27 11:54:28,517: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:54:30,519: main_mil_4: DEBUG: Epoch 2 Update 100 Cost 0.056992001831531525 L2 58.92100143432617 TIME 0.09417295455932617
+2020-12-27 11:54:36,840: main_mil_4: DEBUG: Epoch 2 Update 120 Cost 0.04426936060190201 L2 58.49482345581055 TIME 0.4569387435913086
+2020-12-27 11:54:49,102: main_mil_4: DEBUG: Epoch  2
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Valid cost  0.5860005454583601
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Test cost  0.5973600257526744
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Test accuracy  0.4318181818181818
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:54:49,104: main_mil_4: DEBUG: Training accuracy:  0.5094890510948905
+2020-12-27 11:54:49,105: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:54:50,110: main_mil_4: DEBUG: Epoch 3 Update 140 Cost 0.042788609862327576 L2 58.07721710205078 TIME 0.06284666061401367
+2020-12-27 11:54:54,959: main_mil_4: DEBUG: Epoch 3 Update 160 Cost 0.04759655147790909 L2 57.64360046386719 TIME 0.13726806640625
+2020-12-27 11:55:03,396: main_mil_4: DEBUG: Epoch 3 Update 180 Cost 0.06862633675336838 L2 57.19856262207031 TIME 0.13185381889343262
+2020-12-27 11:55:07,634: main_mil_4: DEBUG: Epoch  3
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Valid cost  0.5855115056037903
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Test cost  0.5968711105259982
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Test accuracy  0.4318181818181818
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: Training accuracy:  0.4912408759124088
+2020-12-27 11:55:07,635: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:55:11,332: main_mil_4: DEBUG: Epoch 4 Update 200 Cost 0.048403650522232056 L2 56.760581970214844 TIME 0.04191017150878906
+2020-12-27 11:55:20,429: main_mil_4: DEBUG: Epoch 4 Update 220 Cost 0.054061807692050934 L2 56.31760787963867 TIME 0.11239790916442871
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: Epoch  4
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: Valid cost  0.5850148038430647
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: Test cost  0.5963745767419989
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: Test accuracy  0.4318181818181818
+2020-12-27 11:55:27,558: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:55:27,559: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:55:27,559: main_mil_4: DEBUG: Training accuracy:  0.491970802919708
+2020-12-27 11:55:27,559: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:55:30,266: main_mil_4: DEBUG: Epoch 5 Update 240 Cost 0.04796552658081055 L2 55.88489532470703 TIME 0.14668941497802734
+2020-12-27 11:55:38,356: main_mil_4: DEBUG: Epoch 5 Update 260 Cost 0.04773109033703804 L2 55.43687438964844 TIME 0.6558747291564941
+2020-12-27 11:55:47,971: main_mil_4: DEBUG: Epoch  5
+2020-12-27 11:55:47,972: main_mil_4: DEBUG: Valid cost  0.5845118815248663
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: Test cost  0.590189977125688
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: Test accuracy  0.4375
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: Training accuracy:  0.5080291970802919
+2020-12-27 11:55:47,973: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:55:50,243: main_mil_4: DEBUG: Epoch 6 Update 280 Cost 0.0475243479013443 L2 54.999603271484375 TIME 0.11358332633972168
+2020-12-27 11:55:54,581: main_mil_4: DEBUG: Epoch 6 Update 300 Cost 0.042297862470149994 L2 54.54734802246094 TIME 0.3231041431427002
+2020-12-27 11:56:07,213: main_mil_4: DEBUG: Epoch  6
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Valid cost  0.5783217224207792
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Test cost  0.5896817933429371
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Test accuracy  0.4375
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: Training accuracy:  0.49416058394160584
+2020-12-27 11:56:07,214: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:56:08,253: main_mil_4: DEBUG: Epoch 7 Update 320 Cost 0.044572919607162476 L2 54.10642623901367 TIME 0.11963272094726562
+2020-12-27 11:56:13,272: main_mil_4: DEBUG: Epoch 7 Update 340 Cost 0.04558728635311127 L2 53.65073776245117 TIME 0.7314841747283936
+2020-12-27 11:56:23,485: main_mil_4: DEBUG: Epoch 7 Update 360 Cost 0.039944060146808624 L2 53.185218811035156 TIME 0.12901687622070312
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: Epoch  7
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: Valid cost  0.5778093554756858
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: Test cost  0.58348778702996
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: Test accuracy  0.4431818181818182
+2020-12-27 11:56:27,609: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:56:27,610: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:56:27,610: main_mil_4: DEBUG: Training accuracy:  0.4897810218978102
+2020-12-27 11:56:27,610: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:56:31,342: main_mil_4: DEBUG: Epoch 8 Update 380 Cost 0.04638330265879631 L2 52.72901153564453 TIME 0.09876751899719238
+2020-12-27 11:56:40,250: main_mil_4: DEBUG: Epoch 8 Update 400 Cost 0.04502382501959801 L2 52.269447326660156 TIME 0.06092500686645508
+2020-12-27 11:56:47,452: main_mil_4: DEBUG: Epoch  8
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: Valid cost  0.5829756585034457
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: Test cost  0.5772905593568628
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: learning_rate:  0.04
+2020-12-27 11:56:47,453: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:56:47,453: main_mil_4: DEBUG: bad_counter:  1
+2020-12-27 11:56:47,553: main_mil_4: DEBUG: lrate change to:   0.036000000000000004
+2020-12-27 11:56:47,554: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:56:47,554: main_mil_4: DEBUG: Training accuracy:  0.491970802919708
+2020-12-27 11:56:47,554: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:56:50,605: main_mil_4: DEBUG: Epoch 9 Update 420 Cost 0.049698203802108765 L2 51.85572052001953 TIME 0.1669321060180664
+2020-12-27 11:56:56,567: main_mil_4: DEBUG: Epoch 9 Update 440 Cost 0.04698273167014122 L2 51.43998336791992 TIME 0.6536686420440674
+2020-12-27 11:57:06,551: main_mil_4: DEBUG: Epoch  9
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: Valid cost  0.5825092521580783
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: Test cost  0.5768242884765972
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: learning_rate:  0.036000000000000004
+2020-12-27 11:57:06,552: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:57:06,552: main_mil_4: DEBUG: bad_counter:  2
+2020-12-27 11:57:06,624: main_mil_4: DEBUG: lrate change to:   0.032400000000000005
+2020-12-27 11:57:06,624: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:57:06,624: main_mil_4: DEBUG: Training accuracy:  0.47737226277372263
+2020-12-27 11:57:06,624: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:57:08,651: main_mil_4: DEBUG: Epoch 10 Update 460 Cost 0.04554605484008789 L2 51.054927825927734 TIME 0.2284834384918213
+2020-12-27 11:57:14,848: main_mil_4: DEBUG: Epoch 10 Update 480 Cost 0.0440983772277832 L2 50.6788330078125 TIME 0.9305830001831055
+2020-12-27 11:57:27,070: main_mil_4: DEBUG: Epoch  10
+2020-12-27 11:57:27,071: main_mil_4: DEBUG: Valid cost  0.5877688960595564
+2020-12-27 11:57:27,071: main_mil_4: DEBUG: Valid accuracy  0.4375
+2020-12-27 11:57:27,072: main_mil_4: DEBUG: Test cost  0.5764022306962446
+2020-12-27 11:57:27,072: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:57:27,072: main_mil_4: DEBUG: learning_rate:  0.032400000000000005
+2020-12-27 11:57:27,072: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:57:27,072: main_mil_4: DEBUG: bad_counter:  3
+2020-12-27 11:57:27,174: main_mil_4: DEBUG: lrate change to:   0.029160000000000005
+2020-12-27 11:57:27,175: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:57:27,175: main_mil_4: DEBUG: Training accuracy:  0.49635036496350365
+2020-12-27 11:57:27,175: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:57:28,577: main_mil_4: DEBUG: Epoch 11 Update 500 Cost 0.04017290100455284 L2 50.320552825927734 TIME 0.23591399192810059
+2020-12-27 11:57:33,454: main_mil_4: DEBUG: Epoch 11 Update 520 Cost 0.04625284671783447 L2 49.980220794677734 TIME 0.4884145259857178
+2020-12-27 11:57:43,702: main_mil_4: DEBUG: Epoch 11 Update 540 Cost 0.03816221281886101 L2 49.63267135620117 TIME 0.10267472267150879
+2020-12-27 11:57:47,872: main_mil_4: DEBUG: Epoch  11
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: Valid cost  0.5873865431005304
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: Valid accuracy  0.4375
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: Test cost  0.5760199590162798
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: learning_rate:  0.029160000000000005
+2020-12-27 11:57:47,873: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:57:47,873: main_mil_4: DEBUG: bad_counter:  4
+2020-12-27 11:57:47,973: main_mil_4: DEBUG: lrate change to:   0.026244000000000007
+2020-12-27 11:57:47,974: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:57:47,974: main_mil_4: DEBUG: Training accuracy:  0.5080291970802919
+2020-12-27 11:57:47,974: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:57:51,706: main_mil_4: DEBUG: Epoch 12 Update 560 Cost 0.03800646588206291 L2 49.3259162902832 TIME 0.11987161636352539
+2020-12-27 11:57:59,568: main_mil_4: DEBUG: Epoch 12 Update 580 Cost 0.050402313470840454 L2 49.016876220703125 TIME 0.3086245059967041
+2020-12-27 11:58:06,570: main_mil_4: DEBUG: Epoch  12
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: Valid cost  0.5927219932729547
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: Test cost  0.5756736722859469
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: learning_rate:  0.026244000000000007
+2020-12-27 11:58:06,571: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:58:06,571: main_mil_4: DEBUG: bad_counter:  5
+2020-12-27 11:58:06,680: main_mil_4: DEBUG: lrate change to:   0.023619600000000008
+2020-12-27 11:58:06,680: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:58:06,680: main_mil_4: DEBUG: Training accuracy:  0.5014598540145986
+2020-12-27 11:58:06,680: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:58:09,491: main_mil_4: DEBUG: Epoch 13 Update 600 Cost 0.039383020251989365 L2 48.73853302001953 TIME 0.18616008758544922
+2020-12-27 11:58:19,494: main_mil_4: DEBUG: Epoch 13 Update 620 Cost 0.044239845126867294 L2 48.45872497558594 TIME 0.6382045745849609
+2020-12-27 11:58:27,879: main_mil_4: DEBUG: Epoch  13
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: Valid cost  0.5867263945666227
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: Valid accuracy  0.4375
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: Test cost  0.5810417803851041
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: Test accuracy  0.4431818181818182
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: learning_rate:  0.023619600000000008
+2020-12-27 11:58:27,880: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:58:27,880: main_mil_4: DEBUG: bad_counter:  6
+2020-12-27 11:58:27,992: main_mil_4: DEBUG: lrate change to:   0.021257640000000008
+2020-12-27 11:58:27,993: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:58:27,993: main_mil_4: DEBUG: Training accuracy:  0.5021897810218978
+2020-12-27 11:58:27,993: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:58:29,948: main_mil_4: DEBUG: Epoch 14 Update 640 Cost 0.04036347195506096 L2 48.19930648803711 TIME 0.16883325576782227
+2020-12-27 11:58:36,665: main_mil_4: DEBUG: Epoch 14 Update 660 Cost 0.04398780316114426 L2 47.94587326049805 TIME 0.1240243911743164
+2020-12-27 11:58:48,102: main_mil_4: DEBUG: Epoch  14
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: Valid cost  0.5864419015971097
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: Valid accuracy  0.4375
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: Test cost  0.575075547803532
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: Test accuracy  0.44886363636363635
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: learning_rate:  0.021257640000000008
+2020-12-27 11:58:48,103: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:58:48,103: main_mil_4: DEBUG: bad_counter:  7
+2020-12-27 11:58:48,214: main_mil_4: DEBUG: lrate change to:   0.01913187600000001
+2020-12-27 11:58:48,215: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:58:48,215: main_mil_4: DEBUG: Training accuracy:  0.4664233576642336
+2020-12-27 11:58:48,215: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:58:49,201: main_mil_4: DEBUG: Epoch 15 Update 680 Cost 0.04636188596487045 L2 47.70429611206055 TIME 0.11893868446350098
+2020-12-27 11:58:54,030: main_mil_4: DEBUG: Epoch 15 Update 700 Cost 0.03999719396233559 L2 47.474727630615234 TIME 0.5185449123382568
+2020-12-27 11:59:02,738: main_mil_4: DEBUG: Epoch 15 Update 720 Cost 0.023628918454051018 L2 47.240169525146484 TIME 0.11467170715332031
+2020-12-27 11:59:06,869: main_mil_4: DEBUG: Epoch  15
+2020-12-27 11:59:06,869: main_mil_4: DEBUG: Valid cost  0.591865902597254
+2020-12-27 11:59:06,869: main_mil_4: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-27 11:59:06,869: main_mil_4: DEBUG: Test cost  0.5691360181028192
+2020-12-27 11:59:06,870: main_mil_4: DEBUG: Test accuracy  0.45454545454545453
+2020-12-27 11:59:06,870: main_mil_4: DEBUG: learning_rate:  0.01913187600000001
+2020-12-27 11:59:06,870: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 11:59:06,870: main_mil_4: DEBUG: bad_counter:  8
+2020-12-27 11:59:06,974: main_mil_4: DEBUG: lrate change to:   0.017218688400000008
+2020-12-27 11:59:06,974: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:59:06,974: main_mil_4: DEBUG: Training accuracy:  0.481021897810219
+2020-12-27 11:59:06,974: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:59:10,363: main_mil_4: DEBUG: Epoch 16 Update 740 Cost 0.05019606649875641 L2 47.033111572265625 TIME 0.09372711181640625
+2020-12-27 11:59:18,828: main_mil_4: DEBUG: Epoch 16 Update 760 Cost 0.049302782863378525 L2 46.82439041137695 TIME 0.3369464874267578
+2020-12-27 11:59:26,029: main_mil_4: DEBUG: Epoch  16
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Valid cost  0.5745866569605741
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Test cost  0.5632204494693063
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Test accuracy  0.4602272727272727
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: learning_rate:  0.017218688400000008
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: Training accuracy:  0.5021897810218978
+2020-12-27 11:59:26,030: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:59:28,969: main_mil_4: DEBUG: Epoch 17 Update 780 Cost 0.04832075163722038 L2 46.62109375 TIME 0.20495295524597168
+2020-12-27 11:59:35,603: main_mil_4: DEBUG: Epoch 17 Update 800 Cost 0.04196696728467941 L2 46.41108322143555 TIME 0.15078401565551758
+2020-12-27 11:59:44,799: main_mil_4: DEBUG: Epoch  17
+2020-12-27 11:59:44,800: main_mil_4: DEBUG: Valid cost  0.5629875659942627
+2020-12-27 11:59:44,800: main_mil_4: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-27 11:59:44,800: main_mil_4: DEBUG: Test cost  0.5573031956499274
+2020-12-27 11:59:44,800: main_mil_4: DEBUG: Test accuracy  0.4659090909090909
+2020-12-27 11:59:44,800: main_mil_4: DEBUG: learning_rate:  0.017218688400000008
+2020-12-27 11:59:44,801: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 11:59:44,801: main_mil_4: DEBUG: Training accuracy:  0.49708029197080295
+2020-12-27 11:59:44,801: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 11:59:46,652: main_mil_4: DEBUG: Epoch 18 Update 820 Cost 0.036866310983896255 L2 46.20657730102539 TIME 0.22022604942321777
+2020-12-27 11:59:52,269: main_mil_4: DEBUG: Epoch 18 Update 840 Cost 0.04176090657711029 L2 45.99541091918945 TIME 0.11145687103271484
+2020-12-27 12:00:03,577: main_mil_4: DEBUG: Epoch  18
+2020-12-27 12:00:03,579: main_mil_4: DEBUG: Valid cost  0.5513870282606645
+2020-12-27 12:00:03,579: main_mil_4: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-27 12:00:03,579: main_mil_4: DEBUG: Test cost  0.5570663701404225
+2020-12-27 12:00:03,579: main_mil_4: DEBUG: Test accuracy  0.4659090909090909
+2020-12-27 12:00:03,579: main_mil_4: DEBUG: learning_rate:  0.017218688400000008
+2020-12-27 12:00:03,580: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 12:00:03,580: main_mil_4: DEBUG: Training accuracy:  0.5080291970802919
+2020-12-27 12:00:03,580: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 12:00:04,835: main_mil_4: DEBUG: Epoch 19 Update 860 Cost 0.04415767639875412 L2 45.78984069824219 TIME 0.12193632125854492
+2020-12-27 12:00:10,425: main_mil_4: DEBUG: Epoch 19 Update 880 Cost 0.04030191898345947 L2 45.577693939208984 TIME 0.15780043601989746
+2020-12-27 12:00:19,768: main_mil_4: DEBUG: Epoch 19 Update 900 Cost 0.0493558831512928 L2 45.36115646362305 TIME 0.2001359462738037
+2020-12-27 12:00:23,846: main_mil_4: DEBUG: Epoch  19
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Valid cost  0.5511488589373502
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Test cost  0.5454646132209084
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Test accuracy  0.4772727272727273
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: learning_rate:  0.017218688400000008
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: Training accuracy:  0.5116788321167883
+2020-12-27 12:00:23,847: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 12:00:27,444: main_mil_4: DEBUG: Epoch 20 Update 920 Cost 0.042580097913742065 L2 45.14917755126953 TIME 0.08928465843200684
+2020-12-27 12:00:36,878: main_mil_4: DEBUG: Epoch 20 Update 940 Cost 0.04365268349647522 L2 44.935691833496094 TIME 0.3465607166290283
+2020-12-27 12:00:44,030: main_mil_4: DEBUG: Epoch  20
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: Valid cost  0.5622732910242948
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: Test cost  0.539543631401929
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: Test accuracy  0.48295454545454547
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: learning_rate:  0.017218688400000008
+2020-12-27 12:00:44,031: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 12:00:44,031: main_mil_4: DEBUG: bad_counter:  9
+2020-12-27 12:00:44,133: main_mil_4: DEBUG: lrate change to:   0.015496819560000008
+2020-12-27 12:00:44,133: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 12:00:44,134: main_mil_4: DEBUG: Training accuracy:  0.47956204379562045
+2020-12-27 12:00:44,134: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 12:00:46,753: main_mil_4: DEBUG: Epoch 21 Update 960 Cost 0.03738465905189514 L2 44.74363327026367 TIME 0.3889772891998291
+2020-12-27 12:00:53,051: main_mil_4: DEBUG: Epoch 21 Update 980 Cost 0.043535418808460236 L2 44.550743103027344 TIME 0.16524767875671387
+2020-12-27 12:01:02,196: main_mil_4: DEBUG: Epoch  21
+2020-12-27 12:01:02,197: main_mil_4: DEBUG: Valid cost  0.5563752488656477
+2020-12-27 12:01:02,198: main_mil_4: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-27 12:01:02,198: main_mil_4: DEBUG: Test cost  0.5393274318088185
+2020-12-27 12:01:02,198: main_mil_4: DEBUG: Test accuracy  0.48295454545454547
+2020-12-27 12:01:02,198: main_mil_4: DEBUG: learning_rate:  0.015496819560000008
+2020-12-27 12:01:02,198: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 12:01:02,198: main_mil_4: DEBUG: bad_counter:  10
+2020-12-27 12:01:02,304: main_mil_4: DEBUG: lrate change to:   0.013947137604000008
+2020-12-27 12:01:02,304: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 12:01:02,305: main_mil_4: DEBUG: Training accuracy:  0.4985401459854015
+2020-12-27 12:01:02,305: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle
+2020-12-27 12:01:04,321: main_mil_4: DEBUG: Epoch 22 Update 1000 Cost 0.037194810807704926 L2 44.372135162353516 TIME 0.16364789009094238
+2020-12-27 12:01:09,643: main_mil_4: DEBUG: Epoch 22 Update 1020 Cost 0.044608987867832184 L2 44.19780731201172 TIME 0.1711440086364746
+2020-12-27 12:01:21,394: main_mil_4: DEBUG: Epoch  22
+2020-12-27 12:01:21,395: main_mil_4: DEBUG: Valid cost  0.5561797293749723
+2020-12-27 12:01:21,395: main_mil_4: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-27 12:01:21,395: main_mil_4: DEBUG: Test cost  0.54481379552321
+2020-12-27 12:01:21,395: main_mil_4: DEBUG: Test accuracy  0.4772727272727273
+2020-12-27 12:01:21,395: main_mil_4: DEBUG: learning_rate:  0.013947137604000008
+2020-12-27 12:01:21,395: main_mil_4: INFO: wait_counter max, need to half the lr
+2020-12-27 12:01:21,396: main_mil_4: DEBUG: bad_counter:  11
+2020-12-27 12:01:21,509: main_mil_4: DEBUG: lrate change to:   0.012552423843600008
+2020-12-27 12:01:21,509: main_mil_4: INFO: Early Stop!
+2020-12-27 12:01:21,510: main_mil_4: DEBUG: Seen samples:  1370
+2020-12-27 12:01:21,510: main_mil_4: DEBUG: Training accuracy:  0.5167883211678832
+2020-12-27 12:01:21,510: main_mil_4: DEBUG: results/mil/Saved loss_plot pickle

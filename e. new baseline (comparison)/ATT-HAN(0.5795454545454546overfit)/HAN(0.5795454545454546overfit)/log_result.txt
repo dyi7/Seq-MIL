@@ -1,0 +1,1143 @@
+2020-12-26 21:38:36,131: mains: INFO: Loading knowledge base ...
+2020-12-26 21:38:36,131: mains: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train(originalwrong).csv',
+              'price_set/train_label(original wrong).csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'keep_prob': 0.5,
+ 'last_layer': 'LSTM',
+ 'lrate': 0.5,
+ 'max_epochs': 300,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/han/',
+ 'saveto': './models/.npz',
+ 'test_datasets': ['news_set/test(originalwrong).csv',
+                   'price_set/test_label(original wrong).csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate(originalwrong).csv',
+                    'price_set/validate_label(original wrong).csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-12-26 21:38:36,131: mains: INFO: Loading data
+2020-12-26 21:38:40,528: mains: INFO: init_word_embedding
+2020-12-26 21:38:44,974: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:163: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-12-26 21:38:45,071: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:249: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-12-26 21:38:45,073: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:250: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-12-26 21:38:45,106: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:127: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-12-26 21:38:45,123: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:136: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-12-26 21:38:45,125: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-12-26 21:38:45,203: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-12-26 21:38:45,287: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148fb5e12d10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148fb5e12d10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:45,311: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-12-26 21:38:45,482: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148fb5465750>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148fb5465750>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:45,531: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:97: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-12-26 21:38:45,633: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4e1f750>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4e1f750>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:45,781: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb50cd210>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb50cd210>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:45,866: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148fb5455f90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148fb5455f90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,029: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be96d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be96d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,180: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be96d0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be96d0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,321: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb5490690>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb5490690>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,340: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148fb53df490>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148fb53df490>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,451: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be9290>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148fb4be9290>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 21:38:46,453: mains: INFO: Building f_cost...
+2020-12-26 21:38:46,472: mains: INFO: Done
+2020-12-26 21:38:46,472: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:298: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-12-26 21:38:46,475: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:299: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-12-26 21:38:46,477: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:300: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-12-26 21:38:46,481: mains: INFO: Building optimizers...
+2020-12-26 21:38:46,481: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:451: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-12-26 21:38:46,482: mains: INFO: Done
+2020-12-26 21:38:46,482: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:454: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2020-12-26 21:38:47,349: mains: INFO: correct_pred
+2020-12-26 21:38:47,352: mains: INFO: Done
+2020-12-26 21:38:47,353: mains: INFO: init variables
+2020-12-26 21:38:47,355: mains: INFO: Done
+2020-12-26 21:38:47,355: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:481: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-12-26 21:38:47,451: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/mains.py:488: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-12-26 21:38:54,923: mains: DEBUG: Epoch 0 Update 20 Cost 56.702850341796875 L2 112061.859375 TIME 0.10272741317749023
+2020-12-26 21:39:03,726: mains: DEBUG: Epoch 0 Update 40 Cost 56.02911376953125 L2 110691.421875 TIME 0.48250675201416016
+2020-12-26 21:39:11,625: mains: DEBUG: Epoch  0
+2020-12-26 21:39:11,625: mains: DEBUG: Valid cost  55.826625477183946
+2020-12-26 21:39:11,625: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:39:11,625: mains: DEBUG: Test cost  55.82063085382635
+2020-12-26 21:39:11,625: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:39:11,625: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:39:11,626: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:39:11,626: mains: DEBUG: Training accuracy:  0.5233576642335767
+2020-12-26 21:39:11,626: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:39:14,921: mains: DEBUG: Epoch 1 Update 60 Cost 55.322635650634766 L2 109247.3359375 TIME 0.19742679595947266
+2020-12-26 21:39:22,218: mains: DEBUG: Epoch 1 Update 80 Cost 54.61077880859375 L2 107819.5625 TIME 0.3525233268737793
+2020-12-26 21:39:31,327: mains: DEBUG: Epoch  1
+2020-12-26 21:39:31,328: mains: DEBUG: Valid cost  54.2048752524636
+2020-12-26 21:39:31,328: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:39:31,328: mains: DEBUG: Test cost  54.19675653631037
+2020-12-26 21:39:31,328: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:39:31,328: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:39:31,328: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:39:31,328: mains: DEBUG: Training accuracy:  0.518978102189781
+2020-12-26 21:39:31,328: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:39:33,808: mains: DEBUG: Epoch 2 Update 100 Cost 53.869903564453125 L2 106415.34375 TIME 0.17786312103271484
+2020-12-26 21:39:41,787: mains: DEBUG: Epoch 2 Update 120 Cost 53.24065399169922 L2 105085.125 TIME 0.2599625587463379
+2020-12-26 21:39:52,171: mains: DEBUG: Epoch  2
+2020-12-26 21:39:52,171: mains: DEBUG: Valid cost  52.63359312577681
+2020-12-26 21:39:52,171: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:39:52,171: mains: DEBUG: Test cost  52.62376161055131
+2020-12-26 21:39:52,171: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:39:52,171: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:39:52,171: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:39:52,172: mains: DEBUG: Training accuracy:  0.527007299270073
+2020-12-26 21:39:52,172: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:39:53,512: mains: DEBUG: Epoch 3 Update 140 Cost 52.49969482421875 L2 103557.890625 TIME 0.2493433952331543
+2020-12-26 21:39:58,928: mains: DEBUG: Epoch 3 Update 160 Cost 51.82752990722656 L2 102243.234375 TIME 0.593379020690918
+2020-12-26 21:40:07,716: mains: DEBUG: Epoch 3 Update 180 Cost 51.026737213134766 L2 100708.7109375 TIME 0.20618796348571777
+2020-12-26 21:40:11,500: mains: DEBUG: Epoch  3
+2020-12-26 21:40:11,501: mains: DEBUG: Valid cost  51.036907542835586
+2020-12-26 21:40:11,501: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:40:11,501: mains: DEBUG: Test cost  51.027823361483485
+2020-12-26 21:40:11,501: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:40:11,501: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:40:11,501: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:40:11,501: mains: DEBUG: Training accuracy:  0.5489051094890511
+2020-12-26 21:40:11,501: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:40:15,654: mains: DEBUG: Epoch 4 Update 200 Cost 50.36077880859375 L2 99346.328125 TIME 0.12467575073242188
+2020-12-26 21:40:23,768: mains: DEBUG: Epoch 4 Update 220 Cost 49.696598052978516 L2 97889.25 TIME 0.3569495677947998
+2020-12-26 21:40:30,370: mains: DEBUG: Epoch  4
+2020-12-26 21:40:30,371: mains: DEBUG: Valid cost  49.41743295842951
+2020-12-26 21:40:30,371: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:40:30,371: mains: DEBUG: Test cost  49.40870735862038
+2020-12-26 21:40:30,371: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:40:30,371: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:40:30,371: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:40:30,371: mains: DEBUG: Training accuracy:  0.5474452554744526
+2020-12-26 21:40:30,371: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:40:33,769: mains: DEBUG: Epoch 5 Update 240 Cost 48.88694763183594 L2 96429.1953125 TIME 0.2147808074951172
+2020-12-26 21:40:40,399: mains: DEBUG: Epoch 5 Update 260 Cost 48.26708984375 L2 95074.84375 TIME 0.20470142364501953
+2020-12-26 21:40:49,296: mains: DEBUG: Epoch  5
+2020-12-26 21:40:49,297: mains: DEBUG: Valid cost  47.79508556019176
+2020-12-26 21:40:49,298: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:40:49,298: mains: DEBUG: Test cost  47.78556164828214
+2020-12-26 21:40:49,298: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:40:49,298: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:40:49,298: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:40:49,298: mains: DEBUG: Training accuracy:  0.5218978102189781
+2020-12-26 21:40:49,298: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:40:51,523: mains: DEBUG: Epoch 6 Update 280 Cost 47.517459869384766 L2 93593.1875 TIME 0.1591341495513916
+2020-12-26 21:40:56,927: mains: DEBUG: Epoch 6 Update 300 Cost 46.775840759277344 L2 92167.75 TIME 0.3473525047302246
+2020-12-26 21:41:08,278: mains: DEBUG: Epoch  6
+2020-12-26 21:41:08,279: mains: DEBUG: Valid cost  46.192514246160336
+2020-12-26 21:41:08,279: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:41:08,279: mains: DEBUG: Test cost  46.1858718178489
+2020-12-26 21:41:08,279: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:41:08,279: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:41:08,280: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:41:08,280: mains: DEBUG: Training accuracy:  0.5372262773722628
+2020-12-26 21:41:08,280: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:41:09,379: mains: DEBUG: Epoch 7 Update 320 Cost 46.0560417175293 L2 90746.390625 TIME 0.2073214054107666
+2020-12-26 21:41:13,906: mains: DEBUG: Epoch 7 Update 340 Cost 45.411231994628906 L2 89380.0703125 TIME 0.1567823886871338
+2020-12-26 21:41:22,184: mains: DEBUG: Epoch 7 Update 360 Cost 44.51021957397461 L2 87808.8125 TIME 0.16505217552185059
+2020-12-26 21:41:25,714: mains: DEBUG: Epoch  7
+2020-12-26 21:41:25,715: mains: DEBUG: Valid cost  44.588316830721766
+2020-12-26 21:41:25,715: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:41:25,715: mains: DEBUG: Test cost  44.57836151123047
+2020-12-26 21:41:25,715: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:41:25,715: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:41:25,715: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:41:25,715: mains: DEBUG: Training accuracy:  0.5481751824817518
+2020-12-26 21:41:25,715: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:41:29,889: mains: DEBUG: Epoch 8 Update 380 Cost 43.98710250854492 L2 86506.875 TIME 0.0981285572052002
+2020-12-26 21:41:38,172: mains: DEBUG: Epoch 8 Update 400 Cost 43.23098373413086 L2 85118.703125 TIME 0.4590592384338379
+2020-12-26 21:41:44,370: mains: DEBUG: Epoch  8
+2020-12-26 21:41:44,371: mains: DEBUG: Valid cost  43.055421655828304
+2020-12-26 21:41:44,371: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:41:44,371: mains: DEBUG: Test cost  43.04688575051048
+2020-12-26 21:41:44,371: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:41:44,371: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:41:44,371: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:41:44,371: mains: DEBUG: Training accuracy:  0.5153284671532846
+2020-12-26 21:41:44,371: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:41:47,747: mains: DEBUG: Epoch 9 Update 420 Cost 42.576202392578125 L2 83756.296875 TIME 0.19199323654174805
+2020-12-26 21:41:55,340: mains: DEBUG: Epoch 9 Update 440 Cost 41.911434173583984 L2 82439.5390625 TIME 0.6555187702178955
+2020-12-26 21:42:04,383: mains: DEBUG: Epoch  9
+2020-12-26 21:42:04,385: mains: DEBUG: Valid cost  41.59241901744496
+2020-12-26 21:42:04,385: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:42:04,385: mains: DEBUG: Test cost  41.58215609463778
+2020-12-26 21:42:04,385: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:42:04,385: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:42:04,385: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:42:04,385: mains: DEBUG: Training accuracy:  0.5306569343065694
+2020-12-26 21:42:04,385: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:42:06,457: mains: DEBUG: Epoch 10 Update 460 Cost 41.31177520751953 L2 81196.7421875 TIME 0.18007516860961914
+2020-12-26 21:42:12,280: mains: DEBUG: Epoch 10 Update 480 Cost 40.60197067260742 L2 79877.5234375 TIME 0.47398829460144043
+2020-12-26 21:42:23,399: mains: DEBUG: Epoch  10
+2020-12-26 21:42:23,399: mains: DEBUG: Valid cost  40.09550406716087
+2020-12-26 21:42:23,400: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:42:23,400: mains: DEBUG: Test cost  40.0857179815119
+2020-12-26 21:42:23,400: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:42:23,400: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:42:23,400: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:42:23,400: mains: DEBUG: Training accuracy:  0.535036496350365
+2020-12-26 21:42:23,400: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:42:24,902: mains: DEBUG: Epoch 11 Update 500 Cost 40.01241683959961 L2 78585.8359375 TIME 0.22163939476013184
+2020-12-26 21:42:29,344: mains: DEBUG: Epoch 11 Update 520 Cost 39.38314437866211 L2 77377.5 TIME 0.14421510696411133
+2020-12-26 21:42:38,599: mains: DEBUG: Epoch 11 Update 540 Cost 38.63896560668945 L2 75946.390625 TIME 0.1318347454071045
+2020-12-26 21:42:42,206: mains: DEBUG: Epoch  11
+2020-12-26 21:42:42,206: mains: DEBUG: Valid cost  38.657990195534445
+2020-12-26 21:42:42,206: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:42:42,206: mains: DEBUG: Test cost  38.64847599376332
+2020-12-26 21:42:42,206: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:42:42,206: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:42:42,207: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:42:42,207: mains: DEBUG: Training accuracy:  0.5408759124087591
+2020-12-26 21:42:42,207: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:42:46,555: mains: DEBUG: Epoch 12 Update 560 Cost 38.08224105834961 L2 74730.4375 TIME 0.10092830657958984
+2020-12-26 21:42:54,292: mains: DEBUG: Epoch 12 Update 580 Cost 37.396324157714844 L2 73430.515625 TIME 0.27123451232910156
+2020-12-26 21:43:00,690: mains: DEBUG: Epoch  12
+2020-12-26 21:43:00,691: mains: DEBUG: Valid cost  37.21947756680575
+2020-12-26 21:43:00,691: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:43:00,692: mains: DEBUG: Test cost  37.20754068548029
+2020-12-26 21:43:00,692: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:43:00,692: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:43:00,692: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:43:00,692: mains: DEBUG: Training accuracy:  0.5262773722627737
+2020-12-26 21:43:00,692: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:43:04,304: mains: DEBUG: Epoch 13 Update 600 Cost 36.78153991699219 L2 72155.6875 TIME 0.23051190376281738
+2020-12-26 21:43:10,835: mains: DEBUG: Epoch 13 Update 620 Cost 36.146820068359375 L2 70884.8125 TIME 0.22025847434997559
+2020-12-26 21:43:18,955: mains: DEBUG: Epoch  13
+2020-12-26 21:43:18,955: mains: DEBUG: Valid cost  35.79878824407404
+2020-12-26 21:43:18,955: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:43:18,956: mains: DEBUG: Test cost  35.788007562810726
+2020-12-26 21:43:18,956: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:43:18,956: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:43:18,956: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:43:18,956: mains: DEBUG: Training accuracy:  0.5437956204379562
+2020-12-26 21:43:18,956: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:43:20,953: mains: DEBUG: Epoch 14 Update 640 Cost 35.53131866455078 L2 69693.6875 TIME 0.23579764366149902
+2020-12-26 21:43:27,457: mains: DEBUG: Epoch 14 Update 660 Cost 34.9188232421875 L2 68472.9296875 TIME 0.12668156623840332
+2020-12-26 21:43:37,997: mains: DEBUG: Epoch  14
+2020-12-26 21:43:37,998: mains: DEBUG: Valid cost  34.42062031139027
+2020-12-26 21:43:37,998: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:43:37,999: mains: DEBUG: Test cost  34.41018954190341
+2020-12-26 21:43:37,999: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:43:37,999: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:43:37,999: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:43:37,999: mains: DEBUG: Training accuracy:  0.5583941605839416
+2020-12-26 21:43:37,999: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:43:39,571: mains: DEBUG: Epoch 15 Update 680 Cost 34.27016067504883 L2 67228.5859375 TIME 0.23707270622253418
+2020-12-26 21:43:44,220: mains: DEBUG: Epoch 15 Update 700 Cost 33.75885009765625 L2 66158.6640625 TIME 0.24280047416687012
+2020-12-26 21:43:53,017: mains: DEBUG: Epoch 15 Update 720 Cost 33.165531158447266 L2 64933.18359375 TIME 0.13520073890686035
+2020-12-26 21:43:56,515: mains: DEBUG: Epoch  15
+2020-12-26 21:43:56,516: mains: DEBUG: Valid cost  33.15366710316051
+2020-12-26 21:43:56,516: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:43:56,516: mains: DEBUG: Test cost  33.14187899502841
+2020-12-26 21:43:56,516: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:43:56,516: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:43:56,516: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:43:56,516: mains: DEBUG: Training accuracy:  0.5489051094890511
+2020-12-26 21:43:56,517: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:44:00,584: mains: DEBUG: Epoch 16 Update 740 Cost 32.62324905395508 L2 63861.6875 TIME 0.10866737365722656
+2020-12-26 21:44:09,874: mains: DEBUG: Epoch 16 Update 760 Cost 32.102848052978516 L2 62749.4140625 TIME 0.16948485374450684
+2020-12-26 21:44:16,338: mains: DEBUG: Epoch  16
+2020-12-26 21:44:16,338: mains: DEBUG: Valid cost  31.90596684542569
+2020-12-26 21:44:16,338: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:44:16,338: mains: DEBUG: Test cost  31.89752873507413
+2020-12-26 21:44:16,338: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:44:16,338: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:44:16,338: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:44:16,338: mains: DEBUG: Training accuracy:  0.5481751824817518
+2020-12-26 21:44:16,338: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:44:19,561: mains: DEBUG: Epoch 17 Update 780 Cost 31.526891708374023 L2 61691.5546875 TIME 0.2326059341430664
+2020-12-26 21:44:27,318: mains: DEBUG: Epoch 17 Update 800 Cost 30.944799423217773 L2 60582.203125 TIME 0.4655318260192871
+2020-12-26 21:44:35,249: mains: DEBUG: Epoch  17
+2020-12-26 21:44:35,250: mains: DEBUG: Valid cost  30.725279547951438
+2020-12-26 21:44:35,250: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:44:35,250: mains: DEBUG: Test cost  30.71423998746005
+2020-12-26 21:44:35,251: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:44:35,251: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:44:35,251: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:44:35,251: mains: DEBUG: Training accuracy:  0.5693430656934306
+2020-12-26 21:44:35,251: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:44:37,677: mains: DEBUG: Epoch 18 Update 820 Cost 30.462642669677734 L2 59547.796875 TIME 0.2893803119659424
+2020-12-26 21:44:44,688: mains: DEBUG: Epoch 18 Update 840 Cost 29.99383544921875 L2 58560.578125 TIME 0.68756103515625
+2020-12-26 21:44:55,053: mains: DEBUG: Epoch  18
+2020-12-26 21:44:55,054: mains: DEBUG: Valid cost  29.59063148498535
+2020-12-26 21:44:55,054: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:44:55,054: mains: DEBUG: Test cost  29.576752055775035
+2020-12-26 21:44:55,054: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:44:55,054: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:44:55,054: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:44:55,055: mains: DEBUG: Training accuracy:  0.5576642335766423
+2020-12-26 21:44:55,055: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:44:56,210: mains: DEBUG: Epoch 19 Update 860 Cost 29.476436614990234 L2 57620.90234375 TIME 0.14986777305603027
+2020-12-26 21:45:00,907: mains: DEBUG: Epoch 19 Update 880 Cost 29.007083892822266 L2 56672.83203125 TIME 0.5076580047607422
+2020-12-26 21:45:10,604: mains: DEBUG: Epoch 19 Update 900 Cost 28.506845474243164 L2 55613.34765625 TIME 0.1265246868133545
+2020-12-26 21:45:14,222: mains: DEBUG: Epoch  19
+2020-12-26 21:45:14,222: mains: DEBUG: Valid cost  28.49467832391912
+2020-12-26 21:45:14,222: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:45:14,222: mains: DEBUG: Test cost  28.48276727849787
+2020-12-26 21:45:14,223: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:45:14,223: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:45:14,223: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:45:14,223: mains: DEBUG: Training accuracy:  0.554014598540146
+2020-12-26 21:45:14,223: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:45:17,994: mains: DEBUG: Epoch 20 Update 920 Cost 28.057151794433594 L2 54715.44140625 TIME 0.09595346450805664
+2020-12-26 21:45:27,119: mains: DEBUG: Epoch 20 Update 940 Cost 27.58448028564453 L2 53685.40625 TIME 0.14488530158996582
+2020-12-26 21:45:33,214: mains: DEBUG: Epoch  20
+2020-12-26 21:45:33,215: mains: DEBUG: Valid cost  27.395762703635476
+2020-12-26 21:45:33,216: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:45:33,216: mains: DEBUG: Test cost  27.38510495966131
+2020-12-26 21:45:33,216: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:45:33,216: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:45:33,216: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:45:33,216: mains: DEBUG: Training accuracy:  0.5474452554744526
+2020-12-26 21:45:33,216: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:45:37,058: mains: DEBUG: Epoch 21 Update 960 Cost 27.05722427368164 L2 52790.41796875 TIME 0.2115330696105957
+2020-12-26 21:45:43,096: mains: DEBUG: Epoch 21 Update 980 Cost 26.62148666381836 L2 51867.67578125 TIME 0.5788924694061279
+2020-12-26 21:45:52,216: mains: DEBUG: Epoch  21
+2020-12-26 21:45:52,217: mains: DEBUG: Valid cost  26.35310918634588
+2020-12-26 21:45:52,217: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:45:52,217: mains: DEBUG: Test cost  26.338961341164328
+2020-12-26 21:45:52,217: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:45:52,217: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:45:52,217: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:45:52,217: mains: DEBUG: Training accuracy:  0.5613138686131387
+2020-12-26 21:45:52,217: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:45:54,633: mains: DEBUG: Epoch 22 Update 1000 Cost 26.141475677490234 L2 50949.81640625 TIME 0.23059654235839844
+2020-12-26 21:46:01,340: mains: DEBUG: Epoch 22 Update 1020 Cost 25.652978897094727 L2 49971.7734375 TIME 0.9075686931610107
+2020-12-26 21:46:12,081: mains: DEBUG: Epoch  22
+2020-12-26 21:46:12,083: mains: DEBUG: Valid cost  25.30216373096813
+2020-12-26 21:46:12,083: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:46:12,083: mains: DEBUG: Test cost  25.28950916637074
+2020-12-26 21:46:12,083: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:46:12,083: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:46:12,083: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:46:12,083: mains: DEBUG: Training accuracy:  0.5613138686131387
+2020-12-26 21:46:12,083: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:46:13,184: mains: DEBUG: Epoch 23 Update 1040 Cost 25.196964263916016 L2 49057.1171875 TIME 0.13592958450317383
+2020-12-26 21:46:18,243: mains: DEBUG: Epoch 23 Update 1060 Cost 24.866649627685547 L2 48324.7890625 TIME 0.676738977432251
+2020-12-26 21:46:26,713: mains: DEBUG: Epoch 23 Update 1080 Cost 24.633405685424805 L2 47372.80078125 TIME 0.13867974281311035
+2020-12-26 21:46:30,273: mains: DEBUG: Epoch  23
+2020-12-26 21:46:30,273: mains: DEBUG: Valid cost  24.375763286243785
+2020-12-26 21:46:30,273: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:46:30,273: mains: DEBUG: Test cost  24.364395141601562
+2020-12-26 21:46:30,274: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:46:30,274: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:46:30,274: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:46:30,274: mains: DEBUG: Training accuracy:  0.5583941605839416
+2020-12-26 21:46:30,274: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:46:34,557: mains: DEBUG: Epoch 24 Update 1100 Cost 24.04596710205078 L2 46633.8515625 TIME 0.10638546943664551
+2020-12-26 21:46:42,612: mains: DEBUG: Epoch 24 Update 1120 Cost 23.59510612487793 L2 45842.05078125 TIME 0.10573029518127441
+2020-12-26 21:46:48,879: mains: DEBUG: Epoch  24
+2020-12-26 21:46:48,880: mains: DEBUG: Valid cost  23.489178050648082
+2020-12-26 21:46:48,880: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:46:48,880: mains: DEBUG: Test cost  23.475018241188742
+2020-12-26 21:46:48,880: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:46:48,880: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:46:48,880: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:46:48,881: mains: DEBUG: Training accuracy:  0.5489051094890511
+2020-12-26 21:46:48,881: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:46:52,085: mains: DEBUG: Epoch 25 Update 1140 Cost 23.17723846435547 L2 45054.31640625 TIME 0.17850089073181152
+2020-12-26 21:46:58,260: mains: DEBUG: Epoch 25 Update 1160 Cost 22.837312698364258 L2 44248.5078125 TIME 0.18863391876220703
+2020-12-26 21:47:06,758: mains: DEBUG: Epoch  25
+2020-12-26 21:47:06,759: mains: DEBUG: Valid cost  22.579167452725496
+2020-12-26 21:47:06,759: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:47:06,759: mains: DEBUG: Test cost  22.564056396484375
+2020-12-26 21:47:06,759: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:47:06,759: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:47:06,759: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:47:06,760: mains: DEBUG: Training accuracy:  0.5627737226277372
+2020-12-26 21:47:06,760: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:47:09,454: mains: DEBUG: Epoch 26 Update 1180 Cost 22.386320114135742 L2 43413.4765625 TIME 0.24664616584777832
+2020-12-26 21:47:15,827: mains: DEBUG: Epoch 26 Update 1200 Cost 22.037132263183594 L2 42695.171875 TIME 0.21320128440856934
+2020-12-26 21:47:25,714: mains: DEBUG: Epoch  26
+2020-12-26 21:47:25,715: mains: DEBUG: Valid cost  21.73411109230735
+2020-12-26 21:47:25,715: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:47:25,715: mains: DEBUG: Test cost  21.72094761241566
+2020-12-26 21:47:25,715: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:47:25,715: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:47:25,715: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:47:25,716: mains: DEBUG: Training accuracy:  0.5532846715328467
+2020-12-26 21:47:25,716: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:47:26,852: mains: DEBUG: Epoch 27 Update 1220 Cost 21.65598487854004 L2 41954.0625 TIME 0.23588323593139648
+2020-12-26 21:47:32,609: mains: DEBUG: Epoch 27 Update 1240 Cost 21.296823501586914 L2 41204.2734375 TIME 0.2031698226928711
+2020-12-26 21:47:41,327: mains: DEBUG: Epoch 27 Update 1260 Cost 20.823043823242188 L2 40462.41015625 TIME 0.14685392379760742
+2020-12-26 21:47:44,918: mains: DEBUG: Epoch  27
+2020-12-26 21:47:44,919: mains: DEBUG: Valid cost  20.92167836969549
+2020-12-26 21:47:44,919: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:47:44,919: mains: DEBUG: Test cost  20.90869036587802
+2020-12-26 21:47:44,919: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:47:44,919: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:47:44,919: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:47:44,919: mains: DEBUG: Training accuracy:  0.5678832116788322
+2020-12-26 21:47:44,920: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:47:49,824: mains: DEBUG: Epoch 28 Update 1280 Cost 20.716400146484375 L2 39859.1875 TIME 0.132568359375
+2020-12-26 21:47:57,879: mains: DEBUG: Epoch 28 Update 1300 Cost 20.275190353393555 L2 39199.69140625 TIME 0.4087851047515869
+2020-12-26 21:48:04,398: mains: DEBUG: Epoch  28
+2020-12-26 21:48:04,399: mains: DEBUG: Valid cost  20.182076887650922
+2020-12-26 21:48:04,399: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:48:04,399: mains: DEBUG: Test cost  20.16579818725586
+2020-12-26 21:48:04,399: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:48:04,399: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:48:04,399: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:48:04,399: mains: DEBUG: Training accuracy:  0.5671532846715328
+2020-12-26 21:48:04,399: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:48:08,248: mains: DEBUG: Epoch 29 Update 1320 Cost 19.926544189453125 L2 38526.47265625 TIME 0.27423763275146484
+2020-12-26 21:48:15,273: mains: DEBUG: Epoch 29 Update 1340 Cost 19.61612319946289 L2 37868.21875 TIME 0.6835837364196777
+2020-12-26 21:48:24,456: mains: DEBUG: Epoch  29
+2020-12-26 21:48:24,456: mains: DEBUG: Valid cost  19.466955358331855
+2020-12-26 21:48:24,457: mains: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-26 21:48:24,457: mains: DEBUG: Test cost  19.45543081110174
+2020-12-26 21:48:24,457: mains: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 21:48:24,457: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:48:24,457: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:48:24,457: mains: DEBUG: Training accuracy:  0.5788321167883211
+2020-12-26 21:48:24,457: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:48:26,764: mains: DEBUG: Epoch 30 Update 1360 Cost 19.284404754638672 L2 37244.03125 TIME 0.25565099716186523
+2020-12-26 21:48:33,324: mains: DEBUG: Epoch 30 Update 1380 Cost 19.00975799560547 L2 36663.203125 TIME 0.5938253402709961
+2020-12-26 21:48:43,795: mains: DEBUG: Epoch  30
+2020-12-26 21:48:43,796: mains: DEBUG: Valid cost  18.780000166459516
+2020-12-26 21:48:43,797: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:48:43,797: mains: DEBUG: Test cost  18.76399005543102
+2020-12-26 21:48:43,797: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:48:43,797: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:48:43,797: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:48:43,797: mains: DEBUG: Training accuracy:  0.5846715328467154
+2020-12-26 21:48:43,797: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:48:45,050: mains: DEBUG: Epoch 31 Update 1400 Cost 18.635852813720703 L2 36011.890625 TIME 0.16034960746765137
+2020-12-26 21:48:51,262: mains: DEBUG: Epoch 31 Update 1420 Cost 18.430896759033203 L2 35516.6171875 TIME 0.8131239414215088
+2020-12-26 21:49:00,751: mains: DEBUG: Epoch 31 Update 1440 Cost 18.09073829650879 L2 34845.25 TIME 0.12743115425109863
+2020-12-26 21:49:04,190: mains: DEBUG: Epoch  31
+2020-12-26 21:49:04,190: mains: DEBUG: Valid cost  18.115182876586914
+2020-12-26 21:49:04,190: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:49:04,190: mains: DEBUG: Test cost  18.100380984219637
+2020-12-26 21:49:04,190: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:49:04,190: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:49:04,190: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:49:04,190: mains: DEBUG: Training accuracy:  0.572992700729927
+2020-12-26 21:49:04,190: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:49:08,775: mains: DEBUG: Epoch 32 Update 1460 Cost 17.881567001342773 L2 34328.92578125 TIME 0.11270499229431152
+2020-12-26 21:49:17,867: mains: DEBUG: Epoch 32 Update 1480 Cost 17.597049713134766 L2 33863.859375 TIME 0.36913108825683594
+2020-12-26 21:49:24,127: mains: DEBUG: Epoch  32
+2020-12-26 21:49:24,127: mains: DEBUG: Valid cost  17.540373021906074
+2020-12-26 21:49:24,127: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:49:24,127: mains: DEBUG: Test cost  17.523244337602094
+2020-12-26 21:49:24,127: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:49:24,128: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:49:24,128: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:49:24,128: mains: DEBUG: Training accuracy:  0.5824817518248175
+2020-12-26 21:49:24,128: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:49:27,785: mains: DEBUG: Epoch 33 Update 1500 Cost 17.365554809570312 L2 33356.359375 TIME 0.22420048713684082
+2020-12-26 21:49:34,889: mains: DEBUG: Epoch 33 Update 1520 Cost 17.147964477539062 L2 32917.43359375 TIME 0.43735742568969727
+2020-12-26 21:49:43,315: mains: DEBUG: Epoch  33
+2020-12-26 21:49:43,317: mains: DEBUG: Valid cost  17.017576044256035
+2020-12-26 21:49:43,317: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:49:43,317: mains: DEBUG: Test cost  17.001686789772727
+2020-12-26 21:49:43,317: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:49:43,317: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:49:43,317: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:49:43,317: mains: DEBUG: Training accuracy:  0.583941605839416
+2020-12-26 21:49:43,317: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:49:45,527: mains: DEBUG: Epoch 34 Update 1540 Cost 16.86549186706543 L2 32422.57421875 TIME 0.1375272274017334
+2020-12-26 21:49:52,840: mains: DEBUG: Epoch 34 Update 1560 Cost 16.680145263671875 L2 31984.7421875 TIME 0.6138160228729248
+2020-12-26 21:50:03,900: mains: DEBUG: Epoch  34
+2020-12-26 21:50:03,900: mains: DEBUG: Valid cost  16.5077861439098
+2020-12-26 21:50:03,901: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:50:03,901: mains: DEBUG: Test cost  16.48697142167525
+2020-12-26 21:50:03,901: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:50:03,901: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:50:03,901: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:50:03,901: mains: DEBUG: Training accuracy:  0.5970802919708029
+2020-12-26 21:50:03,901: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:50:05,595: mains: DEBUG: Epoch 35 Update 1580 Cost 16.414875030517578 L2 31529.658203125 TIME 0.22761321067810059
+2020-12-26 21:50:10,500: mains: DEBUG: Epoch 35 Update 1600 Cost 16.196054458618164 L2 31074.587890625 TIME 0.3646557331085205
+2020-12-26 21:50:18,914: mains: DEBUG: Epoch 35 Update 1620 Cost 15.931132316589355 L2 30623.908203125 TIME 0.14828872680664062
+2020-12-26 21:50:22,444: mains: DEBUG: Epoch  35
+2020-12-26 21:50:22,444: mains: DEBUG: Valid cost  16.00751954858953
+2020-12-26 21:50:22,444: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:50:22,445: mains: DEBUG: Test cost  15.989867123690518
+2020-12-26 21:50:22,445: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:50:22,445: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:50:22,445: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:50:22,445: mains: DEBUG: Training accuracy:  0.5978102189781022
+2020-12-26 21:50:22,445: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:50:26,993: mains: DEBUG: Epoch 36 Update 1640 Cost 15.802786827087402 L2 30216.205078125 TIME 0.13575124740600586
+2020-12-26 21:50:34,869: mains: DEBUG: Epoch 36 Update 1660 Cost 15.54952621459961 L2 29791.37890625 TIME 0.19164037704467773
+2020-12-26 21:50:41,424: mains: DEBUG: Epoch  36
+2020-12-26 21:50:41,425: mains: DEBUG: Valid cost  15.54391132701527
+2020-12-26 21:50:41,425: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:50:41,425: mains: DEBUG: Test cost  15.524574453180486
+2020-12-26 21:50:41,425: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:50:41,425: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:50:41,425: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:50:41,425: mains: DEBUG: Training accuracy:  0.5897810218978102
+2020-12-26 21:50:41,425: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:50:45,052: mains: DEBUG: Epoch 37 Update 1680 Cost 15.361392974853516 L2 29396.203125 TIME 0.21611309051513672
+2020-12-26 21:50:53,100: mains: DEBUG: Epoch 37 Update 1700 Cost 15.159978866577148 L2 29000.720703125 TIME 0.522472620010376
+2020-12-26 21:51:01,524: mains: DEBUG: Epoch  37
+2020-12-26 21:51:01,525: mains: DEBUG: Valid cost  15.099821957674893
+2020-12-26 21:51:01,525: mains: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-26 21:51:01,525: mains: DEBUG: Test cost  15.081354488026012
+2020-12-26 21:51:01,525: mains: DEBUG: Test accuracy  0.5852272727272727
+2020-12-26 21:51:01,525: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:51:01,525: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:51:01,525: mains: DEBUG: Training accuracy:  0.5934306569343065
+2020-12-26 21:51:01,525: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:51:04,081: mains: DEBUG: Epoch 38 Update 1720 Cost 14.981961250305176 L2 28611.474609375 TIME 0.2401108741760254
+2020-12-26 21:51:10,451: mains: DEBUG: Epoch 38 Update 1740 Cost 14.807062149047852 L2 28290.0859375 TIME 0.6495761871337891
+2020-12-26 21:51:21,918: mains: DEBUG: Epoch  38
+2020-12-26 21:51:21,920: mains: DEBUG: Valid cost  14.704360094937412
+2020-12-26 21:51:21,920: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 21:51:21,920: mains: DEBUG: Test cost  14.688153700395064
+2020-12-26 21:51:21,920: mains: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 21:51:21,920: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:51:21,920: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:51:21,920: mains: DEBUG: Training accuracy:  0.5941605839416059
+2020-12-26 21:51:21,920: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:51:23,373: mains: DEBUG: Epoch 39 Update 1760 Cost 14.612454414367676 L2 27922.216796875 TIME 0.2561347484588623
+2020-12-26 21:51:29,051: mains: DEBUG: Epoch 39 Update 1780 Cost 14.487927436828613 L2 27584.658203125 TIME 0.784691333770752
+2020-12-26 21:51:38,279: mains: DEBUG: Epoch 39 Update 1800 Cost 14.223800659179688 L2 27196.134765625 TIME 0.2102217674255371
+2020-12-26 21:51:41,942: mains: DEBUG: Epoch  39
+2020-12-26 21:51:41,943: mains: DEBUG: Valid cost  14.29748179695823
+2020-12-26 21:51:41,943: mains: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-26 21:51:41,943: mains: DEBUG: Test cost  14.277264421636408
+2020-12-26 21:51:41,943: mains: DEBUG: Test accuracy  0.5852272727272727
+2020-12-26 21:51:41,943: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:51:41,944: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:51:41,944: mains: DEBUG: Training accuracy:  0.5956204379562043
+2020-12-26 21:51:41,944: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:51:47,028: mains: DEBUG: Epoch 40 Update 1820 Cost 14.045594215393066 L2 26872.513671875 TIME 0.12273979187011719
+2020-12-26 21:51:54,702: mains: DEBUG: Epoch 40 Update 1840 Cost 14.00124740600586 L2 26608.275390625 TIME 0.14357995986938477
+2020-12-26 21:52:01,316: mains: DEBUG: Epoch  40
+2020-12-26 21:52:01,317: mains: DEBUG: Valid cost  13.957500631159002
+2020-12-26 21:52:01,317: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 21:52:01,317: mains: DEBUG: Test cost  13.93828279321844
+2020-12-26 21:52:01,317: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:52:01,317: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:52:01,317: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:52:01,317: mains: DEBUG: Training accuracy:  0.6211678832116788
+2020-12-26 21:52:01,317: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:52:04,696: mains: DEBUG: Epoch 41 Update 1860 Cost 13.737253189086914 L2 26333.5859375 TIME 0.23604631423950195
+2020-12-26 21:52:13,441: mains: DEBUG: Epoch 41 Update 1880 Cost 13.580971717834473 L2 26003.23046875 TIME 0.2151355743408203
+2020-12-26 21:52:21,578: mains: DEBUG: Epoch  41
+2020-12-26 21:52:21,579: mains: DEBUG: Valid cost  13.616298588839443
+2020-12-26 21:52:21,579: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 21:52:21,579: mains: DEBUG: Test cost  13.598274404352361
+2020-12-26 21:52:21,579: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:52:21,579: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:52:21,579: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:52:21,579: mains: DEBUG: Training accuracy:  0.6182481751824818
+2020-12-26 21:52:21,579: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:52:23,782: mains: DEBUG: Epoch 42 Update 1900 Cost 13.476335525512695 L2 25712.359375 TIME 0.11029982566833496
+2020-12-26 21:52:30,606: mains: DEBUG: Epoch 42 Update 1920 Cost 13.383837699890137 L2 25445.30859375 TIME 0.6049313545227051
+2020-12-26 21:52:41,943: mains: DEBUG: Epoch  42
+2020-12-26 21:52:41,943: mains: DEBUG: Valid cost  13.350689627907492
+2020-12-26 21:52:41,944: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:52:41,944: mains: DEBUG: Test cost  13.323972528631037
+2020-12-26 21:52:41,944: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:52:41,944: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:52:41,944: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:52:41,944: mains: DEBUG: Training accuracy:  0.6160583941605839
+2020-12-26 21:52:41,944: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:52:43,419: mains: DEBUG: Epoch 43 Update 1940 Cost 13.23044204711914 L2 25218.384765625 TIME 0.3760566711425781
+2020-12-26 21:52:48,773: mains: DEBUG: Epoch 43 Update 1960 Cost 13.153631210327148 L2 24971.548828125 TIME 0.566033124923706
+2020-12-26 21:52:58,943: mains: DEBUG: Epoch 43 Update 1980 Cost 12.989344596862793 L2 24705.66796875 TIME 0.18030548095703125
+2020-12-26 21:53:02,562: mains: DEBUG: Epoch  43
+2020-12-26 21:53:02,563: mains: DEBUG: Valid cost  13.053496620871805
+2020-12-26 21:53:02,563: mains: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-26 21:53:02,563: mains: DEBUG: Test cost  13.0379770452326
+2020-12-26 21:53:02,563: mains: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 21:53:02,563: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:53:02,564: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:53:02,564: mains: DEBUG: Training accuracy:  0.6021897810218978
+2020-12-26 21:53:02,564: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:53:07,531: mains: DEBUG: Epoch 44 Update 2000 Cost 12.882862091064453 L2 24496.59765625 TIME 0.13207340240478516
+2020-12-26 21:53:16,982: mains: DEBUG: Epoch 44 Update 2020 Cost 12.853950500488281 L2 24259.109375 TIME 0.3827800750732422
+2020-12-26 21:53:23,887: mains: DEBUG: Epoch  44
+2020-12-26 21:53:23,888: mains: DEBUG: Valid cost  12.786957827481357
+2020-12-26 21:53:23,888: mains: DEBUG: Valid accuracy  0.5738636363636364
+2020-12-26 21:53:23,888: mains: DEBUG: Test cost  12.766756144436924
+2020-12-26 21:53:23,889: mains: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 21:53:23,889: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:53:23,889: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:53:23,889: mains: DEBUG: Training accuracy:  0.6138686131386861
+2020-12-26 21:53:23,889: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:53:26,967: mains: DEBUG: Epoch 45 Update 2040 Cost 12.59724235534668 L2 23972.57421875 TIME 0.11113572120666504
+2020-12-26 21:53:36,251: mains: DEBUG: Epoch 45 Update 2060 Cost 12.546935081481934 L2 23763.427734375 TIME 0.6783945560455322
+2020-12-26 21:53:44,747: mains: DEBUG: Epoch  45
+2020-12-26 21:53:44,748: mains: DEBUG: Valid cost  12.543015826832164
+2020-12-26 21:53:44,749: mains: DEBUG: Valid accuracy  0.5056818181818182
+2020-12-26 21:53:44,749: mains: DEBUG: Test cost  12.529759927229447
+2020-12-26 21:53:44,749: mains: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 21:53:44,749: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:53:44,749: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:53:44,749: mains: DEBUG: Training accuracy:  0.6197080291970803
+2020-12-26 21:53:44,750: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:53:47,169: mains: DEBUG: Epoch 46 Update 2080 Cost 12.408084869384766 L2 23583.537109375 TIME 0.16372442245483398
+2020-12-26 21:53:52,365: mains: DEBUG: Epoch 46 Update 2100 Cost 12.365943908691406 L2 23400.73046875 TIME 0.4592132568359375
+2020-12-26 21:54:03,871: mains: DEBUG: Epoch  46
+2020-12-26 21:54:03,872: mains: DEBUG: Valid cost  12.34659229625355
+2020-12-26 21:54:03,872: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 21:54:03,872: mains: DEBUG: Test cost  12.320675416426225
+2020-12-26 21:54:03,872: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:54:03,872: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:54:03,873: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:54:03,873: mains: DEBUG: Training accuracy:  0.6255474452554745
+2020-12-26 21:54:03,873: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:54:05,186: mains: DEBUG: Epoch 47 Update 2120 Cost 12.139366149902344 L2 23195.87109375 TIME 0.1396787166595459
+2020-12-26 21:54:10,709: mains: DEBUG: Epoch 47 Update 2140 Cost 12.171440124511719 L2 22992.078125 TIME 0.12698793411254883
+2020-12-26 21:54:19,835: mains: DEBUG: Epoch 47 Update 2160 Cost 12.24326229095459 L2 22803.302734375 TIME 0.17654037475585938
+2020-12-26 21:54:23,673: mains: DEBUG: Epoch  47
+2020-12-26 21:54:23,674: mains: DEBUG: Valid cost  12.107345841147684
+2020-12-26 21:54:23,674: mains: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 21:54:23,674: mains: DEBUG: Test cost  12.101020986383611
+2020-12-26 21:54:23,674: mains: DEBUG: Test accuracy  0.5227272727272727
+2020-12-26 21:54:23,674: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:54:23,674: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:54:23,674: mains: DEBUG: Training accuracy:  0.6452554744525547
+2020-12-26 21:54:23,674: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:54:28,063: mains: DEBUG: Epoch 48 Update 2180 Cost 12.159842491149902 L2 22603.251953125 TIME 0.10205459594726562
+2020-12-26 21:54:37,306: mains: DEBUG: Epoch 48 Update 2200 Cost 11.833786010742188 L2 22447.99609375 TIME 0.13983511924743652
+2020-12-26 21:54:44,030: mains: DEBUG: Epoch  48
+2020-12-26 21:54:44,031: mains: DEBUG: Valid cost  11.918942364779385
+2020-12-26 21:54:44,031: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 21:54:44,031: mains: DEBUG: Test cost  11.893695831298828
+2020-12-26 21:54:44,031: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:54:44,031: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:54:44,031: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:54:44,031: mains: DEBUG: Training accuracy:  0.6401459854014598
+2020-12-26 21:54:44,031: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:54:47,904: mains: DEBUG: Epoch 49 Update 2220 Cost 11.71780014038086 L2 22230.09375 TIME 0.23444509506225586
+2020-12-26 21:54:55,407: mains: DEBUG: Epoch 49 Update 2240 Cost 11.670770645141602 L2 22009.9765625 TIME 0.22881031036376953
+2020-12-26 21:55:04,023: mains: DEBUG: Epoch  49
+2020-12-26 21:55:04,024: mains: DEBUG: Valid cost  11.665141712535512
+2020-12-26 21:55:04,024: mains: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-26 21:55:04,024: mains: DEBUG: Test cost  11.672751426696777
+2020-12-26 21:55:04,024: mains: DEBUG: Test accuracy  0.4431818181818182
+2020-12-26 21:55:04,024: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:55:04,024: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:55:04,024: mains: DEBUG: Training accuracy:  0.6474452554744525
+2020-12-26 21:55:04,024: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:55:06,444: mains: DEBUG: Epoch 50 Update 2260 Cost 11.611343383789062 L2 21798.09765625 TIME 0.26425743103027344
+2020-12-26 21:55:14,491: mains: DEBUG: Epoch 50 Update 2280 Cost 11.41729736328125 L2 21589.6328125 TIME 0.5300929546356201
+2020-12-26 21:55:24,368: mains: DEBUG: Epoch  50
+2020-12-26 21:55:24,369: mains: DEBUG: Valid cost  11.42835504358465
+2020-12-26 21:55:24,369: mains: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 21:55:24,369: mains: DEBUG: Test cost  11.420262683521617
+2020-12-26 21:55:24,369: mains: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 21:55:24,370: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:55:24,370: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:55:24,370: mains: DEBUG: Training accuracy:  0.6437956204379562
+2020-12-26 21:55:24,370: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:55:25,779: mains: DEBUG: Epoch 51 Update 2300 Cost 11.24521541595459 L2 21406.796875 TIME 0.21518349647521973
+2020-12-26 21:55:30,982: mains: DEBUG: Epoch 51 Update 2320 Cost 11.427799224853516 L2 21234.34375 TIME 0.15297913551330566
+2020-12-26 21:55:40,688: mains: DEBUG: Epoch 51 Update 2340 Cost 11.230915069580078 L2 21065.814453125 TIME 0.19423151016235352
+2020-12-26 21:55:44,418: mains: DEBUG: Epoch  51
+2020-12-26 21:55:44,418: mains: DEBUG: Valid cost  11.239973241632635
+2020-12-26 21:55:44,419: mains: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-26 21:55:44,419: mains: DEBUG: Test cost  11.234884955666281
+2020-12-26 21:55:44,419: mains: DEBUG: Test accuracy  0.5397727272727273
+2020-12-26 21:55:44,419: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:55:44,419: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:55:44,419: mains: DEBUG: Training accuracy:  0.6503649635036496
+2020-12-26 21:55:44,419: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:55:49,012: mains: DEBUG: Epoch 52 Update 2360 Cost 11.5119047164917 L2 20923.912109375 TIME 0.1026763916015625
+2020-12-26 21:55:57,621: mains: DEBUG: Epoch 52 Update 2380 Cost 11.185403823852539 L2 20791.3671875 TIME 0.16090655326843262
+2020-12-26 21:56:04,344: mains: DEBUG: Epoch  52
+2020-12-26 21:56:04,344: mains: DEBUG: Valid cost  11.09493619745428
+2020-12-26 21:56:04,344: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 21:56:04,344: mains: DEBUG: Test cost  11.076744773171164
+2020-12-26 21:56:04,345: mains: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 21:56:04,345: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:56:04,345: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:56:04,345: mains: DEBUG: Training accuracy:  0.656934306569343
+2020-12-26 21:56:04,345: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:56:08,026: mains: DEBUG: Epoch 53 Update 2400 Cost 10.851826667785645 L2 20625.115234375 TIME 0.15034818649291992
+2020-12-26 21:56:15,028: mains: DEBUG: Epoch 53 Update 2420 Cost 10.928504943847656 L2 20509.318359375 TIME 0.6751124858856201
+2020-12-26 21:56:24,540: mains: DEBUG: Epoch  53
+2020-12-26 21:56:24,541: mains: DEBUG: Valid cost  10.942394429987127
+2020-12-26 21:56:24,541: mains: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 21:56:24,541: mains: DEBUG: Test cost  10.945826010270553
+2020-12-26 21:56:24,541: mains: DEBUG: Test accuracy  0.4602272727272727
+2020-12-26 21:56:24,541: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:56:24,541: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:56:24,541: mains: DEBUG: Training accuracy:  0.6671532846715329
+2020-12-26 21:56:24,541: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:56:26,883: mains: DEBUG: Epoch 54 Update 2440 Cost 10.759170532226562 L2 20372.068359375 TIME 0.11241579055786133
+2020-12-26 21:56:32,616: mains: DEBUG: Epoch 54 Update 2460 Cost 10.943628311157227 L2 20238.21484375 TIME 0.13894391059875488
+2020-12-26 21:56:44,131: mains: DEBUG: Epoch  54
+2020-12-26 21:56:44,132: mains: DEBUG: Valid cost  10.797508066350764
+2020-12-26 21:56:44,132: mains: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 21:56:44,132: mains: DEBUG: Test cost  10.796551617709072
+2020-12-26 21:56:44,132: mains: DEBUG: Test accuracy  0.4602272727272727
+2020-12-26 21:56:44,132: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:56:44,132: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:56:44,132: mains: DEBUG: Training accuracy:  0.6605839416058394
+2020-12-26 21:56:44,132: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:56:45,339: mains: DEBUG: Epoch 55 Update 2480 Cost 10.529497146606445 L2 20114.716796875 TIME 0.19306659698486328
+2020-12-26 21:56:50,698: mains: DEBUG: Epoch 55 Update 2500 Cost 10.626277923583984 L2 19979.935546875 TIME 0.20762157440185547
+2020-12-26 21:57:00,547: mains: DEBUG: Epoch 55 Update 2520 Cost 10.597026824951172 L2 19816.65625 TIME 0.21165013313293457
+2020-12-26 21:57:04,135: mains: DEBUG: Epoch  55
+2020-12-26 21:57:04,136: mains: DEBUG: Valid cost  10.635890440507369
+2020-12-26 21:57:04,136: mains: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-26 21:57:04,136: mains: DEBUG: Test cost  10.622687253085049
+2020-12-26 21:57:04,136: mains: DEBUG: Test accuracy  0.5568181818181818
+2020-12-26 21:57:04,136: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:57:04,136: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:57:04,136: mains: DEBUG: Training accuracy:  0.6737226277372262
+2020-12-26 21:57:04,136: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:57:08,513: mains: DEBUG: Epoch 56 Update 2540 Cost 10.524744987487793 L2 19665.89453125 TIME 0.09349489212036133
+2020-12-26 21:57:17,507: mains: DEBUG: Epoch 56 Update 2560 Cost 10.458651542663574 L2 19549.03125 TIME 0.1478254795074463
+2020-12-26 21:57:23,772: mains: DEBUG: Epoch  56
+2020-12-26 21:57:23,773: mains: DEBUG: Valid cost  10.49533410505815
+2020-12-26 21:57:23,773: mains: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 21:57:23,773: mains: DEBUG: Test cost  10.486405546014959
+2020-12-26 21:57:23,773: mains: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 21:57:23,773: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:57:23,774: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:57:23,774: mains: DEBUG: Training accuracy:  0.691970802919708
+2020-12-26 21:57:23,774: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:57:27,128: mains: DEBUG: Epoch 57 Update 2580 Cost 10.262499809265137 L2 19433.990234375 TIME 0.3986473083496094
+2020-12-26 21:57:33,966: mains: DEBUG: Epoch 57 Update 2600 Cost 10.382596015930176 L2 19334.607421875 TIME 0.5959782600402832
+2020-12-26 21:57:43,141: mains: DEBUG: Epoch  57
+2020-12-26 21:57:43,141: mains: DEBUG: Valid cost  10.388117790222168
+2020-12-26 21:57:43,141: mains: DEBUG: Valid accuracy  0.4375
+2020-12-26 21:57:43,141: mains: DEBUG: Test cost  10.375749761408025
+2020-12-26 21:57:43,141: mains: DEBUG: Test accuracy  0.5454545454545454
+2020-12-26 21:57:43,141: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:57:43,142: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:57:43,142: mains: DEBUG: Training accuracy:  0.6948905109489051
+2020-12-26 21:57:43,142: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:57:45,337: mains: DEBUG: Epoch 58 Update 2620 Cost 10.28944206237793 L2 19220.05078125 TIME 0.2738218307495117
+2020-12-26 21:57:51,208: mains: DEBUG: Epoch 58 Update 2640 Cost 10.062744140625 L2 19088.71875 TIME 0.15285897254943848
+2020-12-26 21:58:01,775: mains: DEBUG: Epoch  58
+2020-12-26 21:58:01,776: mains: DEBUG: Valid cost  10.254458860917525
+2020-12-26 21:58:01,776: mains: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-26 21:58:01,776: mains: DEBUG: Test cost  10.236550417813389
+2020-12-26 21:58:01,776: mains: DEBUG: Test accuracy  0.5340909090909091
+2020-12-26 21:58:01,776: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:58:01,776: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:58:01,776: mains: DEBUG: Training accuracy:  0.6912408759124088
+2020-12-26 21:58:01,777: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:58:03,093: mains: DEBUG: Epoch 59 Update 2660 Cost 10.011134147644043 L2 18997.501953125 TIME 0.11420249938964844
+2020-12-26 21:58:09,062: mains: DEBUG: Epoch 59 Update 2680 Cost 10.052465438842773 L2 18860.251953125 TIME 0.47263002395629883
+2020-12-26 21:58:18,630: mains: DEBUG: Epoch 59 Update 2700 Cost 9.885842323303223 L2 18734.732421875 TIME 0.2226572036743164
+2020-12-26 21:58:22,229: mains: DEBUG: Epoch  59
+2020-12-26 21:58:22,230: mains: DEBUG: Valid cost  10.120243852788752
+2020-12-26 21:58:22,230: mains: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-26 21:58:22,230: mains: DEBUG: Test cost  10.102094563570889
+2020-12-26 21:58:22,230: mains: DEBUG: Test accuracy  0.5397727272727273
+2020-12-26 21:58:22,230: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:58:22,230: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:58:22,230: mains: DEBUG: Training accuracy:  0.6956204379562044
+2020-12-26 21:58:22,230: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:58:26,605: mains: DEBUG: Epoch 60 Update 2720 Cost 9.496167182922363 L2 18599.7734375 TIME 0.11511707305908203
+2020-12-26 21:58:34,595: mains: DEBUG: Epoch 60 Update 2740 Cost 9.835397720336914 L2 18513.701171875 TIME 0.3541126251220703
+2020-12-26 21:58:41,149: mains: DEBUG: Epoch  60
+2020-12-26 21:58:41,150: mains: DEBUG: Valid cost  10.065871845592152
+2020-12-26 21:58:41,150: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 21:58:41,150: mains: DEBUG: Test cost  10.045581644231623
+2020-12-26 21:58:41,150: mains: DEBUG: Test accuracy  0.5568181818181818
+2020-12-26 21:58:41,150: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:58:41,150: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:58:41,151: mains: DEBUG: Training accuracy:  0.6875912408759124
+2020-12-26 21:58:41,151: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:58:44,094: mains: DEBUG: Epoch 61 Update 2760 Cost 9.711454391479492 L2 18394.58203125 TIME 0.14906644821166992
+2020-12-26 21:58:51,680: mains: DEBUG: Epoch 61 Update 2780 Cost 9.985342025756836 L2 18308.87890625 TIME 0.5979645252227783
+2020-12-26 21:59:00,671: mains: DEBUG: Epoch  61
+2020-12-26 21:59:00,672: mains: DEBUG: Valid cost  9.927563233809037
+2020-12-26 21:59:00,672: mains: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 21:59:00,672: mains: DEBUG: Test cost  9.905147465792568
+2020-12-26 21:59:00,672: mains: DEBUG: Test accuracy  0.5340909090909091
+2020-12-26 21:59:00,672: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:59:00,673: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:59:00,673: mains: DEBUG: Training accuracy:  0.7
+2020-12-26 21:59:00,673: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:59:03,115: mains: DEBUG: Epoch 62 Update 2800 Cost 9.661796569824219 L2 18188.263671875 TIME 0.19557976722717285
+2020-12-26 21:59:09,235: mains: DEBUG: Epoch 62 Update 2820 Cost 9.735620498657227 L2 18087.552734375 TIME 0.18477821350097656
+2020-12-26 21:59:20,424: mains: DEBUG: Epoch  62
+2020-12-26 21:59:20,424: mains: DEBUG: Valid cost  9.924864162098277
+2020-12-26 21:59:20,424: mains: DEBUG: Valid accuracy  0.5625
+2020-12-26 21:59:20,424: mains: DEBUG: Test cost  9.896954102949662
+2020-12-26 21:59:20,424: mains: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 21:59:20,424: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:59:20,424: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:59:20,424: mains: DEBUG: Training accuracy:  0.7175182481751825
+2020-12-26 21:59:20,424: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:59:21,709: mains: DEBUG: Epoch 63 Update 2840 Cost 9.580774307250977 L2 17977.2109375 TIME 0.28458642959594727
+2020-12-26 21:59:26,655: mains: DEBUG: Epoch 63 Update 2860 Cost 9.571292877197266 L2 17825.94921875 TIME 0.6319661140441895
+2020-12-26 21:59:36,726: mains: DEBUG: Epoch 63 Update 2880 Cost 9.459675788879395 L2 17716.5234375 TIME 0.20126652717590332
+2020-12-26 21:59:40,342: mains: DEBUG: Epoch  63
+2020-12-26 21:59:40,343: mains: DEBUG: Valid cost  9.689776333895596
+2020-12-26 21:59:40,343: mains: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 21:59:40,343: mains: DEBUG: Test cost  9.69343731620095
+2020-12-26 21:59:40,343: mains: DEBUG: Test accuracy  0.5056818181818182
+2020-12-26 21:59:40,343: mains: DEBUG: learning_rate:  0.5
+2020-12-26 21:59:40,344: mains: DEBUG: Seen samples:  1370
+2020-12-26 21:59:40,344: mains: DEBUG: Training accuracy:  0.7394160583941606
+2020-12-26 21:59:40,344: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 21:59:44,898: mains: DEBUG: Epoch 64 Update 2900 Cost 9.279691696166992 L2 17591.060546875 TIME 0.11702704429626465
+2020-12-26 21:59:54,090: mains: DEBUG: Epoch 64 Update 2920 Cost 9.134533882141113 L2 17495.4375 TIME 0.36094117164611816
+2020-12-26 22:00:00,575: mains: DEBUG: Epoch  64
+2020-12-26 22:00:00,576: mains: DEBUG: Valid cost  9.532240694219416
+2020-12-26 22:00:00,576: mains: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-26 22:00:00,576: mains: DEBUG: Test cost  9.511609597639604
+2020-12-26 22:00:00,576: mains: DEBUG: Test accuracy  0.5227272727272727
+2020-12-26 22:00:00,577: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:00:00,577: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:00:00,577: mains: DEBUG: Training accuracy:  0.724087591240876
+2020-12-26 22:00:00,577: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:00:03,943: mains: DEBUG: Epoch 65 Update 2940 Cost 9.357975006103516 L2 17391.158203125 TIME 0.21075701713562012
+2020-12-26 22:00:10,864: mains: DEBUG: Epoch 65 Update 2960 Cost 9.22437858581543 L2 17277.087890625 TIME 0.2024235725402832
+2020-12-26 22:00:19,606: mains: DEBUG: Epoch  65
+2020-12-26 22:00:19,606: mains: DEBUG: Valid cost  9.510484955527566
+2020-12-26 22:00:19,606: mains: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 22:00:19,607: mains: DEBUG: Test cost  9.483327865600586
+2020-12-26 22:00:19,607: mains: DEBUG: Test accuracy  0.5625
+2020-12-26 22:00:19,607: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:00:19,607: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:00:19,607: mains: DEBUG: Training accuracy:  0.7291970802919708
+2020-12-26 22:00:19,607: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:00:21,957: mains: DEBUG: Epoch 66 Update 2980 Cost 9.1538724899292 L2 17201.0859375 TIME 0.2171940803527832
+2020-12-26 22:00:27,582: mains: DEBUG: Epoch 66 Update 3000 Cost 9.150842666625977 L2 17101.806640625 TIME 0.1811811923980713
+2020-12-26 22:00:39,828: mains: DEBUG: Epoch  66
+2020-12-26 22:00:39,829: mains: DEBUG: Valid cost  9.323721972378818
+2020-12-26 22:00:39,829: mains: DEBUG: Valid accuracy  0.4772727272727273
+2020-12-26 22:00:39,829: mains: DEBUG: Test cost  9.299916180697354
+2020-12-26 22:00:39,830: mains: DEBUG: Test accuracy  0.5227272727272727
+2020-12-26 22:00:39,830: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:00:39,830: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:00:39,830: mains: DEBUG: Training accuracy:  0.7299270072992701
+2020-12-26 22:00:39,830: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:00:41,251: mains: DEBUG: Epoch 67 Update 3020 Cost 9.081303596496582 L2 16996.244140625 TIME 0.22205758094787598
+2020-12-26 22:00:45,846: mains: DEBUG: Epoch 67 Update 3040 Cost 8.998625755310059 L2 16876.986328125 TIME 0.5286335945129395
+2020-12-26 22:00:56,016: mains: DEBUG: Epoch 67 Update 3060 Cost 9.041884422302246 L2 16804.546875 TIME 0.17112445831298828
+2020-12-26 22:00:59,664: mains: DEBUG: Epoch  67
+2020-12-26 22:00:59,665: mains: DEBUG: Valid cost  9.257474639198996
+2020-12-26 22:00:59,665: mains: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-26 22:00:59,665: mains: DEBUG: Test cost  9.253411293029785
+2020-12-26 22:00:59,665: mains: DEBUG: Test accuracy  0.5170454545454546
+2020-12-26 22:00:59,665: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:00:59,665: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:00:59,665: mains: DEBUG: Training accuracy:  0.7437956204379562
+2020-12-26 22:00:59,665: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:01:04,048: mains: DEBUG: Epoch 68 Update 3080 Cost 8.666202545166016 L2 16674.37890625 TIME 0.11421871185302734
+2020-12-26 22:01:13,028: mains: DEBUG: Epoch 68 Update 3100 Cost 8.679022789001465 L2 16605.88671875 TIME 0.1349477767944336
+2020-12-26 22:01:19,511: mains: DEBUG: Epoch  68
+2020-12-26 22:01:19,512: mains: DEBUG: Valid cost  9.136027509515936
+2020-12-26 22:01:19,512: mains: DEBUG: Valid accuracy  0.42045454545454547
+2020-12-26 22:01:19,512: mains: DEBUG: Test cost  9.128267808393998
+2020-12-26 22:01:19,512: mains: DEBUG: Test accuracy  0.5113636363636364
+2020-12-26 22:01:19,513: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:01:19,513: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:01:19,513: mains: DEBUG: Training accuracy:  0.7518248175182481
+2020-12-26 22:01:19,513: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:01:23,007: mains: DEBUG: Epoch 69 Update 3120 Cost 8.711349487304688 L2 16484.1796875 TIME 0.25626230239868164
+2020-12-26 22:01:30,264: mains: DEBUG: Epoch 69 Update 3140 Cost 8.816595077514648 L2 16422.75390625 TIME 0.8254051208496094
+2020-12-26 22:01:38,460: mains: DEBUG: Epoch  69
+2020-12-26 22:01:38,461: mains: DEBUG: Valid cost  9.03915786743164
+2020-12-26 22:01:38,461: mains: DEBUG: Valid accuracy  0.5
+2020-12-26 22:01:38,461: mains: DEBUG: Test cost  9.016764640808105
+2020-12-26 22:01:38,462: mains: DEBUG: Test accuracy  0.5284090909090909
+2020-12-26 22:01:38,462: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:01:38,462: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:01:38,462: mains: DEBUG: Training accuracy:  0.7627737226277372
+2020-12-26 22:01:38,462: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:01:40,843: mains: DEBUG: Epoch 70 Update 3160 Cost 8.716885566711426 L2 16334.7607421875 TIME 0.18359971046447754
+2020-12-26 22:01:47,764: mains: DEBUG: Epoch 70 Update 3180 Cost 8.647252082824707 L2 16251.3291015625 TIME 0.6138558387756348
+2020-12-26 22:01:58,883: mains: DEBUG: Epoch  70
+2020-12-26 22:01:58,884: mains: DEBUG: Valid cost  8.935077840631658
+2020-12-26 22:01:58,884: mains: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 22:01:58,884: mains: DEBUG: Test cost  8.921368859030984
+2020-12-26 22:01:58,884: mains: DEBUG: Test accuracy  0.5056818181818182
+2020-12-26 22:01:58,885: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:01:58,885: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:01:58,885: mains: DEBUG: Training accuracy:  0.7437956204379562
+2020-12-26 22:01:58,885: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:02:00,199: mains: DEBUG: Epoch 71 Update 3200 Cost 8.847465515136719 L2 16179.029296875 TIME 0.2226114273071289
+2020-12-26 22:02:05,999: mains: DEBUG: Epoch 71 Update 3220 Cost 8.540767669677734 L2 16058.130859375 TIME 0.2170109748840332
+2020-12-26 22:02:14,634: mains: DEBUG: Epoch 71 Update 3240 Cost 8.418587684631348 L2 15985.228515625 TIME 0.1628856658935547
+2020-12-26 22:02:18,356: mains: DEBUG: Epoch  71
+2020-12-26 22:02:18,357: mains: DEBUG: Valid cost  8.900660254738547
+2020-12-26 22:02:18,357: mains: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-26 22:02:18,357: mains: DEBUG: Test cost  8.87698962471702
+2020-12-26 22:02:18,357: mains: DEBUG: Test accuracy  0.5454545454545454
+2020-12-26 22:02:18,357: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:02:18,357: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:02:18,357: mains: DEBUG: Training accuracy:  0.7700729927007299
+2020-12-26 22:02:18,358: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:02:22,709: mains: DEBUG: Epoch 72 Update 3260 Cost 8.046719551086426 L2 15884.1611328125 TIME 0.11150598526000977
+2020-12-26 22:02:31,355: mains: DEBUG: Epoch 72 Update 3280 Cost 8.502801895141602 L2 15797.8857421875 TIME 0.49442577362060547
+2020-12-26 22:02:37,759: mains: DEBUG: Epoch  72
+2020-12-26 22:02:37,760: mains: DEBUG: Valid cost  9.074025587602096
+2020-12-26 22:02:37,760: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 22:02:37,760: mains: DEBUG: Test cost  9.049408652565695
+2020-12-26 22:02:37,760: mains: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 22:02:37,760: mains: DEBUG: learning_rate:  0.5
+2020-12-26 22:02:37,760: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:02:37,761: mains: DEBUG: bad_counter:  1
+2020-12-26 22:02:37,861: mains: DEBUG: lrate change to:   0.45
+2020-12-26 22:02:37,861: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:02:37,861: mains: DEBUG: Training accuracy:  0.7781021897810219
+2020-12-26 22:02:37,861: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:02:41,494: mains: DEBUG: Epoch 73 Update 3300 Cost 8.456026077270508 L2 15701.6123046875 TIME 0.2192707061767578
+2020-12-26 22:02:48,600: mains: DEBUG: Epoch 73 Update 3320 Cost 8.40578842163086 L2 15637.0380859375 TIME 0.20627546310424805
+2020-12-26 22:02:57,567: mains: DEBUG: Epoch  73
+2020-12-26 22:02:57,568: mains: DEBUG: Valid cost  8.68995527787642
+2020-12-26 22:02:57,568: mains: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-26 22:02:57,568: mains: DEBUG: Test cost  8.688712293451482
+2020-12-26 22:02:57,568: mains: DEBUG: Test accuracy  0.5
+2020-12-26 22:02:57,568: mains: DEBUG: learning_rate:  0.45
+2020-12-26 22:02:57,568: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:02:57,568: mains: DEBUG: Training accuracy:  0.7897810218978102
+2020-12-26 22:02:57,569: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:02:59,878: mains: DEBUG: Epoch 74 Update 3340 Cost 8.408506393432617 L2 15538.41015625 TIME 0.12463712692260742
+2020-12-26 22:03:06,993: mains: DEBUG: Epoch 74 Update 3360 Cost 8.142574310302734 L2 15449.45703125 TIME 0.6165425777435303
+2020-12-26 22:03:18,445: mains: DEBUG: Epoch  74
+2020-12-26 22:03:18,446: mains: DEBUG: Valid cost  8.764803452925248
+2020-12-26 22:03:18,446: mains: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 22:03:18,446: mains: DEBUG: Test cost  8.759506572376598
+2020-12-26 22:03:18,446: mains: DEBUG: Test accuracy  0.5397727272727273
+2020-12-26 22:03:18,446: mains: DEBUG: learning_rate:  0.45
+2020-12-26 22:03:18,446: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:03:18,446: mains: DEBUG: bad_counter:  2
+2020-12-26 22:03:18,540: mains: DEBUG: lrate change to:   0.405
+2020-12-26 22:03:18,540: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:03:18,540: mains: DEBUG: Training accuracy:  0.789051094890511
+2020-12-26 22:03:18,541: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:03:19,671: mains: DEBUG: Epoch 75 Update 3380 Cost 8.091599464416504 L2 15390.7216796875 TIME 0.1472771167755127
+2020-12-26 22:03:25,530: mains: DEBUG: Epoch 75 Update 3400 Cost 8.190178871154785 L2 15310.0068359375 TIME 0.7272613048553467
+2020-12-26 22:03:34,506: mains: DEBUG: Epoch 75 Update 3420 Cost 8.044031143188477 L2 15265.6162109375 TIME 0.2079629898071289
+2020-12-26 22:03:38,116: mains: DEBUG: Epoch  75
+2020-12-26 22:03:38,116: mains: DEBUG: Valid cost  8.609052137895064
+2020-12-26 22:03:38,116: mains: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-26 22:03:38,116: mains: DEBUG: Test cost  8.621427969499068
+2020-12-26 22:03:38,116: mains: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 22:03:38,117: mains: DEBUG: learning_rate:  0.405
+2020-12-26 22:03:38,117: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:03:38,117: mains: DEBUG: Training accuracy:  0.789051094890511
+2020-12-26 22:03:38,117: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:03:42,623: mains: DEBUG: Epoch 76 Update 3440 Cost 8.290575981140137 L2 15178.2587890625 TIME 0.11612701416015625
+2020-12-26 22:03:50,511: mains: DEBUG: Epoch 76 Update 3460 Cost 7.942968845367432 L2 15130.82421875 TIME 0.1382148265838623
+2020-12-26 22:03:57,285: mains: DEBUG: Epoch  76
+2020-12-26 22:03:57,285: mains: DEBUG: Valid cost  8.634483857588334
+2020-12-26 22:03:57,285: mains: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-26 22:03:57,286: mains: DEBUG: Test cost  8.677240285006436
+2020-12-26 22:03:57,286: mains: DEBUG: Test accuracy  0.48863636363636365
+2020-12-26 22:03:57,286: mains: DEBUG: learning_rate:  0.405
+2020-12-26 22:03:57,286: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:03:57,286: mains: DEBUG: bad_counter:  3
+2020-12-26 22:03:57,380: mains: DEBUG: lrate change to:   0.36450000000000005
+2020-12-26 22:03:57,380: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:03:57,381: mains: DEBUG: Training accuracy:  0.7978102189781022
+2020-12-26 22:03:57,381: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:04:01,010: mains: DEBUG: Epoch 77 Update 3480 Cost 8.030821800231934 L2 15073.2099609375 TIME 0.26624226570129395
+2020-12-26 22:04:09,853: mains: DEBUG: Epoch 77 Update 3500 Cost 7.8740129470825195 L2 15035.64453125 TIME 0.649747371673584
+2020-12-26 22:04:17,616: mains: DEBUG: Epoch  77
+2020-12-26 22:04:17,616: mains: DEBUG: Valid cost  8.44372489235618
+2020-12-26 22:04:17,616: mains: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-26 22:04:17,616: mains: DEBUG: Test cost  8.453704053705389
+2020-12-26 22:04:17,616: mains: DEBUG: Test accuracy  0.5170454545454546
+2020-12-26 22:04:17,616: mains: DEBUG: learning_rate:  0.36450000000000005
+2020-12-26 22:04:17,617: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:04:17,617: mains: DEBUG: Training accuracy:  0.789051094890511
+2020-12-26 22:04:17,617: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:04:20,228: mains: DEBUG: Epoch 78 Update 3520 Cost 7.768849849700928 L2 14976.4716796875 TIME 0.2056567668914795
+2020-12-26 22:04:26,541: mains: DEBUG: Epoch 78 Update 3540 Cost 7.841397285461426 L2 14925.11328125 TIME 0.589202880859375
+2020-12-26 22:04:38,223: mains: DEBUG: Epoch  78
+2020-12-26 22:04:38,224: mains: DEBUG: Valid cost  8.443978222933682
+2020-12-26 22:04:38,224: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 22:04:38,224: mains: DEBUG: Test cost  8.43341029774059
+2020-12-26 22:04:38,224: mains: DEBUG: Test accuracy  0.5397727272727273
+2020-12-26 22:04:38,224: mains: DEBUG: learning_rate:  0.36450000000000005
+2020-12-26 22:04:38,224: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:04:38,225: mains: DEBUG: bad_counter:  4
+2020-12-26 22:04:38,319: mains: DEBUG: lrate change to:   0.32805000000000006
+2020-12-26 22:04:38,319: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:04:38,319: mains: DEBUG: Training accuracy:  0.8124087591240876
+2020-12-26 22:04:38,319: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:04:39,537: mains: DEBUG: Epoch 79 Update 3560 Cost 7.745931625366211 L2 14880.0693359375 TIME 0.19701600074768066
+2020-12-26 22:04:44,584: mains: DEBUG: Epoch 79 Update 3580 Cost 7.698366165161133 L2 14808.51953125 TIME 0.26384687423706055
+2020-12-26 22:04:54,403: mains: DEBUG: Epoch 79 Update 3600 Cost 7.773904800415039 L2 14776.0498046875 TIME 0.1676321029663086
+2020-12-26 22:04:58,184: mains: DEBUG: Epoch  79
+2020-12-26 22:04:58,185: mains: DEBUG: Valid cost  8.502944946289062
+2020-12-26 22:04:58,185: mains: DEBUG: Valid accuracy  0.4772727272727273
+2020-12-26 22:04:58,185: mains: DEBUG: Test cost  8.54102238741788
+2020-12-26 22:04:58,185: mains: DEBUG: Test accuracy  0.4772727272727273
+2020-12-26 22:04:58,185: mains: DEBUG: learning_rate:  0.32805000000000006
+2020-12-26 22:04:58,185: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:04:58,185: mains: DEBUG: bad_counter:  5
+2020-12-26 22:04:58,280: mains: DEBUG: lrate change to:   0.2952450000000001
+2020-12-26 22:04:58,280: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:04:58,280: mains: DEBUG: Training accuracy:  0.8102189781021898
+2020-12-26 22:04:58,280: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:05:02,889: mains: DEBUG: Epoch 80 Update 3620 Cost 7.569547653198242 L2 14713.4150390625 TIME 0.11558127403259277
+2020-12-26 22:05:10,853: mains: DEBUG: Epoch 80 Update 3640 Cost 7.756463527679443 L2 14673.759765625 TIME 0.177384614944458
+2020-12-26 22:05:17,409: mains: DEBUG: Epoch  80
+2020-12-26 22:05:17,410: mains: DEBUG: Valid cost  8.59362775629217
+2020-12-26 22:05:17,410: mains: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-26 22:05:17,410: mains: DEBUG: Test cost  8.585239323702725
+2020-12-26 22:05:17,410: mains: DEBUG: Test accuracy  0.5568181818181818
+2020-12-26 22:05:17,410: mains: DEBUG: learning_rate:  0.2952450000000001
+2020-12-26 22:05:17,410: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:05:17,411: mains: DEBUG: bad_counter:  6
+2020-12-26 22:05:17,506: mains: DEBUG: lrate change to:   0.2657205000000001
+2020-12-26 22:05:17,507: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:05:17,507: mains: DEBUG: Training accuracy:  0.8138686131386861
+2020-12-26 22:05:17,507: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:05:21,252: mains: DEBUG: Epoch 81 Update 3660 Cost 7.638327598571777 L2 14622.119140625 TIME 0.19790077209472656
+2020-12-26 22:05:28,122: mains: DEBUG: Epoch 81 Update 3680 Cost 8.024404525756836 L2 14592.5263671875 TIME 0.6304187774658203
+2020-12-26 22:05:37,106: mains: DEBUG: Epoch  81
+2020-12-26 22:05:37,106: mains: DEBUG: Valid cost  8.33135310086337
+2020-12-26 22:05:37,106: mains: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-26 22:05:37,106: mains: DEBUG: Test cost  8.340497537092729
+2020-12-26 22:05:37,106: mains: DEBUG: Test accuracy  0.5227272727272727
+2020-12-26 22:05:37,106: mains: DEBUG: learning_rate:  0.2657205000000001
+2020-12-26 22:05:37,107: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:05:37,107: mains: DEBUG: Training accuracy:  0.8145985401459854
+2020-12-26 22:05:37,107: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:05:39,206: mains: DEBUG: Epoch 82 Update 3700 Cost 7.660539627075195 L2 14555.705078125 TIME 0.18726539611816406
+2020-12-26 22:05:46,352: mains: DEBUG: Epoch 82 Update 3720 Cost 7.72413444519043 L2 14523.6201171875 TIME 0.48043370246887207
+2020-12-26 22:05:57,645: mains: DEBUG: Epoch  82
+2020-12-26 22:05:57,646: mains: DEBUG: Valid cost  8.343938480723988
+2020-12-26 22:05:57,646: mains: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-26 22:05:57,646: mains: DEBUG: Test cost  8.363664627075195
+2020-12-26 22:05:57,646: mains: DEBUG: Test accuracy  0.5284090909090909
+2020-12-26 22:05:57,646: mains: DEBUG: learning_rate:  0.2657205000000001
+2020-12-26 22:05:57,647: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:05:57,647: mains: DEBUG: bad_counter:  7
+2020-12-26 22:05:57,742: mains: DEBUG: lrate change to:   0.23914845000000007
+2020-12-26 22:05:57,742: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:05:57,743: mains: DEBUG: Training accuracy:  0.8226277372262774
+2020-12-26 22:05:57,743: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:05:59,218: mains: DEBUG: Epoch 83 Update 3740 Cost 7.526571273803711 L2 14494.427734375 TIME 0.176497220993042
+2020-12-26 22:06:05,179: mains: DEBUG: Epoch 83 Update 3760 Cost 7.703534126281738 L2 14445.63671875 TIME 0.6048717498779297
+2020-12-26 22:06:14,881: mains: DEBUG: Epoch 83 Update 3780 Cost 7.481245040893555 L2 14411.4990234375 TIME 0.2274799346923828
+2020-12-26 22:06:18,773: mains: DEBUG: Epoch  83
+2020-12-26 22:06:18,774: mains: DEBUG: Valid cost  8.28308122808283
+2020-12-26 22:06:18,774: mains: DEBUG: Valid accuracy  0.5
+2020-12-26 22:06:18,774: mains: DEBUG: Test cost  8.309746308760209
+2020-12-26 22:06:18,774: mains: DEBUG: Test accuracy  0.5284090909090909
+2020-12-26 22:06:18,774: mains: DEBUG: learning_rate:  0.23914845000000007
+2020-12-26 22:06:18,774: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:06:18,774: mains: DEBUG: Training accuracy:  0.8328467153284671
+2020-12-26 22:06:18,775: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:06:23,471: mains: DEBUG: Epoch 84 Update 3800 Cost 7.357789516448975 L2 14371.0048828125 TIME 0.11168694496154785
+2020-12-26 22:06:32,140: mains: DEBUG: Epoch 84 Update 3820 Cost 7.820527076721191 L2 14344.3544921875 TIME 0.10466599464416504
+2020-12-26 22:06:38,877: mains: DEBUG: Epoch  84
+2020-12-26 22:06:38,878: mains: DEBUG: Valid cost  8.313290856101297
+2020-12-26 22:06:38,878: mains: DEBUG: Valid accuracy  0.4772727272727273
+2020-12-26 22:06:38,878: mains: DEBUG: Test cost  8.353554725646973
+2020-12-26 22:06:38,878: mains: DEBUG: Test accuracy  0.4772727272727273
+2020-12-26 22:06:38,878: mains: DEBUG: learning_rate:  0.23914845000000007
+2020-12-26 22:06:38,878: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:06:38,878: mains: DEBUG: bad_counter:  8
+2020-12-26 22:06:38,976: mains: DEBUG: lrate change to:   0.21523360500000008
+2020-12-26 22:06:38,976: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:06:38,976: mains: DEBUG: Training accuracy:  0.8343065693430657
+2020-12-26 22:06:38,976: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:06:42,795: mains: DEBUG: Epoch 85 Update 3840 Cost 7.392844200134277 L2 14309.490234375 TIME 0.17164349555969238
+2020-12-26 22:06:51,344: mains: DEBUG: Epoch 85 Update 3860 Cost 7.3431806564331055 L2 14280.6708984375 TIME 0.5136940479278564
+2020-12-26 22:07:00,166: mains: DEBUG: Epoch  85
+2020-12-26 22:07:00,167: mains: DEBUG: Valid cost  8.224308880892666
+2020-12-26 22:07:00,167: mains: DEBUG: Valid accuracy  0.45454545454545453
+2020-12-26 22:07:00,167: mains: DEBUG: Test cost  8.250580700961025
+2020-12-26 22:07:00,167: mains: DEBUG: Test accuracy  0.5170454545454546
+2020-12-26 22:07:00,167: mains: DEBUG: learning_rate:  0.21523360500000008
+2020-12-26 22:07:00,167: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:07:00,167: mains: DEBUG: Training accuracy:  0.8445255474452554
+2020-12-26 22:07:00,167: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:07:02,700: mains: DEBUG: Epoch 86 Update 3880 Cost 7.483818054199219 L2 14246.587890625 TIME 0.24232077598571777
+2020-12-26 22:07:08,890: mains: DEBUG: Epoch 86 Update 3900 Cost 7.412252902984619 L2 14212.921875 TIME 0.5195274353027344
+2020-12-26 22:07:20,135: mains: DEBUG: Epoch  86
+2020-12-26 22:07:20,136: mains: DEBUG: Valid cost  8.238635670055043
+2020-12-26 22:07:20,136: mains: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 22:07:20,136: mains: DEBUG: Test cost  8.262646154923873
+2020-12-26 22:07:20,137: mains: DEBUG: Test accuracy  0.5170454545454546
+2020-12-26 22:07:20,137: mains: DEBUG: learning_rate:  0.21523360500000008
+2020-12-26 22:07:20,137: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:07:20,137: mains: DEBUG: bad_counter:  9
+2020-12-26 22:07:20,233: mains: DEBUG: lrate change to:   0.19371024450000007
+2020-12-26 22:07:20,233: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:07:20,234: mains: DEBUG: Training accuracy:  0.8401459854014599
+2020-12-26 22:07:20,234: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:07:21,636: mains: DEBUG: Epoch 87 Update 3920 Cost 7.61727237701416 L2 14182.7685546875 TIME 0.21859478950500488
+2020-12-26 22:07:27,421: mains: DEBUG: Epoch 87 Update 3940 Cost 7.314444541931152 L2 14145.7119140625 TIME 0.2443828582763672
+2020-12-26 22:07:35,920: mains: DEBUG: Epoch 87 Update 3960 Cost 7.714668273925781 L2 14124.46484375 TIME 0.1781764030456543
+2020-12-26 22:07:39,598: mains: DEBUG: Epoch  87
+2020-12-26 22:07:39,599: mains: DEBUG: Valid cost  8.1644418889826
+2020-12-26 22:07:39,599: mains: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 22:07:39,599: mains: DEBUG: Test cost  8.196661689064719
+2020-12-26 22:07:39,599: mains: DEBUG: Test accuracy  0.5113636363636364
+2020-12-26 22:07:39,599: mains: DEBUG: learning_rate:  0.19371024450000007
+2020-12-26 22:07:39,599: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:07:39,599: mains: DEBUG: Training accuracy:  0.8284671532846716
+2020-12-26 22:07:39,599: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:07:43,971: mains: DEBUG: Epoch 88 Update 3980 Cost 7.300787448883057 L2 14091.900390625 TIME 0.1607503890991211
+2020-12-26 22:07:52,821: mains: DEBUG: Epoch 88 Update 4000 Cost 7.292097568511963 L2 14071.7060546875 TIME 0.13965725898742676
+2020-12-26 22:07:59,632: mains: DEBUG: Epoch  88
+2020-12-26 22:07:59,633: mains: DEBUG: Valid cost  8.185645016756924
+2020-12-26 22:07:59,633: mains: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-26 22:07:59,633: mains: DEBUG: Test cost  8.220209295099432
+2020-12-26 22:07:59,633: mains: DEBUG: Test accuracy  0.5284090909090909
+2020-12-26 22:07:59,633: mains: DEBUG: learning_rate:  0.19371024450000007
+2020-12-26 22:07:59,634: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:07:59,634: mains: DEBUG: bad_counter:  10
+2020-12-26 22:07:59,742: mains: DEBUG: lrate change to:   0.17433922005000008
+2020-12-26 22:07:59,743: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:07:59,743: mains: DEBUG: Training accuracy:  0.8416058394160584
+2020-12-26 22:07:59,743: mains: DEBUG: results/han/Saved loss_plot pickle
+2020-12-26 22:08:03,647: mains: DEBUG: Epoch 89 Update 4020 Cost 7.183780670166016 L2 14044.9521484375 TIME 0.20995092391967773
+2020-12-26 22:08:10,455: mains: DEBUG: Epoch 89 Update 4040 Cost 7.2515974044799805 L2 14022.73046875 TIME 0.4113001823425293
+2020-12-26 22:08:20,064: mains: DEBUG: Epoch  89
+2020-12-26 22:08:20,065: mains: DEBUG: Valid cost  8.239537585865367
+2020-12-26 22:08:20,065: mains: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 22:08:20,065: mains: DEBUG: Test cost  8.278691465204412
+2020-12-26 22:08:20,065: mains: DEBUG: Test accuracy  0.5227272727272727
+2020-12-26 22:08:20,065: mains: DEBUG: learning_rate:  0.17433922005000008
+2020-12-26 22:08:20,065: mains: INFO: wait_counter max, need to half the lr
+2020-12-26 22:08:20,065: mains: DEBUG: bad_counter:  11
+2020-12-26 22:08:20,173: mains: DEBUG: lrate change to:   0.15690529804500009
+2020-12-26 22:08:20,174: mains: INFO: Early Stop!
+2020-12-26 22:08:20,174: mains: DEBUG: Seen samples:  1370
+2020-12-26 22:08:20,174: mains: DEBUG: Training accuracy:  0.8372262773722627
+2020-12-26 22:08:20,174: mains: DEBUG: results/han/Saved loss_plot pickle

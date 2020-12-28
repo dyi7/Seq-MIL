@@ -1,0 +1,1580 @@
+2020-12-26 10:49:02,361: main_6: INFO: Loading knowledge base ...
+2020-12-26 10:49:02,362: main_6: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train(originalwrong).csv',
+              'price_set/train_label(original wrong).csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'keep_prob': 0.5,
+ 'last_layer': 'NN',
+ 'lrate': 0.3,
+ 'max_epochs': 300,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/s_nn2/',
+ 'saveto': './models/.npz',
+ 'test_datasets': ['news_set/test(originalwrong).csv',
+                   'price_set/test_label(original wrong).csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate(originalwrong).csv',
+                    'price_set/validate_label(original wrong).csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-12-26 10:49:02,362: main_6: INFO: Loading data
+2020-12-26 10:49:06,313: main_6: INFO: init_word_embedding
+2020-12-26 10:49:10,279: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:111: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-12-26 10:49:10,353: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:242: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-12-26 10:49:10,355: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:243: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-12-26 10:49:10,389: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:149: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-12-26 10:49:10,399: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:158: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-12-26 10:49:10,400: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-12-26 10:49:10,464: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-12-26 10:49:10,534: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148e8e53dd90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148e8e53dd90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:10,548: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-12-26 10:49:10,705: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148e8e84fc10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x148e8e84fc10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:10,742: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:123: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-12-26 10:49:10,832: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8e6aa550>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8e6aa550>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:10,931: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8e11bfd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8e11bfd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:10,988: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148e8e84fc10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148e8e84fc10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:11,098: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8d168b50>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8d168b50>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:11,116: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148e8e84fc10>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x148e8e84fc10>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:11,223: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8d9ed290>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x148e8d9ed290>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-26 10:49:11,225: main_6: INFO: Building f_cost...
+2020-12-26 10:49:11,243: main_6: INFO: Done
+2020-12-26 10:49:11,243: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:291: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-12-26 10:49:11,246: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:292: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-12-26 10:49:11,248: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:293: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-12-26 10:49:11,252: main_6: INFO: Building optimizers...
+2020-12-26 10:49:11,252: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:444: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-12-26 10:49:11,252: main_6: INFO: Done
+2020-12-26 10:49:11,252: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:447: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2020-12-26 10:49:11,985: main_6: INFO: correct_pred
+2020-12-26 10:49:11,987: main_6: INFO: Done
+2020-12-26 10:49:11,987: main_6: INFO: init variables
+2020-12-26 10:49:11,989: main_6: INFO: Done
+2020-12-26 10:49:11,989: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:474: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-12-26 10:49:12,030: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_6.py:481: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-12-26 10:49:19,316: main_6: DEBUG: Epoch 0 Update 20 Cost 56.964263916015625 L2 112536.6953125 TIME 0.11000776290893555
+2020-12-26 10:49:27,601: main_6: DEBUG: Epoch 0 Update 40 Cost 56.48671340942383 L2 111632.5234375 TIME 0.17882823944091797
+2020-12-26 10:49:33,973: main_6: DEBUG: Epoch  0
+2020-12-26 10:49:33,974: main_6: DEBUG: Valid cost  56.371279976584695
+2020-12-26 10:49:33,974: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:49:33,974: main_6: DEBUG: Test cost  56.36423700506037
+2020-12-26 10:49:33,974: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:49:33,974: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:49:33,975: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:49:33,975: main_6: DEBUG: Training accuracy:  0.49343065693430654
+2020-12-26 10:49:33,975: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:49:37,231: main_6: DEBUG: Epoch 1 Update 60 Cost 56.050140380859375 L2 110733.25 TIME 0.1930685043334961
+2020-12-26 10:49:43,918: main_6: DEBUG: Epoch 1 Update 80 Cost 55.5783576965332 L2 109817.0546875 TIME 0.1402585506439209
+2020-12-26 10:49:51,673: main_6: DEBUG: Epoch  1
+2020-12-26 10:49:51,674: main_6: DEBUG: Valid cost  55.32705653797496
+2020-12-26 10:49:51,674: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:49:51,675: main_6: DEBUG: Test cost  55.31998512961648
+2020-12-26 10:49:51,675: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:49:51,675: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:49:51,675: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:49:51,675: main_6: DEBUG: Training accuracy:  0.5065693430656935
+2020-12-26 10:49:51,675: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:49:53,532: main_6: DEBUG: Epoch 2 Update 100 Cost 55.136436462402344 L2 108862.4765625 TIME 0.1373143196105957
+2020-12-26 10:49:59,274: main_6: DEBUG: Epoch 2 Update 120 Cost 54.685420989990234 L2 107925.6015625 TIME 0.19875574111938477
+2020-12-26 10:50:09,198: main_6: DEBUG: Epoch  2
+2020-12-26 10:50:09,198: main_6: DEBUG: Valid cost  54.2425537109375
+2020-12-26 10:50:09,199: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:50:09,199: main_6: DEBUG: Test cost  54.23322296142578
+2020-12-26 10:50:09,199: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:50:09,199: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:50:09,199: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:50:09,199: main_6: DEBUG: Training accuracy:  0.49708029197080295
+2020-12-26 10:50:09,199: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:50:10,393: main_6: DEBUG: Epoch 3 Update 140 Cost 54.17382049560547 L2 106950.9375 TIME 0.19569873809814453
+2020-12-26 10:50:15,175: main_6: DEBUG: Epoch 3 Update 160 Cost 53.64979934692383 L2 106008.671875 TIME 0.17602801322937012
+2020-12-26 10:50:23,754: main_6: DEBUG: Epoch 3 Update 180 Cost 53.1220817565918 L2 104928.2421875 TIME 0.12529301643371582
+2020-12-26 10:50:26,508: main_6: DEBUG: Epoch  3
+2020-12-26 10:50:26,509: main_6: DEBUG: Valid cost  53.15015862204812
+2020-12-26 10:50:26,509: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:50:26,509: main_6: DEBUG: Test cost  53.14134493741122
+2020-12-26 10:50:26,509: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:50:26,509: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:50:26,509: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:50:26,509: main_6: DEBUG: Training accuracy:  0.5401459854014599
+2020-12-26 10:50:26,509: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:50:30,339: main_6: DEBUG: Epoch 4 Update 200 Cost 52.70680618286133 L2 104038.28125 TIME 0.10681581497192383
+2020-12-26 10:50:38,061: main_6: DEBUG: Epoch 4 Update 220 Cost 52.253517150878906 L2 103039.5859375 TIME 0.124603271484375
+2020-12-26 10:50:43,736: main_6: DEBUG: Epoch  4
+2020-12-26 10:50:43,737: main_6: DEBUG: Valid cost  52.06800356778231
+2020-12-26 10:50:43,737: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:50:43,738: main_6: DEBUG: Test cost  52.0594482421875
+2020-12-26 10:50:43,738: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:50:43,738: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:50:43,738: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:50:43,738: main_6: DEBUG: Training accuracy:  0.5343065693430656
+2020-12-26 10:50:43,738: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:50:47,069: main_6: DEBUG: Epoch 5 Update 240 Cost 51.71772003173828 L2 102090.6640625 TIME 0.18569064140319824
+2020-12-26 10:50:54,401: main_6: DEBUG: Epoch 5 Update 260 Cost 51.18479537963867 L2 101062.9140625 TIME 0.1719954013824463
+2020-12-26 10:51:01,333: main_6: DEBUG: Epoch  5
+2020-12-26 10:51:01,334: main_6: DEBUG: Valid cost  50.958525224165484
+2020-12-26 10:51:01,334: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:51:01,334: main_6: DEBUG: Test cost  50.94779829545455
+2020-12-26 10:51:01,334: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:51:01,334: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:51:01,334: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:51:01,334: main_6: DEBUG: Training accuracy:  0.5306569343065694
+2020-12-26 10:51:01,334: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:51:03,681: main_6: DEBUG: Epoch 6 Update 280 Cost 50.75181579589844 L2 100141.796875 TIME 0.22708964347839355
+2020-12-26 10:51:09,991: main_6: DEBUG: Epoch 6 Update 300 Cost 50.254600524902344 L2 99151.234375 TIME 0.22520208358764648
+2020-12-26 10:51:19,702: main_6: DEBUG: Epoch  6
+2020-12-26 10:51:19,703: main_6: DEBUG: Valid cost  49.86146857521751
+2020-12-26 10:51:19,703: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:51:19,703: main_6: DEBUG: Test cost  49.85185102982955
+2020-12-26 10:51:19,703: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:51:19,704: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:51:19,704: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:51:19,704: main_6: DEBUG: Training accuracy:  0.5343065693430656
+2020-12-26 10:51:19,704: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:51:20,981: main_6: DEBUG: Epoch 7 Update 320 Cost 49.77123260498047 L2 98139.5390625 TIME 0.1817927360534668
+2020-12-26 10:51:26,054: main_6: DEBUG: Epoch 7 Update 340 Cost 49.302364349365234 L2 97224.484375 TIME 0.5722150802612305
+2020-12-26 10:51:34,897: main_6: DEBUG: Epoch 7 Update 360 Cost 48.69072341918945 L2 96198.8828125 TIME 0.14981389045715332
+2020-12-26 10:51:37,828: main_6: DEBUG: Epoch  7
+2020-12-26 10:51:37,829: main_6: DEBUG: Valid cost  48.7860273881392
+2020-12-26 10:51:37,829: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:51:37,829: main_6: DEBUG: Test cost  48.7767299305309
+2020-12-26 10:51:37,829: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:51:37,829: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:51:37,829: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:51:37,829: main_6: DEBUG: Training accuracy:  0.5072992700729927
+2020-12-26 10:51:37,829: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:51:42,116: main_6: DEBUG: Epoch 8 Update 380 Cost 48.41958236694336 L2 95316.9140625 TIME 0.102935791015625
+2020-12-26 10:51:50,364: main_6: DEBUG: Epoch 8 Update 400 Cost 47.89052963256836 L2 94281.4375 TIME 0.10420823097229004
+2020-12-26 10:51:56,162: main_6: DEBUG: Epoch  8
+2020-12-26 10:51:56,162: main_6: DEBUG: Valid cost  47.701703158291906
+2020-12-26 10:51:56,163: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:51:56,163: main_6: DEBUG: Test cost  47.6926716891202
+2020-12-26 10:51:56,163: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:51:56,163: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:51:56,163: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:51:56,163: main_6: DEBUG: Training accuracy:  0.5335766423357664
+2020-12-26 10:51:56,163: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:51:59,707: main_6: DEBUG: Epoch 9 Update 420 Cost 47.38437271118164 L2 93393.1328125 TIME 0.23479914665222168
+2020-12-26 10:52:07,715: main_6: DEBUG: Epoch 9 Update 440 Cost 46.875099182128906 L2 92416.6796875 TIME 0.39577722549438477
+2020-12-26 10:52:13,956: main_6: DEBUG: Epoch  9
+2020-12-26 10:52:13,957: main_6: DEBUG: Valid cost  46.650881333784625
+2020-12-26 10:52:13,957: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:52:13,957: main_6: DEBUG: Test cost  46.64185471968217
+2020-12-26 10:52:13,958: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:52:13,958: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:52:13,958: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:52:13,958: main_6: DEBUG: Training accuracy:  0.527007299270073
+2020-12-26 10:52:13,958: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:52:16,383: main_6: DEBUG: Epoch 10 Update 460 Cost 46.497886657714844 L2 91472.546875 TIME 0.17136216163635254
+2020-12-26 10:52:22,576: main_6: DEBUG: Epoch 10 Update 480 Cost 45.882442474365234 L2 90444.0234375 TIME 0.11408805847167969
+2020-12-26 10:52:31,370: main_6: DEBUG: Epoch  10
+2020-12-26 10:52:31,370: main_6: DEBUG: Valid cost  45.5480922352184
+2020-12-26 10:52:31,370: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:52:31,371: main_6: DEBUG: Test cost  45.53923312100497
+2020-12-26 10:52:31,371: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:52:31,371: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:52:31,371: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:52:31,371: main_6: DEBUG: Training accuracy:  0.5328467153284672
+2020-12-26 10:52:31,371: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:52:32,714: main_6: DEBUG: Epoch 11 Update 500 Cost 45.49164962768555 L2 89534.4609375 TIME 0.15171551704406738
+2020-12-26 10:52:37,385: main_6: DEBUG: Epoch 11 Update 520 Cost 44.982337951660156 L2 88626.6328125 TIME 0.1664721965789795
+2020-12-26 10:52:46,400: main_6: DEBUG: Epoch 11 Update 540 Cost 44.36268997192383 L2 87550.703125 TIME 0.15069341659545898
+2020-12-26 10:52:49,385: main_6: DEBUG: Epoch  11
+2020-12-26 10:52:49,386: main_6: DEBUG: Valid cost  44.462982177734375
+2020-12-26 10:52:49,386: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:52:49,386: main_6: DEBUG: Test cost  44.452313509854406
+2020-12-26 10:52:49,386: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:52:49,386: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:52:49,386: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:52:49,387: main_6: DEBUG: Training accuracy:  0.5416058394160584
+2020-12-26 10:52:49,387: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:52:53,496: main_6: DEBUG: Epoch 12 Update 560 Cost 44.08600997924805 L2 86670.203125 TIME 0.15658187866210938
+2020-12-26 10:53:01,995: main_6: DEBUG: Epoch 12 Update 580 Cost 43.55259704589844 L2 85761.5546875 TIME 0.3141329288482666
+2020-12-26 10:53:07,820: main_6: DEBUG: Epoch  12
+2020-12-26 10:53:07,821: main_6: DEBUG: Valid cost  43.425777435302734
+2020-12-26 10:53:07,821: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:53:07,822: main_6: DEBUG: Test cost  43.416040593927555
+2020-12-26 10:53:07,822: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:53:07,822: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:53:07,822: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:53:07,822: main_6: DEBUG: Training accuracy:  0.5248175182481751
+2020-12-26 10:53:07,822: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:53:11,077: main_6: DEBUG: Epoch 13 Update 600 Cost 43.093116760253906 L2 84829.1015625 TIME 0.20836400985717773
+2020-12-26 10:53:17,692: main_6: DEBUG: Epoch 13 Update 620 Cost 42.6610107421875 L2 83946.0859375 TIME 0.2055044174194336
+2020-12-26 10:53:25,818: main_6: DEBUG: Epoch  13
+2020-12-26 10:53:25,819: main_6: DEBUG: Valid cost  42.3829512162642
+2020-12-26 10:53:25,819: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:53:25,819: main_6: DEBUG: Test cost  42.373070456764914
+2020-12-26 10:53:25,819: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:53:25,819: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:53:25,820: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:53:25,820: main_6: DEBUG: Training accuracy:  0.5335766423357664
+2020-12-26 10:53:25,820: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:53:27,902: main_6: DEBUG: Epoch 14 Update 640 Cost 42.176597595214844 L2 82999.7109375 TIME 0.13916850090026855
+2020-12-26 10:53:34,106: main_6: DEBUG: Epoch 14 Update 660 Cost 41.710289001464844 L2 82082.3203125 TIME 0.7774569988250732
+2020-12-26 10:53:43,956: main_6: DEBUG: Epoch  14
+2020-12-26 10:53:43,956: main_6: DEBUG: Valid cost  41.368708523837
+2020-12-26 10:53:43,957: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:53:43,957: main_6: DEBUG: Test cost  41.360123027454726
+2020-12-26 10:53:43,957: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:53:43,957: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:53:43,957: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:53:43,957: main_6: DEBUG: Training accuracy:  0.5364963503649635
+2020-12-26 10:53:43,957: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:53:45,377: main_6: DEBUG: Epoch 15 Update 680 Cost 41.238243103027344 L2 81139.4296875 TIME 0.17844486236572266
+2020-12-26 10:53:50,458: main_6: DEBUG: Epoch 15 Update 700 Cost 40.802734375 L2 80239.734375 TIME 0.4680492877960205
+2020-12-26 10:53:58,322: main_6: DEBUG: Epoch 15 Update 720 Cost 40.41451644897461 L2 79288.53125 TIME 0.18396520614624023
+2020-12-26 10:54:00,993: main_6: DEBUG: Epoch  15
+2020-12-26 10:54:00,994: main_6: DEBUG: Valid cost  40.331757978959516
+2020-12-26 10:54:00,994: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:54:00,994: main_6: DEBUG: Test cost  40.322634263472125
+2020-12-26 10:54:00,994: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:54:00,994: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:54:00,994: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:54:00,994: main_6: DEBUG: Training accuracy:  0.5328467153284672
+2020-12-26 10:54:00,994: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:54:05,274: main_6: DEBUG: Epoch 16 Update 740 Cost 39.7767448425293 L2 78411.578125 TIME 0.07990312576293945
+2020-12-26 10:54:13,231: main_6: DEBUG: Epoch 16 Update 760 Cost 39.41304397583008 L2 77488.9375 TIME 0.12698578834533691
+2020-12-26 10:54:18,776: main_6: DEBUG: Epoch  16
+2020-12-26 10:54:18,776: main_6: DEBUG: Valid cost  39.306060791015625
+2020-12-26 10:54:18,776: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:54:18,777: main_6: DEBUG: Test cost  39.29651711203835
+2020-12-26 10:54:18,777: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:54:18,777: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:54:18,777: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:54:18,777: main_6: DEBUG: Training accuracy:  0.5474452554744526
+2020-12-26 10:54:18,777: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:54:22,208: main_6: DEBUG: Epoch 17 Update 780 Cost 38.997406005859375 L2 76660.5703125 TIME 0.2163865566253662
+2020-12-26 10:54:29,407: main_6: DEBUG: Epoch 17 Update 800 Cost 38.58256530761719 L2 75787.9609375 TIME 0.2809317111968994
+2020-12-26 10:54:37,282: main_6: DEBUG: Epoch  17
+2020-12-26 10:54:37,283: main_6: DEBUG: Valid cost  38.33358487215909
+2020-12-26 10:54:37,283: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:54:37,283: main_6: DEBUG: Test cost  38.32353349165483
+2020-12-26 10:54:37,283: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:54:37,283: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:54:37,284: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:54:37,284: main_6: DEBUG: Training accuracy:  0.5321167883211679
+2020-12-26 10:54:37,284: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:54:39,862: main_6: DEBUG: Epoch 18 Update 820 Cost 38.19245910644531 L2 74931.953125 TIME 0.17133879661560059
+2020-12-26 10:54:46,239: main_6: DEBUG: Epoch 18 Update 840 Cost 37.689666748046875 L2 74016.03125 TIME 0.4947018623352051
+2020-12-26 10:54:55,416: main_6: DEBUG: Epoch  18
+2020-12-26 10:54:55,417: main_6: DEBUG: Valid cost  37.37007383866744
+2020-12-26 10:54:55,417: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:54:55,417: main_6: DEBUG: Test cost  37.36103335293856
+2020-12-26 10:54:55,417: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:54:55,417: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:54:55,417: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:54:55,417: main_6: DEBUG: Training accuracy:  0.5401459854014599
+2020-12-26 10:54:55,417: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:54:56,492: main_6: DEBUG: Epoch 19 Update 860 Cost 37.299705505371094 L2 73174.1015625 TIME 0.10165190696716309
+2020-12-26 10:55:01,190: main_6: DEBUG: Epoch 19 Update 880 Cost 36.898338317871094 L2 72408.5390625 TIME 0.6236646175384521
+2020-12-26 10:55:09,549: main_6: DEBUG: Epoch 19 Update 900 Cost 36.48332595825195 L2 71491.265625 TIME 0.17148351669311523
+2020-12-26 10:55:12,386: main_6: DEBUG: Epoch  19
+2020-12-26 10:55:12,387: main_6: DEBUG: Valid cost  36.433795582164414
+2020-12-26 10:55:12,387: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:55:12,387: main_6: DEBUG: Test cost  36.423907886851914
+2020-12-26 10:55:12,387: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:55:12,387: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:55:12,387: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:55:12,387: main_6: DEBUG: Training accuracy:  0.5394160583941606
+2020-12-26 10:55:12,387: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:55:16,991: main_6: DEBUG: Epoch 20 Update 920 Cost 36.056434631347656 L2 70729.84375 TIME 0.10220050811767578
+2020-12-26 10:55:25,734: main_6: DEBUG: Epoch 20 Update 940 Cost 35.6715202331543 L2 69851.4453125 TIME 0.11441540718078613
+2020-12-26 10:55:31,522: main_6: DEBUG: Epoch  20
+2020-12-26 10:55:31,523: main_6: DEBUG: Valid cost  35.49014386263761
+2020-12-26 10:55:31,523: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:55:31,523: main_6: DEBUG: Test cost  35.48016912286932
+2020-12-26 10:55:31,523: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:55:31,523: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:55:31,524: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:55:31,524: main_6: DEBUG: Training accuracy:  0.551094890510949
+2020-12-26 10:55:31,524: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:55:34,703: main_6: DEBUG: Epoch 21 Update 960 Cost 35.1905517578125 L2 69022.140625 TIME 0.21670007705688477
+2020-12-26 10:55:42,585: main_6: DEBUG: Epoch 21 Update 980 Cost 34.81488037109375 L2 68251.9296875 TIME 0.15801620483398438
+2020-12-26 10:55:50,797: main_6: DEBUG: Epoch  21
+2020-12-26 10:55:50,797: main_6: DEBUG: Valid cost  34.570696744051844
+2020-12-26 10:55:50,797: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:55:50,797: main_6: DEBUG: Test cost  34.562298861416906
+2020-12-26 10:55:50,798: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:55:50,798: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:55:50,798: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:55:50,798: main_6: DEBUG: Training accuracy:  0.5401459854014599
+2020-12-26 10:55:50,798: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:55:52,790: main_6: DEBUG: Epoch 22 Update 1000 Cost 34.40003967285156 L2 67404.109375 TIME 0.17910122871398926
+2020-12-26 10:56:00,081: main_6: DEBUG: Epoch 22 Update 1020 Cost 33.99248123168945 L2 66598.7109375 TIME 0.5649363994598389
+2020-12-26 10:56:09,674: main_6: DEBUG: Epoch  22
+2020-12-26 10:56:09,676: main_6: DEBUG: Valid cost  33.6671257019043
+2020-12-26 10:56:09,676: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:56:09,676: main_6: DEBUG: Test cost  33.65767392245206
+2020-12-26 10:56:09,676: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:56:09,676: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:56:09,676: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:56:09,676: main_6: DEBUG: Training accuracy:  0.5437956204379562
+2020-12-26 10:56:09,676: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:56:10,851: main_6: DEBUG: Epoch 23 Update 1040 Cost 33.548011779785156 L2 65757.9140625 TIME 0.1145174503326416
+2020-12-26 10:56:16,681: main_6: DEBUG: Epoch 23 Update 1060 Cost 33.199378967285156 L2 64972.41015625 TIME 0.5073757171630859
+2020-12-26 10:56:25,493: main_6: DEBUG: Epoch 23 Update 1080 Cost 32.93498229980469 L2 64168.1171875 TIME 0.1464216709136963
+2020-12-26 10:56:28,312: main_6: DEBUG: Epoch  23
+2020-12-26 10:56:28,312: main_6: DEBUG: Valid cost  32.772539312189274
+2020-12-26 10:56:28,312: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:56:28,312: main_6: DEBUG: Test cost  32.76384249600497
+2020-12-26 10:56:28,312: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:56:28,312: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:56:28,312: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:56:28,313: main_6: DEBUG: Training accuracy:  0.5518248175182482
+2020-12-26 10:56:28,313: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:56:32,933: main_6: DEBUG: Epoch 24 Update 1100 Cost 32.40481185913086 L2 63451.171875 TIME 0.1358814239501953
+2020-12-26 10:56:40,436: main_6: DEBUG: Epoch 24 Update 1120 Cost 31.982877731323242 L2 62659.47265625 TIME 0.08917880058288574
+2020-12-26 10:56:45,666: main_6: DEBUG: Epoch  24
+2020-12-26 10:56:45,667: main_6: DEBUG: Valid cost  31.901628147472035
+2020-12-26 10:56:45,667: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:56:45,667: main_6: DEBUG: Test cost  31.89148608121005
+2020-12-26 10:56:45,667: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:56:45,667: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:56:45,667: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:56:45,667: main_6: DEBUG: Training accuracy:  0.5445255474452555
+2020-12-26 10:56:45,667: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:56:48,750: main_6: DEBUG: Epoch 25 Update 1140 Cost 31.614316940307617 L2 61872.87890625 TIME 0.13276314735412598
+2020-12-26 10:56:57,305: main_6: DEBUG: Epoch 25 Update 1160 Cost 31.272018432617188 L2 61144.7734375 TIME 0.5810213088989258
+2020-12-26 10:57:04,447: main_6: DEBUG: Epoch  25
+2020-12-26 10:57:04,448: main_6: DEBUG: Valid cost  31.080242850563742
+2020-12-26 10:57:04,448: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:57:04,448: main_6: DEBUG: Test cost  31.07033261385831
+2020-12-26 10:57:04,448: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:57:04,449: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:57:04,449: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:57:04,449: main_6: DEBUG: Training accuracy:  0.5313868613138686
+2020-12-26 10:57:04,449: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:57:06,822: main_6: DEBUG: Epoch 26 Update 1180 Cost 30.92812156677246 L2 60471.42578125 TIME 0.2601203918457031
+2020-12-26 10:57:14,076: main_6: DEBUG: Epoch 26 Update 1200 Cost 30.555587768554688 L2 59737.5703125 TIME 0.7336623668670654
+2020-12-26 10:57:22,762: main_6: DEBUG: Epoch  26
+2020-12-26 10:57:22,763: main_6: DEBUG: Valid cost  30.249450510198418
+2020-12-26 10:57:22,763: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:57:22,763: main_6: DEBUG: Test cost  30.240990552035246
+2020-12-26 10:57:22,763: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:57:22,763: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:57:22,763: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:57:22,764: main_6: DEBUG: Training accuracy:  0.537956204379562
+2020-12-26 10:57:22,764: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:57:23,796: main_6: DEBUG: Epoch 27 Update 1220 Cost 30.142824172973633 L2 58935.578125 TIME 0.12385964393615723
+2020-12-26 10:57:29,697: main_6: DEBUG: Epoch 27 Update 1240 Cost 29.83407211303711 L2 58243.53515625 TIME 0.5548586845397949
+2020-12-26 10:57:37,235: main_6: DEBUG: Epoch 27 Update 1260 Cost 29.375558853149414 L2 57499.48828125 TIME 0.17786908149719238
+2020-12-26 10:57:40,179: main_6: DEBUG: Epoch  27
+2020-12-26 10:57:40,180: main_6: DEBUG: Valid cost  29.439223202792082
+2020-12-26 10:57:40,180: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:57:40,180: main_6: DEBUG: Test cost  29.428381139581855
+2020-12-26 10:57:40,180: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:57:40,180: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:57:40,180: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:57:40,181: main_6: DEBUG: Training accuracy:  0.5430656934306569
+2020-12-26 10:57:40,181: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:57:44,283: main_6: DEBUG: Epoch 28 Update 1280 Cost 29.18353843688965 L2 56821.8515625 TIME 0.08872342109680176
+2020-12-26 10:57:53,872: main_6: DEBUG: Epoch 28 Update 1300 Cost 28.76978874206543 L2 56083.9296875 TIME 0.3722841739654541
+2020-12-26 10:57:59,528: main_6: DEBUG: Epoch  28
+2020-12-26 10:57:59,528: main_6: DEBUG: Valid cost  28.62430936639959
+2020-12-26 10:57:59,529: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:57:59,529: main_6: DEBUG: Test cost  28.614496404474433
+2020-12-26 10:57:59,529: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:57:59,529: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:57:59,529: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:57:59,529: main_6: DEBUG: Training accuracy:  0.5452554744525547
+2020-12-26 10:57:59,529: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:58:02,497: main_6: DEBUG: Epoch 29 Update 1320 Cost 28.393657684326172 L2 55417.15625 TIME 0.21698594093322754
+2020-12-26 10:58:10,257: main_6: DEBUG: Epoch 29 Update 1340 Cost 28.052064895629883 L2 54704.98828125 TIME 0.7105395793914795
+2020-12-26 10:58:18,699: main_6: DEBUG: Epoch  29
+2020-12-26 10:58:18,700: main_6: DEBUG: Valid cost  27.839285417036578
+2020-12-26 10:58:18,700: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:58:18,700: main_6: DEBUG: Test cost  27.829876986416902
+2020-12-26 10:58:18,700: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:58:18,700: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:58:18,701: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:58:18,701: main_6: DEBUG: Training accuracy:  0.5343065693430656
+2020-12-26 10:58:18,701: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:58:20,820: main_6: DEBUG: Epoch 30 Update 1360 Cost 27.688579559326172 L2 54003.12109375 TIME 0.12342667579650879
+2020-12-26 10:58:26,743: main_6: DEBUG: Epoch 30 Update 1380 Cost 27.372587203979492 L2 53330.578125 TIME 0.21232175827026367
+2020-12-26 10:58:36,631: main_6: DEBUG: Epoch  30
+2020-12-26 10:58:36,632: main_6: DEBUG: Valid cost  27.081911954012785
+2020-12-26 10:58:36,632: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:58:36,632: main_6: DEBUG: Test cost  27.070510517467152
+2020-12-26 10:58:36,632: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:58:36,632: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:58:36,633: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:58:36,633: main_6: DEBUG: Training accuracy:  0.5437956204379562
+2020-12-26 10:58:36,633: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:58:37,939: main_6: DEBUG: Epoch 31 Update 1400 Cost 27.00586700439453 L2 52672.37890625 TIME 0.14464640617370605
+2020-12-26 10:58:43,168: main_6: DEBUG: Epoch 31 Update 1420 Cost 26.7111759185791 L2 52049.5546875 TIME 0.6878623962402344
+2020-12-26 10:58:51,553: main_6: DEBUG: Epoch 31 Update 1440 Cost 26.5394344329834 L2 51301.54296875 TIME 0.14917969703674316
+2020-12-26 10:58:54,272: main_6: DEBUG: Epoch  31
+2020-12-26 10:58:54,273: main_6: DEBUG: Valid cost  26.340534036809746
+2020-12-26 10:58:54,273: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:58:54,273: main_6: DEBUG: Test cost  26.330107602206144
+2020-12-26 10:58:54,273: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:58:54,273: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:58:54,273: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:58:54,273: main_6: DEBUG: Training accuracy:  0.5496350364963504
+2020-12-26 10:58:54,273: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:58:58,760: main_6: DEBUG: Epoch 32 Update 1460 Cost 26.011117935180664 L2 50718.33984375 TIME 0.11815214157104492
+2020-12-26 10:59:07,347: main_6: DEBUG: Epoch 32 Update 1480 Cost 25.74951934814453 L2 50075.40234375 TIME 0.12109208106994629
+2020-12-26 10:59:13,087: main_6: DEBUG: Epoch  32
+2020-12-26 10:59:13,087: main_6: DEBUG: Valid cost  25.636925090443004
+2020-12-26 10:59:13,087: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:59:13,087: main_6: DEBUG: Test cost  25.626791867342863
+2020-12-26 10:59:13,088: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:59:13,088: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:59:13,088: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:59:13,088: main_6: DEBUG: Training accuracy:  0.5518248175182482
+2020-12-26 10:59:13,088: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:59:16,472: main_6: DEBUG: Epoch 33 Update 1500 Cost 25.418691635131836 L2 49479.67578125 TIME 0.18218755722045898
+2020-12-26 10:59:23,527: main_6: DEBUG: Epoch 33 Update 1520 Cost 25.105518341064453 L2 48874.28515625 TIME 0.4927973747253418
+2020-12-26 10:59:31,544: main_6: DEBUG: Epoch  33
+2020-12-26 10:59:31,545: main_6: DEBUG: Valid cost  24.96693836558949
+2020-12-26 10:59:31,545: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:59:31,545: main_6: DEBUG: Test cost  24.955858750776812
+2020-12-26 10:59:31,545: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:59:31,545: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:59:31,545: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:59:31,545: main_6: DEBUG: Training accuracy:  0.5562043795620438
+2020-12-26 10:59:31,545: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:59:33,759: main_6: DEBUG: Epoch 34 Update 1540 Cost 24.81232261657715 L2 48269.0703125 TIME 0.22753381729125977
+2020-12-26 10:59:39,626: main_6: DEBUG: Epoch 34 Update 1560 Cost 24.490081787109375 L2 47635.953125 TIME 0.19194531440734863
+2020-12-26 10:59:49,877: main_6: DEBUG: Epoch  34
+2020-12-26 10:59:49,879: main_6: DEBUG: Valid cost  24.267683202570137
+2020-12-26 10:59:49,879: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 10:59:49,879: main_6: DEBUG: Test cost  24.256216222589668
+2020-12-26 10:59:49,879: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 10:59:49,879: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 10:59:49,879: main_6: DEBUG: Seen samples:  1370
+2020-12-26 10:59:49,879: main_6: DEBUG: Training accuracy:  0.5364963503649635
+2020-12-26 10:59:49,879: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 10:59:51,112: main_6: DEBUG: Epoch 35 Update 1580 Cost 24.236330032348633 L2 47029.08203125 TIME 0.17627334594726562
+2020-12-26 10:59:56,707: main_6: DEBUG: Epoch 35 Update 1600 Cost 23.874210357666016 L2 46407.55859375 TIME 0.23328375816345215
+2020-12-26 11:00:04,486: main_6: DEBUG: Epoch 35 Update 1620 Cost 23.640167236328125 L2 45824.9296875 TIME 0.16829848289489746
+2020-12-26 11:00:07,033: main_6: DEBUG: Epoch  35
+2020-12-26 11:00:07,033: main_6: DEBUG: Valid cost  23.60304173556241
+2020-12-26 11:00:07,034: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:00:07,034: main_6: DEBUG: Test cost  23.591931429776277
+2020-12-26 11:00:07,034: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:00:07,034: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:00:07,034: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:00:07,034: main_6: DEBUG: Training accuracy:  0.5562043795620438
+2020-12-26 11:00:07,034: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:00:11,488: main_6: DEBUG: Epoch 36 Update 1640 Cost 23.33075523376465 L2 45258.984375 TIME 0.12232565879821777
+2020-12-26 11:00:18,878: main_6: DEBUG: Epoch 36 Update 1660 Cost 23.019685745239258 L2 44678.90234375 TIME 0.13274192810058594
+2020-12-26 11:00:24,622: main_6: DEBUG: Epoch  36
+2020-12-26 11:00:24,622: main_6: DEBUG: Valid cost  22.937518033114348
+2020-12-26 11:00:24,622: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:00:24,622: main_6: DEBUG: Test cost  22.926760760220613
+2020-12-26 11:00:24,622: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:00:24,622: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:00:24,622: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:00:24,622: main_6: DEBUG: Training accuracy:  0.5518248175182482
+2020-12-26 11:00:24,622: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:00:27,637: main_6: DEBUG: Epoch 37 Update 1680 Cost 22.76553726196289 L2 44135.6953125 TIME 0.17609691619873047
+2020-12-26 11:00:34,877: main_6: DEBUG: Epoch 37 Update 1700 Cost 22.446392059326172 L2 43538.21484375 TIME 0.2659306526184082
+2020-12-26 11:00:41,941: main_6: DEBUG: Epoch  37
+2020-12-26 11:00:41,942: main_6: DEBUG: Valid cost  22.310509248213336
+2020-12-26 11:00:41,942: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:00:41,942: main_6: DEBUG: Test cost  22.29920144514604
+2020-12-26 11:00:41,942: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:00:41,942: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:00:41,942: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:00:41,942: main_6: DEBUG: Training accuracy:  0.5605839416058395
+2020-12-26 11:00:41,943: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:00:44,614: main_6: DEBUG: Epoch 38 Update 1720 Cost 22.181167602539062 L2 43005.48046875 TIME 0.23695945739746094
+2020-12-26 11:00:51,978: main_6: DEBUG: Epoch 38 Update 1740 Cost 21.919321060180664 L2 42449.24609375 TIME 0.14580607414245605
+2020-12-26 11:01:01,721: main_6: DEBUG: Epoch  38
+2020-12-26 11:01:01,721: main_6: DEBUG: Valid cost  21.69395585493608
+2020-12-26 11:01:01,721: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:01:01,721: main_6: DEBUG: Test cost  21.68298235806552
+2020-12-26 11:01:01,721: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:01:01,721: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:01:01,721: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:01:01,721: main_6: DEBUG: Training accuracy:  0.5467153284671533
+2020-12-26 11:01:01,721: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:01:03,238: main_6: DEBUG: Epoch 39 Update 1760 Cost 21.622425079345703 L2 41888.64453125 TIME 0.2384345531463623
+2020-12-26 11:01:08,083: main_6: DEBUG: Epoch 39 Update 1780 Cost 21.397645950317383 L2 41417.74609375 TIME 0.48810410499572754
+2020-12-26 11:01:17,375: main_6: DEBUG: Epoch 39 Update 1800 Cost 21.080537796020508 L2 40881.8046875 TIME 0.19093871116638184
+2020-12-26 11:01:20,176: main_6: DEBUG: Epoch  39
+2020-12-26 11:01:20,177: main_6: DEBUG: Valid cost  21.131658380681817
+2020-12-26 11:01:20,177: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:01:20,177: main_6: DEBUG: Test cost  21.12182686545632
+2020-12-26 11:01:20,177: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:01:20,177: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:01:20,177: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:01:20,177: main_6: DEBUG: Training accuracy:  0.5576642335766423
+2020-12-26 11:01:20,177: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:01:24,713: main_6: DEBUG: Epoch 40 Update 1820 Cost 20.903160095214844 L2 40397.70703125 TIME 0.10392189025878906
+2020-12-26 11:01:33,951: main_6: DEBUG: Epoch 40 Update 1840 Cost 20.666719436645508 L2 39899.0234375 TIME 0.1800081729888916
+2020-12-26 11:01:39,198: main_6: DEBUG: Epoch  40
+2020-12-26 11:01:39,199: main_6: DEBUG: Valid cost  20.573144565929066
+2020-12-26 11:01:39,199: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:01:39,199: main_6: DEBUG: Test cost  20.562924124977805
+2020-12-26 11:01:39,199: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:01:39,199: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:01:39,200: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:01:39,200: main_6: DEBUG: Training accuracy:  0.5445255474452555
+2020-12-26 11:01:39,200: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:01:42,723: main_6: DEBUG: Epoch 41 Update 1860 Cost 20.387210845947266 L2 39405.6171875 TIME 0.19660544395446777
+2020-12-26 11:01:49,437: main_6: DEBUG: Epoch 41 Update 1880 Cost 20.117403030395508 L2 38909.48046875 TIME 0.5472135543823242
+2020-12-26 11:01:56,860: main_6: DEBUG: Epoch  41
+2020-12-26 11:01:56,861: main_6: DEBUG: Valid cost  20.016502033580434
+2020-12-26 11:01:56,861: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:01:56,861: main_6: DEBUG: Test cost  20.00411501797763
+2020-12-26 11:01:56,861: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:01:56,861: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:01:56,861: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:01:56,861: main_6: DEBUG: Training accuracy:  0.5503649635036496
+2020-12-26 11:01:56,861: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:01:59,047: main_6: DEBUG: Epoch 42 Update 1900 Cost 19.881961822509766 L2 38418.1796875 TIME 0.17943954467773438
+2020-12-26 11:02:05,572: main_6: DEBUG: Epoch 42 Update 1920 Cost 19.616649627685547 L2 37936.73046875 TIME 0.6894803047180176
+2020-12-26 11:02:15,317: main_6: DEBUG: Epoch  42
+2020-12-26 11:02:15,317: main_6: DEBUG: Valid cost  19.463543111627754
+2020-12-26 11:02:15,318: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:02:15,318: main_6: DEBUG: Test cost  19.45244667746804
+2020-12-26 11:02:15,318: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:02:15,318: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:02:15,318: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:02:15,318: main_6: DEBUG: Training accuracy:  0.5562043795620438
+2020-12-26 11:02:15,318: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:02:16,981: main_6: DEBUG: Epoch 43 Update 1940 Cost 19.420116424560547 L2 37428.14453125 TIME 0.21394729614257812
+2020-12-26 11:02:22,464: main_6: DEBUG: Epoch 43 Update 1960 Cost 19.176361083984375 L2 36975.94140625 TIME 0.7886307239532471
+2020-12-26 11:02:30,981: main_6: DEBUG: Epoch 43 Update 1980 Cost 18.885435104370117 L2 36500.84375 TIME 0.141373872756958
+2020-12-26 11:02:33,727: main_6: DEBUG: Epoch  43
+2020-12-26 11:02:33,728: main_6: DEBUG: Valid cost  18.942162080244586
+2020-12-26 11:02:33,728: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:02:33,728: main_6: DEBUG: Test cost  18.930550661954012
+2020-12-26 11:02:33,728: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:02:33,728: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:02:33,729: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:02:33,729: main_6: DEBUG: Training accuracy:  0.537956204379562
+2020-12-26 11:02:33,729: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:02:38,205: main_6: DEBUG: Epoch 44 Update 2000 Cost 18.680828094482422 L2 36049.23828125 TIME 0.11085844039916992
+2020-12-26 11:02:46,462: main_6: DEBUG: Epoch 44 Update 2020 Cost 18.468542098999023 L2 35607.14453125 TIME 0.3371429443359375
+2020-12-26 11:02:51,770: main_6: DEBUG: Epoch  44
+2020-12-26 11:02:51,772: main_6: DEBUG: Valid cost  18.443438790061258
+2020-12-26 11:02:51,772: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:02:51,772: main_6: DEBUG: Test cost  18.431359030983664
+2020-12-26 11:02:51,772: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:02:51,772: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:02:51,772: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:02:51,772: main_6: DEBUG: Training accuracy:  0.5598540145985401
+2020-12-26 11:02:51,772: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:02:55,109: main_6: DEBUG: Epoch 45 Update 2040 Cost 18.293933868408203 L2 35210.7578125 TIME 0.15920138359069824
+2020-12-26 11:03:03,214: main_6: DEBUG: Epoch 45 Update 2060 Cost 18.053125381469727 L2 34780.25390625 TIME 0.4645082950592041
+2020-12-26 11:03:10,685: main_6: DEBUG: Epoch  45
+2020-12-26 11:03:10,687: main_6: DEBUG: Valid cost  17.951743039217863
+2020-12-26 11:03:10,687: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:03:10,687: main_6: DEBUG: Test cost  17.941078879616477
+2020-12-26 11:03:10,687: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:03:10,687: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:03:10,687: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:03:10,687: main_6: DEBUG: Training accuracy:  0.5583941605839416
+2020-12-26 11:03:10,687: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:03:12,956: main_6: DEBUG: Epoch 46 Update 2080 Cost 17.855236053466797 L2 34326.69921875 TIME 0.2525444030761719
+2020-12-26 11:03:18,374: main_6: DEBUG: Epoch 46 Update 2100 Cost 17.634647369384766 L2 33923.48046875 TIME 0.2323455810546875
+2020-12-26 11:03:28,408: main_6: DEBUG: Epoch  46
+2020-12-26 11:03:28,408: main_6: DEBUG: Valid cost  17.489476464011453
+2020-12-26 11:03:28,408: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:03:28,408: main_6: DEBUG: Test cost  17.47805422002619
+2020-12-26 11:03:28,409: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:03:28,409: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:03:28,409: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:03:28,409: main_6: DEBUG: Training accuracy:  0.5554744525547445
+2020-12-26 11:03:28,409: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:03:29,717: main_6: DEBUG: Epoch 47 Update 2120 Cost 17.44184112548828 L2 33518.41796875 TIME 0.16724729537963867
+2020-12-26 11:03:34,402: main_6: DEBUG: Epoch 47 Update 2140 Cost 17.2613468170166 L2 33133.49609375 TIME 0.17091751098632812
+2020-12-26 11:03:44,095: main_6: DEBUG: Epoch 47 Update 2160 Cost 17.084123611450195 L2 32734.21484375 TIME 0.1987781524658203
+2020-12-26 11:03:46,939: main_6: DEBUG: Epoch  47
+2020-12-26 11:03:46,939: main_6: DEBUG: Valid cost  17.059765555641867
+2020-12-26 11:03:46,939: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:03:46,940: main_6: DEBUG: Test cost  17.04724051735618
+2020-12-26 11:03:46,940: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:03:46,940: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:03:46,940: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:03:46,940: main_6: DEBUG: Training accuracy:  0.564963503649635
+2020-12-26 11:03:46,940: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:03:50,907: main_6: DEBUG: Epoch 48 Update 2180 Cost 16.837677001953125 L2 32345.966796875 TIME 0.09337210655212402
+2020-12-26 11:03:58,903: main_6: DEBUG: Epoch 48 Update 2200 Cost 16.65992546081543 L2 31968.669921875 TIME 0.14866113662719727
+2020-12-26 11:04:04,466: main_6: DEBUG: Epoch  48
+2020-12-26 11:04:04,467: main_6: DEBUG: Valid cost  16.61941216208718
+2020-12-26 11:04:04,467: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:04:04,467: main_6: DEBUG: Test cost  16.606272957541726
+2020-12-26 11:04:04,467: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:04:04,467: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:04:04,467: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:04:04,468: main_6: DEBUG: Training accuracy:  0.5583941605839416
+2020-12-26 11:04:04,468: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:04:07,795: main_6: DEBUG: Epoch 49 Update 2220 Cost 16.449798583984375 L2 31585.896484375 TIME 0.22477054595947266
+2020-12-26 11:04:16,304: main_6: DEBUG: Epoch 49 Update 2240 Cost 16.29046630859375 L2 31216.4375 TIME 0.49384236335754395
+2020-12-26 11:04:23,016: main_6: DEBUG: Epoch  49
+2020-12-26 11:04:23,016: main_6: DEBUG: Valid cost  16.202502510764383
+2020-12-26 11:04:23,016: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:04:23,016: main_6: DEBUG: Test cost  16.19099252874201
+2020-12-26 11:04:23,016: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:04:23,016: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:04:23,017: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:04:23,017: main_6: DEBUG: Training accuracy:  0.5532846715328467
+2020-12-26 11:04:23,017: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:04:25,493: main_6: DEBUG: Epoch 50 Update 2260 Cost 16.12701416015625 L2 30867.4765625 TIME 0.18500065803527832
+2020-12-26 11:04:31,391: main_6: DEBUG: Epoch 50 Update 2280 Cost 15.896791458129883 L2 30474.89453125 TIME 0.1433711051940918
+2020-12-26 11:04:41,037: main_6: DEBUG: Epoch  50
+2020-12-26 11:04:41,038: main_6: DEBUG: Valid cost  15.783187346024947
+2020-12-26 11:04:41,038: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:04:41,038: main_6: DEBUG: Test cost  15.77117937261408
+2020-12-26 11:04:41,038: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:04:41,038: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:04:41,038: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:04:41,038: main_6: DEBUG: Training accuracy:  0.5664233576642336
+2020-12-26 11:04:41,038: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:04:42,053: main_6: DEBUG: Epoch 51 Update 2300 Cost 15.71118450164795 L2 30108.67578125 TIME 0.1229240894317627
+2020-12-26 11:04:48,086: main_6: DEBUG: Epoch 51 Update 2320 Cost 15.5707368850708 L2 29764.365234375 TIME 0.869783878326416
+2020-12-26 11:04:56,895: main_6: DEBUG: Epoch 51 Update 2340 Cost 15.449553489685059 L2 29408.517578125 TIME 0.17180466651916504
+2020-12-26 11:04:59,706: main_6: DEBUG: Epoch  51
+2020-12-26 11:04:59,706: main_6: DEBUG: Valid cost  15.397836251692338
+2020-12-26 11:04:59,706: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:04:59,707: main_6: DEBUG: Test cost  15.384473713961514
+2020-12-26 11:04:59,707: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:04:59,707: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:04:59,707: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:04:59,707: main_6: DEBUG: Training accuracy:  0.5620437956204379
+2020-12-26 11:04:59,707: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:05:03,935: main_6: DEBUG: Epoch 52 Update 2360 Cost 15.225598335266113 L2 29111.34375 TIME 0.10685086250305176
+2020-12-26 11:05:12,022: main_6: DEBUG: Epoch 52 Update 2380 Cost 15.089424133300781 L2 28738.345703125 TIME 0.1797807216644287
+2020-12-26 11:05:17,548: main_6: DEBUG: Epoch  52
+2020-12-26 11:05:17,549: main_6: DEBUG: Valid cost  15.019648378545588
+2020-12-26 11:05:17,549: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:05:17,549: main_6: DEBUG: Test cost  15.006037191911178
+2020-12-26 11:05:17,549: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:05:17,549: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:05:17,549: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:05:17,550: main_6: DEBUG: Training accuracy:  0.5795620437956205
+2020-12-26 11:05:17,550: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:05:20,694: main_6: DEBUG: Epoch 53 Update 2400 Cost 14.875524520874023 L2 28440.166015625 TIME 0.21228408813476562
+2020-12-26 11:05:27,030: main_6: DEBUG: Epoch 53 Update 2420 Cost 14.747926712036133 L2 28120.134765625 TIME 0.5133006572723389
+2020-12-26 11:05:34,440: main_6: DEBUG: Epoch  53
+2020-12-26 11:05:34,441: main_6: DEBUG: Valid cost  14.658747412941672
+2020-12-26 11:05:34,441: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:05:34,441: main_6: DEBUG: Test cost  14.64640964161266
+2020-12-26 11:05:34,441: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:05:34,441: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:05:34,441: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:05:34,441: main_6: DEBUG: Training accuracy:  0.5474452554744526
+2020-12-26 11:05:34,442: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:05:36,638: main_6: DEBUG: Epoch 54 Update 2440 Cost 14.571372985839844 L2 27781.595703125 TIME 0.16321992874145508
+2020-12-26 11:05:41,824: main_6: DEBUG: Epoch 54 Update 2460 Cost 14.40346908569336 L2 27468.90234375 TIME 0.192138671875
+2020-12-26 11:05:51,339: main_6: DEBUG: Epoch  54
+2020-12-26 11:05:51,339: main_6: DEBUG: Valid cost  14.30865461176092
+2020-12-26 11:05:51,339: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:05:51,339: main_6: DEBUG: Test cost  14.294110558249734
+2020-12-26 11:05:51,339: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:05:51,339: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:05:51,339: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:05:51,339: main_6: DEBUG: Training accuracy:  0.564963503649635
+2020-12-26 11:05:51,339: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:05:52,754: main_6: DEBUG: Epoch 55 Update 2480 Cost 14.28913688659668 L2 27178.92578125 TIME 0.24635720252990723
+2020-12-26 11:05:57,706: main_6: DEBUG: Epoch 55 Update 2500 Cost 14.112417221069336 L2 26891.29296875 TIME 0.2062983512878418
+2020-12-26 11:06:05,591: main_6: DEBUG: Epoch 55 Update 2520 Cost 13.803011894226074 L2 26563.400390625 TIME 0.15301227569580078
+2020-12-26 11:06:08,496: main_6: DEBUG: Epoch  55
+2020-12-26 11:06:08,496: main_6: DEBUG: Valid cost  13.978279807350852
+2020-12-26 11:06:08,496: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:06:08,496: main_6: DEBUG: Test cost  13.96199555830522
+2020-12-26 11:06:08,496: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:06:08,496: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:06:08,496: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:06:08,496: main_6: DEBUG: Training accuracy:  0.5627737226277372
+2020-12-26 11:06:08,497: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:06:12,890: main_6: DEBUG: Epoch 56 Update 2540 Cost 13.77588176727295 L2 26292.693359375 TIME 0.13774538040161133
+2020-12-26 11:06:20,321: main_6: DEBUG: Epoch 56 Update 2560 Cost 13.677251815795898 L2 25995.44921875 TIME 0.5048825740814209
+2020-12-26 11:06:25,476: main_6: DEBUG: Epoch  56
+2020-12-26 11:06:25,477: main_6: DEBUG: Valid cost  13.648813594471324
+2020-12-26 11:06:25,477: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:06:25,478: main_6: DEBUG: Test cost  13.634132038463246
+2020-12-26 11:06:25,478: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:06:25,478: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:06:25,478: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:06:25,478: main_6: DEBUG: Training accuracy:  0.5569343065693431
+2020-12-26 11:06:25,478: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:06:28,658: main_6: DEBUG: Epoch 57 Update 2580 Cost 13.511133193969727 L2 25708.1171875 TIME 0.22605204582214355
+2020-12-26 11:06:36,272: main_6: DEBUG: Epoch 57 Update 2600 Cost 13.3611478805542 L2 25430.41796875 TIME 0.5418343544006348
+2020-12-26 11:06:43,723: main_6: DEBUG: Epoch  57
+2020-12-26 11:06:43,724: main_6: DEBUG: Valid cost  13.338274348865856
+2020-12-26 11:06:43,724: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:06:43,724: main_6: DEBUG: Test cost  13.327587474476207
+2020-12-26 11:06:43,724: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:06:43,724: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:06:43,724: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:06:43,724: main_6: DEBUG: Training accuracy:  0.5569343065693431
+2020-12-26 11:06:43,724: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:06:46,086: main_6: DEBUG: Epoch 58 Update 2620 Cost 13.24528694152832 L2 25161.357421875 TIME 0.10572028160095215
+2020-12-26 11:06:53,413: main_6: DEBUG: Epoch 58 Update 2640 Cost 13.081767082214355 L2 24862.95703125 TIME 0.5868072509765625
+2020-12-26 11:07:03,426: main_6: DEBUG: Epoch  58
+2020-12-26 11:07:03,427: main_6: DEBUG: Valid cost  13.01289107582786
+2020-12-26 11:07:03,427: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:07:03,428: main_6: DEBUG: Test cost  12.998699014837092
+2020-12-26 11:07:03,428: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:07:03,428: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:07:03,428: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:07:03,428: main_6: DEBUG: Training accuracy:  0.5554744525547445
+2020-12-26 11:07:03,428: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:07:04,747: main_6: DEBUG: Epoch 59 Update 2660 Cost 12.947465896606445 L2 24596.04296875 TIME 0.23822832107543945
+2020-12-26 11:07:10,240: main_6: DEBUG: Epoch 59 Update 2680 Cost 12.867755889892578 L2 24348.80078125 TIME 0.8082559108734131
+2020-12-26 11:07:19,291: main_6: DEBUG: Epoch 59 Update 2700 Cost 12.601929664611816 L2 24070.01171875 TIME 0.19811415672302246
+2020-12-26 11:07:21,956: main_6: DEBUG: Epoch  59
+2020-12-26 11:07:21,956: main_6: DEBUG: Valid cost  12.729842619462447
+2020-12-26 11:07:21,957: main_6: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 11:07:21,957: main_6: DEBUG: Test cost  12.716485803777521
+2020-12-26 11:07:21,957: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:07:21,957: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:07:21,957: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:07:21,957: main_6: DEBUG: Training accuracy:  0.5569343065693431
+2020-12-26 11:07:21,957: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:07:26,702: main_6: DEBUG: Epoch 60 Update 2720 Cost 12.566986083984375 L2 23812.884765625 TIME 0.1582169532775879
+2020-12-26 11:07:34,418: main_6: DEBUG: Epoch 60 Update 2740 Cost 12.455690383911133 L2 23577.87890625 TIME 0.15727710723876953
+2020-12-26 11:07:39,906: main_6: DEBUG: Epoch  60
+2020-12-26 11:07:39,906: main_6: DEBUG: Valid cost  12.450359864668412
+2020-12-26 11:07:39,906: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:07:39,906: main_6: DEBUG: Test cost  12.434537020596592
+2020-12-26 11:07:39,906: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:07:39,906: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:07:39,907: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:07:39,907: main_6: DEBUG: Training accuracy:  0.5773722627737227
+2020-12-26 11:07:39,907: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:07:43,679: main_6: DEBUG: Epoch 61 Update 2760 Cost 12.277341842651367 L2 23333.81640625 TIME 0.1183156967163086
+2020-12-26 11:07:51,249: main_6: DEBUG: Epoch 61 Update 2780 Cost 12.246343612670898 L2 23095.4140625 TIME 0.5966699123382568
+2020-12-26 11:07:59,005: main_6: DEBUG: Epoch  61
+2020-12-26 11:07:59,006: main_6: DEBUG: Valid cost  12.175278143449264
+2020-12-26 11:07:59,006: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:07:59,006: main_6: DEBUG: Test cost  12.162473331798207
+2020-12-26 11:07:59,006: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:07:59,006: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:07:59,006: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:07:59,006: main_6: DEBUG: Training accuracy:  0.5627737226277372
+2020-12-26 11:07:59,006: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:08:01,404: main_6: DEBUG: Epoch 62 Update 2800 Cost 12.134769439697266 L2 22868.01171875 TIME 0.24602150917053223
+2020-12-26 11:08:08,973: main_6: DEBUG: Epoch 62 Update 2820 Cost 12.035833358764648 L2 22639.814453125 TIME 0.5035228729248047
+2020-12-26 11:08:16,989: main_6: DEBUG: Epoch  62
+2020-12-26 11:08:16,990: main_6: DEBUG: Valid cost  11.94102755459872
+2020-12-26 11:08:16,990: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:08:16,990: main_6: DEBUG: Test cost  11.926363771611994
+2020-12-26 11:08:16,990: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:08:16,990: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:08:16,991: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:08:16,991: main_6: DEBUG: Training accuracy:  0.57007299270073
+2020-12-26 11:08:16,991: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:08:18,335: main_6: DEBUG: Epoch 63 Update 2840 Cost 11.906858444213867 L2 22450.998046875 TIME 0.1545090675354004
+2020-12-26 11:08:23,578: main_6: DEBUG: Epoch 63 Update 2860 Cost 11.80798053741455 L2 22253.27734375 TIME 0.736142635345459
+2020-12-26 11:08:32,694: main_6: DEBUG: Epoch 63 Update 2880 Cost 11.850008964538574 L2 21991.8984375 TIME 0.19289398193359375
+2020-12-26 11:08:35,571: main_6: DEBUG: Epoch  63
+2020-12-26 11:08:35,571: main_6: DEBUG: Valid cost  11.692389314824885
+2020-12-26 11:08:35,571: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:08:35,571: main_6: DEBUG: Test cost  11.6783109144731
+2020-12-26 11:08:35,571: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:08:35,571: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:08:35,571: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:08:35,571: main_6: DEBUG: Training accuracy:  0.5781021897810219
+2020-12-26 11:08:35,572: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:08:39,735: main_6: DEBUG: Epoch 64 Update 2900 Cost 11.58634090423584 L2 21813.96875 TIME 0.15782785415649414
+2020-12-26 11:08:48,819: main_6: DEBUG: Epoch 64 Update 2920 Cost 11.501020431518555 L2 21625.224609375 TIME 0.14078974723815918
+2020-12-26 11:08:54,473: main_6: DEBUG: Epoch  64
+2020-12-26 11:08:54,473: main_6: DEBUG: Valid cost  11.478302695534445
+2020-12-26 11:08:54,473: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:08:54,474: main_6: DEBUG: Test cost  11.466226057572799
+2020-12-26 11:08:54,474: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:08:54,474: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:08:54,474: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:08:54,474: main_6: DEBUG: Training accuracy:  0.5970802919708029
+2020-12-26 11:08:54,474: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:08:57,801: main_6: DEBUG: Epoch 65 Update 2940 Cost 11.385248184204102 L2 21431.505859375 TIME 0.23096013069152832
+2020-12-26 11:09:06,743: main_6: DEBUG: Epoch 65 Update 2960 Cost 11.325304985046387 L2 21240.03515625 TIME 0.4729125499725342
+2020-12-26 11:09:14,607: main_6: DEBUG: Epoch  65
+2020-12-26 11:09:14,608: main_6: DEBUG: Valid cost  11.276949622414328
+2020-12-26 11:09:14,608: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:09:14,608: main_6: DEBUG: Test cost  11.260099671103738
+2020-12-26 11:09:14,608: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:09:14,608: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:09:14,609: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:09:14,609: main_6: DEBUG: Training accuracy:  0.5854014598540146
+2020-12-26 11:09:14,609: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:09:17,085: main_6: DEBUG: Epoch 66 Update 2980 Cost 11.194430351257324 L2 21066.796875 TIME 0.2095203399658203
+2020-12-26 11:09:23,630: main_6: DEBUG: Epoch 66 Update 3000 Cost 11.089170455932617 L2 20882.84765625 TIME 0.2058243751525879
+2020-12-26 11:09:33,854: main_6: DEBUG: Epoch  66
+2020-12-26 11:09:33,855: main_6: DEBUG: Valid cost  11.062686399980025
+2020-12-26 11:09:33,855: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:09:33,855: main_6: DEBUG: Test cost  11.047708164561879
+2020-12-26 11:09:33,856: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:09:33,856: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:09:33,856: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:09:33,856: main_6: DEBUG: Training accuracy:  0.5722627737226277
+2020-12-26 11:09:33,856: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:09:34,987: main_6: DEBUG: Epoch 67 Update 3020 Cost 10.990569114685059 L2 20692.919921875 TIME 0.12588953971862793
+2020-12-26 11:09:40,240: main_6: DEBUG: Epoch 67 Update 3040 Cost 10.946510314941406 L2 20524.14453125 TIME 0.6058340072631836
+2020-12-26 11:09:49,167: main_6: DEBUG: Epoch 67 Update 3060 Cost 10.765351295471191 L2 20367.083984375 TIME 0.1723935604095459
+2020-12-26 11:09:52,167: main_6: DEBUG: Epoch  67
+2020-12-26 11:09:52,167: main_6: DEBUG: Valid cost  10.885697104714133
+2020-12-26 11:09:52,167: main_6: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 11:09:52,167: main_6: DEBUG: Test cost  10.864932493730025
+2020-12-26 11:09:52,167: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:09:52,167: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:09:52,167: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:09:52,167: main_6: DEBUG: Training accuracy:  0.6014598540145986
+2020-12-26 11:09:52,167: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:09:56,072: main_6: DEBUG: Epoch 68 Update 3080 Cost 10.846351623535156 L2 20204.322265625 TIME 0.1133120059967041
+2020-12-26 11:10:04,752: main_6: DEBUG: Epoch 68 Update 3100 Cost 10.691627502441406 L2 20039.033203125 TIME 0.33292412757873535
+2020-12-26 11:10:10,160: main_6: DEBUG: Epoch  68
+2020-12-26 11:10:10,161: main_6: DEBUG: Valid cost  10.695232564752752
+2020-12-26 11:10:10,161: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:10:10,161: main_6: DEBUG: Test cost  10.675492373379795
+2020-12-26 11:10:10,161: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:10:10,161: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:10:10,161: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:10:10,161: main_6: DEBUG: Training accuracy:  0.5781021897810219
+2020-12-26 11:10:10,161: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:10:13,665: main_6: DEBUG: Epoch 69 Update 3120 Cost 10.595207214355469 L2 19876.1875 TIME 0.15596866607666016
+2020-12-26 11:10:21,002: main_6: DEBUG: Epoch 69 Update 3140 Cost 10.601170539855957 L2 19713.080078125 TIME 0.13236498832702637
+2020-12-26 11:10:28,603: main_6: DEBUG: Epoch  69
+2020-12-26 11:10:28,604: main_6: DEBUG: Valid cost  10.521816860545766
+2020-12-26 11:10:28,604: main_6: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 11:10:28,604: main_6: DEBUG: Test cost  10.499478166753596
+2020-12-26 11:10:28,604: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:10:28,604: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:10:28,605: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:10:28,605: main_6: DEBUG: Training accuracy:  0.5854014598540146
+2020-12-26 11:10:28,605: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:10:31,077: main_6: DEBUG: Epoch 70 Update 3160 Cost 10.450155258178711 L2 19583.30078125 TIME 0.22057032585144043
+2020-12-26 11:10:38,109: main_6: DEBUG: Epoch 70 Update 3180 Cost 10.381926536560059 L2 19411.646484375 TIME 0.6198165416717529
+2020-12-26 11:10:46,679: main_6: DEBUG: Epoch  70
+2020-12-26 11:10:46,680: main_6: DEBUG: Valid cost  10.366094415838068
+2020-12-26 11:10:46,680: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:10:46,680: main_6: DEBUG: Test cost  10.340730927207254
+2020-12-26 11:10:46,680: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:10:46,680: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:10:46,680: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:10:46,680: main_6: DEBUG: Training accuracy:  0.6021897810218978
+2020-12-26 11:10:46,681: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:10:47,722: main_6: DEBUG: Epoch 71 Update 3200 Cost 10.292243957519531 L2 19282.75 TIME 0.11263799667358398
+2020-12-26 11:10:52,648: main_6: DEBUG: Epoch 71 Update 3220 Cost 10.245209693908691 L2 19131.869140625 TIME 0.16431093215942383
+2020-12-26 11:11:02,175: main_6: DEBUG: Epoch 71 Update 3240 Cost 10.128396987915039 L2 18992.2734375 TIME 0.22394061088562012
+2020-12-26 11:11:05,072: main_6: DEBUG: Epoch  71
+2020-12-26 11:11:05,072: main_6: DEBUG: Valid cost  10.202641400423916
+2020-12-26 11:11:05,072: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:11:05,072: main_6: DEBUG: Test cost  10.178587480024857
+2020-12-26 11:11:05,072: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:11:05,072: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:11:05,073: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:11:05,073: main_6: DEBUG: Training accuracy:  0.5854014598540146
+2020-12-26 11:11:05,073: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:11:09,535: main_6: DEBUG: Epoch 72 Update 3260 Cost 10.102049827575684 L2 18854.69140625 TIME 0.12571048736572266
+2020-12-26 11:11:17,416: main_6: DEBUG: Epoch 72 Update 3280 Cost 10.009742736816406 L2 18739.55078125 TIME 0.09445619583129883
+2020-12-26 11:11:22,947: main_6: DEBUG: Epoch  72
+2020-12-26 11:11:22,948: main_6: DEBUG: Valid cost  10.051268144087357
+2020-12-26 11:11:22,948: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:11:22,948: main_6: DEBUG: Test cost  10.032768076116389
+2020-12-26 11:11:22,948: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:11:22,948: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:11:22,948: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:11:22,948: main_6: DEBUG: Training accuracy:  0.6138686131386861
+2020-12-26 11:11:22,948: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:11:26,573: main_6: DEBUG: Epoch 73 Update 3300 Cost 9.962087631225586 L2 18619.015625 TIME 0.2366182804107666
+2020-12-26 11:11:34,118: main_6: DEBUG: Epoch 73 Update 3320 Cost 9.903791427612305 L2 18468.7578125 TIME 0.5823812484741211
+2020-12-26 11:11:41,210: main_6: DEBUG: Epoch  73
+2020-12-26 11:11:41,211: main_6: DEBUG: Valid cost  9.90506328235973
+2020-12-26 11:11:41,211: main_6: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 11:11:41,211: main_6: DEBUG: Test cost  9.885993524031205
+2020-12-26 11:11:41,211: main_6: DEBUG: Test accuracy  0.5625
+2020-12-26 11:11:41,211: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:11:41,212: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:11:41,212: main_6: DEBUG: Training accuracy:  0.6087591240875913
+2020-12-26 11:11:41,212: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:11:43,296: main_6: DEBUG: Epoch 74 Update 3340 Cost 9.783000946044922 L2 18355.857421875 TIME 0.11853790283203125
+2020-12-26 11:11:49,872: main_6: DEBUG: Epoch 74 Update 3360 Cost 9.799457550048828 L2 18238.818359375 TIME 0.17739534378051758
+2020-12-26 11:12:00,072: main_6: DEBUG: Epoch  74
+2020-12-26 11:12:00,073: main_6: DEBUG: Valid cost  9.76436337557706
+2020-12-26 11:12:00,073: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:12:00,073: main_6: DEBUG: Test cost  9.743359392339533
+2020-12-26 11:12:00,073: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:12:00,073: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:12:00,073: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:12:00,073: main_6: DEBUG: Training accuracy:  0.6226277372262774
+2020-12-26 11:12:00,073: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:12:01,397: main_6: DEBUG: Epoch 75 Update 3380 Cost 9.715100288391113 L2 18097.76171875 TIME 0.1409914493560791
+2020-12-26 11:12:07,429: main_6: DEBUG: Epoch 75 Update 3400 Cost 9.65207576751709 L2 17995.583984375 TIME 0.5307521820068359
+2020-12-26 11:12:15,775: main_6: DEBUG: Epoch 75 Update 3420 Cost 9.603007316589355 L2 17879.30078125 TIME 0.17206668853759766
+2020-12-26 11:12:18,691: main_6: DEBUG: Epoch  75
+2020-12-26 11:12:18,692: main_6: DEBUG: Valid cost  9.64555887742476
+2020-12-26 11:12:18,692: main_6: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 11:12:18,692: main_6: DEBUG: Test cost  9.629476894031871
+2020-12-26 11:12:18,692: main_6: DEBUG: Test accuracy  0.5909090909090909
+2020-12-26 11:12:18,692: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:12:18,693: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:12:18,693: main_6: DEBUG: Training accuracy:  0.6160583941605839
+2020-12-26 11:12:18,693: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:12:23,086: main_6: DEBUG: Epoch 76 Update 3440 Cost 9.494292259216309 L2 17779.953125 TIME 0.0999901294708252
+2020-12-26 11:12:31,664: main_6: DEBUG: Epoch 76 Update 3460 Cost 9.420677185058594 L2 17663.125 TIME 0.1559133529663086
+2020-12-26 11:12:37,297: main_6: DEBUG: Epoch  76
+2020-12-26 11:12:37,297: main_6: DEBUG: Valid cost  9.529395536942916
+2020-12-26 11:12:37,297: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:12:37,297: main_6: DEBUG: Test cost  9.499466289173473
+2020-12-26 11:12:37,297: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:12:37,297: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:12:37,298: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:12:37,298: main_6: DEBUG: Training accuracy:  0.6145985401459854
+2020-12-26 11:12:37,298: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:12:40,225: main_6: DEBUG: Epoch 77 Update 3480 Cost 9.407033920288086 L2 17557.130859375 TIME 0.19120264053344727
+2020-12-26 11:12:46,371: main_6: DEBUG: Epoch 77 Update 3500 Cost 9.421262741088867 L2 17460.74609375 TIME 0.17655730247497559
+2020-12-26 11:12:54,997: main_6: DEBUG: Epoch  77
+2020-12-26 11:12:54,998: main_6: DEBUG: Valid cost  9.42305157401345
+2020-12-26 11:12:54,998: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:12:54,998: main_6: DEBUG: Test cost  9.392416867342861
+2020-12-26 11:12:54,998: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:12:54,998: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:12:54,998: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:12:54,998: main_6: DEBUG: Training accuracy:  0.6131386861313869
+2020-12-26 11:12:54,999: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:12:57,372: main_6: DEBUG: Epoch 78 Update 3520 Cost 9.23243522644043 L2 17374.8671875 TIME 0.11796402931213379
+2020-12-26 11:13:03,650: main_6: DEBUG: Epoch 78 Update 3540 Cost 9.296263694763184 L2 17283.83984375 TIME 0.5434973239898682
+2020-12-26 11:13:13,886: main_6: DEBUG: Epoch  78
+2020-12-26 11:13:13,886: main_6: DEBUG: Valid cost  9.312921177257191
+2020-12-26 11:13:13,886: main_6: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-26 11:13:13,887: main_6: DEBUG: Test cost  9.287497607144443
+2020-12-26 11:13:13,887: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:13:13,887: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:13:13,887: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:13:13,887: main_6: DEBUG: Training accuracy:  0.6233576642335766
+2020-12-26 11:13:13,887: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:13:14,981: main_6: DEBUG: Epoch 79 Update 3560 Cost 9.21601676940918 L2 17182.71875 TIME 0.23727822303771973
+2020-12-26 11:13:20,277: main_6: DEBUG: Epoch 79 Update 3580 Cost 9.24068832397461 L2 17080.96484375 TIME 0.7076766490936279
+2020-12-26 11:13:29,510: main_6: DEBUG: Epoch 79 Update 3600 Cost 9.104397773742676 L2 17003.578125 TIME 0.17113757133483887
+2020-12-26 11:13:32,384: main_6: DEBUG: Epoch  79
+2020-12-26 11:13:32,385: main_6: DEBUG: Valid cost  9.216547359119762
+2020-12-26 11:13:32,385: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:13:32,385: main_6: DEBUG: Test cost  9.18759736147794
+2020-12-26 11:13:32,385: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:13:32,385: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:13:32,385: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:13:32,385: main_6: DEBUG: Training accuracy:  0.6211678832116788
+2020-12-26 11:13:32,385: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:13:36,426: main_6: DEBUG: Epoch 80 Update 3620 Cost 8.999913215637207 L2 16916.630859375 TIME 0.08798718452453613
+2020-12-26 11:13:44,675: main_6: DEBUG: Epoch 80 Update 3640 Cost 9.096174240112305 L2 16835.03125 TIME 0.11573672294616699
+2020-12-26 11:13:49,986: main_6: DEBUG: Epoch  80
+2020-12-26 11:13:49,986: main_6: DEBUG: Valid cost  9.119837587529963
+2020-12-26 11:13:49,987: main_6: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-26 11:13:49,987: main_6: DEBUG: Test cost  9.093102368441494
+2020-12-26 11:13:49,987: main_6: DEBUG: Test accuracy  0.5909090909090909
+2020-12-26 11:13:49,987: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:13:49,987: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:13:49,987: main_6: DEBUG: Training accuracy:  0.6335766423357664
+2020-12-26 11:13:49,987: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:13:53,671: main_6: DEBUG: Epoch 81 Update 3660 Cost 8.966683387756348 L2 16749.548828125 TIME 0.2295377254486084
+2020-12-26 11:14:00,565: main_6: DEBUG: Epoch 81 Update 3680 Cost 8.932914733886719 L2 16676.86328125 TIME 0.16156411170959473
+2020-12-26 11:14:07,433: main_6: DEBUG: Epoch  81
+2020-12-26 11:14:07,434: main_6: DEBUG: Valid cost  9.039996147155762
+2020-12-26 11:14:07,434: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:14:07,434: main_6: DEBUG: Test cost  9.006234255704014
+2020-12-26 11:14:07,434: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:14:07,434: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:14:07,434: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:14:07,434: main_6: DEBUG: Training accuracy:  0.6335766423357664
+2020-12-26 11:14:07,434: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:14:10,110: main_6: DEBUG: Epoch 82 Update 3700 Cost 8.930234909057617 L2 16601.2890625 TIME 0.24853897094726562
+2020-12-26 11:14:17,521: main_6: DEBUG: Epoch 82 Update 3720 Cost 8.925525665283203 L2 16523.04296875 TIME 0.31693053245544434
+2020-12-26 11:14:26,543: main_6: DEBUG: Epoch  82
+2020-12-26 11:14:26,544: main_6: DEBUG: Valid cost  8.9447528665716
+2020-12-26 11:14:26,544: main_6: DEBUG: Valid accuracy  0.5
+2020-12-26 11:14:26,544: main_6: DEBUG: Test cost  8.917506738142533
+2020-12-26 11:14:26,544: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:14:26,544: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:14:26,545: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:14:26,545: main_6: DEBUG: Training accuracy:  0.6510948905109489
+2020-12-26 11:14:26,545: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:14:27,773: main_6: DEBUG: Epoch 83 Update 3740 Cost 8.855195999145508 L2 16440.84375 TIME 0.20763683319091797
+2020-12-26 11:14:32,819: main_6: DEBUG: Epoch 83 Update 3760 Cost 8.755434036254883 L2 16361.232421875 TIME 0.14655709266662598
+2020-12-26 11:14:40,839: main_6: DEBUG: Epoch 83 Update 3780 Cost 8.735451698303223 L2 16269.4677734375 TIME 0.18764090538024902
+2020-12-26 11:14:43,893: main_6: DEBUG: Epoch  83
+2020-12-26 11:14:43,893: main_6: DEBUG: Valid cost  8.865459788929332
+2020-12-26 11:14:43,893: main_6: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-26 11:14:43,894: main_6: DEBUG: Test cost  8.854262698780406
+2020-12-26 11:14:43,894: main_6: DEBUG: Test accuracy  0.42045454545454547
+2020-12-26 11:14:43,894: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:14:43,894: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:14:43,894: main_6: DEBUG: Training accuracy:  0.6343065693430657
+2020-12-26 11:14:43,894: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:14:48,462: main_6: DEBUG: Epoch 84 Update 3800 Cost 8.855361938476562 L2 16190.673828125 TIME 0.11821961402893066
+2020-12-26 11:14:56,315: main_6: DEBUG: Epoch 84 Update 3820 Cost 8.722407341003418 L2 16126.3076171875 TIME 0.3168299198150635
+2020-12-26 11:15:01,684: main_6: DEBUG: Epoch  84
+2020-12-26 11:15:01,685: main_6: DEBUG: Valid cost  8.777384584600275
+2020-12-26 11:15:01,685: main_6: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-26 11:15:01,685: main_6: DEBUG: Test cost  8.759748198769309
+2020-12-26 11:15:01,685: main_6: DEBUG: Test accuracy  0.48863636363636365
+2020-12-26 11:15:01,685: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:15:01,685: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:15:01,685: main_6: DEBUG: Training accuracy:  0.6204379562043796
+2020-12-26 11:15:01,685: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:15:05,235: main_6: DEBUG: Epoch 85 Update 3840 Cost 8.62829875946045 L2 16063.8408203125 TIME 0.2431020736694336
+2020-12-26 11:15:13,174: main_6: DEBUG: Epoch 85 Update 3860 Cost 8.632658004760742 L2 15989.5166015625 TIME 0.6281166076660156
+2020-12-26 11:15:19,767: main_6: DEBUG: Epoch  85
+2020-12-26 11:15:19,767: main_6: DEBUG: Valid cost  8.705297816883434
+2020-12-26 11:15:19,768: main_6: DEBUG: Valid accuracy  0.4318181818181818
+2020-12-26 11:15:19,768: main_6: DEBUG: Test cost  8.69028308174827
+2020-12-26 11:15:19,768: main_6: DEBUG: Test accuracy  0.4659090909090909
+2020-12-26 11:15:19,768: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:15:19,768: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:15:19,768: main_6: DEBUG: Training accuracy:  0.6503649635036496
+2020-12-26 11:15:19,768: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:15:21,676: main_6: DEBUG: Epoch 86 Update 3880 Cost 8.528141975402832 L2 15935.80078125 TIME 0.19348526000976562
+2020-12-26 11:15:27,269: main_6: DEBUG: Epoch 86 Update 3900 Cost 8.597772598266602 L2 15877.8720703125 TIME 0.19989800453186035
+2020-12-26 11:15:36,908: main_6: DEBUG: Epoch  86
+2020-12-26 11:15:36,909: main_6: DEBUG: Valid cost  8.63428427956321
+2020-12-26 11:15:36,909: main_6: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-26 11:15:36,910: main_6: DEBUG: Test cost  8.604560938748447
+2020-12-26 11:15:36,910: main_6: DEBUG: Test accuracy  0.5965909090909091
+2020-12-26 11:15:36,910: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:15:36,910: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:15:36,910: main_6: DEBUG: Training accuracy:  0.6437956204379562
+2020-12-26 11:15:36,910: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:15:38,056: main_6: DEBUG: Epoch 87 Update 3920 Cost 8.545000076293945 L2 15806.705078125 TIME 0.22273468971252441
+2020-12-26 11:15:42,755: main_6: DEBUG: Epoch 87 Update 3940 Cost 8.511835098266602 L2 15746.8642578125 TIME 0.25469160079956055
+2020-12-26 11:15:52,534: main_6: DEBUG: Epoch 87 Update 3960 Cost 8.80276107788086 L2 15688.63671875 TIME 0.16592073440551758
+2020-12-26 11:15:55,317: main_6: DEBUG: Epoch  87
+2020-12-26 11:15:55,317: main_6: DEBUG: Valid cost  8.57209552418102
+2020-12-26 11:15:55,317: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:15:55,317: main_6: DEBUG: Test cost  8.549922422929244
+2020-12-26 11:15:55,317: main_6: DEBUG: Test accuracy  0.5056818181818182
+2020-12-26 11:15:55,317: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:15:55,318: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:15:55,318: main_6: DEBUG: Training accuracy:  0.6452554744525547
+2020-12-26 11:15:55,318: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:15:59,612: main_6: DEBUG: Epoch 88 Update 3980 Cost 8.574686050415039 L2 15625.50390625 TIME 0.11275863647460938
+2020-12-26 11:16:07,283: main_6: DEBUG: Epoch 88 Update 4000 Cost 8.388949394226074 L2 15570.0595703125 TIME 0.15932989120483398
+2020-12-26 11:16:12,685: main_6: DEBUG: Epoch  88
+2020-12-26 11:16:12,686: main_6: DEBUG: Valid cost  8.521309072321111
+2020-12-26 11:16:12,686: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:16:12,686: main_6: DEBUG: Test cost  8.50687243721702
+2020-12-26 11:16:12,686: main_6: DEBUG: Test accuracy  0.45454545454545453
+2020-12-26 11:16:12,686: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:16:12,687: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:16:12,687: main_6: DEBUG: Training accuracy:  0.6430656934306569
+2020-12-26 11:16:12,687: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:16:16,332: main_6: DEBUG: Epoch 89 Update 4020 Cost 8.36522388458252 L2 15514.98828125 TIME 0.24340510368347168
+2020-12-26 11:16:22,944: main_6: DEBUG: Epoch 89 Update 4040 Cost 8.21295166015625 L2 15472.1435546875 TIME 0.16492199897766113
+2020-12-26 11:16:30,837: main_6: DEBUG: Epoch  89
+2020-12-26 11:16:30,839: main_6: DEBUG: Valid cost  8.469135457819158
+2020-12-26 11:16:30,839: main_6: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-26 11:16:30,839: main_6: DEBUG: Test cost  8.430403969504617
+2020-12-26 11:16:30,839: main_6: DEBUG: Test accuracy  0.5852272727272727
+2020-12-26 11:16:30,839: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:16:30,839: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:16:30,839: main_6: DEBUG: Training accuracy:  0.6525547445255474
+2020-12-26 11:16:30,839: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:16:33,840: main_6: DEBUG: Epoch 90 Update 4060 Cost 8.270698547363281 L2 15421.701171875 TIME 0.1991252899169922
+2020-12-26 11:16:40,965: main_6: DEBUG: Epoch 90 Update 4080 Cost 8.244807243347168 L2 15347.205078125 TIME 0.21153473854064941
+2020-12-26 11:16:50,172: main_6: DEBUG: Epoch  90
+2020-12-26 11:16:50,173: main_6: DEBUG: Valid cost  8.409966815601695
+2020-12-26 11:16:50,173: main_6: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 11:16:50,173: main_6: DEBUG: Test cost  8.366250471635299
+2020-12-26 11:16:50,173: main_6: DEBUG: Test accuracy  0.5965909090909091
+2020-12-26 11:16:50,173: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:16:50,174: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:16:50,174: main_6: DEBUG: Training accuracy:  0.6656934306569343
+2020-12-26 11:16:50,174: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:16:51,471: main_6: DEBUG: Epoch 91 Update 4100 Cost 8.096912384033203 L2 15299.6318359375 TIME 0.13454151153564453
+2020-12-26 11:16:57,960: main_6: DEBUG: Epoch 91 Update 4120 Cost 8.27148723602295 L2 15235.8984375 TIME 0.5808470249176025
+2020-12-26 11:17:05,753: main_6: DEBUG: Epoch 91 Update 4140 Cost 8.048541069030762 L2 15191.6748046875 TIME 0.13779520988464355
+2020-12-26 11:17:08,585: main_6: DEBUG: Epoch  91
+2020-12-26 11:17:08,585: main_6: DEBUG: Valid cost  8.350416877053
+2020-12-26 11:17:08,586: main_6: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-26 11:17:08,586: main_6: DEBUG: Test cost  8.306455872275613
+2020-12-26 11:17:08,586: main_6: DEBUG: Test accuracy  0.5909090909090909
+2020-12-26 11:17:08,586: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:17:08,586: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:17:08,586: main_6: DEBUG: Training accuracy:  0.6715328467153284
+2020-12-26 11:17:08,586: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:17:13,020: main_6: DEBUG: Epoch 92 Update 4160 Cost 8.02710247039795 L2 15138.7900390625 TIME 0.15364527702331543
+2020-12-26 11:17:20,686: main_6: DEBUG: Epoch 92 Update 4180 Cost 8.100918769836426 L2 15101.5234375 TIME 0.1147010326385498
+2020-12-26 11:17:26,424: main_6: DEBUG: Epoch  92
+2020-12-26 11:17:26,425: main_6: DEBUG: Valid cost  8.349536809054287
+2020-12-26 11:17:26,425: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:17:26,425: main_6: DEBUG: Test cost  8.35053738680753
+2020-12-26 11:17:26,425: main_6: DEBUG: Test accuracy  0.42045454545454547
+2020-12-26 11:17:26,426: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:17:26,426: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:17:26,426: main_6: DEBUG: Training accuracy:  0.6751824817518248
+2020-12-26 11:17:26,426: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:17:29,575: main_6: DEBUG: Epoch 93 Update 4200 Cost 8.071378707885742 L2 15060.7216796875 TIME 0.1509542465209961
+2020-12-26 11:17:35,749: main_6: DEBUG: Epoch 93 Update 4220 Cost 8.152353286743164 L2 15001.4697265625 TIME 0.5724518299102783
+2020-12-26 11:17:43,538: main_6: DEBUG: Epoch  93
+2020-12-26 11:17:43,539: main_6: DEBUG: Valid cost  8.23088533228094
+2020-12-26 11:17:43,539: main_6: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 11:17:43,539: main_6: DEBUG: Test cost  8.202126069502397
+2020-12-26 11:17:43,539: main_6: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 11:17:43,539: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:17:43,539: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:17:43,539: main_6: DEBUG: Training accuracy:  0.6627737226277373
+2020-12-26 11:17:43,539: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:17:45,663: main_6: DEBUG: Epoch 94 Update 4240 Cost 8.109628677368164 L2 14954.8193359375 TIME 0.12535715103149414
+2020-12-26 11:17:51,433: main_6: DEBUG: Epoch 94 Update 4260 Cost 8.098671913146973 L2 14884.8369140625 TIME 0.6034786701202393
+2020-12-26 11:18:00,983: main_6: DEBUG: Epoch  94
+2020-12-26 11:18:00,984: main_6: DEBUG: Valid cost  8.203559268604625
+2020-12-26 11:18:00,984: main_6: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 11:18:00,984: main_6: DEBUG: Test cost  8.193558259443803
+2020-12-26 11:18:00,984: main_6: DEBUG: Test accuracy  0.4318181818181818
+2020-12-26 11:18:00,984: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:18:00,984: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:18:00,984: main_6: DEBUG: Training accuracy:  0.6861313868613139
+2020-12-26 11:18:00,984: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:18:02,401: main_6: DEBUG: Epoch 95 Update 4280 Cost 8.012969017028809 L2 14834.88671875 TIME 0.2560567855834961
+2020-12-26 11:18:07,654: main_6: DEBUG: Epoch 95 Update 4300 Cost 8.038131713867188 L2 14789.541015625 TIME 0.5492298603057861
+2020-12-26 11:18:16,018: main_6: DEBUG: Epoch 95 Update 4320 Cost 7.65850830078125 L2 14735.7734375 TIME 0.17105412483215332
+2020-12-26 11:18:18,785: main_6: DEBUG: Epoch  95
+2020-12-26 11:18:18,785: main_6: DEBUG: Valid cost  8.253212755376643
+2020-12-26 11:18:18,785: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:18:18,785: main_6: DEBUG: Test cost  8.188599239696156
+2020-12-26 11:18:18,785: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:18:18,785: main_6: DEBUG: learning_rate:  0.3
+2020-12-26 11:18:18,785: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:18:18,785: main_6: DEBUG: bad_counter:  1
+2020-12-26 11:18:18,879: main_6: DEBUG: lrate change to:   0.27
+2020-12-26 11:18:18,880: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:18:18,880: main_6: DEBUG: Training accuracy:  0.6854014598540146
+2020-12-26 11:18:18,880: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:18:23,323: main_6: DEBUG: Epoch 96 Update 4340 Cost 7.835714817047119 L2 14692.5771484375 TIME 0.14107227325439453
+2020-12-26 11:18:31,646: main_6: DEBUG: Epoch 96 Update 4360 Cost 7.912694454193115 L2 14664.2861328125 TIME 0.12695908546447754
+2020-12-26 11:18:37,122: main_6: DEBUG: Epoch  96
+2020-12-26 11:18:37,122: main_6: DEBUG: Valid cost  8.142822525717996
+2020-12-26 11:18:37,123: main_6: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-26 11:18:37,123: main_6: DEBUG: Test cost  8.088418006896973
+2020-12-26 11:18:37,123: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:18:37,123: main_6: DEBUG: learning_rate:  0.27
+2020-12-26 11:18:37,123: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:18:37,123: main_6: DEBUG: Training accuracy:  0.6788321167883211
+2020-12-26 11:18:37,123: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:18:40,315: main_6: DEBUG: Epoch 97 Update 4380 Cost 7.771846771240234 L2 14619.935546875 TIME 0.13358592987060547
+2020-12-26 11:18:48,761: main_6: DEBUG: Epoch 97 Update 4400 Cost 8.005779266357422 L2 14579.1767578125 TIME 0.4793267250061035
+2020-12-26 11:18:55,729: main_6: DEBUG: Epoch  97
+2020-12-26 11:18:55,729: main_6: DEBUG: Valid cost  8.047075791792436
+2020-12-26 11:18:55,729: main_6: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 11:18:55,729: main_6: DEBUG: Test cost  8.027259653264826
+2020-12-26 11:18:55,729: main_6: DEBUG: Test accuracy  0.4602272727272727
+2020-12-26 11:18:55,729: main_6: DEBUG: learning_rate:  0.27
+2020-12-26 11:18:55,730: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:18:55,730: main_6: DEBUG: Training accuracy:  0.6992700729927007
+2020-12-26 11:18:55,730: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:18:57,705: main_6: DEBUG: Epoch 98 Update 4420 Cost 7.856897830963135 L2 14540.783203125 TIME 0.14426469802856445
+2020-12-26 11:19:03,497: main_6: DEBUG: Epoch 98 Update 4440 Cost 7.903934001922607 L2 14497.0078125 TIME 0.19811248779296875
+2020-12-26 11:19:13,763: main_6: DEBUG: Epoch  98
+2020-12-26 11:19:13,764: main_6: DEBUG: Valid cost  7.991947824304754
+2020-12-26 11:19:13,764: main_6: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-26 11:19:13,764: main_6: DEBUG: Test cost  7.9545581124045635
+2020-12-26 11:19:13,764: main_6: DEBUG: Test accuracy  0.5795454545454546
+2020-12-26 11:19:13,764: main_6: DEBUG: learning_rate:  0.27
+2020-12-26 11:19:13,765: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:19:13,765: main_6: DEBUG: Training accuracy:  0.6854014598540146
+2020-12-26 11:19:13,765: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:19:15,303: main_6: DEBUG: Epoch 99 Update 4460 Cost 7.864727973937988 L2 14450.3408203125 TIME 0.3072011470794678
+2020-12-26 11:19:20,775: main_6: DEBUG: Epoch 99 Update 4480 Cost 7.795034408569336 L2 14405.591796875 TIME 0.29816555976867676
+2020-12-26 11:19:29,889: main_6: DEBUG: Epoch 99 Update 4500 Cost 7.859256267547607 L2 14362.310546875 TIME 0.14564871788024902
+2020-12-26 11:19:32,614: main_6: DEBUG: Epoch  99
+2020-12-26 11:19:32,614: main_6: DEBUG: Valid cost  8.06625947085294
+2020-12-26 11:19:32,615: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:19:32,615: main_6: DEBUG: Test cost  8.082226059653543
+2020-12-26 11:19:32,615: main_6: DEBUG: Test accuracy  0.4034090909090909
+2020-12-26 11:19:32,615: main_6: DEBUG: learning_rate:  0.27
+2020-12-26 11:19:32,615: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:19:32,615: main_6: DEBUG: bad_counter:  2
+2020-12-26 11:19:32,714: main_6: DEBUG: lrate change to:   0.24300000000000002
+2020-12-26 11:19:32,714: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:19:32,714: main_6: DEBUG: Training accuracy:  0.7007299270072993
+2020-12-26 11:19:32,714: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:19:37,028: main_6: DEBUG: Epoch 100 Update 4520 Cost 7.596170902252197 L2 14331.443359375 TIME 0.12603354454040527
+2020-12-26 11:19:45,082: main_6: DEBUG: Epoch 100 Update 4540 Cost 7.831370830535889 L2 14296.962890625 TIME 0.17985963821411133
+2020-12-26 11:19:50,720: main_6: DEBUG: Epoch  100
+2020-12-26 11:19:50,720: main_6: DEBUG: Valid cost  7.9194230166348545
+2020-12-26 11:19:50,720: main_6: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-26 11:19:50,720: main_6: DEBUG: Test cost  7.909573381597346
+2020-12-26 11:19:50,720: main_6: DEBUG: Test accuracy  0.4318181818181818
+2020-12-26 11:19:50,720: main_6: DEBUG: learning_rate:  0.24300000000000002
+2020-12-26 11:19:50,721: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:19:50,721: main_6: DEBUG: Training accuracy:  0.7
+2020-12-26 11:19:50,721: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:19:54,065: main_6: DEBUG: Epoch 101 Update 4560 Cost 7.699316024780273 L2 14257.474609375 TIME 0.20244717597961426
+2020-12-26 11:20:02,618: main_6: DEBUG: Epoch 101 Update 4580 Cost 7.748721122741699 L2 14226.5517578125 TIME 0.4130852222442627
+2020-12-26 11:20:10,413: main_6: DEBUG: Epoch  101
+2020-12-26 11:20:10,413: main_6: DEBUG: Valid cost  7.987697254527699
+2020-12-26 11:20:10,413: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:20:10,413: main_6: DEBUG: Test cost  8.000684651461514
+2020-12-26 11:20:10,414: main_6: DEBUG: Test accuracy  0.3977272727272727
+2020-12-26 11:20:10,414: main_6: DEBUG: learning_rate:  0.24300000000000002
+2020-12-26 11:20:10,414: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:20:10,414: main_6: DEBUG: bad_counter:  3
+2020-12-26 11:20:10,501: main_6: DEBUG: lrate change to:   0.21870000000000003
+2020-12-26 11:20:10,502: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:20:10,502: main_6: DEBUG: Training accuracy:  0.7021897810218978
+2020-12-26 11:20:10,502: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:20:13,227: main_6: DEBUG: Epoch 102 Update 4600 Cost 7.694597244262695 L2 14190.1171875 TIME 0.2153456211090088
+2020-12-26 11:20:18,505: main_6: DEBUG: Epoch 102 Update 4620 Cost 7.4877519607543945 L2 14161.125 TIME 0.17040395736694336
+2020-12-26 11:20:28,784: main_6: DEBUG: Epoch  102
+2020-12-26 11:20:28,785: main_6: DEBUG: Valid cost  7.8619254719127305
+2020-12-26 11:20:28,785: main_6: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-26 11:20:28,785: main_6: DEBUG: Test cost  7.8172126683321865
+2020-12-26 11:20:28,785: main_6: DEBUG: Test accuracy  0.6022727272727273
+2020-12-26 11:20:28,785: main_6: DEBUG: learning_rate:  0.21870000000000003
+2020-12-26 11:20:28,785: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:20:28,785: main_6: DEBUG: Training accuracy:  0.7065693430656934
+2020-12-26 11:20:28,785: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:20:30,573: main_6: DEBUG: Epoch 103 Update 4640 Cost 7.733797073364258 L2 14129.7431640625 TIME 0.28836798667907715
+2020-12-26 11:20:35,108: main_6: DEBUG: Epoch 103 Update 4660 Cost 7.570470809936523 L2 14095.3779296875 TIME 0.2250514030456543
+2020-12-26 11:20:44,961: main_6: DEBUG: Epoch 103 Update 4680 Cost 7.927832126617432 L2 14067.2412109375 TIME 0.1684257984161377
+2020-12-26 11:20:47,883: main_6: DEBUG: Epoch  103
+2020-12-26 11:20:47,884: main_6: DEBUG: Valid cost  7.8561272187666455
+2020-12-26 11:20:47,884: main_6: DEBUG: Valid accuracy  0.45454545454545453
+2020-12-26 11:20:47,884: main_6: DEBUG: Test cost  7.849086891521107
+2020-12-26 11:20:47,884: main_6: DEBUG: Test accuracy  0.4147727272727273
+2020-12-26 11:20:47,884: main_6: DEBUG: learning_rate:  0.21870000000000003
+2020-12-26 11:20:47,884: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:20:47,885: main_6: DEBUG: Training accuracy:  0.7160583941605839
+2020-12-26 11:20:47,885: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:20:52,722: main_6: DEBUG: Epoch 104 Update 4700 Cost 7.510545253753662 L2 14027.4931640625 TIME 0.13112473487854004
+2020-12-26 11:21:00,755: main_6: DEBUG: Epoch 104 Update 4720 Cost 7.80713415145874 L2 13997.681640625 TIME 0.4389932155609131
+2020-12-26 11:21:06,340: main_6: DEBUG: Epoch  104
+2020-12-26 11:21:06,341: main_6: DEBUG: Valid cost  7.812152168967507
+2020-12-26 11:21:06,341: main_6: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 11:21:06,341: main_6: DEBUG: Test cost  7.80088437687267
+2020-12-26 11:21:06,342: main_6: DEBUG: Test accuracy  0.4034090909090909
+2020-12-26 11:21:06,342: main_6: DEBUG: learning_rate:  0.21870000000000003
+2020-12-26 11:21:06,342: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:21:06,342: main_6: DEBUG: Training accuracy:  0.7087591240875912
+2020-12-26 11:21:06,342: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:21:09,483: main_6: DEBUG: Epoch 105 Update 4740 Cost 7.621557235717773 L2 13964.1025390625 TIME 0.23839330673217773
+2020-12-26 11:21:16,950: main_6: DEBUG: Epoch 105 Update 4760 Cost 7.516000270843506 L2 13937.9052734375 TIME 0.14637303352355957
+2020-12-26 11:21:24,731: main_6: DEBUG: Epoch  105
+2020-12-26 11:21:24,732: main_6: DEBUG: Valid cost  7.798325885425914
+2020-12-26 11:21:24,732: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:21:24,732: main_6: DEBUG: Test cost  7.790862256830389
+2020-12-26 11:21:24,732: main_6: DEBUG: Test accuracy  0.42045454545454547
+2020-12-26 11:21:24,732: main_6: DEBUG: learning_rate:  0.21870000000000003
+2020-12-26 11:21:24,732: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:21:24,732: main_6: DEBUG: Training accuracy:  0.7204379562043796
+2020-12-26 11:21:24,732: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:21:27,341: main_6: DEBUG: Epoch 106 Update 4780 Cost 7.312497138977051 L2 13916.02734375 TIME 0.11909794807434082
+2020-12-26 11:21:32,895: main_6: DEBUG: Epoch 106 Update 4800 Cost 7.540713787078857 L2 13890.603515625 TIME 0.2624657154083252
+2020-12-26 11:21:43,958: main_6: DEBUG: Epoch  106
+2020-12-26 11:21:43,960: main_6: DEBUG: Valid cost  7.882453745061701
+2020-12-26 11:21:43,960: main_6: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-26 11:21:43,960: main_6: DEBUG: Test cost  7.898795171217485
+2020-12-26 11:21:43,960: main_6: DEBUG: Test accuracy  0.39204545454545453
+2020-12-26 11:21:43,960: main_6: DEBUG: learning_rate:  0.21870000000000003
+2020-12-26 11:21:43,960: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:21:43,960: main_6: DEBUG: bad_counter:  4
+2020-12-26 11:21:44,059: main_6: DEBUG: lrate change to:   0.19683000000000003
+2020-12-26 11:21:44,059: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:21:44,059: main_6: DEBUG: Training accuracy:  0.7262773722627737
+2020-12-26 11:21:44,059: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:21:45,253: main_6: DEBUG: Epoch 107 Update 4820 Cost 7.495008945465088 L2 13864.6923828125 TIME 0.16500473022460938
+2020-12-26 11:21:50,501: main_6: DEBUG: Epoch 107 Update 4840 Cost 7.542414665222168 L2 13840.9638671875 TIME 0.5916957855224609
+2020-12-26 11:21:59,529: main_6: DEBUG: Epoch 107 Update 4860 Cost 7.492516994476318 L2 13818.46484375 TIME 0.15663480758666992
+2020-12-26 11:22:02,453: main_6: DEBUG: Epoch  107
+2020-12-26 11:22:02,454: main_6: DEBUG: Valid cost  7.788147492842241
+2020-12-26 11:22:02,454: main_6: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-26 11:22:02,454: main_6: DEBUG: Test cost  7.793064637617632
+2020-12-26 11:22:02,454: main_6: DEBUG: Test accuracy  0.42613636363636365
+2020-12-26 11:22:02,454: main_6: DEBUG: learning_rate:  0.19683000000000003
+2020-12-26 11:22:02,454: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:22:02,454: main_6: DEBUG: Training accuracy:  0.708029197080292
+2020-12-26 11:22:02,455: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:22:06,716: main_6: DEBUG: Epoch 108 Update 4880 Cost 7.607158660888672 L2 13781.2958984375 TIME 0.127946138381958
+2020-12-26 11:22:14,013: main_6: DEBUG: Epoch 108 Update 4900 Cost 7.315878391265869 L2 13743.3642578125 TIME 0.11224365234375
+2020-12-26 11:22:19,617: main_6: DEBUG: Epoch  108
+2020-12-26 11:22:19,619: main_6: DEBUG: Valid cost  7.744936336170543
+2020-12-26 11:22:19,619: main_6: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 11:22:19,619: main_6: DEBUG: Test cost  7.7478274432095615
+2020-12-26 11:22:19,619: main_6: DEBUG: Test accuracy  0.42613636363636365
+2020-12-26 11:22:19,619: main_6: DEBUG: learning_rate:  0.19683000000000003
+2020-12-26 11:22:19,619: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:22:19,619: main_6: DEBUG: Training accuracy:  0.737956204379562
+2020-12-26 11:22:19,619: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:22:23,577: main_6: DEBUG: Epoch 109 Update 4920 Cost 7.322842597961426 L2 13714.2314453125 TIME 0.20311546325683594
+2020-12-26 11:22:31,673: main_6: DEBUG: Epoch 109 Update 4940 Cost 7.304841995239258 L2 13677.556640625 TIME 0.481689453125
+2020-12-26 11:22:39,308: main_6: DEBUG: Epoch  109
+2020-12-26 11:22:39,309: main_6: DEBUG: Valid cost  7.7552735155278985
+2020-12-26 11:22:39,309: main_6: DEBUG: Valid accuracy  0.4602272727272727
+2020-12-26 11:22:39,309: main_6: DEBUG: Test cost  7.767945289611816
+2020-12-26 11:22:39,309: main_6: DEBUG: Test accuracy  0.4034090909090909
+2020-12-26 11:22:39,309: main_6: DEBUG: learning_rate:  0.19683000000000003
+2020-12-26 11:22:39,310: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:22:39,310: main_6: DEBUG: bad_counter:  5
+2020-12-26 11:22:39,400: main_6: DEBUG: lrate change to:   0.17714700000000003
+2020-12-26 11:22:39,400: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:22:39,400: main_6: DEBUG: Training accuracy:  0.7372262773722628
+2020-12-26 11:22:39,401: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:22:41,678: main_6: DEBUG: Epoch 110 Update 4960 Cost 7.317337512969971 L2 13646.6318359375 TIME 0.24437975883483887
+2020-12-26 11:22:47,785: main_6: DEBUG: Epoch 110 Update 4980 Cost 7.384890556335449 L2 13623.5439453125 TIME 0.45914793014526367
+2020-12-26 11:22:58,122: main_6: DEBUG: Epoch  110
+2020-12-26 11:22:58,123: main_6: DEBUG: Valid cost  7.6347856521606445
+2020-12-26 11:22:58,123: main_6: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-26 11:22:58,123: main_6: DEBUG: Test cost  7.5888144753196025
+2020-12-26 11:22:58,123: main_6: DEBUG: Test accuracy  0.5909090909090909
+2020-12-26 11:22:58,123: main_6: DEBUG: learning_rate:  0.17714700000000003
+2020-12-26 11:22:58,123: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:22:58,123: main_6: DEBUG: Training accuracy:  0.7372262773722628
+2020-12-26 11:22:58,124: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:22:59,751: main_6: DEBUG: Epoch 111 Update 5000 Cost 7.172921180725098 L2 13598.583984375 TIME 0.4089663028717041
+2020-12-26 11:23:04,863: main_6: DEBUG: Epoch 111 Update 5020 Cost 7.32982063293457 L2 13572.3515625 TIME 0.21059799194335938
+2020-12-26 11:23:14,400: main_6: DEBUG: Epoch 111 Update 5040 Cost 7.334330081939697 L2 13554.2353515625 TIME 0.1470935344696045
+2020-12-26 11:23:17,517: main_6: DEBUG: Epoch  111
+2020-12-26 11:23:17,518: main_6: DEBUG: Valid cost  7.700658494775945
+2020-12-26 11:23:17,518: main_6: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 11:23:17,518: main_6: DEBUG: Test cost  7.7102274027737705
+2020-12-26 11:23:17,518: main_6: DEBUG: Test accuracy  0.42045454545454547
+2020-12-26 11:23:17,518: main_6: DEBUG: learning_rate:  0.17714700000000003
+2020-12-26 11:23:17,518: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:23:17,518: main_6: DEBUG: bad_counter:  6
+2020-12-26 11:23:17,607: main_6: DEBUG: lrate change to:   0.15943230000000003
+2020-12-26 11:23:17,607: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:23:17,607: main_6: DEBUG: Training accuracy:  0.7321167883211679
+2020-12-26 11:23:17,607: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:23:21,587: main_6: DEBUG: Epoch 112 Update 5060 Cost 7.153334140777588 L2 13525.0380859375 TIME 0.09060931205749512
+2020-12-26 11:23:29,405: main_6: DEBUG: Epoch 112 Update 5080 Cost 7.315576553344727 L2 13504.5712890625 TIME 0.38763999938964844
+2020-12-26 11:23:35,041: main_6: DEBUG: Epoch  112
+2020-12-26 11:23:35,042: main_6: DEBUG: Valid cost  7.546316883780739
+2020-12-26 11:23:35,042: main_6: DEBUG: Valid accuracy  0.4772727272727273
+2020-12-26 11:23:35,042: main_6: DEBUG: Test cost  7.5231734189120205
+2020-12-26 11:23:35,042: main_6: DEBUG: Test accuracy  0.4772727272727273
+2020-12-26 11:23:35,042: main_6: DEBUG: learning_rate:  0.15943230000000003
+2020-12-26 11:23:35,043: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:23:35,043: main_6: DEBUG: Training accuracy:  0.7503649635036497
+2020-12-26 11:23:35,043: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:23:38,008: main_6: DEBUG: Epoch 113 Update 5100 Cost 7.191816806793213 L2 13480.6123046875 TIME 0.1913771629333496
+2020-12-26 11:23:45,726: main_6: DEBUG: Epoch 113 Update 5120 Cost 7.046084403991699 L2 13462.0302734375 TIME 0.16275262832641602
+2020-12-26 11:23:52,970: main_6: DEBUG: Epoch  113
+2020-12-26 11:23:52,970: main_6: DEBUG: Valid cost  7.515749931335449
+2020-12-26 11:23:52,970: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:23:52,971: main_6: DEBUG: Test cost  7.4812163439663975
+2020-12-26 11:23:52,971: main_6: DEBUG: Test accuracy  0.5511363636363636
+2020-12-26 11:23:52,971: main_6: DEBUG: learning_rate:  0.15943230000000003
+2020-12-26 11:23:52,971: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:23:52,971: main_6: DEBUG: Training accuracy:  0.737956204379562
+2020-12-26 11:23:52,971: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:23:55,362: main_6: DEBUG: Epoch 114 Update 5140 Cost 7.165467262268066 L2 13439.7412109375 TIME 0.20507192611694336
+2020-12-26 11:24:00,975: main_6: DEBUG: Epoch 114 Update 5160 Cost 7.34105110168457 L2 13421.5458984375 TIME 0.6015818119049072
+2020-12-26 11:24:11,375: main_6: DEBUG: Epoch  114
+2020-12-26 11:24:11,375: main_6: DEBUG: Valid cost  7.583711667494341
+2020-12-26 11:24:11,375: main_6: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-26 11:24:11,375: main_6: DEBUG: Test cost  7.529536767439409
+2020-12-26 11:24:11,375: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:24:11,375: main_6: DEBUG: learning_rate:  0.15943230000000003
+2020-12-26 11:24:11,376: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:24:11,376: main_6: DEBUG: bad_counter:  7
+2020-12-26 11:24:11,474: main_6: DEBUG: lrate change to:   0.14348907000000002
+2020-12-26 11:24:11,475: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:24:11,475: main_6: DEBUG: Training accuracy:  0.7547445255474453
+2020-12-26 11:24:11,475: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:24:12,979: main_6: DEBUG: Epoch 115 Update 5180 Cost 7.158014297485352 L2 13398.9970703125 TIME 0.3914833068847656
+2020-12-26 11:24:18,207: main_6: DEBUG: Epoch 115 Update 5200 Cost 7.256731986999512 L2 13375.4951171875 TIME 0.44707632064819336
+2020-12-26 11:24:27,564: main_6: DEBUG: Epoch 115 Update 5220 Cost 7.275278568267822 L2 13364.337890625 TIME 0.1612534523010254
+2020-12-26 11:24:30,568: main_6: DEBUG: Epoch  115
+2020-12-26 11:24:30,569: main_6: DEBUG: Valid cost  7.488274227489125
+2020-12-26 11:24:30,569: main_6: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-26 11:24:30,569: main_6: DEBUG: Test cost  7.445069746537642
+2020-12-26 11:24:30,569: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:24:30,569: main_6: DEBUG: learning_rate:  0.14348907000000002
+2020-12-26 11:24:30,569: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:24:30,569: main_6: DEBUG: Training accuracy:  0.7364963503649635
+2020-12-26 11:24:30,569: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:24:34,908: main_6: DEBUG: Epoch 116 Update 5240 Cost 7.013731479644775 L2 13341.125 TIME 0.08964347839355469
+2020-12-26 11:24:42,457: main_6: DEBUG: Epoch 116 Update 5260 Cost 7.139615058898926 L2 13326.8974609375 TIME 0.15525460243225098
+2020-12-26 11:24:48,131: main_6: DEBUG: Epoch  116
+2020-12-26 11:24:48,132: main_6: DEBUG: Valid cost  7.512656818736684
+2020-12-26 11:24:48,132: main_6: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-26 11:24:48,132: main_6: DEBUG: Test cost  7.461311296983198
+2020-12-26 11:24:48,132: main_6: DEBUG: Test accuracy  0.5965909090909091
+2020-12-26 11:24:48,132: main_6: DEBUG: learning_rate:  0.14348907000000002
+2020-12-26 11:24:48,132: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:24:48,132: main_6: DEBUG: bad_counter:  8
+2020-12-26 11:24:48,225: main_6: DEBUG: lrate change to:   0.12914016300000003
+2020-12-26 11:24:48,225: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:24:48,226: main_6: DEBUG: Training accuracy:  0.7467153284671533
+2020-12-26 11:24:48,226: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:24:51,626: main_6: DEBUG: Epoch 117 Update 5280 Cost 7.12485933303833 L2 13308.1123046875 TIME 0.22548580169677734
+2020-12-26 11:25:00,168: main_6: DEBUG: Epoch 117 Update 5300 Cost 7.171680450439453 L2 13292.0302734375 TIME 0.47485899925231934
+2020-12-26 11:25:07,165: main_6: DEBUG: Epoch  117
+2020-12-26 11:25:07,167: main_6: DEBUG: Valid cost  7.457822539589622
+2020-12-26 11:25:07,167: main_6: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-26 11:25:07,167: main_6: DEBUG: Test cost  7.413572224703702
+2020-12-26 11:25:07,167: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:25:07,167: main_6: DEBUG: learning_rate:  0.12914016300000003
+2020-12-26 11:25:07,167: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:25:07,167: main_6: DEBUG: Training accuracy:  0.7467153284671533
+2020-12-26 11:25:07,167: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:25:09,391: main_6: DEBUG: Epoch 118 Update 5320 Cost 7.105583190917969 L2 13278.8642578125 TIME 0.24722075462341309
+2020-12-26 11:25:15,324: main_6: DEBUG: Epoch 118 Update 5340 Cost 7.231650352478027 L2 13258.0625 TIME 0.6502110958099365
+2020-12-26 11:25:24,745: main_6: DEBUG: Epoch  118
+2020-12-26 11:25:24,746: main_6: DEBUG: Valid cost  7.443264007568359
+2020-12-26 11:25:24,746: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:25:24,746: main_6: DEBUG: Test cost  7.396856698122892
+2020-12-26 11:25:24,746: main_6: DEBUG: Test accuracy  0.5625
+2020-12-26 11:25:24,746: main_6: DEBUG: learning_rate:  0.12914016300000003
+2020-12-26 11:25:24,747: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:25:24,747: main_6: DEBUG: Training accuracy:  0.7627737226277372
+2020-12-26 11:25:24,747: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:25:25,969: main_6: DEBUG: Epoch 119 Update 5360 Cost 7.086396217346191 L2 13246.732421875 TIME 0.19101262092590332
+2020-12-26 11:25:31,300: main_6: DEBUG: Epoch 119 Update 5380 Cost 7.1835761070251465 L2 13229.2265625 TIME 0.5811259746551514
+2020-12-26 11:25:39,148: main_6: DEBUG: Epoch 119 Update 5400 Cost 7.04174280166626 L2 13213.9501953125 TIME 0.1841261386871338
+2020-12-26 11:25:42,015: main_6: DEBUG: Epoch  119
+2020-12-26 11:25:42,015: main_6: DEBUG: Valid cost  7.433369939977473
+2020-12-26 11:25:42,016: main_6: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-26 11:25:42,016: main_6: DEBUG: Test cost  7.400936906987971
+2020-12-26 11:25:42,016: main_6: DEBUG: Test accuracy  0.4772727272727273
+2020-12-26 11:25:42,016: main_6: DEBUG: learning_rate:  0.12914016300000003
+2020-12-26 11:25:42,016: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:25:42,016: main_6: DEBUG: Training accuracy:  0.7532846715328467
+2020-12-26 11:25:42,016: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:25:46,299: main_6: DEBUG: Epoch 120 Update 5420 Cost 7.4027581214904785 L2 13192.7119140625 TIME 0.12417960166931152
+2020-12-26 11:25:54,099: main_6: DEBUG: Epoch 120 Update 5440 Cost 7.140178680419922 L2 13175.1689453125 TIME 0.12337660789489746
+2020-12-26 11:25:59,347: main_6: DEBUG: Epoch  120
+2020-12-26 11:25:59,349: main_6: DEBUG: Valid cost  7.396392128684304
+2020-12-26 11:25:59,349: main_6: DEBUG: Valid accuracy  0.45454545454545453
+2020-12-26 11:25:59,349: main_6: DEBUG: Test cost  7.356388698924672
+2020-12-26 11:25:59,349: main_6: DEBUG: Test accuracy  0.5340909090909091
+2020-12-26 11:25:59,349: main_6: DEBUG: learning_rate:  0.12914016300000003
+2020-12-26 11:25:59,349: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:25:59,349: main_6: DEBUG: Training accuracy:  0.7598540145985402
+2020-12-26 11:25:59,349: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:26:02,367: main_6: DEBUG: Epoch 121 Update 5460 Cost 6.973838806152344 L2 13160.078125 TIME 0.11344361305236816
+2020-12-26 11:26:10,682: main_6: DEBUG: Epoch 121 Update 5480 Cost 6.969939231872559 L2 13143.3740234375 TIME 0.23608112335205078
+2020-12-26 11:26:18,171: main_6: DEBUG: Epoch  121
+2020-12-26 11:26:18,171: main_6: DEBUG: Valid cost  7.473250995982777
+2020-12-26 11:26:18,171: main_6: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 11:26:18,171: main_6: DEBUG: Test cost  7.455620418895375
+2020-12-26 11:26:18,171: main_6: DEBUG: Test accuracy  0.4034090909090909
+2020-12-26 11:26:18,171: main_6: DEBUG: learning_rate:  0.12914016300000003
+2020-12-26 11:26:18,171: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:26:18,171: main_6: DEBUG: bad_counter:  9
+2020-12-26 11:26:18,270: main_6: DEBUG: lrate change to:   0.11622614670000003
+2020-12-26 11:26:18,271: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:26:18,271: main_6: DEBUG: Training accuracy:  0.7671532846715329
+2020-12-26 11:26:18,271: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:26:20,860: main_6: DEBUG: Epoch 122 Update 5500 Cost 6.906808853149414 L2 13123.9619140625 TIME 0.12908101081848145
+2020-12-26 11:26:27,642: main_6: DEBUG: Epoch 122 Update 5520 Cost 6.976053714752197 L2 13112.912109375 TIME 0.2350330352783203
+2020-12-26 11:26:36,990: main_6: DEBUG: Epoch  122
+2020-12-26 11:26:36,990: main_6: DEBUG: Valid cost  7.3881121982227675
+2020-12-26 11:26:36,991: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:26:36,991: main_6: DEBUG: Test cost  7.354150945490057
+2020-12-26 11:26:36,991: main_6: DEBUG: Test accuracy  0.4659090909090909
+2020-12-26 11:26:36,991: main_6: DEBUG: learning_rate:  0.11622614670000003
+2020-12-26 11:26:36,991: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:26:36,991: main_6: DEBUG: Training accuracy:  0.7649635036496351
+2020-12-26 11:26:36,991: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:26:38,267: main_6: DEBUG: Epoch 123 Update 5540 Cost 6.942989349365234 L2 13101.853515625 TIME 0.20111823081970215
+2020-12-26 11:26:43,605: main_6: DEBUG: Epoch 123 Update 5560 Cost 7.054949760437012 L2 13081.7451171875 TIME 0.43857669830322266
+2020-12-26 11:26:52,028: main_6: DEBUG: Epoch 123 Update 5580 Cost 7.074464797973633 L2 13065.3515625 TIME 0.14464378356933594
+2020-12-26 11:26:54,796: main_6: DEBUG: Epoch  123
+2020-12-26 11:26:54,797: main_6: DEBUG: Valid cost  7.447946158322421
+2020-12-26 11:26:54,797: main_6: DEBUG: Valid accuracy  0.4431818181818182
+2020-12-26 11:26:54,797: main_6: DEBUG: Test cost  7.4265969449823555
+2020-12-26 11:26:54,797: main_6: DEBUG: Test accuracy  0.4147727272727273
+2020-12-26 11:26:54,797: main_6: DEBUG: learning_rate:  0.11622614670000003
+2020-12-26 11:26:54,797: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:26:54,797: main_6: DEBUG: bad_counter:  10
+2020-12-26 11:26:54,891: main_6: DEBUG: lrate change to:   0.10460353203000003
+2020-12-26 11:26:54,891: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:26:54,891: main_6: DEBUG: Training accuracy:  0.7722627737226277
+2020-12-26 11:26:54,891: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:26:59,188: main_6: DEBUG: Epoch 124 Update 5600 Cost 7.057846546173096 L2 13050.7236328125 TIME 0.09617877006530762
+2020-12-26 11:27:07,355: main_6: DEBUG: Epoch 124 Update 5620 Cost 7.147446632385254 L2 13032.8798828125 TIME 0.3624534606933594
+2020-12-26 11:27:12,772: main_6: DEBUG: Epoch  124
+2020-12-26 11:27:12,773: main_6: DEBUG: Valid cost  7.356892152266069
+2020-12-26 11:27:12,773: main_6: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-26 11:27:12,773: main_6: DEBUG: Test cost  7.3019207607616075
+2020-12-26 11:27:12,773: main_6: DEBUG: Test accuracy  0.5738636363636364
+2020-12-26 11:27:12,773: main_6: DEBUG: learning_rate:  0.10460353203000003
+2020-12-26 11:27:12,773: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:27:12,773: main_6: DEBUG: Training accuracy:  0.7751824817518248
+2020-12-26 11:27:12,774: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:27:16,299: main_6: DEBUG: Epoch 125 Update 5640 Cost 7.050600051879883 L2 13020.6494140625 TIME 0.39121437072753906
+2020-12-26 11:27:22,683: main_6: DEBUG: Epoch 125 Update 5660 Cost 7.183498382568359 L2 13008.697265625 TIME 0.49112439155578613
+2020-12-26 11:27:30,223: main_6: DEBUG: Epoch  125
+2020-12-26 11:27:30,224: main_6: DEBUG: Valid cost  7.349030061201616
+2020-12-26 11:27:30,224: main_6: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-26 11:27:30,224: main_6: DEBUG: Test cost  7.311138846657493
+2020-12-26 11:27:30,224: main_6: DEBUG: Test accuracy  0.48295454545454547
+2020-12-26 11:27:30,224: main_6: DEBUG: learning_rate:  0.10460353203000003
+2020-12-26 11:27:30,224: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:27:30,224: main_6: DEBUG: Training accuracy:  0.7751824817518248
+2020-12-26 11:27:30,224: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:27:32,142: main_6: DEBUG: Epoch 126 Update 5680 Cost 6.960487365722656 L2 12993.578125 TIME 0.11976337432861328
+2020-12-26 11:27:37,672: main_6: DEBUG: Epoch 126 Update 5700 Cost 7.1971940994262695 L2 12981.765625 TIME 0.19138360023498535
+2020-12-26 11:27:48,130: main_6: DEBUG: Epoch  126
+2020-12-26 11:27:48,131: main_6: DEBUG: Valid cost  7.328127124092796
+2020-12-26 11:27:48,132: main_6: DEBUG: Valid accuracy  0.4659090909090909
+2020-12-26 11:27:48,132: main_6: DEBUG: Test cost  7.284342939203436
+2020-12-26 11:27:48,132: main_6: DEBUG: Test accuracy  0.48863636363636365
+2020-12-26 11:27:48,132: main_6: DEBUG: learning_rate:  0.10460353203000003
+2020-12-26 11:27:48,132: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:27:48,132: main_6: DEBUG: Training accuracy:  0.7664233576642335
+2020-12-26 11:27:48,132: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:27:49,521: main_6: DEBUG: Epoch 127 Update 5720 Cost 6.927023887634277 L2 12970.1064453125 TIME 0.15728044509887695
+2020-12-26 11:27:55,528: main_6: DEBUG: Epoch 127 Update 5740 Cost 6.863754749298096 L2 12954.99609375 TIME 0.41026997566223145
+2020-12-26 11:28:03,285: main_6: DEBUG: Epoch 127 Update 5760 Cost 6.968655109405518 L2 12948.546875 TIME 0.17547369003295898
+2020-12-26 11:28:06,208: main_6: DEBUG: Epoch  127
+2020-12-26 11:28:06,209: main_6: DEBUG: Valid cost  7.311787952076305
+2020-12-26 11:28:06,209: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:28:06,209: main_6: DEBUG: Test cost  7.258744066411799
+2020-12-26 11:28:06,209: main_6: DEBUG: Test accuracy  0.5681818181818182
+2020-12-26 11:28:06,209: main_6: DEBUG: learning_rate:  0.10460353203000003
+2020-12-26 11:28:06,209: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:28:06,209: main_6: DEBUG: Training accuracy:  0.7671532846715329
+2020-12-26 11:28:06,209: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle
+2020-12-26 11:28:10,656: main_6: DEBUG: Epoch 128 Update 5780 Cost 6.910862445831299 L2 12928.126953125 TIME 0.13548517227172852
+2020-12-26 11:28:18,434: main_6: DEBUG: Epoch 128 Update 5800 Cost 7.119592189788818 L2 12916.0537109375 TIME 0.33124494552612305
+2020-12-26 11:28:24,027: main_6: DEBUG: Epoch  128
+2020-12-26 11:28:24,028: main_6: DEBUG: Valid cost  7.326120636679909
+2020-12-26 11:28:24,028: main_6: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-26 11:28:24,028: main_6: DEBUG: Test cost  7.288233410228383
+2020-12-26 11:28:24,028: main_6: DEBUG: Test accuracy  0.4431818181818182
+2020-12-26 11:28:24,028: main_6: DEBUG: learning_rate:  0.10460353203000003
+2020-12-26 11:28:24,028: main_6: INFO: wait_counter max, need to half the lr
+2020-12-26 11:28:24,028: main_6: DEBUG: bad_counter:  11
+2020-12-26 11:28:24,116: main_6: DEBUG: lrate change to:   0.09414317882700003
+2020-12-26 11:28:24,116: main_6: INFO: Early Stop!
+2020-12-26 11:28:24,116: main_6: DEBUG: Seen samples:  1370
+2020-12-26 11:28:24,116: main_6: DEBUG: Training accuracy:  0.7802919708029197
+2020-12-26 11:28:24,116: main_6: DEBUG: results/s_nn2/Saved loss_plot pickle

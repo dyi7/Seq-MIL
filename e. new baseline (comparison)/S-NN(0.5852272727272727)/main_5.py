@@ -1,0 +1,633 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 16 16:26:16 2020
+
+@author: DELL
+"""
+
+
+#S_NN
+
+
+import os
+from collections import defaultdict
+import numpy 
+numpy.random.seed(1)
+import tensorflow as tf
+import logging
+import math
+from tensorflow import logging  as log
+from tensorflow.python import debug as tf_debug
+from collections import OrderedDict
+from data_iteratorMIL import TextIterator
+from tensorflow.contrib import rnn
+import tensorflow.contrib.layers as layers
+import warnings
+import pickle as pkl
+import sys
+import pprint
+import pdb
+import os
+import copy
+import time
+import matplotlib.pyplot as plt
+import pickle
+
+logger = logging.getLogger(__name__)
+
+
+def _s(pp, name):  # add perfix
+    return '{}_{}'.format(pp, name)
+
+
+def load_params(path, params):
+    pp = numpy.load(path)
+    for kk, vv in params.iteritems():
+        if kk not in pp:
+            warnings.warn('{} is not in the archive'.format(kk))
+            continue
+        params[kk] = pp[kk]
+
+    return params
+
+
+def xavier_init(fan_in, fan_out, constant=1):
+    low = -constant * numpy.sqrt(6.0 / (fan_in + fan_out))
+    high = constant * numpy.sqrt(6.0 / (fan_in + fan_out))
+    W = numpy.random.uniform(low=low, high=high, size=(fan_in, fan_out))
+    return W.astype('float32')
+
+
+def ortho_weight(ndim):  # used by norm_weight below
+    """
+    Random orthogonal weights
+    Used by norm_weights(below), in which case, we
+    are ensuring that the rows are orthogonal
+    (i.e W = U \Sigma V, U has the same
+    # of rows, V has the same # of cols)
+    """
+    W = numpy.random.randn(ndim, ndim)
+    u, s, v = numpy.linalg.svd(W)
+    return u.astype('float32')
+
+
+def norm_weight(nin, nout=None, scale=0.01, ortho=True):
+    """
+    Random weights drawn from a Gaussian
+    """
+    if nout is None:
+        nout = nin
+    if nout == nin and ortho:
+        W = ortho_weight(nin)
+    else:
+        # W = numpy.random.uniform(-0.5,0.5,size=(nin,nout))
+        W = scale * numpy.random.randn(nin, nout)
+    return W.astype('float32')
+
+
+
+def init_params(options, worddicts):
+    params = OrderedDict()
+    # embedding
+    params['Wemb'] = norm_weight(options['n_words'], options['dim_word'])
+    # read embedding from GloVe
+    if options['embedding']:
+        with open(options['embedding'], 'r') as f:
+            for line in f:
+                tmp = line.split()
+                word = tmp[0]
+                vector = tmp[1:]
+                if word in worddicts and worddicts[word] < options['n_words']:
+                    try:
+                        params['Wemb'][worddicts[word], :] = vector
+                        # encoder: bidirectional RNN
+                    except ValueError as e:
+                        print(str(e))
+    return params
+
+
+def word_embedding(options, params):
+    embedding = tf.get_variable("embedding", shape=[options['n_words'], options['dim_word']],
+                                 initializer=tf.constant_initializer(numpy.array(
+                                     params['Wemb'])))  # tf.constant_initializer(numpy.array(params['Wemb']))
+    return embedding
+
+
+# (32, 11, 16) (32, 11) (32,)
+def prepare_data(sequence, labels, options, maxlen=None, max_word=100):
+    # length = [len(s) for s in sequence]
+    length = []   #一天里面 number of news
+    for i in sequence: #x,one batch里面one day
+        length.append(len(i))
+    if maxlen is not None:  # max length is the news level
+        new_sequence = []
+        new_lengths = []
+        
+        for l, s in zip(length, sequence):
+            if l < maxlen:
+                new_sequence.append(s)
+                new_lengths.append(l)
+
+        length = new_lengths  # This step is to filter the sentence which length is bigger
+        sequence = new_sequence  # than the max length. length means number of news. sequence means 
+        ##TODO need to be careful, set the max length bigger to avoid bug
+        if len(length) < 1:
+            return None, None, None, None, None, None, None, None
+        
+    maxlen_x = numpy.max(length)  # max time step   <100(maxlen)
+    n_samples = len(sequence)  # number of samples == batch
+    max_sequence = max(len(j) for i in sequence for j in i)  # find the sequence max length
+    max_sequence = max_word if max_sequence > max_word else max_sequence  # shrink the data size
+    ##TODO for x
+    x = numpy.zeros((n_samples, maxlen_x, max_sequence)).astype('int64')  #(32, 11, 16)
+    x_mask = numpy.zeros((n_samples, maxlen_x)).astype('float32')  #(32, 11)
+    ##TODO for label
+    l = numpy.zeros((n_samples,)).astype('int64')
+    for index, (i, ll) in enumerate(zip(sequence, labels)):  # batch size
+        l[index] = ll
+        for idx, ss in enumerate(i):  # time step
+            # x[idx, index, :sequence_length[idx]] = ss
+            if len(ss) < max_sequence:
+                x[index, idx, :len(ss)] = ss
+            else:
+                x[index, idx, :max_sequence] = ss[:max_sequence]
+            x_mask[index, idx] = 1.
+
+    #################3 maxlen_x 都小于 maxlen(100),但每一组maxlen_x都不一样！！
+    return x, x_mask, l
+
+
+
+def build_model(embedding, options):
+    """ Builds the entire computational graph used for training
+    """
+    # description string: #words x #samples
+    with tf.device('/gpu:1'):
+        with tf.variable_scope('input'):
+            x = tf.placeholder(tf.int64, shape=[None, None, None],
+                               name='x')  # 3D vector batch,news and sequence(before embedding)40*32*13
+            x_mask = tf.placeholder(tf.float32, shape=[None, None], name='x_mask')  # mask batch,news
+            y = tf.placeholder(tf.int64, shape=[None], name='y')
+            ##TODO important    
+            keep_prob = tf.placeholder(tf.float32, [], name='keep_prob')
+            is_training = tf.placeholder(tf.bool, name='is_training')
+            ##TODO important
+            sequence_mask = tf.cast(tf.abs(tf.sign(x)), tf.float32)  # 3D
+            n_timesteps = tf.shape(x)[0]  # time steps
+            n_samples = tf.shape(x)[1]  # n samples
+            # # word embedding
+            ##TODO word embedding
+            emb = tf.nn.embedding_lookup(embedding, x)
+            '''if options['use_dropout']:
+            emb = layers.dropout(emb, keep_prob=keep_prob, is_training=is_training)
+            '''
+    with tf.device('/gpu:1'):
+        # fed into the input of BILSTM from the official document
+        ##TODO word level LSTM
+        with tf.name_scope('news'):
+            # emb batch,news, sequence,embedding, 32*40*13*100
+            # sequence_mask batch, news,sequence 32*40*13
+            batch = tf.shape(emb)[0]
+            new_s = tf.shape(emb)[1]
+            word = tf.shape(emb)[2]
+            word_level_inputs = tf.reshape(emb, [batch * new_s, word, options['dim_word']])
+            word_level_mask = tf.reshape(sequence_mask, [batch * new_s, word])
+            ##TODO word level LSTM  --> level_output shape is (32*40)*nin
+            ##TODO average word
+            word_level_output = tf.reduce_sum(word_level_inputs * tf.expand_dims(word_level_mask, -1), 1) / tf.expand_dims(tf.reduce_sum(word_level_mask, 1) + 1e-8, 1)
+            # word_level_output shape is (32*40)*100
+            word_level_output = tf.reshape(word_level_output, [batch, new_s, options['dim_word']])  # 32*40*100
+            ##TODO average news
+            news_avg = tf.reduce_sum(word_level_output * tf.expand_dims(x_mask, -1), 1) / tf.expand_dims(tf.reduce_sum(x_mask, 1) + 1e-8, 1)
+            # shape is 32*100
+            if options['last_layer'] == 'NN':
+                logit = tf.layers.dense(news_avg, 150, activation=tf.nn.tanh, use_bias=True,
+                                        kernel_initializer=layers.xavier_initializer(uniform=True, seed=None,
+                                                                                    dtype=tf.float32),
+                                        name='ff', reuse=tf.AUTO_REUSE)
+
+            if options['use_dropout']:
+                logit = layers.dropout(logit, keep_prob=keep_prob, is_training=is_training,seed=None)
+            pred = tf.layers.dense(logit, 2, activation=None, use_bias=True,
+                                kernel_initializer=layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32),
+                                name='fout', reuse=tf.AUTO_REUSE)
+            logger.info('Building f_cost...')
+            # todo not same
+            labels = tf.one_hot(y, depth=2, axis=1)
+            # labels = y
+            preds = tf.nn.softmax(pred, 1,name='softmax')
+            # preds = tf.nn.sigmoid(pred)
+            # pred=tf.reshape(pred,[-1])
+            cost = tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=labels)
+            # cost = tf.reduce_sum(tf.nn.sigmoid_cross_entropy_with_logits(labels=labels,logits=pred),1)
+            # cost = -tf.reduce_sum((tf.cast(labels, tf.float32) * tf.log(preds + 1e-8)),axis=1)
+            #cost = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=pred, labels=y)
+        logger.info('Done')
+
+        with tf.variable_scope('logging'):
+            tf.summary.scalar('current_cost', tf.reduce_mean(cost))
+            tf.summary.histogram('predicted_value', preds)
+            summary = tf.summary.merge_all()
+
+    return is_training, cost, x, x_mask, y, n_timesteps, preds, summary
+    # preds:(32,2)  (0.2228,1-0.228)
+
+    
+def predict_pro_acc(sess, cost, prepare_data, model_options, iterator, maxlen, correct_pred, pred, summary, eidx,
+                    is_training, train_op, plot=None, writer=None, validate=False):
+    # fo = open(_s(prefix,'pre.txt'), "w")
+    num = 0
+    valid_acc = 0
+    total_cost = 0
+    loss = 0
+    result = 0
+    final_result=[]
+    # sess.add_tensor_filter("val_test_spot")
+    for x_sent, y_sent in iterator:
+        num += len(x_sent)
+        data_x, data_x_mask, data_y = prepare_data(
+            x_sent,
+            y_sent,
+            model_options,
+            maxlen=maxlen)
+        print(data_x.shape, data_x_mask.shape, data_y.shape)
+        loss, result, preds = sess.run([cost, correct_pred, pred],
+                                       feed_dict={'input/x:0': data_x, 'input/x_mask:0': data_x_mask,
+                                                  'input/y:0': data_y,
+                                                  'input/keep_prob:0': 1.0,
+                                                  'input/is_training:0': is_training})
+        valid_acc += result.sum()
+        total_cost += loss.sum()
+        if plot is not None:
+            if validate is True:
+                plot['validate'].append(loss.sum() / len(x_sent))
+            else:
+                plot['testing'].append(loss.sum() / len(x_sent))
+    final_result.extend(result.tolist())
+    final_acc = 1.0 * valid_acc / num
+    final_loss = 1.0 * total_cost / num
+    # if writer is not None:
+    #    writer.add_summary(test_summary, eidx)
+
+    # print result,preds,loss,result_
+    print(preds, result, num)
+
+    return final_acc, final_loss,final_result
+
+
+def train(
+        dim_word=100,  # word vector dimensionality
+        encoder='lstm',  # encoder model
+        decoder='lstm',  # decoder model
+        patience=10,  # early stopping patience
+        max_epochs=300,
+        finish_after=10000000,  # finish after this many updates
+        decay_c=0.,  # L2 regularization penalty
+        clip_c=-1.,  # gradient clipping threshold
+        lrate=0.0004,  # learning rate
+        n_words=100000,  # vocabulary size
+        n_words_lemma=100000,
+        maxlen=100,  # maximum length of the description
+        optimizer='adam',
+        batch_size=32,
+        valid_batch_size=32,
+        save_model='results/s_nn/',
+        saveto='S_NN.npz',
+        dispFreq=100,
+        validFreq=1000,
+        saveFreq=1000,  # save the parameters after every saveFreq updates
+        use_dropout=False,
+        reload_=False,
+        verbose=False,  # print verbose information for debug but slow speed
+        types='title',
+        cut_word=False,
+        cut_news=False,
+        last_layer="NN",
+        keep_prob=0.8,
+        datasets=[],
+        valid_datasets=[],
+        test_datasets=[],
+        dictionary=[],
+        embedding='',  # pretrain embedding file, such as word2vec, GLOVE
+        RUN_NAME="histogram_visualization",
+        wait_N=10
+):
+    logging.basicConfig(level=logging.DEBUG, format="%(asctime)s: %(name)s: %(levelname)s: %(message)s",
+                        filename='results/s_nn/log_result.txt')
+    # Model options
+    model_options = locals().copy()
+
+    with open(dictionary, 'rb') as f:
+        worddicts = pkl.load(f)
+
+    logger.info("Loading knowledge base ...")
+
+    # reload options
+    """if reload_ and os.path.exists(saveto):
+        logger.info("Reload options")
+        with open('%s.pkl' % saveto, 'rb') as f:
+            model_options = pkl.load(f)"""
+
+    logger.debug(pprint.pformat(model_options))
+    
+    logger.info("Loading data")
+    train = TextIterator(datasets[0], datasets[1],
+                         dict=dictionary,
+                         types=types,
+                         n_words=n_words,
+                         batch_size=batch_size,
+                         cut_word=cut_word,
+                         cut_news=cut_news,
+                         shuffle=True, shuffle_sentence=False)
+    train_valid = TextIterator(datasets[0], datasets[1],
+                               dict=dictionary,
+                               types=types,
+                               n_words=n_words,
+                               batch_size=valid_batch_size,
+                               cut_word=cut_word,
+                               cut_news=cut_news,
+                               shuffle=False, shuffle_sentence=False)
+    valid = TextIterator(valid_datasets[0], valid_datasets[1],
+                         dict=dictionary,
+                         types=types,
+                         n_words=n_words,
+                         batch_size=valid_batch_size,
+                         cut_word=cut_word,
+                         cut_news=cut_news,
+                         shuffle=True, shuffle_sentence=False)      #Shuffle = false
+    test = TextIterator(test_datasets[0], test_datasets[1],
+                        dict=dictionary,
+                        types=types,
+                        n_words=n_words,
+                        batch_size=valid_batch_size,
+                        cut_word=cut_word,
+                        cut_news=cut_news,
+                        shuffle=True, shuffle_sentence=False)
+    # Initialize (or reload) the parameters using 'model_options'
+    # then build the tensorflow graph
+    logger.info("init_word_embedding")
+    params = init_params(model_options, worddicts)
+    embedding = word_embedding(model_options, params)
+    is_training, cost, x, x_mask, y, n_timesteps, pred, summary = build_model(embedding, model_options)
+    with tf.variable_scope('train'):
+        lr = tf.Variable(0.0, trainable=False)
+
+        def assign_lr(session, lr_value):
+            session.run(tf.assign(lr, lr_value))
+
+        logger.info('Building optimizers...')
+        #optimizer = tf.train.AdamOptimizer(learning_rate=lr)
+        optimizer = tf.train.AdadeltaOptimizer(learning_rate=lr,rho=0.95)
+        logger.info('Done')
+        # print all variables
+        tvars = tf.trainable_variables()
+        for var in tvars:
+            print(var.name, var.shape)
+        lossL = tf.add_n([tf.nn.l2_loss(v) for v in tvars if ('embeddings' not in v.name and 'bias' not in v.name)])#
+        lossL2=lossL * 0.0005
+        print("don't do L2 variables:")
+        print([v.name for v in tvars if ('embeddings' in v.name or 'bias' in v.name)])
+        print("\n do L2 variables:")
+        print([v.name for v in tvars if ('embeddings' not in v.name and 'bias' not in v.name)])
+        cost = cost + lossL2
+        grads, _ = tf.clip_by_global_norm(tf.gradients(cost, tvars), model_options['clip_c'])
+        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        with tf.control_dependencies(extra_update_ops):
+            train_op = optimizer.apply_gradients(zip(grads, tvars))
+        # train_op = optimizer.minimize(cost)
+        op_loss = tf.reduce_mean(cost)
+        op_L2 = tf.reduce_mean(lossL)
+        logger.info("correct_pred")
+        correct_pred = tf.equal(tf.argmax(input=pred, axis=1), y)  # make prediction
+        logger.info("Done")
+
+        temp_accuracy = tf.cast(correct_pred, tf.float32)  # change to float32
+
+    logger.info("init variables")
+    init = tf.global_variables_initializer()
+    logger.info("Done")
+    # saver
+    saver = tf.train.Saver(max_to_keep=15)
+
+    config = tf.ConfigProto()
+    # config.gpu_options.per_process_gpu_memory_fraction = 0.4
+    config.gpu_options.allow_growth = True
+    with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)) as sess:
+        #sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+        training_writer = tf.summary.FileWriter("results/s_nn/logs/{}/training".format(RUN_NAME), sess.graph)
+        validate_writer = tf.summary.FileWriter("results/s_nn/logs/{}/validate".format(RUN_NAME), sess.graph)
+        testing_writer = tf.summary.FileWriter("results/s_nn/logs/{}/testing".format(RUN_NAME), sess.graph)
+        sess.run(init)
+        history_errs = []
+        history_valid_result = []
+        history_test_result = []
+        # reload history
+        """if reload_ and os.path.exists(saveto):
+            logger.info("Reload history error")
+            history_errs = list(numpy.load(saveto)['history_errs'])"""
+
+        bad_counter = 0
+
+        if validFreq == -1:
+            validFreq = len(train[0]) / batch_size
+        if saveFreq == -1:
+            saveFreq = len(train[0]) / batch_size
+        
+        loss_plot=defaultdict(list)
+        uidx = 0
+        estop = False
+        best_num = -1
+        best_epoch_num = 0
+        lr_change_list = []
+        wait_counter = 0
+        wait_N = model_options['wait_N']
+        learning_rate = model_options['lrate']
+        assign_lr(sess, learning_rate)
+        for eidx in range(max_epochs):
+            n_samples = 0
+            training_cost = 0
+            training_acc = 0
+            for x, y in train:
+                n_samples += len(x)
+                uidx += 1
+                keep_prob = model_options['keep_prob']
+                is_training = True
+                data_x, data_x_mask, data_y = prepare_data(
+                    x,
+                    y,
+                    model_options,
+                    maxlen=maxlen)
+                print(data_x.shape, data_x_mask.shape, data_y.shape)
+                assert data_y.shape[0] == data_x.shape[0], 'Size does not match'
+                if x is None:
+                    logger.debug('Minibatch with zero sample under length {0}'.format(maxlen))
+                    uidx -= 1
+                    continue
+                ud_start = time.time()
+                _, loss,loss_no_mean,temp_acc,l2_check = sess.run([train_op, op_loss,cost,temp_accuracy,op_L2],
+                                   feed_dict={'input/x:0': data_x, 'input/x_mask:0': data_x_mask, 'input/y:0': data_y,
+                                              'input/keep_prob:0': keep_prob, 'input/is_training:0': is_training})
+                ud = time.time() - ud_start
+                training_cost += loss_no_mean.sum()
+                training_acc += temp_acc.sum()
+                loss_plot['training'].append(loss)
+                if numpy.mod(uidx, dispFreq) == 0:
+                    logger.debug('Epoch {0} Update {1} Cost {2} L2 {3} TIME {4}'.format(eidx, uidx, loss,l2_check,ud))
+
+                # validate model on validation set and early stop if necessary
+                if numpy.mod(uidx, validFreq) == 0:
+                    is_training = False
+
+                    valid_acc, valid_loss,valid_final_result = predict_pro_acc(sess, cost, prepare_data, model_options, valid, maxlen,
+                                                                               correct_pred, pred, summary, eidx, is_training, train_op,loss_plot,
+                                                                               validate_writer,validate=True)
+                    test_acc, test_loss,test_final_result = predict_pro_acc(sess, cost, prepare_data, model_options, test, maxlen,
+                                                                            correct_pred, pred, summary, eidx, is_training, train_op,loss_plot,
+                                                                            testing_writer)
+                    # valid_err = 1.0 - valid_acc
+                    valid_err = valid_loss
+                    history_errs.append(valid_err)
+                    history_valid_result.append(valid_final_result)
+                    history_test_result.append(test_final_result)
+                    loss_plot['validate_ep'].append(valid_loss)
+                    loss_plot['val_ac'].append(valid_acc)#加的
+                    loss_plot['testing_ep'].append(test_loss)
+                    loss_plot['test_ac'].append(test_acc)#加的
+                    logger.debug('Epoch  {0}'.format(eidx))
+                    logger.debug('Valid cost  {0}'.format(valid_loss))
+                    logger.debug('Valid accuracy  {0}'.format(valid_acc))
+                    logger.debug('Test cost  {0}'.format(test_loss))
+                    logger.debug('Test accuracy  {0}'.format(test_acc))
+                    logger.debug('learning_rate:  {0}'.format(learning_rate))
+
+                    if uidx == 0 or valid_err <= numpy.array(history_errs).min():
+                        best_num = best_num + 1
+                        best_epoch_num = eidx
+                        wait_counter = 0
+                        #logger.info("Saving...") 
+                        #saver.save(sess, _s(_s(_s(save_model, "epoch"), str(best_num)), "model.ckpt"))
+                        #logger.info(_s(_s(_s(save_model, "epoch"), str(best_num)), "model.ckpt"))
+                        #numpy.savez(saveto, history_errs=history_errs, **params)
+                        #pkl.dump(model_options, open('{}.pkl'.format(saveto), 'wb'))
+                        #logger.info("Done")
+
+                    if valid_err > numpy.array(history_errs).min():
+                        wait_counter += 1
+                    # wait_counter +=1 if valid_err>numpy.array(history_errs).min() else 0
+                    if wait_counter >= wait_N:
+                        logger.info("wait_counter max, need to half the lr")
+                        # print 'wait_counter max, need to half the lr'
+                        bad_counter += 1
+                        wait_counter = 0
+                        logger.debug('bad_counter:  {0}'.format(bad_counter))
+                        # TODO change the learining rate
+                        learning_rate = learning_rate * 0.9
+                        # learning_rate = learning_rate
+                        assign_lr(sess, learning_rate)
+                        lr_change_list.append(eidx)
+                        logger.debug('lrate change to:   {0}'.format(learning_rate))
+                        # print 'lrate change to: ' + str(lrate)
+
+                    if bad_counter > patience:
+                        logger.info("Early Stop!")
+                        estop = True
+                        break
+
+                    if numpy.isnan(valid_err):
+                        pdb.set_trace()
+
+                        # finish after this many updates
+                if uidx >= finish_after:
+                    logger.debug('Finishing after iterations!  {0}'.format(uidx))
+                    # print 'Finishing after %d iterations!' % uidx
+                    estop = True
+                    break
+            logger.debug('Seen samples:  {0}'.format(n_samples))
+            logger.debug('Training accuracy:  {0}'.format(1.0 * training_acc/n_samples))
+            loss_plot['training_ep'].append(training_cost/n_samples)
+            loss_plot['train_ep'].append(training_acc/n_samples)
+            # print 'Seen %d samples' % n_samples
+            logger.debug('results/s_nn/Saved loss_plot pickle')
+            with open("results/s_nn/important_plot.pickle",'wb') as handle:
+                pkl.dump(loss_plot, handle, protocol=pkl.HIGHEST_PROTOCOL)
+            if estop:
+                break
+      
+    """with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)) as sess:
+        # Restore variables from disk.
+        saver.restore(sess, _s(_s(_s(save_model, "epoch"), str(best_num)), "model.ckpt"))
+        keep_prob = 1
+        is_training = False
+        logger.info('=' * 80)
+        logger.info('Final Result')
+        logger.info('=' * 80)
+        logger.debug('best epoch   {0}'.format(best_epoch_num))
+
+        valid_acc, valid_cost,valid_final_result = predict_pro_acc(sess, cost, prepare_data, model_options, valid,
+                                                maxlen, correct_pred, pred, summary, eidx,train_op, is_training, None)
+        logger.debug('Valid cost   {0}'.format(valid_cost))
+        logger.debug('Valid accuracy   {0}'.format(valid_acc))
+
+        # print 'Valid cost', valid_cost
+        # print 'Valid accuracy', valid_acc
+
+        test_acc, test_cost,test_final_result = predict_pro_acc(sess, cost, prepare_data, model_options, test,
+                                              maxlen, correct_pred, pred, summary, eidx,train_op, is_training, None)
+        logger.debug('Test cost   {0}'.format(test_cost))
+        logger.debug('Test accuracy   {0}'.format(test_acc))
+
+        # print 'best epoch ', best_epoch_num
+        train_acc, train_cost,_ = predict_pro_acc(sess, cost, prepare_data, model_options, train_valid,
+                                                maxlen, correct_pred, pred, summary, eidx,train_op, is_training, None)
+        logger.debug('Train cost   {0}'.format(train_cost))
+        logger.debug('Train accuracy   {0}'.format(train_acc))
+        valid_m=numpy.array(history_valid_result)
+        test_m=numpy.array(history_test_result)
+        valid_final_result = (numpy.array([valid_final_result])==False)
+        test_final_result = (numpy.array([test_final_result])==False)
+        #print(numpy.all(valid_m, axis = 0))
+        #print(numpy.all(test_m, axis=0))
+        print('validation: all prediction through every epoch that are the same:',numpy.where(numpy.all(valid_m, axis = 0)))
+        print('testing: all prediction through every epoch that are the same:',numpy.where(numpy.all(test_m, axis=0)))
+        print('validation: final prediction that is False:',numpy.where(valid_final_result))
+        print('testing: final prediction that is False:',numpy.where(test_final_result))
+        if os.path.exists('history_predict.npz'):
+            logger.info("Load and save to history_predict.npz")
+            valid_history = numpy.load('history_predict.npz')['valid_final_result']
+            test_history = numpy.load('history_predict.npz')['test_final_result']
+            vv=numpy.concatenate((valid_history,valid_final_result),axis=0)
+            tt=numpy.concatenate((test_history,valid_final_result),axis=0)
+            print('Concate shape valid:',vv.shape)
+            print('Print all validate history outputs that return False',numpy.where(numpy.all(vv,axis=0)))
+            print('Concate shape test:',tt.shape)
+            print('Print all test history outputs that return False',numpy.where(numpy.all(tt,axis=0)))
+            numpy.savez('history_predict.npz',valid_final_result=vv,test_final_result=tt,**params)
+        else:
+            numpy.savez('history_predict.npz',valid_final_result=valid_final_result,test_final_result=test_final_result,**params)
+        # print 'Train cost', train_cost
+        # print 'Train accuracy', train_acc
+
+        # print 'Test cost   ', test_cost
+        # print 'Test accuracy   ', test_acc
+        return None"""
+
+
+if __name__ == '__main__':
+    pass
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   

@@ -1,0 +1,1293 @@
+2020-12-23 14:22:19,018: main: INFO: Loading knowledge base ...
+2020-12-23 14:22:19,019: main: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train(originalwrong).csv',
+              'price_set/train_label(original wrong).csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'keep_prob': 0.5,
+ 'last_layer': 'LSTM',
+ 'lrate': 0.5,
+ 'max_epochs': 300,
+ 'maxlen': None,
+ 'n_words': 22671,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 45,
+ 'save_model': 'results/LSTM_baselines/',
+ 'saveto': './models/.npz',
+ 'test_datasets': ['news_set/test(originalwrong).csv',
+                   'price_set/test_label(original wrong).csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 45,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate(originalwrong).csv',
+                    'price_set/validate_label(original wrong).csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2020-12-23 14:22:19,019: main: INFO: Loading data
+2020-12-23 14:22:22,978: main: INFO: init_word_embedding
+2020-12-23 14:22:26,776: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:180: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2020-12-23 14:22:26,848: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:266: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2020-12-23 14:22:26,849: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:267: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2020-12-23 14:22:26,875: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:144: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2020-12-23 14:22:26,886: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:153: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2020-12-23 14:22:26,886: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2020-12-23 14:22:26,953: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2020-12-23 14:22:27,026: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14cf9818d150>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14cf9818d150>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,040: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2020-12-23 14:22:27,195: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14cf9818d490>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x14cf9818d490>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,241: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:99: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2020-12-23 14:22:27,327: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf988c5090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf988c5090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,427: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf988c5090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf988c5090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,552: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf9784a650>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf9784a650>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,652: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf97846110>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf97846110>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,704: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14cf97b46e90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14cf97b46e90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,817: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf98b69650>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf98b69650>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:27,918: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978f1ad0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978f1ad0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,043: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf9708a210>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf9708a210>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,143: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf97807450>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf97807450>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,265: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978de090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978de090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,283: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14cf98b36710>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x14cf98b36710>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,390: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978de090>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x14cf978de090>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2020-12-23 14:22:28,392: main: INFO: Building f_cost...
+2020-12-23 14:22:28,520: main: INFO: Done
+2020-12-23 14:22:28,521: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:315: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2020-12-23 14:22:28,524: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:316: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2020-12-23 14:22:28,526: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:317: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2020-12-23 14:22:28,530: main: INFO: Building optimizers...
+2020-12-23 14:22:28,530: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:468: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2020-12-23 14:22:28,530: main: INFO: Done
+2020-12-23 14:22:28,530: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:471: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2020-12-23 14:22:29,336: main: INFO: correct_pred
+2020-12-23 14:22:29,338: main: INFO: Done
+2020-12-23 14:22:29,339: main: INFO: init variables
+2020-12-23 14:22:29,341: main: INFO: Done
+2020-12-23 14:22:29,341: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:498: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2020-12-23 14:22:29,399: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main.py:505: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2020-12-23 14:22:38,100: main: DEBUG: Epoch 0 Update 20 Cost 56.82967758178711 L2 112241.984375 TIME 0.11358857154846191
+2020-12-23 14:22:47,460: main: DEBUG: Epoch 0 Update 40 Cost 56.18006896972656 L2 110871.8671875 TIME 0.3782031536102295
+2020-12-23 14:22:55,127: main: DEBUG: Epoch  0
+2020-12-23 14:22:55,128: main: DEBUG: Valid cost  55.93108506636186
+2020-12-23 14:22:55,128: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:22:55,129: main: DEBUG: Test cost  55.92492120916193
+2020-12-23 14:22:55,129: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:22:55,129: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:22:55,129: main: DEBUG: Seen samples:  1370
+2020-12-23 14:22:55,129: main: DEBUG: Training accuracy:  0.48613138686131385
+2020-12-23 14:22:55,129: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:22:58,569: main: DEBUG: Epoch 1 Update 60 Cost 55.50042724609375 L2 109455.1171875 TIME 0.15352177619934082
+2020-12-23 14:23:07,289: main: DEBUG: Epoch 1 Update 80 Cost 54.757591247558594 L2 108102.9921875 TIME 0.29814648628234863
+2020-12-23 14:23:16,115: main: DEBUG: Epoch  1
+2020-12-23 14:23:16,116: main: DEBUG: Valid cost  54.3458217274059
+2020-12-23 14:23:16,116: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:23:16,116: main: DEBUG: Test cost  54.33955938165838
+2020-12-23 14:23:16,116: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:23:16,116: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:23:16,117: main: DEBUG: Seen samples:  1370
+2020-12-23 14:23:16,117: main: DEBUG: Training accuracy:  0.5277372262773723
+2020-12-23 14:23:16,117: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:23:18,563: main: DEBUG: Epoch 2 Update 100 Cost 54.096439361572266 L2 106666.0625 TIME 0.12115097045898438
+2020-12-23 14:23:24,978: main: DEBUG: Epoch 2 Update 120 Cost 53.243080139160156 L2 105202.9609375 TIME 0.1112215518951416
+2020-12-23 14:23:35,770: main: DEBUG: Epoch  2
+2020-12-23 14:23:35,771: main: DEBUG: Valid cost  52.72215270996094
+2020-12-23 14:23:35,771: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:23:35,771: main: DEBUG: Test cost  52.71489923650568
+2020-12-23 14:23:35,771: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:23:35,771: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:23:35,771: main: DEBUG: Seen samples:  1370
+2020-12-23 14:23:35,772: main: DEBUG: Training accuracy:  0.5036496350364964
+2020-12-23 14:23:35,772: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:23:37,055: main: DEBUG: Epoch 3 Update 140 Cost 52.59622573852539 L2 103769.1875 TIME 0.2531757354736328
+2020-12-23 14:23:41,851: main: DEBUG: Epoch 3 Update 160 Cost 51.826141357421875 L2 102341.4921875 TIME 0.20403432846069336
+2020-12-23 14:23:51,717: main: DEBUG: Epoch 3 Update 180 Cost 50.92964172363281 L2 100648.265625 TIME 0.14548873901367188
+2020-12-23 14:23:55,533: main: DEBUG: Epoch  3
+2020-12-23 14:23:55,533: main: DEBUG: Valid cost  51.005536166104406
+2020-12-23 14:23:55,534: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:23:55,534: main: DEBUG: Test cost  50.998638499866836
+2020-12-23 14:23:55,534: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:23:55,534: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:23:55,534: main: DEBUG: Seen samples:  1370
+2020-12-23 14:23:55,534: main: DEBUG: Training accuracy:  0.5167883211678832
+2020-12-23 14:23:55,534: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:24:00,014: main: DEBUG: Epoch 4 Update 200 Cost 50.29677200317383 L2 99225.171875 TIME 0.1066732406616211
+2020-12-23 14:24:08,108: main: DEBUG: Epoch 4 Update 220 Cost 49.49937057495117 L2 97709.0 TIME 0.1099247932434082
+2020-12-23 14:24:14,918: main: DEBUG: Epoch  4
+2020-12-23 14:24:14,918: main: DEBUG: Valid cost  49.32384282892401
+2020-12-23 14:24:14,918: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:24:14,918: main: DEBUG: Test cost  49.31246844204989
+2020-12-23 14:24:14,918: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:24:14,918: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:24:14,919: main: DEBUG: Seen samples:  1370
+2020-12-23 14:24:14,919: main: DEBUG: Training accuracy:  0.5306569343065694
+2020-12-23 14:24:14,919: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:24:18,331: main: DEBUG: Epoch 5 Update 240 Cost 48.88719940185547 L2 96311.484375 TIME 0.2618687152862549
+2020-12-23 14:24:25,990: main: DEBUG: Epoch 5 Update 260 Cost 48.11677169799805 L2 94834.1875 TIME 0.2964904308319092
+2020-12-23 14:24:34,480: main: DEBUG: Epoch  5
+2020-12-23 14:24:34,481: main: DEBUG: Valid cost  47.69194446910512
+2020-12-23 14:24:34,481: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:24:34,481: main: DEBUG: Test cost  47.68507038463246
+2020-12-23 14:24:34,481: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:24:34,482: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:24:34,482: main: DEBUG: Seen samples:  1370
+2020-12-23 14:24:34,482: main: DEBUG: Training accuracy:  0.5364963503649635
+2020-12-23 14:24:34,482: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:24:36,933: main: DEBUG: Epoch 6 Update 280 Cost 47.35221862792969 L2 93284.203125 TIME 0.20885968208312988
+2020-12-23 14:24:43,208: main: DEBUG: Epoch 6 Update 300 Cost 46.69032287597656 L2 91934.2890625 TIME 0.15216875076293945
+2020-12-23 14:24:55,363: main: DEBUG: Epoch  6
+2020-12-23 14:24:55,364: main: DEBUG: Valid cost  46.066499189897016
+2020-12-23 14:24:55,364: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:24:55,364: main: DEBUG: Test cost  46.05784884366122
+2020-12-23 14:24:55,364: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:24:55,364: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:24:55,364: main: DEBUG: Seen samples:  1370
+2020-12-23 14:24:55,365: main: DEBUG: Training accuracy:  0.516058394160584
+2020-12-23 14:24:55,365: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:24:56,548: main: DEBUG: Epoch 7 Update 320 Cost 45.876800537109375 L2 90412.453125 TIME 0.2197425365447998
+2020-12-23 14:25:01,957: main: DEBUG: Epoch 7 Update 340 Cost 45.23073959350586 L2 89100.546875 TIME 0.35329627990722656
+2020-12-23 14:25:11,905: main: DEBUG: Epoch 7 Update 360 Cost 44.407222747802734 L2 87506.90625 TIME 0.14765381813049316
+2020-12-23 14:25:15,729: main: DEBUG: Epoch  7
+2020-12-23 14:25:15,730: main: DEBUG: Valid cost  44.43705055930398
+2020-12-23 14:25:15,730: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:25:15,730: main: DEBUG: Test cost  44.427832863547586
+2020-12-23 14:25:15,730: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:25:15,730: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:25:15,730: main: DEBUG: Seen samples:  1370
+2020-12-23 14:25:15,730: main: DEBUG: Training accuracy:  0.5335766423357664
+2020-12-23 14:25:15,730: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:25:19,934: main: DEBUG: Epoch 8 Update 380 Cost 43.83443069458008 L2 86160.2109375 TIME 0.18877863883972168
+2020-12-23 14:25:30,238: main: DEBUG: Epoch 8 Update 400 Cost 43.034053802490234 L2 84693.2578125 TIME 0.43526339530944824
+2020-12-23 14:25:36,922: main: DEBUG: Epoch  8
+2020-12-23 14:25:36,922: main: DEBUG: Valid cost  42.8368086381392
+2020-12-23 14:25:36,922: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:25:36,923: main: DEBUG: Test cost  42.82895625721324
+2020-12-23 14:25:36,923: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:25:36,923: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:25:36,923: main: DEBUG: Seen samples:  1370
+2020-12-23 14:25:36,923: main: DEBUG: Training accuracy:  0.5343065693430656
+2020-12-23 14:25:36,923: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:25:40,590: main: DEBUG: Epoch 9 Update 420 Cost 42.37929916381836 L2 83375.6875 TIME 0.212235689163208
+2020-12-23 14:25:48,400: main: DEBUG: Epoch 9 Update 440 Cost 41.702884674072266 L2 82066.8671875 TIME 0.5491414070129395
+2020-12-23 14:25:57,570: main: DEBUG: Epoch  9
+2020-12-23 14:25:57,571: main: DEBUG: Valid cost  41.36534673517401
+2020-12-23 14:25:57,571: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:25:57,571: main: DEBUG: Test cost  41.35717496004972
+2020-12-23 14:25:57,571: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:25:57,571: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:25:57,572: main: DEBUG: Seen samples:  1370
+2020-12-23 14:25:57,572: main: DEBUG: Training accuracy:  0.5386861313868613
+2020-12-23 14:25:57,572: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:26:00,026: main: DEBUG: Epoch 10 Update 460 Cost 41.08518600463867 L2 80816.6171875 TIME 0.2890951633453369
+2020-12-23 14:26:06,530: main: DEBUG: Epoch 10 Update 480 Cost 40.43663024902344 L2 79502.3359375 TIME 0.19575810432434082
+2020-12-23 14:26:17,778: main: DEBUG: Epoch  10
+2020-12-23 14:26:17,778: main: DEBUG: Valid cost  39.86329581520774
+2020-12-23 14:26:17,779: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:26:17,779: main: DEBUG: Test cost  39.85362243652344
+2020-12-23 14:26:17,779: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:26:17,779: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:26:17,779: main: DEBUG: Seen samples:  1370
+2020-12-23 14:26:17,779: main: DEBUG: Training accuracy:  0.5386861313868613
+2020-12-23 14:26:17,779: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:26:19,175: main: DEBUG: Epoch 11 Update 500 Cost 39.736595153808594 L2 78092.1953125 TIME 0.2535848617553711
+2020-12-23 14:26:23,713: main: DEBUG: Epoch 11 Update 520 Cost 39.10700607299805 L2 76849.6640625 TIME 0.18178343772888184
+2020-12-23 14:26:34,458: main: DEBUG: Epoch 11 Update 540 Cost 38.471797943115234 L2 75426.9609375 TIME 0.1920468807220459
+2020-12-23 14:26:38,281: main: DEBUG: Epoch  11
+2020-12-23 14:26:38,281: main: DEBUG: Valid cost  38.398228038441054
+2020-12-23 14:26:38,282: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:26:38,282: main: DEBUG: Test cost  38.38948926058683
+2020-12-23 14:26:38,282: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:26:38,282: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:26:38,282: main: DEBUG: Seen samples:  1370
+2020-12-23 14:26:38,282: main: DEBUG: Training accuracy:  0.5357664233576642
+2020-12-23 14:26:38,282: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:26:42,775: main: DEBUG: Epoch 12 Update 560 Cost 37.74123001098633 L2 74250.921875 TIME 0.11728119850158691
+2020-12-23 14:26:51,668: main: DEBUG: Epoch 12 Update 580 Cost 37.24330520629883 L2 72961.4765625 TIME 0.1566145420074463
+2020-12-23 14:26:58,868: main: DEBUG: Epoch  12
+2020-12-23 14:26:58,868: main: DEBUG: Valid cost  36.985048814253375
+2020-12-23 14:26:58,869: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:26:58,869: main: DEBUG: Test cost  36.97764136574485
+2020-12-23 14:26:58,869: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:26:58,869: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:26:58,869: main: DEBUG: Seen samples:  1370
+2020-12-23 14:26:58,869: main: DEBUG: Training accuracy:  0.545985401459854
+2020-12-23 14:26:58,869: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:27:03,057: main: DEBUG: Epoch 13 Update 600 Cost 36.520973205566406 L2 71641.7265625 TIME 0.23711490631103516
+2020-12-23 14:27:10,906: main: DEBUG: Epoch 13 Update 620 Cost 35.88960647583008 L2 70414.125 TIME 0.5968606472015381
+2020-12-23 14:27:20,392: main: DEBUG: Epoch  13
+2020-12-23 14:27:20,393: main: DEBUG: Valid cost  35.53541426225142
+2020-12-23 14:27:20,393: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:27:20,393: main: DEBUG: Test cost  35.52356858686967
+2020-12-23 14:27:20,394: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:27:20,394: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:27:20,394: main: DEBUG: Seen samples:  1370
+2020-12-23 14:27:20,394: main: DEBUG: Training accuracy:  0.537956204379562
+2020-12-23 14:27:20,394: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:27:22,754: main: DEBUG: Epoch 14 Update 640 Cost 35.300758361816406 L2 69199.0859375 TIME 0.3746376037597656
+2020-12-23 14:27:30,391: main: DEBUG: Epoch 14 Update 660 Cost 34.733726501464844 L2 68109.875 TIME 0.4427776336669922
+2020-12-23 14:27:42,489: main: DEBUG: Epoch  14
+2020-12-23 14:27:42,490: main: DEBUG: Valid cost  34.25912926413796
+2020-12-23 14:27:42,491: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:27:42,491: main: DEBUG: Test cost  34.25018171830611
+2020-12-23 14:27:42,491: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:27:42,491: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:27:42,491: main: DEBUG: Seen samples:  1370
+2020-12-23 14:27:42,491: main: DEBUG: Training accuracy:  0.5364963503649635
+2020-12-23 14:27:42,491: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:27:43,684: main: DEBUG: Epoch 15 Update 680 Cost 34.14562225341797 L2 66927.9375 TIME 0.11536335945129395
+2020-12-23 14:27:49,062: main: DEBUG: Epoch 15 Update 700 Cost 33.510955810546875 L2 65760.796875 TIME 0.12646079063415527
+2020-12-23 14:27:59,365: main: DEBUG: Epoch 15 Update 720 Cost 32.84161376953125 L2 64521.55078125 TIME 0.16751384735107422
+2020-12-23 14:28:03,031: main: DEBUG: Epoch  15
+2020-12-23 14:28:03,032: main: DEBUG: Valid cost  32.947968916459516
+2020-12-23 14:28:03,032: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:28:03,032: main: DEBUG: Test cost  32.93681647560813
+2020-12-23 14:28:03,032: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:28:03,032: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:28:03,033: main: DEBUG: Seen samples:  1370
+2020-12-23 14:28:03,033: main: DEBUG: Training accuracy:  0.5394160583941606
+2020-12-23 14:28:03,033: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:28:07,797: main: DEBUG: Epoch 16 Update 740 Cost 32.40580749511719 L2 63396.1796875 TIME 0.1467123031616211
+2020-12-23 14:28:16,108: main: DEBUG: Epoch 16 Update 760 Cost 31.798694610595703 L2 62231.28125 TIME 0.7160515785217285
+2020-12-23 14:28:22,994: main: DEBUG: Epoch  16
+2020-12-23 14:28:22,995: main: DEBUG: Valid cost  31.6237380287864
+2020-12-23 14:28:22,995: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:28:22,995: main: DEBUG: Test cost  31.615277723832563
+2020-12-23 14:28:22,995: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:28:22,995: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:28:22,995: main: DEBUG: Seen samples:  1370
+2020-12-23 14:28:22,996: main: DEBUG: Training accuracy:  0.5445255474452555
+2020-12-23 14:28:22,996: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:28:26,800: main: DEBUG: Epoch 17 Update 780 Cost 31.248729705810547 L2 61103.7734375 TIME 0.22423005104064941
+2020-12-23 14:28:35,157: main: DEBUG: Epoch 17 Update 800 Cost 30.681110382080078 L2 59994.9375 TIME 0.602867841720581
+2020-12-23 14:28:44,128: main: DEBUG: Epoch  17
+2020-12-23 14:28:44,129: main: DEBUG: Valid cost  30.36185143210671
+2020-12-23 14:28:44,129: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:28:44,130: main: DEBUG: Test cost  30.353046070445668
+2020-12-23 14:28:44,130: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:28:44,130: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:28:44,130: main: DEBUG: Seen samples:  1370
+2020-12-23 14:28:44,130: main: DEBUG: Training accuracy:  0.5357664233576642
+2020-12-23 14:28:44,130: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:28:46,448: main: DEBUG: Epoch 18 Update 820 Cost 30.1322078704834 L2 58895.0 TIME 0.4330332279205322
+2020-12-23 14:28:52,563: main: DEBUG: Epoch 18 Update 840 Cost 29.605571746826172 L2 57836.921875 TIME 0.5174770355224609
+2020-12-23 14:29:03,132: main: DEBUG: Epoch  18
+2020-12-23 14:29:03,133: main: DEBUG: Valid cost  29.177702123468574
+2020-12-23 14:29:03,133: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:29:03,133: main: DEBUG: Test cost  29.166662909767844
+2020-12-23 14:29:03,133: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:29:03,133: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:29:03,133: main: DEBUG: Seen samples:  1370
+2020-12-23 14:29:03,133: main: DEBUG: Training accuracy:  0.5357664233576642
+2020-12-23 14:29:03,133: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:29:04,342: main: DEBUG: Epoch 19 Update 860 Cost 29.07720947265625 L2 56799.9453125 TIME 0.3055551052093506
+2020-12-23 14:29:10,435: main: DEBUG: Epoch 19 Update 880 Cost 28.665325164794922 L2 55827.828125 TIME 0.18087005615234375
+2020-12-23 14:29:20,752: main: DEBUG: Epoch 19 Update 900 Cost 28.2398681640625 L2 54827.31640625 TIME 0.17609214782714844
+2020-12-23 14:29:24,528: main: DEBUG: Epoch  19
+2020-12-23 14:29:24,529: main: DEBUG: Valid cost  28.101191780783914
+2020-12-23 14:29:24,529: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:29:24,529: main: DEBUG: Test cost  28.092960877852008
+2020-12-23 14:29:24,529: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:29:24,530: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:29:24,530: main: DEBUG: Seen samples:  1370
+2020-12-23 14:29:24,530: main: DEBUG: Training accuracy:  0.5335766423357664
+2020-12-23 14:29:24,530: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:29:29,211: main: DEBUG: Epoch 20 Update 920 Cost 27.63324546813965 L2 53911.296875 TIME 0.20936179161071777
+2020-12-23 14:29:37,379: main: DEBUG: Epoch 20 Update 940 Cost 27.12837028503418 L2 52952.4140625 TIME 0.1569514274597168
+2020-12-23 14:29:44,660: main: DEBUG: Epoch  20
+2020-12-23 14:29:44,661: main: DEBUG: Valid cost  27.034434925426137
+2020-12-23 14:29:44,661: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:29:44,661: main: DEBUG: Test cost  27.0220253684304
+2020-12-23 14:29:44,661: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:29:44,661: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:29:44,662: main: DEBUG: Seen samples:  1370
+2020-12-23 14:29:44,662: main: DEBUG: Training accuracy:  0.5715328467153284
+2020-12-23 14:29:44,662: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:29:48,371: main: DEBUG: Epoch 21 Update 960 Cost 26.756345748901367 L2 52103.9296875 TIME 0.3881213665008545
+2020-12-23 14:29:57,135: main: DEBUG: Epoch 21 Update 980 Cost 26.319669723510742 L2 51201.86328125 TIME 0.5249004364013672
+2020-12-23 14:30:06,191: main: DEBUG: Epoch  21
+2020-12-23 14:30:06,192: main: DEBUG: Valid cost  26.03154928034002
+2020-12-23 14:30:06,192: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:30:06,192: main: DEBUG: Test cost  26.021323984319512
+2020-12-23 14:30:06,192: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:30:06,192: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:30:06,193: main: DEBUG: Seen samples:  1370
+2020-12-23 14:30:06,193: main: DEBUG: Training accuracy:  0.5313868613138686
+2020-12-23 14:30:06,193: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:30:08,368: main: DEBUG: Epoch 22 Update 1000 Cost 25.82588005065918 L2 50297.46484375 TIME 0.18827199935913086
+2020-12-23 14:30:15,036: main: DEBUG: Epoch 22 Update 1020 Cost 25.42899513244629 L2 49439.9375 TIME 0.2772221565246582
+2020-12-23 14:30:26,553: main: DEBUG: Epoch  22
+2020-12-23 14:30:26,554: main: DEBUG: Valid cost  25.050452665849164
+2020-12-23 14:30:26,554: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:30:26,554: main: DEBUG: Test cost  25.040373368696734
+2020-12-23 14:30:26,554: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:30:26,554: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:30:26,554: main: DEBUG: Seen samples:  1370
+2020-12-23 14:30:26,554: main: DEBUG: Training accuracy:  0.5481751824817518
+2020-12-23 14:30:26,554: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:30:28,094: main: DEBUG: Epoch 23 Update 1040 Cost 24.935739517211914 L2 48524.23828125 TIME 0.3820226192474365
+2020-12-23 14:30:33,448: main: DEBUG: Epoch 23 Update 1060 Cost 24.552452087402344 L2 47727.48828125 TIME 0.20984911918640137
+2020-12-23 14:30:44,089: main: DEBUG: Epoch 23 Update 1080 Cost 24.10759162902832 L2 46847.625 TIME 0.20716333389282227
+2020-12-23 14:30:47,966: main: DEBUG: Epoch  23
+2020-12-23 14:30:47,967: main: DEBUG: Valid cost  24.11400725624778
+2020-12-23 14:30:47,967: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:30:47,967: main: DEBUG: Test cost  24.10133032365279
+2020-12-23 14:30:47,967: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:30:47,967: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:30:47,967: main: DEBUG: Seen samples:  1370
+2020-12-23 14:30:47,967: main: DEBUG: Training accuracy:  0.5489051094890511
+2020-12-23 14:30:47,967: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:30:52,742: main: DEBUG: Epoch 24 Update 1100 Cost 23.685440063476562 L2 46044.16015625 TIME 0.12749075889587402
+2020-12-23 14:31:00,876: main: DEBUG: Epoch 24 Update 1120 Cost 23.26700210571289 L2 45246.57421875 TIME 0.6595869064331055
+2020-12-23 14:31:07,882: main: DEBUG: Epoch  24
+2020-12-23 14:31:07,884: main: DEBUG: Valid cost  23.197247765280984
+2020-12-23 14:31:07,884: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:31:07,884: main: DEBUG: Test cost  23.184743881225586
+2020-12-23 14:31:07,884: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:31:07,884: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:31:07,884: main: DEBUG: Seen samples:  1370
+2020-12-23 14:31:07,884: main: DEBUG: Training accuracy:  0.5503649635036496
+2020-12-23 14:31:07,884: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:31:11,260: main: DEBUG: Epoch 25 Update 1140 Cost 22.941375732421875 L2 44489.30859375 TIME 0.15824651718139648
+2020-12-23 14:31:19,610: main: DEBUG: Epoch 25 Update 1160 Cost 22.52642250061035 L2 43723.9296875 TIME 0.1820240020751953
+2020-12-23 14:31:28,739: main: DEBUG: Epoch  25
+2020-12-23 14:31:28,740: main: DEBUG: Valid cost  22.360993125221945
+2020-12-23 14:31:28,740: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:31:28,740: main: DEBUG: Test cost  22.349057110873137
+2020-12-23 14:31:28,740: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:31:28,740: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:31:28,740: main: DEBUG: Seen samples:  1370
+2020-12-23 14:31:28,740: main: DEBUG: Training accuracy:  0.551094890510949
+2020-12-23 14:31:28,740: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:31:31,530: main: DEBUG: Epoch 26 Update 1180 Cost 22.184391021728516 L2 43009.89453125 TIME 0.26630544662475586
+2020-12-23 14:31:36,758: main: DEBUG: Epoch 26 Update 1200 Cost 21.829025268554688 L2 42278.45703125 TIME 0.5908699035644531
+2020-12-23 14:31:48,899: main: DEBUG: Epoch  26
+2020-12-23 14:31:48,900: main: DEBUG: Valid cost  21.526385914195668
+2020-12-23 14:31:48,900: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:31:48,900: main: DEBUG: Test cost  21.513205788352273
+2020-12-23 14:31:48,900: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:31:48,900: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:31:48,900: main: DEBUG: Seen samples:  1370
+2020-12-23 14:31:48,900: main: DEBUG: Training accuracy:  0.5693430656934306
+2020-12-23 14:31:48,901: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:31:50,479: main: DEBUG: Epoch 27 Update 1220 Cost 21.3997802734375 L2 41509.46484375 TIME 0.2797539234161377
+2020-12-23 14:31:55,742: main: DEBUG: Epoch 27 Update 1240 Cost 21.066923141479492 L2 40788.3125 TIME 0.13536405563354492
+2020-12-23 14:32:05,232: main: DEBUG: Epoch 27 Update 1260 Cost 20.890859603881836 L2 40048.55859375 TIME 0.18204593658447266
+2020-12-23 14:32:09,013: main: DEBUG: Epoch  27
+2020-12-23 14:32:09,013: main: DEBUG: Valid cost  20.715356133200906
+2020-12-23 14:32:09,014: main: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-23 14:32:09,014: main: DEBUG: Test cost  20.705576289783824
+2020-12-23 14:32:09,014: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:32:09,014: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:32:09,014: main: DEBUG: Seen samples:  1370
+2020-12-23 14:32:09,014: main: DEBUG: Training accuracy:  0.5562043795620438
+2020-12-23 14:32:09,014: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:32:13,812: main: DEBUG: Epoch 28 Update 1280 Cost 20.433752059936523 L2 39407.8515625 TIME 0.11599922180175781
+2020-12-23 14:32:22,679: main: DEBUG: Epoch 28 Update 1300 Cost 20.129610061645508 L2 38768.140625 TIME 0.1660761833190918
+2020-12-23 14:32:29,253: main: DEBUG: Epoch  28
+2020-12-23 14:32:29,254: main: DEBUG: Valid cost  19.993078405206855
+2020-12-23 14:32:29,254: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:32:29,254: main: DEBUG: Test cost  19.98031928322532
+2020-12-23 14:32:29,254: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:32:29,254: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:32:29,254: main: DEBUG: Seen samples:  1370
+2020-12-23 14:32:29,254: main: DEBUG: Training accuracy:  0.5715328467153284
+2020-12-23 14:32:29,254: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:32:32,397: main: DEBUG: Epoch 29 Update 1320 Cost 19.765623092651367 L2 38206.66015625 TIME 0.11681771278381348
+2020-12-23 14:32:39,267: main: DEBUG: Epoch 29 Update 1340 Cost 19.428401947021484 L2 37550.24609375 TIME 0.1164543628692627
+2020-12-23 14:32:48,930: main: DEBUG: Epoch  29
+2020-12-23 14:32:48,931: main: DEBUG: Valid cost  19.32596137306907
+2020-12-23 14:32:48,932: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:32:48,932: main: DEBUG: Test cost  19.306974584406074
+2020-12-23 14:32:48,932: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:32:48,932: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:32:48,932: main: DEBUG: Seen samples:  1370
+2020-12-23 14:32:48,932: main: DEBUG: Training accuracy:  0.5627737226277372
+2020-12-23 14:32:48,932: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:32:51,682: main: DEBUG: Epoch 30 Update 1360 Cost 19.21142578125 L2 36992.5625 TIME 0.25078558921813965
+2020-12-23 14:32:57,989: main: DEBUG: Epoch 30 Update 1380 Cost 18.868045806884766 L2 36351.484375 TIME 0.6045181751251221
+2020-12-23 14:33:08,824: main: DEBUG: Epoch  30
+2020-12-23 14:33:08,824: main: DEBUG: Valid cost  18.650983463634144
+2020-12-23 14:33:08,824: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:33:08,824: main: DEBUG: Test cost  18.63778981295499
+2020-12-23 14:33:08,824: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:33:08,824: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:33:08,824: main: DEBUG: Seen samples:  1370
+2020-12-23 14:33:08,825: main: DEBUG: Training accuracy:  0.5664233576642336
+2020-12-23 14:33:08,825: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:33:10,169: main: DEBUG: Epoch 31 Update 1400 Cost 18.588743209838867 L2 35835.26171875 TIME 0.27056193351745605
+2020-12-23 14:33:15,450: main: DEBUG: Epoch 31 Update 1420 Cost 18.376163482666016 L2 35349.12109375 TIME 0.6104912757873535
+2020-12-23 14:33:25,914: main: DEBUG: Epoch 31 Update 1440 Cost 17.948389053344727 L2 34806.40234375 TIME 0.18869733810424805
+2020-12-23 14:33:29,670: main: DEBUG: Epoch  31
+2020-12-23 14:33:29,671: main: DEBUG: Valid cost  18.09963035583496
+2020-12-23 14:33:29,671: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:33:29,671: main: DEBUG: Test cost  18.0830078125
+2020-12-23 14:33:29,671: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:33:29,671: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:33:29,671: main: DEBUG: Seen samples:  1370
+2020-12-23 14:33:29,671: main: DEBUG: Training accuracy:  0.5693430656934306
+2020-12-23 14:33:29,671: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:33:34,481: main: DEBUG: Epoch 32 Update 1460 Cost 17.854211807250977 L2 34377.51171875 TIME 0.18189430236816406
+2020-12-23 14:33:45,080: main: DEBUG: Epoch 32 Update 1480 Cost 17.562576293945312 L2 33850.484375 TIME 0.14836645126342773
+2020-12-23 14:33:51,743: main: DEBUG: Epoch  32
+2020-12-23 14:33:51,744: main: DEBUG: Valid cost  17.559974150224164
+2020-12-23 14:33:51,744: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:33:51,744: main: DEBUG: Test cost  17.54622563448819
+2020-12-23 14:33:51,744: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:33:51,744: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:33:51,745: main: DEBUG: Seen samples:  1370
+2020-12-23 14:33:51,745: main: DEBUG: Training accuracy:  0.5744525547445255
+2020-12-23 14:33:51,745: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:33:55,437: main: DEBUG: Epoch 33 Update 1500 Cost 17.32535743713379 L2 33411.671875 TIME 0.20126795768737793
+2020-12-23 14:34:03,712: main: DEBUG: Epoch 33 Update 1520 Cost 17.10198402404785 L2 32872.4765625 TIME 0.18360137939453125
+2020-12-23 14:34:12,509: main: DEBUG: Epoch  33
+2020-12-23 14:34:12,510: main: DEBUG: Valid cost  17.01259422302246
+2020-12-23 14:34:12,511: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:34:12,511: main: DEBUG: Test cost  16.99768655950373
+2020-12-23 14:34:12,511: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:34:12,511: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:34:12,511: main: DEBUG: Seen samples:  1370
+2020-12-23 14:34:12,512: main: DEBUG: Training accuracy:  0.5795620437956205
+2020-12-23 14:34:12,512: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:34:15,091: main: DEBUG: Epoch 34 Update 1540 Cost 16.842084884643555 L2 32423.404296875 TIME 0.13286089897155762
+2020-12-23 14:34:22,290: main: DEBUG: Epoch 34 Update 1560 Cost 16.653804779052734 L2 31942.421875 TIME 0.6400721073150635
+2020-12-23 14:34:33,464: main: DEBUG: Epoch  34
+2020-12-23 14:34:33,465: main: DEBUG: Valid cost  16.513363231312145
+2020-12-23 14:34:33,465: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:34:33,465: main: DEBUG: Test cost  16.4995810768821
+2020-12-23 14:34:33,465: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:34:33,465: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:34:33,465: main: DEBUG: Seen samples:  1370
+2020-12-23 14:34:33,465: main: DEBUG: Training accuracy:  0.5927007299270073
+2020-12-23 14:34:33,465: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:34:34,844: main: DEBUG: Epoch 35 Update 1580 Cost 16.41834259033203 L2 31539.265625 TIME 0.2354130744934082
+2020-12-23 14:34:40,261: main: DEBUG: Epoch 35 Update 1600 Cost 16.13996124267578 L2 31139.271484375 TIME 0.10064387321472168
+2020-12-23 14:34:49,403: main: DEBUG: Epoch 35 Update 1620 Cost 15.94505786895752 L2 30701.9296875 TIME 0.15629148483276367
+2020-12-23 14:34:53,088: main: DEBUG: Epoch  35
+2020-12-23 14:34:53,089: main: DEBUG: Valid cost  16.05035539106889
+2020-12-23 14:34:53,089: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:34:53,089: main: DEBUG: Test cost  16.031685395674273
+2020-12-23 14:34:53,089: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:34:53,089: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:34:53,090: main: DEBUG: Seen samples:  1370
+2020-12-23 14:34:53,090: main: DEBUG: Training accuracy:  0.5861313868613138
+2020-12-23 14:34:53,090: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:34:58,068: main: DEBUG: Epoch 36 Update 1640 Cost 15.940829277038574 L2 30340.6875 TIME 0.15768861770629883
+2020-12-23 14:35:05,975: main: DEBUG: Epoch 36 Update 1660 Cost 15.659010887145996 L2 29981.482421875 TIME 0.6257405281066895
+2020-12-23 14:35:12,726: main: DEBUG: Epoch  36
+2020-12-23 14:35:12,728: main: DEBUG: Valid cost  15.621909921819514
+2020-12-23 14:35:12,728: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:35:12,728: main: DEBUG: Test cost  15.60837173461914
+2020-12-23 14:35:12,728: main: DEBUG: Test accuracy  0.5681818181818182
+2020-12-23 14:35:12,728: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:35:12,728: main: DEBUG: Seen samples:  1370
+2020-12-23 14:35:12,728: main: DEBUG: Training accuracy:  0.5861313868613138
+2020-12-23 14:35:12,728: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:35:16,363: main: DEBUG: Epoch 37 Update 1680 Cost 15.43613052368164 L2 29599.8828125 TIME 0.14580082893371582
+2020-12-23 14:35:23,845: main: DEBUG: Epoch 37 Update 1700 Cost 15.356152534484863 L2 29234.73828125 TIME 0.20862650871276855
+2020-12-23 14:35:32,870: main: DEBUG: Epoch  37
+2020-12-23 14:35:32,871: main: DEBUG: Valid cost  15.24080770665949
+2020-12-23 14:35:32,871: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:35:32,871: main: DEBUG: Test cost  15.217788002707742
+2020-12-23 14:35:32,871: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:35:32,871: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:35:32,871: main: DEBUG: Seen samples:  1370
+2020-12-23 14:35:32,871: main: DEBUG: Training accuracy:  0.5963503649635037
+2020-12-23 14:35:32,872: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:35:35,473: main: DEBUG: Epoch 38 Update 1720 Cost 15.135658264160156 L2 28956.4453125 TIME 0.22031283378601074
+2020-12-23 14:35:43,146: main: DEBUG: Epoch 38 Update 1740 Cost 14.988956451416016 L2 28644.328125 TIME 0.6078691482543945
+2020-12-23 14:35:53,880: main: DEBUG: Epoch  38
+2020-12-23 14:35:53,881: main: DEBUG: Valid cost  14.913155642422764
+2020-12-23 14:35:53,882: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:35:53,882: main: DEBUG: Test cost  14.893900177695535
+2020-12-23 14:35:53,882: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:35:53,882: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:35:53,882: main: DEBUG: Seen samples:  1370
+2020-12-23 14:35:53,882: main: DEBUG: Training accuracy:  0.5868613138686132
+2020-12-23 14:35:53,882: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:35:55,366: main: DEBUG: Epoch 39 Update 1760 Cost 14.881868362426758 L2 28374.046875 TIME 0.2052757740020752
+2020-12-23 14:36:00,556: main: DEBUG: Epoch 39 Update 1780 Cost 14.711697578430176 L2 28049.4921875 TIME 0.18995451927185059
+2020-12-23 14:36:10,428: main: DEBUG: Epoch 39 Update 1800 Cost 14.454760551452637 L2 27721.54296875 TIME 0.1437056064605713
+2020-12-23 14:36:14,363: main: DEBUG: Epoch  39
+2020-12-23 14:36:14,365: main: DEBUG: Valid cost  14.574207826094193
+2020-12-23 14:36:14,365: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:36:14,365: main: DEBUG: Test cost  14.549226934259588
+2020-12-23 14:36:14,365: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:36:14,365: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:36:14,365: main: DEBUG: Seen samples:  1370
+2020-12-23 14:36:14,365: main: DEBUG: Training accuracy:  0.5927007299270073
+2020-12-23 14:36:14,365: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:36:19,267: main: DEBUG: Epoch 40 Update 1820 Cost 14.301737785339355 L2 27442.900390625 TIME 0.13136529922485352
+2020-12-23 14:36:28,289: main: DEBUG: Epoch 40 Update 1840 Cost 14.220620155334473 L2 27201.5234375 TIME 0.22131848335266113
+2020-12-23 14:36:34,987: main: DEBUG: Epoch  40
+2020-12-23 14:36:34,988: main: DEBUG: Valid cost  14.255630059675736
+2020-12-23 14:36:34,988: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:36:34,988: main: DEBUG: Test cost  14.239264401522549
+2020-12-23 14:36:34,988: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:36:34,988: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:36:34,988: main: DEBUG: Seen samples:  1370
+2020-12-23 14:36:34,989: main: DEBUG: Training accuracy:  0.5854014598540146
+2020-12-23 14:36:34,989: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:36:39,115: main: DEBUG: Epoch 41 Update 1860 Cost 14.094837188720703 L2 26911.853515625 TIME 0.2558162212371826
+2020-12-23 14:36:46,367: main: DEBUG: Epoch 41 Update 1880 Cost 13.96872615814209 L2 26641.35546875 TIME 0.1982574462890625
+2020-12-23 14:36:55,210: main: DEBUG: Epoch  41
+2020-12-23 14:36:55,211: main: DEBUG: Valid cost  13.966103293678977
+2020-12-23 14:36:55,211: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:36:55,211: main: DEBUG: Test cost  13.943152340975674
+2020-12-23 14:36:55,211: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:36:55,211: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:36:55,211: main: DEBUG: Seen samples:  1370
+2020-12-23 14:36:55,211: main: DEBUG: Training accuracy:  0.6036496350364964
+2020-12-23 14:36:55,211: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:36:57,570: main: DEBUG: Epoch 42 Update 1900 Cost 13.833375930786133 L2 26388.384765625 TIME 0.23412060737609863
+2020-12-23 14:37:03,556: main: DEBUG: Epoch 42 Update 1920 Cost 13.758430480957031 L2 26153.255859375 TIME 0.163818359375
+2020-12-23 14:37:14,958: main: DEBUG: Epoch  42
+2020-12-23 14:37:14,959: main: DEBUG: Valid cost  13.712142944335938
+2020-12-23 14:37:14,959: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:37:14,959: main: DEBUG: Test cost  13.688770467584783
+2020-12-23 14:37:14,959: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:37:14,960: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:37:14,960: main: DEBUG: Seen samples:  1370
+2020-12-23 14:37:14,960: main: DEBUG: Training accuracy:  0.6021897810218978
+2020-12-23 14:37:14,960: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:37:16,600: main: DEBUG: Epoch 43 Update 1940 Cost 13.637146949768066 L2 25946.548828125 TIME 0.28471970558166504
+2020-12-23 14:37:22,778: main: DEBUG: Epoch 43 Update 1960 Cost 13.542778015136719 L2 25695.912109375 TIME 0.7898175716400146
+2020-12-23 14:37:31,595: main: DEBUG: Epoch 43 Update 1980 Cost 13.444159507751465 L2 25461.607421875 TIME 0.20820379257202148
+2020-12-23 14:37:35,581: main: DEBUG: Epoch  43
+2020-12-23 14:37:35,581: main: DEBUG: Valid cost  13.438135320490057
+2020-12-23 14:37:35,581: main: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-23 14:37:35,582: main: DEBUG: Test cost  13.41930476101962
+2020-12-23 14:37:35,582: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:37:35,582: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:37:35,582: main: DEBUG: Seen samples:  1370
+2020-12-23 14:37:35,582: main: DEBUG: Training accuracy:  0.5985401459854015
+2020-12-23 14:37:35,582: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:37:40,433: main: DEBUG: Epoch 44 Update 2000 Cost 13.333775520324707 L2 25220.20703125 TIME 0.1292259693145752
+2020-12-23 14:37:49,933: main: DEBUG: Epoch 44 Update 2020 Cost 13.105810165405273 L2 25033.162109375 TIME 0.15442180633544922
+2020-12-23 14:37:56,985: main: DEBUG: Epoch  44
+2020-12-23 14:37:56,985: main: DEBUG: Valid cost  13.200690789656205
+2020-12-23 14:37:56,985: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:37:56,985: main: DEBUG: Test cost  13.175194480202414
+2020-12-23 14:37:56,985: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:37:56,985: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:37:56,986: main: DEBUG: Seen samples:  1370
+2020-12-23 14:37:56,986: main: DEBUG: Training accuracy:  0.602919708029197
+2020-12-23 14:37:56,986: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:38:00,643: main: DEBUG: Epoch 45 Update 2040 Cost 13.072892189025879 L2 24821.359375 TIME 0.21564412117004395
+2020-12-23 14:38:08,588: main: DEBUG: Epoch 45 Update 2060 Cost 12.977706909179688 L2 24577.966796875 TIME 0.9126169681549072
+2020-12-23 14:38:16,660: main: DEBUG: Epoch  45
+2020-12-23 14:38:16,660: main: DEBUG: Valid cost  12.933798789978027
+2020-12-23 14:38:16,660: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:38:16,660: main: DEBUG: Test cost  12.912450270219283
+2020-12-23 14:38:16,661: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:38:16,661: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:38:16,661: main: DEBUG: Seen samples:  1370
+2020-12-23 14:38:16,661: main: DEBUG: Training accuracy:  0.6087591240875913
+2020-12-23 14:38:16,661: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:38:19,432: main: DEBUG: Epoch 46 Update 2080 Cost 12.864261627197266 L2 24324.0546875 TIME 0.26448917388916016
+2020-12-23 14:38:26,218: main: DEBUG: Epoch 46 Update 2100 Cost 12.680432319641113 L2 24090.564453125 TIME 0.30226707458496094
+2020-12-23 14:38:38,798: main: DEBUG: Epoch  46
+2020-12-23 14:38:38,799: main: DEBUG: Valid cost  12.682154828851873
+2020-12-23 14:38:38,799: main: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-23 14:38:38,799: main: DEBUG: Test cost  12.677235169844193
+2020-12-23 14:38:38,799: main: DEBUG: Test accuracy  0.4659090909090909
+2020-12-23 14:38:38,799: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:38:38,799: main: DEBUG: Seen samples:  1370
+2020-12-23 14:38:38,800: main: DEBUG: Training accuracy:  0.6255474452554745
+2020-12-23 14:38:38,800: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:38:40,298: main: DEBUG: Epoch 47 Update 2120 Cost 12.575684547424316 L2 23882.12109375 TIME 0.14645791053771973
+2020-12-23 14:38:46,532: main: DEBUG: Epoch 47 Update 2140 Cost 12.521047592163086 L2 23689.990234375 TIME 0.5474193096160889
+2020-12-23 14:38:56,148: main: DEBUG: Epoch 47 Update 2160 Cost 12.28642749786377 L2 23495.642578125 TIME 0.18422579765319824
+2020-12-23 14:39:00,157: main: DEBUG: Epoch  47
+2020-12-23 14:39:00,158: main: DEBUG: Valid cost  12.475430315191096
+2020-12-23 14:39:00,158: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:39:00,158: main: DEBUG: Test cost  12.450125780972568
+2020-12-23 14:39:00,158: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:39:00,158: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:39:00,158: main: DEBUG: Seen samples:  1370
+2020-12-23 14:39:00,158: main: DEBUG: Training accuracy:  0.6467153284671533
+2020-12-23 14:39:00,159: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:39:05,658: main: DEBUG: Epoch 48 Update 2180 Cost 12.23760986328125 L2 23319.251953125 TIME 0.1090848445892334
+2020-12-23 14:39:15,222: main: DEBUG: Epoch 48 Update 2200 Cost 12.161613464355469 L2 23152.7265625 TIME 0.20372772216796875
+2020-12-23 14:39:21,948: main: DEBUG: Epoch  48
+2020-12-23 14:39:21,949: main: DEBUG: Valid cost  12.25608054074374
+2020-12-23 14:39:21,949: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:39:21,949: main: DEBUG: Test cost  12.23236153342507
+2020-12-23 14:39:21,949: main: DEBUG: Test accuracy  0.5681818181818182
+2020-12-23 14:39:21,949: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:39:21,950: main: DEBUG: Seen samples:  1370
+2020-12-23 14:39:21,950: main: DEBUG: Training accuracy:  0.6226277372262774
+2020-12-23 14:39:21,950: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:39:25,986: main: DEBUG: Epoch 49 Update 2220 Cost 12.094058990478516 L2 22943.841796875 TIME 0.19486522674560547
+2020-12-23 14:39:33,683: main: DEBUG: Epoch 49 Update 2240 Cost 12.116880416870117 L2 22774.3828125 TIME 0.6428000926971436
+2020-12-23 14:39:43,231: main: DEBUG: Epoch  49
+2020-12-23 14:39:43,232: main: DEBUG: Valid cost  12.072140260176225
+2020-12-23 14:39:43,232: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:39:43,232: main: DEBUG: Test cost  12.04546746340665
+2020-12-23 14:39:43,232: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:39:43,232: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:39:43,232: main: DEBUG: Seen samples:  1370
+2020-12-23 14:39:43,232: main: DEBUG: Training accuracy:  0.6481751824817519
+2020-12-23 14:39:43,232: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:39:45,728: main: DEBUG: Epoch 50 Update 2260 Cost 11.863245010375977 L2 22602.169921875 TIME 0.14478516578674316
+2020-12-23 14:39:52,991: main: DEBUG: Epoch 50 Update 2280 Cost 11.886845588684082 L2 22452.236328125 TIME 0.5198378562927246
+2020-12-23 14:40:04,226: main: DEBUG: Epoch  50
+2020-12-23 14:40:04,227: main: DEBUG: Valid cost  11.910603263161399
+2020-12-23 14:40:04,227: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:40:04,227: main: DEBUG: Test cost  11.880685372786088
+2020-12-23 14:40:04,227: main: DEBUG: Test accuracy  0.5795454545454546
+2020-12-23 14:40:04,227: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:40:04,227: main: DEBUG: Seen samples:  1370
+2020-12-23 14:40:04,228: main: DEBUG: Training accuracy:  0.6459854014598541
+2020-12-23 14:40:04,228: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:40:05,687: main: DEBUG: Epoch 51 Update 2300 Cost 11.64260482788086 L2 22303.599609375 TIME 0.10729146003723145
+2020-12-23 14:40:11,232: main: DEBUG: Epoch 51 Update 2320 Cost 11.638079643249512 L2 22156.173828125 TIME 0.179490327835083
+2020-12-23 14:40:21,162: main: DEBUG: Epoch 51 Update 2340 Cost 11.497925758361816 L2 22029.7578125 TIME 0.17119765281677246
+2020-12-23 14:40:25,055: main: DEBUG: Epoch  51
+2020-12-23 14:40:25,056: main: DEBUG: Valid cost  11.747039101340555
+2020-12-23 14:40:25,056: main: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-23 14:40:25,056: main: DEBUG: Test cost  11.72245285727761
+2020-12-23 14:40:25,056: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:40:25,056: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:40:25,056: main: DEBUG: Seen samples:  1370
+2020-12-23 14:40:25,056: main: DEBUG: Training accuracy:  0.6532846715328468
+2020-12-23 14:40:25,056: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:40:29,243: main: DEBUG: Epoch 52 Update 2360 Cost 11.612873077392578 L2 21855.220703125 TIME 0.21692943572998047
+2020-12-23 14:40:38,249: main: DEBUG: Epoch 52 Update 2380 Cost 11.4173583984375 L2 21702.501953125 TIME 0.1735677719116211
+2020-12-23 14:40:45,105: main: DEBUG: Epoch  52
+2020-12-23 14:40:45,106: main: DEBUG: Valid cost  11.57641939683394
+2020-12-23 14:40:45,106: main: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-23 14:40:45,106: main: DEBUG: Test cost  11.57214086705988
+2020-12-23 14:40:45,106: main: DEBUG: Test accuracy  0.4772727272727273
+2020-12-23 14:40:45,106: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:40:45,106: main: DEBUG: Seen samples:  1370
+2020-12-23 14:40:45,107: main: DEBUG: Training accuracy:  0.6510948905109489
+2020-12-23 14:40:45,107: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:40:48,516: main: DEBUG: Epoch 53 Update 2400 Cost 11.47638988494873 L2 21582.275390625 TIME 0.20313572883605957
+2020-12-23 14:40:56,154: main: DEBUG: Epoch 53 Update 2420 Cost 11.279467582702637 L2 21443.474609375 TIME 0.5694217681884766
+2020-12-23 14:41:05,352: main: DEBUG: Epoch  53
+2020-12-23 14:41:05,353: main: DEBUG: Valid cost  11.454324028708719
+2020-12-23 14:41:05,353: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:41:05,353: main: DEBUG: Test cost  11.420957912098277
+2020-12-23 14:41:05,354: main: DEBUG: Test accuracy  0.5681818181818182
+2020-12-23 14:41:05,354: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:41:05,354: main: DEBUG: Seen samples:  1370
+2020-12-23 14:41:05,354: main: DEBUG: Training accuracy:  0.6605839416058394
+2020-12-23 14:41:05,354: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:41:07,854: main: DEBUG: Epoch 54 Update 2440 Cost 11.173460006713867 L2 21275.869140625 TIME 0.2244882583618164
+2020-12-23 14:41:15,244: main: DEBUG: Epoch 54 Update 2460 Cost 11.241918563842773 L2 21131.234375 TIME 0.5340187549591064
+2020-12-23 14:41:27,065: main: DEBUG: Epoch  54
+2020-12-23 14:41:27,066: main: DEBUG: Valid cost  11.249625379388982
+2020-12-23 14:41:27,066: main: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-23 14:41:27,066: main: DEBUG: Test cost  11.249608560041947
+2020-12-23 14:41:27,066: main: DEBUG: Test accuracy  0.45454545454545453
+2020-12-23 14:41:27,066: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:41:27,066: main: DEBUG: Seen samples:  1370
+2020-12-23 14:41:27,067: main: DEBUG: Training accuracy:  0.6467153284671533
+2020-12-23 14:41:27,067: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:41:28,612: main: DEBUG: Epoch 55 Update 2480 Cost 11.157957077026367 L2 20995.302734375 TIME 0.19900012016296387
+2020-12-23 14:41:34,642: main: DEBUG: Epoch 55 Update 2500 Cost 11.03832721710205 L2 20859.556640625 TIME 0.6052870750427246
+2020-12-23 14:41:43,488: main: DEBUG: Epoch 55 Update 2520 Cost 11.040696144104004 L2 20683.462890625 TIME 0.20022273063659668
+2020-12-23 14:41:47,277: main: DEBUG: Epoch  55
+2020-12-23 14:41:47,278: main: DEBUG: Valid cost  11.077355991710316
+2020-12-23 14:41:47,278: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:41:47,278: main: DEBUG: Test cost  11.059532165527344
+2020-12-23 14:41:47,278: main: DEBUG: Test accuracy  0.5511363636363636
+2020-12-23 14:41:47,278: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:41:47,278: main: DEBUG: Seen samples:  1370
+2020-12-23 14:41:47,278: main: DEBUG: Training accuracy:  0.67007299270073
+2020-12-23 14:41:47,278: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:41:52,401: main: DEBUG: Epoch 56 Update 2540 Cost 10.705178260803223 L2 20566.189453125 TIME 0.12164139747619629
+2020-12-23 14:42:01,177: main: DEBUG: Epoch 56 Update 2560 Cost 10.828253746032715 L2 20451.01953125 TIME 0.3530855178833008
+2020-12-23 14:42:07,860: main: DEBUG: Epoch  56
+2020-12-23 14:42:07,861: main: DEBUG: Valid cost  10.957422689958053
+2020-12-23 14:42:07,861: main: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-23 14:42:07,861: main: DEBUG: Test cost  10.959084077314897
+2020-12-23 14:42:07,861: main: DEBUG: Test accuracy  0.44886363636363635
+2020-12-23 14:42:07,861: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:42:07,861: main: DEBUG: Seen samples:  1370
+2020-12-23 14:42:07,861: main: DEBUG: Training accuracy:  0.672992700729927
+2020-12-23 14:42:07,861: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:42:11,759: main: DEBUG: Epoch 57 Update 2580 Cost 10.767512321472168 L2 20326.640625 TIME 0.19414472579956055
+2020-12-23 14:42:20,394: main: DEBUG: Epoch 57 Update 2600 Cost 10.662757873535156 L2 20212.546875 TIME 0.2586033344268799
+2020-12-23 14:42:28,233: main: DEBUG: Epoch  57
+2020-12-23 14:42:28,233: main: DEBUG: Valid cost  10.81927134773948
+2020-12-23 14:42:28,233: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:42:28,233: main: DEBUG: Test cost  10.800300251353871
+2020-12-23 14:42:28,233: main: DEBUG: Test accuracy  0.5511363636363636
+2020-12-23 14:42:28,233: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:42:28,234: main: DEBUG: Seen samples:  1370
+2020-12-23 14:42:28,234: main: DEBUG: Training accuracy:  0.6693430656934306
+2020-12-23 14:42:28,234: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:42:30,857: main: DEBUG: Epoch 58 Update 2620 Cost 10.577980041503906 L2 20088.0703125 TIME 0.23536014556884766
+2020-12-23 14:42:38,792: main: DEBUG: Epoch 58 Update 2640 Cost 10.586652755737305 L2 19947.505859375 TIME 0.7262818813323975
+2020-12-23 14:42:49,946: main: DEBUG: Epoch  58
+2020-12-23 14:42:49,946: main: DEBUG: Valid cost  10.668996464122426
+2020-12-23 14:42:49,947: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:42:49,947: main: DEBUG: Test cost  10.653340252962979
+2020-12-23 14:42:49,947: main: DEBUG: Test accuracy  0.5227272727272727
+2020-12-23 14:42:49,947: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:42:49,947: main: DEBUG: Seen samples:  1370
+2020-12-23 14:42:49,948: main: DEBUG: Training accuracy:  0.6693430656934306
+2020-12-23 14:42:49,948: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:42:51,554: main: DEBUG: Epoch 59 Update 2660 Cost 10.278583526611328 L2 19824.603515625 TIME 0.10757875442504883
+2020-12-23 14:42:57,231: main: DEBUG: Epoch 59 Update 2680 Cost 10.408260345458984 L2 19690.8359375 TIME 0.3057725429534912
+2020-12-23 14:43:07,326: main: DEBUG: Epoch 59 Update 2700 Cost 10.174015045166016 L2 19555.494140625 TIME 0.16339349746704102
+2020-12-23 14:43:11,138: main: DEBUG: Epoch  59
+2020-12-23 14:43:11,139: main: DEBUG: Valid cost  10.530320080843838
+2020-12-23 14:43:11,139: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:43:11,139: main: DEBUG: Test cost  10.513249137184836
+2020-12-23 14:43:11,139: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:43:11,139: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:43:11,140: main: DEBUG: Seen samples:  1370
+2020-12-23 14:43:11,140: main: DEBUG: Training accuracy:  0.6963503649635037
+2020-12-23 14:43:11,140: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:43:16,013: main: DEBUG: Epoch 60 Update 2720 Cost 10.146044731140137 L2 19417.736328125 TIME 0.12848138809204102
+2020-12-23 14:43:24,951: main: DEBUG: Epoch 60 Update 2740 Cost 10.103357315063477 L2 19295.525390625 TIME 0.13230204582214355
+2020-12-23 14:43:31,736: main: DEBUG: Epoch  60
+2020-12-23 14:43:31,737: main: DEBUG: Valid cost  10.429763967340643
+2020-12-23 14:43:31,737: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:43:31,737: main: DEBUG: Test cost  10.402605403553356
+2020-12-23 14:43:31,737: main: DEBUG: Test accuracy  0.5625
+2020-12-23 14:43:31,737: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:43:31,738: main: DEBUG: Seen samples:  1370
+2020-12-23 14:43:31,738: main: DEBUG: Training accuracy:  0.6934306569343066
+2020-12-23 14:43:31,738: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:43:35,185: main: DEBUG: Epoch 61 Update 2760 Cost 10.129639625549316 L2 19190.41796875 TIME 0.4047880172729492
+2020-12-23 14:43:43,651: main: DEBUG: Epoch 61 Update 2780 Cost 10.12234115600586 L2 19072.388671875 TIME 0.6665222644805908
+2020-12-23 14:43:52,908: main: DEBUG: Epoch  61
+2020-12-23 14:43:52,909: main: DEBUG: Valid cost  10.29368409243497
+2020-12-23 14:43:52,909: main: DEBUG: Valid accuracy  0.4772727272727273
+2020-12-23 14:43:52,909: main: DEBUG: Test cost  10.306742928244851
+2020-12-23 14:43:52,909: main: DEBUG: Test accuracy  0.42613636363636365
+2020-12-23 14:43:52,909: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:43:52,909: main: DEBUG: Seen samples:  1370
+2020-12-23 14:43:52,909: main: DEBUG: Training accuracy:  0.6781021897810219
+2020-12-23 14:43:52,909: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:43:55,627: main: DEBUG: Epoch 62 Update 2800 Cost 10.263866424560547 L2 18976.74609375 TIME 0.28815603256225586
+2020-12-23 14:44:02,122: main: DEBUG: Epoch 62 Update 2820 Cost 10.062044143676758 L2 18879.619140625 TIME 0.20191192626953125
+2020-12-23 14:44:13,120: main: DEBUG: Epoch  62
+2020-12-23 14:44:13,121: main: DEBUG: Valid cost  10.168471856550736
+2020-12-23 14:44:13,121: main: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-23 14:44:13,122: main: DEBUG: Test cost  10.147437529130416
+2020-12-23 14:44:13,122: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:44:13,122: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:44:13,122: main: DEBUG: Seen samples:  1370
+2020-12-23 14:44:13,122: main: DEBUG: Training accuracy:  0.6868613138686132
+2020-12-23 14:44:13,122: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:44:14,949: main: DEBUG: Epoch 63 Update 2840 Cost 9.846466064453125 L2 18763.58203125 TIME 0.19029784202575684
+2020-12-23 14:44:20,682: main: DEBUG: Epoch 63 Update 2860 Cost 9.741009712219238 L2 18641.578125 TIME 0.1927783489227295
+2020-12-23 14:44:31,360: main: DEBUG: Epoch 63 Update 2880 Cost 9.824284553527832 L2 18556.91015625 TIME 0.16663026809692383
+2020-12-23 14:44:35,218: main: DEBUG: Epoch  63
+2020-12-23 14:44:35,219: main: DEBUG: Valid cost  10.051928173411977
+2020-12-23 14:44:35,219: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:44:35,219: main: DEBUG: Test cost  10.034664847634055
+2020-12-23 14:44:35,219: main: DEBUG: Test accuracy  0.5454545454545454
+2020-12-23 14:44:35,219: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:44:35,219: main: DEBUG: Seen samples:  1370
+2020-12-23 14:44:35,219: main: DEBUG: Training accuracy:  0.6934306569343066
+2020-12-23 14:44:35,219: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:44:39,988: main: DEBUG: Epoch 64 Update 2900 Cost 9.665791511535645 L2 18411.654296875 TIME 0.10931968688964844
+2020-12-23 14:44:48,664: main: DEBUG: Epoch 64 Update 2920 Cost 9.794487953186035 L2 18307.98046875 TIME 0.40125250816345215
+2020-12-23 14:44:55,444: main: DEBUG: Epoch  64
+2020-12-23 14:44:55,445: main: DEBUG: Valid cost  9.905031464316629
+2020-12-23 14:44:55,445: main: DEBUG: Valid accuracy  0.5454545454545454
+2020-12-23 14:44:55,445: main: DEBUG: Test cost  9.900102702054111
+2020-12-23 14:44:55,446: main: DEBUG: Test accuracy  0.5170454545454546
+2020-12-23 14:44:55,446: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:44:55,446: main: DEBUG: Seen samples:  1370
+2020-12-23 14:44:55,446: main: DEBUG: Training accuracy:  0.6956204379562044
+2020-12-23 14:44:55,446: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:44:59,266: main: DEBUG: Epoch 65 Update 2940 Cost 9.623283386230469 L2 18217.669921875 TIME 0.22446656227111816
+2020-12-23 14:45:08,680: main: DEBUG: Epoch 65 Update 2960 Cost 9.72398567199707 L2 18129.46484375 TIME 0.3071019649505615
+2020-12-23 14:45:17,615: main: DEBUG: Epoch  65
+2020-12-23 14:45:17,616: main: DEBUG: Valid cost  10.007529692216353
+2020-12-23 14:45:17,616: main: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-23 14:45:17,616: main: DEBUG: Test cost  10.054140957919033
+2020-12-23 14:45:17,616: main: DEBUG: Test accuracy  0.4375
+2020-12-23 14:45:17,616: main: DEBUG: learning_rate:  0.5
+2020-12-23 14:45:17,616: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:45:17,616: main: DEBUG: bad_counter:  1
+2020-12-23 14:45:17,738: main: DEBUG: lrate change to:   0.45
+2020-12-23 14:45:17,738: main: DEBUG: Seen samples:  1370
+2020-12-23 14:45:17,739: main: DEBUG: Training accuracy:  0.7116788321167883
+2020-12-23 14:45:17,739: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:45:20,596: main: DEBUG: Epoch 66 Update 2980 Cost 9.534708976745605 L2 18068.28515625 TIME 0.28850865364074707
+2020-12-23 14:45:26,757: main: DEBUG: Epoch 66 Update 3000 Cost 9.74871826171875 L2 17982.091796875 TIME 0.153731107711792
+2020-12-23 14:45:38,934: main: DEBUG: Epoch  66
+2020-12-23 14:45:38,935: main: DEBUG: Valid cost  9.75290298461914
+2020-12-23 14:45:38,935: main: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-23 14:45:38,935: main: DEBUG: Test cost  9.740307201038707
+2020-12-23 14:45:38,935: main: DEBUG: Test accuracy  0.5284090909090909
+2020-12-23 14:45:38,935: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:45:38,935: main: DEBUG: Seen samples:  1370
+2020-12-23 14:45:38,935: main: DEBUG: Training accuracy:  0.6978102189781021
+2020-12-23 14:45:38,936: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:45:40,552: main: DEBUG: Epoch 67 Update 3020 Cost 9.604217529296875 L2 17930.2890625 TIME 0.32336902618408203
+2020-12-23 14:45:46,221: main: DEBUG: Epoch 67 Update 3040 Cost 9.330772399902344 L2 17809.57421875 TIME 0.10783863067626953
+2020-12-23 14:45:55,818: main: DEBUG: Epoch 67 Update 3060 Cost 9.646442413330078 L2 17729.998046875 TIME 0.18433737754821777
+2020-12-23 14:45:59,611: main: DEBUG: Epoch  67
+2020-12-23 14:45:59,612: main: DEBUG: Valid cost  9.687638369473545
+2020-12-23 14:45:59,612: main: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-23 14:45:59,612: main: DEBUG: Test cost  9.710296023975719
+2020-12-23 14:45:59,612: main: DEBUG: Test accuracy  0.4375
+2020-12-23 14:45:59,612: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:45:59,612: main: DEBUG: Seen samples:  1370
+2020-12-23 14:45:59,612: main: DEBUG: Training accuracy:  0.7372262773722628
+2020-12-23 14:45:59,612: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:46:04,410: main: DEBUG: Epoch 68 Update 3080 Cost 9.81486701965332 L2 17632.552734375 TIME 0.10411334037780762
+2020-12-23 14:46:14,877: main: DEBUG: Epoch 68 Update 3100 Cost 9.153376579284668 L2 17559.650390625 TIME 0.12720155715942383
+2020-12-23 14:46:21,756: main: DEBUG: Epoch  68
+2020-12-23 14:46:21,757: main: DEBUG: Valid cost  9.543034206737172
+2020-12-23 14:46:21,757: main: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-23 14:46:21,757: main: DEBUG: Test cost  9.5444954958829
+2020-12-23 14:46:21,757: main: DEBUG: Test accuracy  0.4772727272727273
+2020-12-23 14:46:21,757: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:46:21,757: main: DEBUG: Seen samples:  1370
+2020-12-23 14:46:21,757: main: DEBUG: Training accuracy:  0.7087591240875912
+2020-12-23 14:46:21,757: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:46:25,458: main: DEBUG: Epoch 69 Update 3120 Cost 9.428033828735352 L2 17480.16796875 TIME 0.15659403800964355
+2020-12-23 14:46:33,855: main: DEBUG: Epoch 69 Update 3140 Cost 9.291219711303711 L2 17416.818359375 TIME 0.2032794952392578
+2020-12-23 14:46:42,724: main: DEBUG: Epoch  69
+2020-12-23 14:46:42,725: main: DEBUG: Valid cost  9.517829548228871
+2020-12-23 14:46:42,725: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:46:42,725: main: DEBUG: Test cost  9.49831841208718
+2020-12-23 14:46:42,725: main: DEBUG: Test accuracy  0.5738636363636364
+2020-12-23 14:46:42,725: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:46:42,725: main: DEBUG: Seen samples:  1370
+2020-12-23 14:46:42,725: main: DEBUG: Training accuracy:  0.7131386861313869
+2020-12-23 14:46:42,725: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:46:44,894: main: DEBUG: Epoch 70 Update 3160 Cost 9.143102645874023 L2 17340.49609375 TIME 0.1906430721282959
+2020-12-23 14:46:51,589: main: DEBUG: Epoch 70 Update 3180 Cost 9.19630241394043 L2 17260.669921875 TIME 0.6195762157440186
+2020-12-23 14:47:02,361: main: DEBUG: Epoch  70
+2020-12-23 14:47:02,362: main: DEBUG: Valid cost  9.404597022316672
+2020-12-23 14:47:02,362: main: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-23 14:47:02,362: main: DEBUG: Test cost  9.419798590920188
+2020-12-23 14:47:02,362: main: DEBUG: Test accuracy  0.4090909090909091
+2020-12-23 14:47:02,362: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:47:02,362: main: DEBUG: Seen samples:  1370
+2020-12-23 14:47:02,363: main: DEBUG: Training accuracy:  0.724087591240876
+2020-12-23 14:47:02,363: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:47:03,678: main: DEBUG: Epoch 71 Update 3200 Cost 8.981306076049805 L2 17176.43359375 TIME 0.1696474552154541
+2020-12-23 14:47:09,602: main: DEBUG: Epoch 71 Update 3220 Cost 8.980901718139648 L2 17082.951171875 TIME 0.5482306480407715
+2020-12-23 14:47:20,137: main: DEBUG: Epoch 71 Update 3240 Cost 9.070883750915527 L2 17021.35546875 TIME 0.17810630798339844
+2020-12-23 14:47:23,896: main: DEBUG: Epoch  71
+2020-12-23 14:47:23,897: main: DEBUG: Valid cost  9.340861580588601
+2020-12-23 14:47:23,897: main: DEBUG: Valid accuracy  0.5340909090909091
+2020-12-23 14:47:23,898: main: DEBUG: Test cost  9.322269873185592
+2020-12-23 14:47:23,898: main: DEBUG: Test accuracy  0.5454545454545454
+2020-12-23 14:47:23,898: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:47:23,898: main: DEBUG: Seen samples:  1370
+2020-12-23 14:47:23,898: main: DEBUG: Training accuracy:  0.7328467153284671
+2020-12-23 14:47:23,898: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:47:28,683: main: DEBUG: Epoch 72 Update 3260 Cost 9.437508583068848 L2 16949.734375 TIME 0.1222529411315918
+2020-12-23 14:47:37,698: main: DEBUG: Epoch 72 Update 3280 Cost 9.047479629516602 L2 16855.291015625 TIME 0.36162376403808594
+2020-12-23 14:47:44,613: main: DEBUG: Epoch  72
+2020-12-23 14:47:44,614: main: DEBUG: Valid cost  9.232970064336603
+2020-12-23 14:47:44,614: main: DEBUG: Valid accuracy  0.5056818181818182
+2020-12-23 14:47:44,614: main: DEBUG: Test cost  9.247543855146928
+2020-12-23 14:47:44,614: main: DEBUG: Test accuracy  0.4318181818181818
+2020-12-23 14:47:44,614: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:47:44,614: main: DEBUG: Seen samples:  1370
+2020-12-23 14:47:44,615: main: DEBUG: Training accuracy:  0.7401459854014598
+2020-12-23 14:47:44,615: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:47:48,439: main: DEBUG: Epoch 73 Update 3300 Cost 8.919231414794922 L2 16764.3828125 TIME 0.16005182266235352
+2020-12-23 14:47:56,871: main: DEBUG: Epoch 73 Update 3320 Cost 8.83810043334961 L2 16702.775390625 TIME 0.24299216270446777
+2020-12-23 14:48:05,814: main: DEBUG: Epoch  73
+2020-12-23 14:48:05,815: main: DEBUG: Valid cost  9.138763080943715
+2020-12-23 14:48:05,815: main: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-23 14:48:05,816: main: DEBUG: Test cost  9.149356148459695
+2020-12-23 14:48:05,816: main: DEBUG: Test accuracy  0.4659090909090909
+2020-12-23 14:48:05,816: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:48:05,816: main: DEBUG: Seen samples:  1370
+2020-12-23 14:48:05,816: main: DEBUG: Training accuracy:  0.7503649635036497
+2020-12-23 14:48:05,816: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:48:08,545: main: DEBUG: Epoch 74 Update 3340 Cost 8.794486045837402 L2 16640.828125 TIME 0.21345281600952148
+2020-12-23 14:48:14,925: main: DEBUG: Epoch 74 Update 3360 Cost 8.644330978393555 L2 16556.8671875 TIME 0.3685634136199951
+2020-12-23 14:48:26,823: main: DEBUG: Epoch  74
+2020-12-23 14:48:26,823: main: DEBUG: Valid cost  9.104813922535289
+2020-12-23 14:48:26,824: main: DEBUG: Valid accuracy  0.48863636363636365
+2020-12-23 14:48:26,824: main: DEBUG: Test cost  9.133684245022861
+2020-12-23 14:48:26,824: main: DEBUG: Test accuracy  0.42613636363636365
+2020-12-23 14:48:26,824: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:48:26,824: main: DEBUG: Seen samples:  1370
+2020-12-23 14:48:26,824: main: DEBUG: Training accuracy:  0.7496350364963503
+2020-12-23 14:48:26,824: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:48:28,163: main: DEBUG: Epoch 75 Update 3380 Cost 8.665136337280273 L2 16478.08203125 TIME 0.14919543266296387
+2020-12-23 14:48:34,488: main: DEBUG: Epoch 75 Update 3400 Cost 8.612127304077148 L2 16412.341796875 TIME 0.22323274612426758
+2020-12-23 14:48:45,042: main: DEBUG: Epoch 75 Update 3420 Cost 8.584609985351562 L2 16363.5283203125 TIME 0.21619486808776855
+2020-12-23 14:48:48,908: main: DEBUG: Epoch  75
+2020-12-23 14:48:48,908: main: DEBUG: Valid cost  9.117368004538797
+2020-12-23 14:48:48,908: main: DEBUG: Valid accuracy  0.44886363636363635
+2020-12-23 14:48:48,909: main: DEBUG: Test cost  9.15572721307928
+2020-12-23 14:48:48,909: main: DEBUG: Test accuracy  0.4318181818181818
+2020-12-23 14:48:48,909: main: DEBUG: learning_rate:  0.45
+2020-12-23 14:48:48,909: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:48:48,909: main: DEBUG: bad_counter:  2
+2020-12-23 14:48:49,019: main: DEBUG: lrate change to:   0.405
+2020-12-23 14:48:49,019: main: DEBUG: Seen samples:  1370
+2020-12-23 14:48:49,019: main: DEBUG: Training accuracy:  0.7364963503649635
+2020-12-23 14:48:49,019: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:48:53,696: main: DEBUG: Epoch 76 Update 3440 Cost 8.906010627746582 L2 16307.0517578125 TIME 0.1635751724243164
+2020-12-23 14:49:03,834: main: DEBUG: Epoch 76 Update 3460 Cost 8.709574699401855 L2 16248.615234375 TIME 0.3403944969177246
+2020-12-23 14:49:10,688: main: DEBUG: Epoch  76
+2020-12-23 14:49:10,689: main: DEBUG: Valid cost  8.94411191073331
+2020-12-23 14:49:10,689: main: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-23 14:49:10,689: main: DEBUG: Test cost  8.955242677168412
+2020-12-23 14:49:10,689: main: DEBUG: Test accuracy  0.4431818181818182
+2020-12-23 14:49:10,689: main: DEBUG: learning_rate:  0.405
+2020-12-23 14:49:10,689: main: DEBUG: Seen samples:  1370
+2020-12-23 14:49:10,689: main: DEBUG: Training accuracy:  0.7562043795620438
+2020-12-23 14:49:10,689: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:49:14,930: main: DEBUG: Epoch 77 Update 3480 Cost 8.735878944396973 L2 16172.4619140625 TIME 0.29154491424560547
+2020-12-23 14:49:22,689: main: DEBUG: Epoch 77 Update 3500 Cost 8.530338287353516 L2 16126.3564453125 TIME 0.6124787330627441
+2020-12-23 14:49:31,812: main: DEBUG: Epoch  77
+2020-12-23 14:49:31,813: main: DEBUG: Valid cost  8.969413930719549
+2020-12-23 14:49:31,814: main: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-23 14:49:31,814: main: DEBUG: Test cost  9.008037913929332
+2020-12-23 14:49:31,814: main: DEBUG: Test accuracy  0.4375
+2020-12-23 14:49:31,814: main: DEBUG: learning_rate:  0.405
+2020-12-23 14:49:31,814: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:49:31,814: main: DEBUG: bad_counter:  3
+2020-12-23 14:49:31,937: main: DEBUG: lrate change to:   0.36450000000000005
+2020-12-23 14:49:31,937: main: DEBUG: Seen samples:  1370
+2020-12-23 14:49:31,937: main: DEBUG: Training accuracy:  0.7583941605839416
+2020-12-23 14:49:31,937: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:49:34,568: main: DEBUG: Epoch 78 Update 3520 Cost 8.424053192138672 L2 16058.48046875 TIME 0.22418594360351562
+2020-12-23 14:49:41,863: main: DEBUG: Epoch 78 Update 3540 Cost 8.50385570526123 L2 16003.935546875 TIME 0.1845548152923584
+2020-12-23 14:49:53,333: main: DEBUG: Epoch  78
+2020-12-23 14:49:53,334: main: DEBUG: Valid cost  8.818098848516291
+2020-12-23 14:49:53,334: main: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-23 14:49:53,334: main: DEBUG: Test cost  8.809907219626687
+2020-12-23 14:49:53,334: main: DEBUG: Test accuracy  0.5397727272727273
+2020-12-23 14:49:53,334: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:49:53,335: main: DEBUG: Seen samples:  1370
+2020-12-23 14:49:53,335: main: DEBUG: Training accuracy:  0.7686131386861313
+2020-12-23 14:49:53,335: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:49:54,838: main: DEBUG: Epoch 79 Update 3560 Cost 8.600467681884766 L2 15954.9638671875 TIME 0.2749810218811035
+2020-12-23 14:50:00,367: main: DEBUG: Epoch 79 Update 3580 Cost 8.663532257080078 L2 15899.017578125 TIME 0.6170852184295654
+2020-12-23 14:50:11,097: main: DEBUG: Epoch 79 Update 3600 Cost 8.421707153320312 L2 15852.15234375 TIME 0.21757841110229492
+2020-12-23 14:50:14,804: main: DEBUG: Epoch  79
+2020-12-23 14:50:14,804: main: DEBUG: Valid cost  8.758753863247959
+2020-12-23 14:50:14,804: main: DEBUG: Valid accuracy  0.5
+2020-12-23 14:50:14,804: main: DEBUG: Test cost  8.763686786998402
+2020-12-23 14:50:14,804: main: DEBUG: Test accuracy  0.4715909090909091
+2020-12-23 14:50:14,804: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:50:14,805: main: DEBUG: Seen samples:  1370
+2020-12-23 14:50:14,805: main: DEBUG: Training accuracy:  0.772992700729927
+2020-12-23 14:50:14,805: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:50:19,449: main: DEBUG: Epoch 80 Update 3620 Cost 8.778687477111816 L2 15788.3759765625 TIME 0.14435195922851562
+2020-12-23 14:50:27,830: main: DEBUG: Epoch 80 Update 3640 Cost 8.501035690307617 L2 15753.2900390625 TIME 0.6312553882598877
+2020-12-23 14:50:34,390: main: DEBUG: Epoch  80
+2020-12-23 14:50:34,390: main: DEBUG: Valid cost  8.746462388472123
+2020-12-23 14:50:34,391: main: DEBUG: Valid accuracy  0.5284090909090909
+2020-12-23 14:50:34,391: main: DEBUG: Test cost  8.732394391840154
+2020-12-23 14:50:34,391: main: DEBUG: Test accuracy  0.5625
+2020-12-23 14:50:34,391: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:50:34,391: main: DEBUG: Seen samples:  1370
+2020-12-23 14:50:34,391: main: DEBUG: Training accuracy:  0.7824817518248175
+2020-12-23 14:50:34,391: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:50:38,444: main: DEBUG: Epoch 81 Update 3660 Cost 8.259666442871094 L2 15694.017578125 TIME 0.19092154502868652
+2020-12-23 14:50:46,883: main: DEBUG: Epoch 81 Update 3680 Cost 8.259206771850586 L2 15636.44921875 TIME 0.524094820022583
+2020-12-23 14:50:55,688: main: DEBUG: Epoch  81
+2020-12-23 14:50:55,689: main: DEBUG: Valid cost  8.651816541498357
+2020-12-23 14:50:55,689: main: DEBUG: Valid accuracy  0.5056818181818182
+2020-12-23 14:50:55,689: main: DEBUG: Test cost  8.656936818903143
+2020-12-23 14:50:55,689: main: DEBUG: Test accuracy  0.4715909090909091
+2020-12-23 14:50:55,689: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:50:55,690: main: DEBUG: Seen samples:  1370
+2020-12-23 14:50:55,690: main: DEBUG: Training accuracy:  0.7788321167883212
+2020-12-23 14:50:55,690: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:50:58,298: main: DEBUG: Epoch 82 Update 3700 Cost 8.187670707702637 L2 15593.99609375 TIME 0.20688414573669434
+2020-12-23 14:51:05,845: main: DEBUG: Epoch 82 Update 3720 Cost 8.239633560180664 L2 15545.7705078125 TIME 0.5430760383605957
+2020-12-23 14:51:16,839: main: DEBUG: Epoch  82
+2020-12-23 14:51:16,840: main: DEBUG: Valid cost  8.632611448114568
+2020-12-23 14:51:16,840: main: DEBUG: Valid accuracy  0.48295454545454547
+2020-12-23 14:51:16,840: main: DEBUG: Test cost  8.650521018288352
+2020-12-23 14:51:16,840: main: DEBUG: Test accuracy  0.4147727272727273
+2020-12-23 14:51:16,840: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:51:16,841: main: DEBUG: Seen samples:  1370
+2020-12-23 14:51:16,841: main: DEBUG: Training accuracy:  0.7686131386861313
+2020-12-23 14:51:16,841: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:51:18,154: main: DEBUG: Epoch 83 Update 3740 Cost 8.289355278015137 L2 15502.080078125 TIME 0.2495896816253662
+2020-12-23 14:51:23,231: main: DEBUG: Epoch 83 Update 3760 Cost 8.04631519317627 L2 15448.7060546875 TIME 0.2702207565307617
+2020-12-23 14:51:32,791: main: DEBUG: Epoch 83 Update 3780 Cost 8.548190116882324 L2 15396.0693359375 TIME 0.17168903350830078
+2020-12-23 14:51:36,614: main: DEBUG: Epoch  83
+2020-12-23 14:51:36,615: main: DEBUG: Valid cost  8.606568943370473
+2020-12-23 14:51:36,615: main: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-23 14:51:36,615: main: DEBUG: Test cost  8.630692395296963
+2020-12-23 14:51:36,615: main: DEBUG: Test accuracy  0.4318181818181818
+2020-12-23 14:51:36,615: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:51:36,616: main: DEBUG: Seen samples:  1370
+2020-12-23 14:51:36,616: main: DEBUG: Training accuracy:  0.7781021897810219
+2020-12-23 14:51:36,616: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:51:41,406: main: DEBUG: Epoch 84 Update 3800 Cost 8.215495109558105 L2 15321.6962890625 TIME 0.14982295036315918
+2020-12-23 14:51:49,460: main: DEBUG: Epoch 84 Update 3820 Cost 8.02850341796875 L2 15277.14453125 TIME 0.12929630279541016
+2020-12-23 14:51:56,371: main: DEBUG: Epoch  84
+2020-12-23 14:51:56,372: main: DEBUG: Valid cost  8.840938741510564
+2020-12-23 14:51:56,372: main: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-23 14:51:56,372: main: DEBUG: Test cost  8.814294988458807
+2020-12-23 14:51:56,372: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:51:56,372: main: DEBUG: learning_rate:  0.36450000000000005
+2020-12-23 14:51:56,372: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:51:56,372: main: DEBUG: bad_counter:  4
+2020-12-23 14:51:56,496: main: DEBUG: lrate change to:   0.32805000000000006
+2020-12-23 14:51:56,496: main: DEBUG: Seen samples:  1370
+2020-12-23 14:51:56,497: main: DEBUG: Training accuracy:  0.8007299270072993
+2020-12-23 14:51:56,497: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:52:00,388: main: DEBUG: Epoch 85 Update 3840 Cost 7.8840131759643555 L2 15241.98046875 TIME 0.20885324478149414
+2020-12-23 14:52:08,488: main: DEBUG: Epoch 85 Update 3860 Cost 7.8531413078308105 L2 15192.2607421875 TIME 0.2989780902862549
+2020-12-23 14:52:17,286: main: DEBUG: Epoch  85
+2020-12-23 14:52:17,287: main: DEBUG: Valid cost  8.462189240889115
+2020-12-23 14:52:17,287: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:52:17,288: main: DEBUG: Test cost  8.46717002175071
+2020-12-23 14:52:17,288: main: DEBUG: Test accuracy  0.5454545454545454
+2020-12-23 14:52:17,288: main: DEBUG: learning_rate:  0.32805000000000006
+2020-12-23 14:52:17,288: main: DEBUG: Seen samples:  1370
+2020-12-23 14:52:17,288: main: DEBUG: Training accuracy:  0.791970802919708
+2020-12-23 14:52:17,288: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:52:20,303: main: DEBUG: Epoch 86 Update 3880 Cost 7.9850969314575195 L2 15152.580078125 TIME 0.17617559432983398
+2020-12-23 14:52:27,413: main: DEBUG: Epoch 86 Update 3900 Cost 7.997348785400391 L2 15102.375 TIME 0.543982982635498
+2020-12-23 14:52:37,985: main: DEBUG: Epoch  86
+2020-12-23 14:52:37,986: main: DEBUG: Valid cost  8.462123350663619
+2020-12-23 14:52:37,986: main: DEBUG: Valid accuracy  0.5
+2020-12-23 14:52:37,987: main: DEBUG: Test cost  8.490312056107955
+2020-12-23 14:52:37,987: main: DEBUG: Test accuracy  0.4375
+2020-12-23 14:52:37,987: main: DEBUG: learning_rate:  0.32805000000000006
+2020-12-23 14:52:37,987: main: DEBUG: Seen samples:  1370
+2020-12-23 14:52:37,987: main: DEBUG: Training accuracy:  0.7941605839416058
+2020-12-23 14:52:37,987: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:52:39,840: main: DEBUG: Epoch 87 Update 3920 Cost 7.928428649902344 L2 15069.6708984375 TIME 0.29067063331604004
+2020-12-23 14:52:45,454: main: DEBUG: Epoch 87 Update 3940 Cost 7.957222938537598 L2 15016.2197265625 TIME 0.24816489219665527
+2020-12-23 14:52:55,166: main: DEBUG: Epoch 87 Update 3960 Cost 7.570104122161865 L2 14970.0703125 TIME 0.2145230770111084
+2020-12-23 14:52:58,972: main: DEBUG: Epoch  87
+2020-12-23 14:52:58,973: main: DEBUG: Valid cost  8.843766125765713
+2020-12-23 14:52:58,973: main: DEBUG: Valid accuracy  0.5511363636363636
+2020-12-23 14:52:58,973: main: DEBUG: Test cost  8.817960045554422
+2020-12-23 14:52:58,973: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:52:58,973: main: DEBUG: learning_rate:  0.32805000000000006
+2020-12-23 14:52:58,973: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:52:58,973: main: DEBUG: bad_counter:  5
+2020-12-23 14:52:59,089: main: DEBUG: lrate change to:   0.2952450000000001
+2020-12-23 14:52:59,090: main: DEBUG: Seen samples:  1370
+2020-12-23 14:52:59,090: main: DEBUG: Training accuracy:  0.8007299270072993
+2020-12-23 14:52:59,090: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:53:03,781: main: DEBUG: Epoch 88 Update 3980 Cost 8.354312896728516 L2 14938.11328125 TIME 0.16433405876159668
+2020-12-23 14:53:13,895: main: DEBUG: Epoch 88 Update 4000 Cost 7.874056816101074 L2 14898.490234375 TIME 0.4527609348297119
+2020-12-23 14:53:20,710: main: DEBUG: Epoch  88
+2020-12-23 14:53:20,711: main: DEBUG: Valid cost  8.700829245827414
+2020-12-23 14:53:20,711: main: DEBUG: Valid accuracy  0.5568181818181818
+2020-12-23 14:53:20,712: main: DEBUG: Test cost  8.664007533680309
+2020-12-23 14:53:20,712: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:53:20,712: main: DEBUG: learning_rate:  0.2952450000000001
+2020-12-23 14:53:20,712: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:53:20,712: main: DEBUG: bad_counter:  6
+2020-12-23 14:53:20,825: main: DEBUG: lrate change to:   0.2657205000000001
+2020-12-23 14:53:20,825: main: DEBUG: Seen samples:  1370
+2020-12-23 14:53:20,825: main: DEBUG: Training accuracy:  0.810948905109489
+2020-12-23 14:53:20,826: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:53:24,815: main: DEBUG: Epoch 89 Update 4020 Cost 7.9268317222595215 L2 14859.55859375 TIME 0.29468679428100586
+2020-12-23 14:53:33,158: main: DEBUG: Epoch 89 Update 4040 Cost 7.863193988800049 L2 14830.5810546875 TIME 0.3088204860687256
+2020-12-23 14:53:42,716: main: DEBUG: Epoch  89
+2020-12-23 14:53:42,717: main: DEBUG: Valid cost  8.309728795831854
+2020-12-23 14:53:42,717: main: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-23 14:53:42,717: main: DEBUG: Test cost  8.283135847611861
+2020-12-23 14:53:42,717: main: DEBUG: Test accuracy  0.5
+2020-12-23 14:53:42,717: main: DEBUG: learning_rate:  0.2657205000000001
+2020-12-23 14:53:42,717: main: DEBUG: Seen samples:  1370
+2020-12-23 14:53:42,717: main: DEBUG: Training accuracy:  0.8124087591240876
+2020-12-23 14:53:42,718: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:53:45,076: main: DEBUG: Epoch 90 Update 4060 Cost 7.774770736694336 L2 14794.5341796875 TIME 0.1908864974975586
+2020-12-23 14:53:52,496: main: DEBUG: Epoch 90 Update 4080 Cost 7.82464599609375 L2 14757.0224609375 TIME 0.5364980697631836
+2020-12-23 14:54:04,208: main: DEBUG: Epoch  90
+2020-12-23 14:54:04,209: main: DEBUG: Valid cost  8.271274479952725
+2020-12-23 14:54:04,209: main: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-23 14:54:04,209: main: DEBUG: Test cost  8.2643461227417
+2020-12-23 14:54:04,209: main: DEBUG: Test accuracy  0.5056818181818182
+2020-12-23 14:54:04,210: main: DEBUG: learning_rate:  0.2657205000000001
+2020-12-23 14:54:04,210: main: DEBUG: Seen samples:  1370
+2020-12-23 14:54:04,210: main: DEBUG: Training accuracy:  0.8248175182481752
+2020-12-23 14:54:04,210: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:54:05,953: main: DEBUG: Epoch 91 Update 4100 Cost 7.661527633666992 L2 14727.4306640625 TIME 0.24573874473571777
+2020-12-23 14:54:12,041: main: DEBUG: Epoch 91 Update 4120 Cost 8.029500007629395 L2 14692.3486328125 TIME 0.6644833087921143
+2020-12-23 14:54:21,981: main: DEBUG: Epoch 91 Update 4140 Cost 7.641080856323242 L2 14664.70703125 TIME 0.1565101146697998
+2020-12-23 14:54:25,945: main: DEBUG: Epoch  91
+2020-12-23 14:54:25,946: main: DEBUG: Valid cost  8.274634621360086
+2020-12-23 14:54:25,946: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:54:25,947: main: DEBUG: Test cost  8.25853139703924
+2020-12-23 14:54:25,947: main: DEBUG: Test accuracy  0.5568181818181818
+2020-12-23 14:54:25,947: main: DEBUG: learning_rate:  0.2657205000000001
+2020-12-23 14:54:25,947: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:54:25,947: main: DEBUG: bad_counter:  7
+2020-12-23 14:54:26,062: main: DEBUG: lrate change to:   0.23914845000000007
+2020-12-23 14:54:26,062: main: DEBUG: Seen samples:  1370
+2020-12-23 14:54:26,062: main: DEBUG: Training accuracy:  0.8065693430656934
+2020-12-23 14:54:26,062: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:54:30,641: main: DEBUG: Epoch 92 Update 4160 Cost 7.767106533050537 L2 14629.7177734375 TIME 0.1386890411376953
+2020-12-23 14:54:39,788: main: DEBUG: Epoch 92 Update 4180 Cost 7.803365230560303 L2 14604.3662109375 TIME 0.12456750869750977
+2020-12-23 14:54:46,813: main: DEBUG: Epoch  92
+2020-12-23 14:54:46,814: main: DEBUG: Valid cost  8.227223309603604
+2020-12-23 14:54:46,814: main: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-23 14:54:46,814: main: DEBUG: Test cost  8.229375058954412
+2020-12-23 14:54:46,814: main: DEBUG: Test accuracy  0.4659090909090909
+2020-12-23 14:54:46,814: main: DEBUG: learning_rate:  0.23914845000000007
+2020-12-23 14:54:46,815: main: DEBUG: Seen samples:  1370
+2020-12-23 14:54:46,815: main: DEBUG: Training accuracy:  0.8211678832116789
+2020-12-23 14:54:46,815: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:54:50,869: main: DEBUG: Epoch 93 Update 4200 Cost 7.653716087341309 L2 14569.923828125 TIME 0.21639657020568848
+2020-12-23 14:54:59,552: main: DEBUG: Epoch 93 Update 4220 Cost 7.829689025878906 L2 14539.8515625 TIME 0.6457903385162354
+2020-12-23 14:55:08,546: main: DEBUG: Epoch  93
+2020-12-23 14:55:08,546: main: DEBUG: Valid cost  8.179217945445668
+2020-12-23 14:55:08,547: main: DEBUG: Valid accuracy  0.5056818181818182
+2020-12-23 14:55:08,547: main: DEBUG: Test cost  8.177601033991033
+2020-12-23 14:55:08,547: main: DEBUG: Test accuracy  0.4772727272727273
+2020-12-23 14:55:08,547: main: DEBUG: learning_rate:  0.23914845000000007
+2020-12-23 14:55:08,547: main: DEBUG: Seen samples:  1370
+2020-12-23 14:55:08,547: main: DEBUG: Training accuracy:  0.8313868613138686
+2020-12-23 14:55:08,547: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:55:11,014: main: DEBUG: Epoch 94 Update 4240 Cost 7.575540542602539 L2 14505.0634765625 TIME 0.23110485076904297
+2020-12-23 14:55:17,965: main: DEBUG: Epoch 94 Update 4260 Cost 7.612270832061768 L2 14474.544921875 TIME 0.9311881065368652
+2020-12-23 14:55:30,212: main: DEBUG: Epoch  94
+2020-12-23 14:55:30,213: main: DEBUG: Valid cost  8.151633089238947
+2020-12-23 14:55:30,213: main: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-23 14:55:30,213: main: DEBUG: Test cost  8.153941934758967
+2020-12-23 14:55:30,213: main: DEBUG: Test accuracy  0.5056818181818182
+2020-12-23 14:55:30,213: main: DEBUG: learning_rate:  0.23914845000000007
+2020-12-23 14:55:30,213: main: DEBUG: Seen samples:  1370
+2020-12-23 14:55:30,213: main: DEBUG: Training accuracy:  0.8262773722627738
+2020-12-23 14:55:30,213: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:55:32,146: main: DEBUG: Epoch 95 Update 4280 Cost 7.552695274353027 L2 14450.0859375 TIME 0.33933091163635254
+2020-12-23 14:55:39,085: main: DEBUG: Epoch 95 Update 4300 Cost 7.714814186096191 L2 14415.876953125 TIME 0.5278046131134033
+2020-12-23 14:55:48,332: main: DEBUG: Epoch 95 Update 4320 Cost 7.718838214874268 L2 14391.09375 TIME 0.21556472778320312
+2020-12-23 14:55:52,212: main: DEBUG: Epoch  95
+2020-12-23 14:55:52,212: main: DEBUG: Valid cost  8.121462735262783
+2020-12-23 14:55:52,212: main: DEBUG: Valid accuracy  0.5170454545454546
+2020-12-23 14:55:52,212: main: DEBUG: Test cost  8.1158183704723
+2020-12-23 14:55:52,212: main: DEBUG: Test accuracy  0.5170454545454546
+2020-12-23 14:55:52,212: main: DEBUG: learning_rate:  0.23914845000000007
+2020-12-23 14:55:52,212: main: DEBUG: Seen samples:  1370
+2020-12-23 14:55:52,212: main: DEBUG: Training accuracy:  0.8131386861313868
+2020-12-23 14:55:52,212: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:55:56,616: main: DEBUG: Epoch 96 Update 4340 Cost 7.4769439697265625 L2 14358.578125 TIME 0.21233725547790527
+2020-12-23 14:56:05,281: main: DEBUG: Epoch 96 Update 4360 Cost 7.662960052490234 L2 14326.5390625 TIME 0.5205633640289307
+2020-12-23 14:56:11,995: main: DEBUG: Epoch  96
+2020-12-23 14:56:11,996: main: DEBUG: Valid cost  8.51892375946045
+2020-12-23 14:56:11,996: main: DEBUG: Valid accuracy  0.45454545454545453
+2020-12-23 14:56:11,996: main: DEBUG: Test cost  8.639796170321377
+2020-12-23 14:56:11,996: main: DEBUG: Test accuracy  0.4431818181818182
+2020-12-23 14:56:11,996: main: DEBUG: learning_rate:  0.23914845000000007
+2020-12-23 14:56:11,996: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:56:11,996: main: DEBUG: bad_counter:  8
+2020-12-23 14:56:12,111: main: DEBUG: lrate change to:   0.21523360500000008
+2020-12-23 14:56:12,111: main: DEBUG: Seen samples:  1370
+2020-12-23 14:56:12,112: main: DEBUG: Training accuracy:  0.8445255474452554
+2020-12-23 14:56:12,112: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:56:15,895: main: DEBUG: Epoch 97 Update 4380 Cost 7.527402877807617 L2 14299.4580078125 TIME 0.2808206081390381
+2020-12-23 14:56:23,456: main: DEBUG: Epoch 97 Update 4400 Cost 7.4811320304870605 L2 14267.4892578125 TIME 0.20994782447814941
+2020-12-23 14:56:32,615: main: DEBUG: Epoch  97
+2020-12-23 14:56:32,616: main: DEBUG: Valid cost  8.079421043395996
+2020-12-23 14:56:32,616: main: DEBUG: Valid accuracy  0.5227272727272727
+2020-12-23 14:56:32,616: main: DEBUG: Test cost  8.097689108415084
+2020-12-23 14:56:32,616: main: DEBUG: Test accuracy  0.5170454545454546
+2020-12-23 14:56:32,616: main: DEBUG: learning_rate:  0.21523360500000008
+2020-12-23 14:56:32,616: main: DEBUG: Seen samples:  1370
+2020-12-23 14:56:32,617: main: DEBUG: Training accuracy:  0.8394160583941606
+2020-12-23 14:56:32,617: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:56:35,011: main: DEBUG: Epoch 98 Update 4420 Cost 7.3228349685668945 L2 14250.685546875 TIME 0.19705677032470703
+2020-12-23 14:56:41,724: main: DEBUG: Epoch 98 Update 4440 Cost 7.607541084289551 L2 14226.6982421875 TIME 0.6566746234893799
+2020-12-23 14:56:52,804: main: DEBUG: Epoch  98
+2020-12-23 14:56:52,805: main: DEBUG: Valid cost  8.067259528420188
+2020-12-23 14:56:52,805: main: DEBUG: Valid accuracy  0.5113636363636364
+2020-12-23 14:56:52,805: main: DEBUG: Test cost  8.091084480285645
+2020-12-23 14:56:52,805: main: DEBUG: Test accuracy  0.48863636363636365
+2020-12-23 14:56:52,805: main: DEBUG: learning_rate:  0.21523360500000008
+2020-12-23 14:56:52,805: main: DEBUG: Seen samples:  1370
+2020-12-23 14:56:52,805: main: DEBUG: Training accuracy:  0.8394160583941606
+2020-12-23 14:56:52,805: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:56:53,980: main: DEBUG: Epoch 99 Update 4460 Cost 7.387867450714111 L2 14200.58203125 TIME 0.16623878479003906
+2020-12-23 14:57:00,396: main: DEBUG: Epoch 99 Update 4480 Cost 7.841371059417725 L2 14179.455078125 TIME 0.9233458042144775
+2020-12-23 14:57:10,090: main: DEBUG: Epoch 99 Update 4500 Cost 7.293510437011719 L2 14161.3857421875 TIME 0.21334171295166016
+2020-12-23 14:57:13,903: main: DEBUG: Epoch  99
+2020-12-23 14:57:13,904: main: DEBUG: Valid cost  8.093628709966486
+2020-12-23 14:57:13,904: main: DEBUG: Valid accuracy  0.4715909090909091
+2020-12-23 14:57:13,904: main: DEBUG: Test cost  8.126250787214799
+2020-12-23 14:57:13,904: main: DEBUG: Test accuracy  0.4659090909090909
+2020-12-23 14:57:13,904: main: DEBUG: learning_rate:  0.21523360500000008
+2020-12-23 14:57:13,905: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:57:13,905: main: DEBUG: bad_counter:  9
+2020-12-23 14:57:14,031: main: DEBUG: lrate change to:   0.19371024450000007
+2020-12-23 14:57:14,031: main: DEBUG: Seen samples:  1370
+2020-12-23 14:57:14,031: main: DEBUG: Training accuracy:  0.845985401459854
+2020-12-23 14:57:14,032: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:57:18,778: main: DEBUG: Epoch 100 Update 4520 Cost 7.229137420654297 L2 14140.583984375 TIME 0.08754396438598633
+2020-12-23 14:57:28,273: main: DEBUG: Epoch 100 Update 4540 Cost 7.316657543182373 L2 14113.7666015625 TIME 0.16185569763183594
+2020-12-23 14:57:35,152: main: DEBUG: Epoch  100
+2020-12-23 14:57:35,153: main: DEBUG: Valid cost  8.020060365850275
+2020-12-23 14:57:35,153: main: DEBUG: Valid accuracy  0.5056818181818182
+2020-12-23 14:57:35,153: main: DEBUG: Test cost  8.02668320048939
+2020-12-23 14:57:35,153: main: DEBUG: Test accuracy  0.5
+2020-12-23 14:57:35,153: main: DEBUG: learning_rate:  0.19371024450000007
+2020-12-23 14:57:35,154: main: DEBUG: Seen samples:  1370
+2020-12-23 14:57:35,154: main: DEBUG: Training accuracy:  0.8518248175182481
+2020-12-23 14:57:35,154: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:57:38,539: main: DEBUG: Epoch 101 Update 4560 Cost 7.3231096267700195 L2 14088.3408203125 TIME 0.21009588241577148
+2020-12-23 14:57:46,217: main: DEBUG: Epoch 101 Update 4580 Cost 7.389708995819092 L2 14066.8876953125 TIME 0.7262392044067383
+2020-12-23 14:57:55,677: main: DEBUG: Epoch  101
+2020-12-23 14:57:55,678: main: DEBUG: Valid cost  8.269360195506703
+2020-12-23 14:57:55,678: main: DEBUG: Valid accuracy  0.4943181818181818
+2020-12-23 14:57:55,678: main: DEBUG: Test cost  8.33658183704723
+2020-12-23 14:57:55,678: main: DEBUG: Test accuracy  0.42045454545454547
+2020-12-23 14:57:55,678: main: DEBUG: learning_rate:  0.19371024450000007
+2020-12-23 14:57:55,679: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:57:55,679: main: DEBUG: bad_counter:  10
+2020-12-23 14:57:55,793: main: DEBUG: lrate change to:   0.17433922005000008
+2020-12-23 14:57:55,793: main: DEBUG: Seen samples:  1370
+2020-12-23 14:57:55,793: main: DEBUG: Training accuracy:  0.8496350364963504
+2020-12-23 14:57:55,793: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
+2020-12-23 14:57:58,780: main: DEBUG: Epoch 102 Update 4600 Cost 7.298131465911865 L2 14054.50390625 TIME 0.25154781341552734
+2020-12-23 14:58:05,291: main: DEBUG: Epoch 102 Update 4620 Cost 7.309504508972168 L2 14032.0439453125 TIME 0.5597066879272461
+2020-12-23 14:58:16,154: main: DEBUG: Epoch  102
+2020-12-23 14:58:16,155: main: DEBUG: Valid cost  8.037977131930264
+2020-12-23 14:58:16,155: main: DEBUG: Valid accuracy  0.5397727272727273
+2020-12-23 14:58:16,155: main: DEBUG: Test cost  8.026216246865012
+2020-12-23 14:58:16,155: main: DEBUG: Test accuracy  0.5625
+2020-12-23 14:58:16,155: main: DEBUG: learning_rate:  0.17433922005000008
+2020-12-23 14:58:16,156: main: INFO: wait_counter max, need to half the lr
+2020-12-23 14:58:16,156: main: DEBUG: bad_counter:  11
+2020-12-23 14:58:16,274: main: DEBUG: lrate change to:   0.15690529804500009
+2020-12-23 14:58:16,274: main: INFO: Early Stop!
+2020-12-23 14:58:16,274: main: DEBUG: Seen samples:  1370
+2020-12-23 14:58:16,274: main: DEBUG: Training accuracy:  0.8386861313868613
+2020-12-23 14:58:16,274: main: DEBUG: results/LSTM_baselines/Saved loss_plot pickle
