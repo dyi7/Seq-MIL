@@ -1,0 +1,1355 @@
+2021-01-19 18:58:39,596: main_mil_rep: INFO: Loading knowledge base ...
+2021-01-19 18:58:39,596: main_mil_rep: DEBUG: {'RUN_NAME': 'histogram_visualization',
+ 'batch_size': 32,
+ 'clip_c': 10.0,
+ 'cut_news': False,
+ 'cut_word': False,
+ 'datasets': ['news_set/train(originalwrong).csv',
+              'price_set/train_label(original wrong).csv'],
+ 'decay_c': 0.0,
+ 'decoder': 'lstm',
+ 'dictionary': 'news_set/vocab_cased_title.pickle',
+ 'dim': 50,
+ 'dim_word': 100,
+ 'dispFreq': 20,
+ 'embedding': 'glove/glove.6B.100d.txt',
+ 'encoder': 'lstm',
+ 'finish_after': 10000000,
+ 'keep_prob': 0.5,
+ 'lrate': 0.3,
+ 'max_epochs': 300,
+ 'maxlen': None,
+ 'n_words': 7634,
+ 'n_words_lemma': 100000,
+ 'optimizer': 'adam',
+ 'patience': 10,
+ 'reload_': False,
+ 'saveFreq': 43,
+ 'save_model': 'results/milrep/',
+ 'saveto': './models/.npz',
+ 'test_datasets': ['news_set/test(originalwrong).csv',
+                   'price_set/test_label(original wrong).csv'],
+ 'types': 'title',
+ 'use_dropout': True,
+ 'validFreq': 43,
+ 'valid_batch_size': 32,
+ 'valid_datasets': ['news_set/validate(originalwrong).csv',
+                    'price_set/validate_label(original wrong).csv'],
+ 'verbose': False,
+ 'wait_N': 1}
+2021-01-19 18:58:39,596: main_mil_rep: INFO: Loading data
+2021-01-19 18:58:43,960: main_mil_rep: INFO: init_word_embedding
+2021-01-19 18:58:48,188: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:149: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2021-01-19 18:58:48,220: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:204: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2021-01-19 18:58:48,222: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:205: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2021-01-19 18:58:48,252: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:230: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+2021-01-19 18:58:48,273: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:122: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2021-01-19 18:58:48,275: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2021-01-19 18:58:48,351: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2021-01-19 18:58:48,435: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x152ca0bb4750>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x152ca0bb4750>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:48,457: tensorflow: WARNING: From /userhome/35/yqdeng/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2021-01-19 18:58:48,621: tensorflow: WARNING: Entity <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x152ca0bb4650>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method LSTMBlockCell.call of <tensorflow.contrib.rnn.python.ops.lstm_ops.LSTMBlockCell object at 0x152ca0bb4650>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:48,666: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:94: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+2021-01-19 18:58:48,815: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bb4710>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bb4710>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:48,973: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0b54f90>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0b54f90>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,061: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x152ca0efe390>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x152ca0efe390>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,225: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bdc610>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bdc610>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,255: tensorflow: WARNING: Entity <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x152ca05ac490>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dropout.call of <tensorflow.python.layers.core.Dropout object at 0x152ca05ac490>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,413: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bdcbd0>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152ca0bdcbd0>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,565: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152c9fd7a610>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152c9fd7a610>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,571: main_mil_rep: INFO: Building f_cost...
+2021-01-19 18:58:49,707: tensorflow: WARNING: Entity <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152c9fd7a610>> could not be transformed and will be executed as-is. Please report this to the AutgoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: converting <bound method Dense.call of <tensorflow.python.layers.core.Dense object at 0x152c9fd7a610>>: AssertionError: Bad argument number for Name: 3, expecting 4
+2021-01-19 18:58:49,741: main_mil_rep: INFO: Done
+2021-01-19 18:58:49,741: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:276: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2021-01-19 18:58:49,746: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:277: The name tf.summary.histogram is deprecated. Please use tf.compat.v1.summary.histogram instead.
+
+2021-01-19 18:58:49,750: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:278: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2021-01-19 18:58:49,756: main_mil_rep: INFO: Building optimizers...
+2021-01-19 18:58:49,756: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:428: The name tf.train.AdadeltaOptimizer is deprecated. Please use tf.compat.v1.train.AdadeltaOptimizer instead.
+
+2021-01-19 18:58:49,757: main_mil_rep: INFO: Done
+2021-01-19 18:58:49,757: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:431: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2021-01-19 18:58:50,750: main_mil_rep: INFO: correct_pred
+2021-01-19 18:58:50,752: main_mil_rep: INFO: Done
+2021-01-19 18:58:50,753: main_mil_rep: INFO: init variables
+2021-01-19 18:58:50,755: main_mil_rep: INFO: Done
+2021-01-19 18:58:50,755: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:458: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2021-01-19 18:58:50,819: tensorflow: WARNING: From /userhome/35/yqdeng/data/reuters_new/main_mil_rep.py:465: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2021-01-19 18:58:58,264: main_mil_rep: DEBUG: Epoch 0 Update 20 Cost 56.806732177734375 L2 112240.375 TIME 0.08818960189819336
+2021-01-19 18:59:07,023: main_mil_rep: DEBUG: Epoch 0 Update 40 Cost 56.25025177001953 L2 111127.0390625 TIME 0.3818824291229248
+2021-01-19 18:59:12,811: main_mil_rep: DEBUG: Epoch  0
+2021-01-19 18:59:12,811: main_mil_rep: DEBUG: Valid cost  56.136351498690516
+2021-01-19 18:59:12,812: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 18:59:12,812: main_mil_rep: DEBUG: Test cost  56.13450969349254
+2021-01-19 18:59:12,812: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 18:59:12,812: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 18:59:13,751: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 18:59:13,752: main_mil_rep: DEBUG: Training accuracy:  0.518978102189781
+2021-01-19 18:59:13,753: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 18:59:16,900: main_mil_rep: DEBUG: Epoch 1 Update 60 Cost 55.74574661254883 L2 110105.640625 TIME 0.39200282096862793
+2021-01-19 18:59:24,430: main_mil_rep: DEBUG: Epoch 1 Update 80 Cost 55.22330856323242 L2 109044.8125 TIME 0.5020546913146973
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: Epoch  1
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: Valid cost  55.01647879860618
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: Test cost  55.0132248618386
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 18:59:30,399: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 18:59:32,391: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 18:59:32,391: main_mil_rep: DEBUG: Training accuracy:  0.5474452554744526
+2021-01-19 18:59:32,392: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 18:59:34,861: main_mil_rep: DEBUG: Epoch 2 Update 100 Cost 54.69478225708008 L2 107970.609375 TIME 0.17340588569641113
+2021-01-19 18:59:41,651: main_mil_rep: DEBUG: Epoch 2 Update 120 Cost 54.141136169433594 L2 106872.6015625 TIME 0.16414880752563477
+2021-01-19 18:59:48,251: main_mil_rep: DEBUG: Epoch  2
+2021-01-19 18:59:48,252: main_mil_rep: DEBUG: Valid cost  53.8394213589755
+2021-01-19 18:59:48,252: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 18:59:48,252: main_mil_rep: DEBUG: Test cost  53.835431879216976
+2021-01-19 18:59:48,252: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 18:59:48,252: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 18:59:51,349: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 18:59:51,350: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 18:59:51,350: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 18:59:52,662: main_mil_rep: DEBUG: Epoch 3 Update 140 Cost 53.62018966674805 L2 105813.5078125 TIME 0.15073776245117188
+2021-01-19 18:59:57,759: main_mil_rep: DEBUG: Epoch 3 Update 160 Cost 53.04613494873047 L2 104705.078125 TIME 0.6167271137237549
+2021-01-19 19:00:04,970: main_mil_rep: DEBUG: Epoch  3
+2021-01-19 19:00:04,971: main_mil_rep: DEBUG: Valid cost  52.64892161976207
+2021-01-19 19:00:04,971: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:00:04,971: main_mil_rep: DEBUG: Test cost  52.6453295621005
+2021-01-19 19:00:04,971: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:00:04,972: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:00:09,698: main_mil_rep: DEBUG: Epoch 3 Update 180 Cost 52.43039321899414 L2 103528.7265625 TIME 0.19756031036376953
+2021-01-19 19:00:09,699: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:00:09,699: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:00:09,699: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:00:13,694: main_mil_rep: DEBUG: Epoch 4 Update 200 Cost 51.90830612182617 L2 102478.328125 TIME 0.1022329330444336
+2021-01-19 19:00:24,216: main_mil_rep: DEBUG: Epoch  4
+2021-01-19 19:00:24,217: main_mil_rep: DEBUG: Valid cost  51.491880590265446
+2021-01-19 19:00:24,217: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:00:24,217: main_mil_rep: DEBUG: Test cost  51.48813386396928
+2021-01-19 19:00:24,217: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:00:24,217: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:00:25,849: main_mil_rep: DEBUG: Epoch 4 Update 220 Cost 51.36748504638672 L2 101386.921875 TIME 0.1396934986114502
+2021-01-19 19:00:29,032: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:00:29,032: main_mil_rep: DEBUG: Training accuracy:  0.5423357664233577
+2021-01-19 19:00:29,032: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:00:31,951: main_mil_rep: DEBUG: Epoch 5 Update 240 Cost 50.86492919921875 L2 100318.9609375 TIME 0.17028212547302246
+2021-01-19 19:00:39,579: main_mil_rep: DEBUG: Epoch  5
+2021-01-19 19:00:39,580: main_mil_rep: DEBUG: Valid cost  50.33315866643732
+2021-01-19 19:00:39,580: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:00:39,581: main_mil_rep: DEBUG: Test cost  50.32782329212535
+2021-01-19 19:00:39,581: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:00:39,581: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:00:40,847: main_mil_rep: DEBUG: Epoch 5 Update 260 Cost 50.320823669433594 L2 99226.75 TIME 0.5987491607666016
+2021-01-19 19:00:45,758: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:00:45,759: main_mil_rep: DEBUG: Training accuracy:  0.5423357664233577
+2021-01-19 19:00:45,759: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:00:47,591: main_mil_rep: DEBUG: Epoch 6 Update 280 Cost 49.802310943603516 L2 98199.390625 TIME 0.12190127372741699
+2021-01-19 19:00:53,939: main_mil_rep: DEBUG: Epoch 6 Update 300 Cost 49.238895416259766 L2 97053.0859375 TIME 0.5952703952789307
+2021-01-19 19:00:57,190: main_mil_rep: DEBUG: Epoch  6
+2021-01-19 19:00:57,191: main_mil_rep: DEBUG: Valid cost  49.164149197665125
+2021-01-19 19:00:57,191: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:00:57,191: main_mil_rep: DEBUG: Test cost  49.15855546431108
+2021-01-19 19:00:57,191: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:00:57,191: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:01:03,421: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:01:03,422: main_mil_rep: DEBUG: Training accuracy:  0.5423357664233577
+2021-01-19 19:01:03,422: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:01:04,910: main_mil_rep: DEBUG: Epoch 7 Update 320 Cost 48.736549377441406 L2 96029.0859375 TIME 0.2121143341064453
+2021-01-19 19:01:10,865: main_mil_rep: DEBUG: Epoch 7 Update 340 Cost 48.176063537597656 L2 94969.578125 TIME 0.5841677188873291
+2021-01-19 19:01:15,608: main_mil_rep: DEBUG: Epoch  7
+2021-01-19 19:01:15,608: main_mil_rep: DEBUG: Valid cost  48.0278847434304
+2021-01-19 19:01:15,608: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:01:15,609: main_mil_rep: DEBUG: Test cost  48.02244845303622
+2021-01-19 19:01:15,609: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:01:15,609: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:01:23,190: main_mil_rep: DEBUG: Epoch 7 Update 360 Cost 47.55154800415039 L2 93868.359375 TIME 0.15056157112121582
+2021-01-19 19:01:23,191: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:01:23,191: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:01:23,191: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:01:27,017: main_mil_rep: DEBUG: Epoch 8 Update 380 Cost 47.144168853759766 L2 92830.1015625 TIME 0.10867762565612793
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: Epoch  8
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: Valid cost  46.90388974276456
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: Test cost  46.89850997924805
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:01:31,876: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:01:38,661: main_mil_rep: DEBUG: Epoch 8 Update 400 Cost 46.5755500793457 L2 91783.265625 TIME 0.15056777000427246
+2021-01-19 19:01:41,536: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:01:41,536: main_mil_rep: DEBUG: Training accuracy:  0.5423357664233577
+2021-01-19 19:01:41,536: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:01:44,704: main_mil_rep: DEBUG: Epoch 9 Update 420 Cost 46.10216522216797 L2 90805.671875 TIME 0.14876842498779297
+2021-01-19 19:01:51,014: main_mil_rep: DEBUG: Epoch  9
+2021-01-19 19:01:51,015: main_mil_rep: DEBUG: Valid cost  45.81134033203125
+2021-01-19 19:01:51,015: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:01:51,015: main_mil_rep: DEBUG: Test cost  45.80574451793324
+2021-01-19 19:01:51,015: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:01:51,015: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:01:55,784: main_mil_rep: DEBUG: Epoch 9 Update 440 Cost 45.560035705566406 L2 89763.6015625 TIME 0.5868854522705078
+2021-01-19 19:02:00,868: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:02:00,869: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:02:00,869: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:02:02,790: main_mil_rep: DEBUG: Epoch 10 Update 460 Cost 45.074195861816406 L2 88726.359375 TIME 0.17090702056884766
+2021-01-19 19:02:08,799: main_mil_rep: DEBUG: Epoch  10
+2021-01-19 19:02:08,800: main_mil_rep: DEBUG: Valid cost  44.72392481023615
+2021-01-19 19:02:08,800: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:02:08,800: main_mil_rep: DEBUG: Test cost  44.71988365866921
+2021-01-19 19:02:08,800: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:02:08,800: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:02:11,758: main_mil_rep: DEBUG: Epoch 10 Update 480 Cost 44.556949615478516 L2 87748.34375 TIME 0.6191277503967285
+2021-01-19 19:02:18,730: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:02:18,731: main_mil_rep: DEBUG: Training accuracy:  0.5430656934306569
+2021-01-19 19:02:18,731: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:02:19,914: main_mil_rep: DEBUG: Epoch 11 Update 500 Cost 44.04084396362305 L2 86725.6015625 TIME 0.1864480972290039
+2021-01-19 19:02:26,357: main_mil_rep: DEBUG: Epoch  11
+2021-01-19 19:02:26,358: main_mil_rep: DEBUG: Valid cost  43.65020613236861
+2021-01-19 19:02:26,358: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:02:26,358: main_mil_rep: DEBUG: Test cost  43.645201596346766
+2021-01-19 19:02:26,358: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:02:26,358: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:02:27,502: main_mil_rep: DEBUG: Epoch 11 Update 520 Cost 43.57746887207031 L2 85757.7890625 TIME 0.18038201332092285
+2021-01-19 19:02:37,276: main_mil_rep: DEBUG: Epoch 11 Update 540 Cost 42.96591567993164 L2 84713.9140625 TIME 0.1382615566253662
+2021-01-19 19:02:37,277: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:02:37,277: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:02:37,277: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:02:44,068: main_mil_rep: DEBUG: Epoch  12
+2021-01-19 19:02:44,069: main_mil_rep: DEBUG: Valid cost  42.56690007990057
+2021-01-19 19:02:44,070: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:02:44,070: main_mil_rep: DEBUG: Test cost  42.562341863458805
+2021-01-19 19:02:44,070: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:02:44,070: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:02:44,178: main_mil_rep: DEBUG: Epoch 12 Update 560 Cost 42.527400970458984 L2 83755.1796875 TIME 0.10671424865722656
+2021-01-19 19:02:51,879: main_mil_rep: DEBUG: Epoch 12 Update 580 Cost 42.032958984375 L2 82725.0859375 TIME 0.13436198234558105
+2021-01-19 19:02:54,984: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:02:54,984: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:02:54,984: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:02:58,328: main_mil_rep: DEBUG: Epoch 13 Update 600 Cost 41.57783508300781 L2 81747.03125 TIME 0.16762995719909668
+2021-01-19 19:03:01,682: main_mil_rep: DEBUG: Epoch  13
+2021-01-19 19:03:01,683: main_mil_rep: DEBUG: Valid cost  41.480903972278945
+2021-01-19 19:03:01,683: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:03:01,683: main_mil_rep: DEBUG: Test cost  41.47524088079279
+2021-01-19 19:03:01,683: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:03:01,683: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:03:08,692: main_mil_rep: DEBUG: Epoch 13 Update 620 Cost 41.072998046875 L2 80770.5234375 TIME 0.5079202651977539
+2021-01-19 19:03:14,261: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:03:14,261: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:03:14,262: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:03:16,195: main_mil_rep: DEBUG: Epoch 14 Update 640 Cost 40.62757873535156 L2 79806.6953125 TIME 0.10048532485961914
+2021-01-19 19:03:20,068: main_mil_rep: DEBUG: Epoch  14
+2021-01-19 19:03:20,068: main_mil_rep: DEBUG: Valid cost  40.45595307783647
+2021-01-19 19:03:20,068: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:03:20,069: main_mil_rep: DEBUG: Test cost  40.450322584672406
+2021-01-19 19:03:20,069: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:03:20,069: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:03:25,059: main_mil_rep: DEBUG: Epoch 14 Update 660 Cost 40.134971618652344 L2 78896.921875 TIME 0.1750802993774414
+2021-01-19 19:03:32,837: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:03:32,838: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:03:32,838: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:03:33,995: main_mil_rep: DEBUG: Epoch 15 Update 680 Cost 39.69873809814453 L2 77974.578125 TIME 0.1225132942199707
+2021-01-19 19:03:38,444: main_mil_rep: DEBUG: Epoch  15
+2021-01-19 19:03:38,445: main_mil_rep: DEBUG: Valid cost  39.44941954179244
+2021-01-19 19:03:38,445: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:03:38,445: main_mil_rep: DEBUG: Test cost  39.44402521306818
+2021-01-19 19:03:38,445: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:03:38,445: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:03:41,887: main_mil_rep: DEBUG: Epoch 15 Update 700 Cost 39.223976135253906 L2 77040.8125 TIME 0.6690404415130615
+2021-01-19 19:03:50,332: main_mil_rep: DEBUG: Epoch 15 Update 720 Cost 38.75886917114258 L2 76038.8125 TIME 0.19414544105529785
+2021-01-19 19:03:50,334: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:03:50,334: main_mil_rep: DEBUG: Training accuracy:  0.5430656934306569
+2021-01-19 19:03:50,334: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:03:55,732: main_mil_rep: DEBUG: Epoch  16
+2021-01-19 19:03:55,733: main_mil_rep: DEBUG: Valid cost  38.45402734929865
+2021-01-19 19:03:55,733: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:03:55,733: main_mil_rep: DEBUG: Test cost  38.44827617298473
+2021-01-19 19:03:55,733: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:03:55,733: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:03:57,193: main_mil_rep: DEBUG: Epoch 16 Update 740 Cost 38.30038070678711 L2 75154.0234375 TIME 0.09108638763427734
+2021-01-19 19:04:05,146: main_mil_rep: DEBUG: Epoch 16 Update 760 Cost 37.785369873046875 L2 74207.4140625 TIME 0.23989582061767578
+2021-01-19 19:04:07,687: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:04:07,687: main_mil_rep: DEBUG: Training accuracy:  0.5430656934306569
+2021-01-19 19:04:07,688: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:04:12,714: main_mil_rep: DEBUG: Epoch  17
+2021-01-19 19:04:12,715: main_mil_rep: DEBUG: Valid cost  37.46362859552557
+2021-01-19 19:04:12,715: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:04:12,715: main_mil_rep: DEBUG: Test cost  37.45618854869496
+2021-01-19 19:04:12,715: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:04:12,715: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:04:13,776: main_mil_rep: DEBUG: Epoch 17 Update 780 Cost 37.38673400878906 L2 73338.75 TIME 0.1568925380706787
+2021-01-19 19:04:19,678: main_mil_rep: DEBUG: Epoch 17 Update 800 Cost 36.86639404296875 L2 72399.390625 TIME 0.1801145076751709
+2021-01-19 19:04:24,822: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:04:24,824: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:04:24,824: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:04:29,381: main_mil_rep: DEBUG: Epoch  18
+2021-01-19 19:04:29,382: main_mil_rep: DEBUG: Valid cost  36.49900332364169
+2021-01-19 19:04:29,382: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:04:29,382: main_mil_rep: DEBUG: Test cost  36.49320567737926
+2021-01-19 19:04:29,382: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:04:29,382: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:04:29,864: main_mil_rep: DEBUG: Epoch 18 Update 820 Cost 36.44391632080078 L2 71521.9765625 TIME 0.1197810173034668
+2021-01-19 19:04:34,976: main_mil_rep: DEBUG: Epoch 18 Update 840 Cost 35.97843933105469 L2 70625.5078125 TIME 0.18760156631469727
+2021-01-19 19:04:41,864: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:04:41,864: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:04:41,864: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:04:42,808: main_mil_rep: DEBUG: Epoch 19 Update 860 Cost 35.579872131347656 L2 69783.984375 TIME 0.09710407257080078
+2021-01-19 19:04:45,739: main_mil_rep: DEBUG: Epoch  19
+2021-01-19 19:04:45,740: main_mil_rep: DEBUG: Valid cost  35.55675021084872
+2021-01-19 19:04:45,740: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:04:45,740: main_mil_rep: DEBUG: Test cost  35.55068068070845
+2021-01-19 19:04:45,740: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:04:45,740: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:04:50,328: main_mil_rep: DEBUG: Epoch 19 Update 880 Cost 35.16539764404297 L2 68931.578125 TIME 0.6105098724365234
+2021-01-19 19:04:59,996: main_mil_rep: DEBUG: Epoch 19 Update 900 Cost 34.8315544128418 L2 68042.125 TIME 0.14525794982910156
+2021-01-19 19:04:59,997: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:04:59,998: main_mil_rep: DEBUG: Training accuracy:  0.5401459854014599
+2021-01-19 19:04:59,998: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:05:03,405: main_mil_rep: DEBUG: Epoch  20
+2021-01-19 19:05:03,405: main_mil_rep: DEBUG: Valid cost  34.652701291170985
+2021-01-19 19:05:03,405: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:05:03,405: main_mil_rep: DEBUG: Test cost  34.64512738314542
+2021-01-19 19:05:03,406: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:05:03,406: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:05:06,633: main_mil_rep: DEBUG: Epoch 20 Update 920 Cost 34.31028747558594 L2 67248.625 TIME 0.06997179985046387
+2021-01-19 19:05:14,758: main_mil_rep: DEBUG: Epoch 20 Update 940 Cost 33.901580810546875 L2 66368.8046875 TIME 0.1311802864074707
+2021-01-19 19:05:17,697: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:05:17,697: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:05:17,697: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:05:21,049: main_mil_rep: DEBUG: Epoch  21
+2021-01-19 19:05:21,050: main_mil_rep: DEBUG: Valid cost  33.74468577991832
+2021-01-19 19:05:21,050: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:05:21,050: main_mil_rep: DEBUG: Test cost  33.73811409690163
+2021-01-19 19:05:21,051: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:05:21,051: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:05:23,474: main_mil_rep: DEBUG: Epoch 21 Update 960 Cost 33.48363494873047 L2 65562.5078125 TIME 0.16777467727661133
+2021-01-19 19:05:30,335: main_mil_rep: DEBUG: Epoch 21 Update 980 Cost 33.07074737548828 L2 64756.390625 TIME 0.44167566299438477
+2021-01-19 19:05:38,135: main_mil_rep: DEBUG: Epoch  21
+2021-01-19 19:05:38,136: main_mil_rep: DEBUG: Valid cost  32.85740661621094
+2021-01-19 19:05:38,136: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:05:38,136: main_mil_rep: DEBUG: Test cost  32.8497200012207
+2021-01-19 19:05:38,136: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:05:38,136: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:05:38,286: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:05:38,287: main_mil_rep: DEBUG: Training accuracy:  0.537956204379562
+2021-01-19 19:05:38,287: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:05:40,334: main_mil_rep: DEBUG: Epoch 22 Update 1000 Cost 32.70484161376953 L2 63998.26171875 TIME 0.12599539756774902
+2021-01-19 19:05:46,272: main_mil_rep: DEBUG: Epoch 22 Update 1020 Cost 32.24687957763672 L2 63170.94140625 TIME 0.21715378761291504
+2021-01-19 19:05:54,710: main_mil_rep: DEBUG: Epoch  22
+2021-01-19 19:05:54,711: main_mil_rep: DEBUG: Valid cost  32.004756233908914
+2021-01-19 19:05:54,711: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:05:54,711: main_mil_rep: DEBUG: Test cost  31.998145016756926
+2021-01-19 19:05:54,711: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:05:54,711: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:05:56,425: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:05:56,425: main_mil_rep: DEBUG: Training accuracy:  0.5423357664233577
+2021-01-19 19:05:56,425: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:05:57,622: main_mil_rep: DEBUG: Epoch 23 Update 1040 Cost 31.849987030029297 L2 62356.05078125 TIME 0.16733026504516602
+2021-01-19 19:06:02,752: main_mil_rep: DEBUG: Epoch 23 Update 1060 Cost 31.480398178100586 L2 61594.2734375 TIME 0.8388469219207764
+2021-01-19 19:06:12,488: main_mil_rep: DEBUG: Epoch  23
+2021-01-19 19:06:12,489: main_mil_rep: DEBUG: Valid cost  31.14653812755238
+2021-01-19 19:06:12,489: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:06:12,489: main_mil_rep: DEBUG: Test cost  31.13905161077326
+2021-01-19 19:06:12,489: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:06:12,489: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:06:15,450: main_mil_rep: DEBUG: Epoch 23 Update 1080 Cost 30.973955154418945 L2 60738.19921875 TIME 0.16148710250854492
+2021-01-19 19:06:15,450: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:06:15,451: main_mil_rep: DEBUG: Training accuracy:  0.5401459854014599
+2021-01-19 19:06:15,451: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:06:19,716: main_mil_rep: DEBUG: Epoch 24 Update 1100 Cost 30.671844482421875 L2 60030.98828125 TIME 0.07981109619140625
+2021-01-19 19:06:31,168: main_mil_rep: DEBUG: Epoch  24
+2021-01-19 19:06:31,168: main_mil_rep: DEBUG: Valid cost  30.32952950217507
+2021-01-19 19:06:31,169: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:06:31,169: main_mil_rep: DEBUG: Test cost  30.321841846812855
+2021-01-19 19:06:31,169: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:06:31,169: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:06:31,931: main_mil_rep: DEBUG: Epoch 24 Update 1120 Cost 30.32928466796875 L2 59240.9296875 TIME 0.19484424591064453
+2021-01-19 19:06:34,699: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:06:34,699: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:06:34,699: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:06:37,959: main_mil_rep: DEBUG: Epoch 25 Update 1140 Cost 29.92083168029785 L2 58494.1953125 TIME 0.16848182678222656
+2021-01-19 19:06:47,333: main_mil_rep: DEBUG: Epoch 25 Update 1160 Cost 29.52720832824707 L2 57701.51171875 TIME 0.6397192478179932
+2021-01-19 19:06:50,686: main_mil_rep: DEBUG: Epoch  25
+2021-01-19 19:06:50,687: main_mil_rep: DEBUG: Valid cost  29.497589804909445
+2021-01-19 19:06:50,687: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:06:50,687: main_mil_rep: DEBUG: Test cost  29.490888595581055
+2021-01-19 19:06:50,687: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:06:50,687: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:06:54,605: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:06:54,606: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:06:54,606: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:06:56,888: main_mil_rep: DEBUG: Epoch 26 Update 1180 Cost 29.17739486694336 L2 56967.18359375 TIME 0.22326326370239258
+2021-01-19 19:07:01,733: main_mil_rep: DEBUG: Epoch 26 Update 1200 Cost 28.80061149597168 L2 56220.21484375 TIME 0.1265246868133545
+2021-01-19 19:07:06,723: main_mil_rep: DEBUG: Epoch  26
+2021-01-19 19:07:06,724: main_mil_rep: DEBUG: Valid cost  28.69316916032271
+2021-01-19 19:07:06,724: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:07:06,724: main_mil_rep: DEBUG: Test cost  28.686063419688832
+2021-01-19 19:07:06,724: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:07:06,724: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:07:12,336: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:07:12,336: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:07:12,336: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:07:13,820: main_mil_rep: DEBUG: Epoch 27 Update 1220 Cost 28.409719467163086 L2 55482.5 TIME 0.1770191192626953
+2021-01-19 19:07:19,599: main_mil_rep: DEBUG: Epoch 27 Update 1240 Cost 28.032394409179688 L2 54745.10546875 TIME 0.5900857448577881
+2021-01-19 19:07:26,396: main_mil_rep: DEBUG: Epoch  27
+2021-01-19 19:07:26,397: main_mil_rep: DEBUG: Valid cost  27.915094549005683
+2021-01-19 19:07:26,397: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:07:26,397: main_mil_rep: DEBUG: Test cost  27.907750043002043
+2021-01-19 19:07:26,398: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:07:26,398: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:07:31,471: main_mil_rep: DEBUG: Epoch 27 Update 1260 Cost 27.794824600219727 L2 53986.44921875 TIME 0.13778448104858398
+2021-01-19 19:07:31,471: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:07:31,471: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:07:31,471: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:07:35,471: main_mil_rep: DEBUG: Epoch 28 Update 1280 Cost 27.31806182861328 L2 53311.859375 TIME 0.09051322937011719
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: Epoch  28
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: Valid cost  27.152250636707652
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: Test cost  27.145708951083098
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:07:43,744: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:07:47,237: main_mil_rep: DEBUG: Epoch 28 Update 1300 Cost 26.977827072143555 L2 52581.32421875 TIME 0.11939644813537598
+2021-01-19 19:07:49,943: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:07:49,943: main_mil_rep: DEBUG: Training accuracy:  0.5394160583941606
+2021-01-19 19:07:49,943: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:07:53,077: main_mil_rep: DEBUG: Epoch 29 Update 1320 Cost 26.661373138427734 L2 51956.07421875 TIME 0.17406845092773438
+2021-01-19 19:08:01,467: main_mil_rep: DEBUG: Epoch  29
+2021-01-19 19:08:01,468: main_mil_rep: DEBUG: Valid cost  26.42023866826838
+2021-01-19 19:08:01,468: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:08:01,468: main_mil_rep: DEBUG: Test cost  26.413611672141336
+2021-01-19 19:08:01,468: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:08:01,468: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:08:04,168: main_mil_rep: DEBUG: Epoch 29 Update 1340 Cost 26.321352005004883 L2 51236.90625 TIME 0.5318489074707031
+2021-01-19 19:08:08,923: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:08:08,923: main_mil_rep: DEBUG: Training accuracy:  0.545985401459854
+2021-01-19 19:08:08,924: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:08:11,627: main_mil_rep: DEBUG: Epoch 30 Update 1360 Cost 25.951478958129883 L2 50576.6328125 TIME 0.1934037208557129
+2021-01-19 19:08:19,411: main_mil_rep: DEBUG: Epoch  30
+2021-01-19 19:08:19,412: main_mil_rep: DEBUG: Valid cost  25.69717892733487
+2021-01-19 19:08:19,412: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:08:19,412: main_mil_rep: DEBUG: Test cost  25.690628745339133
+2021-01-19 19:08:19,412: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:08:19,412: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:08:21,711: main_mil_rep: DEBUG: Epoch 30 Update 1380 Cost 25.630859375 L2 49904.0859375 TIME 0.5906639099121094
+2021-01-19 19:08:28,122: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:08:28,123: main_mil_rep: DEBUG: Training accuracy:  0.5408759124087591
+2021-01-19 19:08:28,123: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:08:29,516: main_mil_rep: DEBUG: Epoch 31 Update 1400 Cost 25.311264038085938 L2 49288.4921875 TIME 0.21052980422973633
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: Epoch  31
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: Valid cost  25.019695628773082
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: Test cost  25.012067621404473
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:08:36,566: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:08:37,338: main_mil_rep: DEBUG: Epoch 31 Update 1420 Cost 25.017662048339844 L2 48661.06640625 TIME 0.7467334270477295
+2021-01-19 19:08:45,429: main_mil_rep: DEBUG: Epoch 31 Update 1440 Cost 24.824487686157227 L2 47983.58203125 TIME 0.16585159301757812
+2021-01-19 19:08:45,429: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:08:45,429: main_mil_rep: DEBUG: Training accuracy:  0.5437956204379562
+2021-01-19 19:08:45,429: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:08:49,569: main_mil_rep: DEBUG: Epoch 32 Update 1460 Cost 24.319801330566406 L2 47365.62109375 TIME 0.11357831954956055
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: Epoch  32
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: Valid cost  24.333749944513496
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: Test cost  24.32593397660689
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:08:53,549: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:09:01,938: main_mil_rep: DEBUG: Epoch 32 Update 1480 Cost 24.04131317138672 L2 46724.69921875 TIME 0.4020988941192627
+2021-01-19 19:09:05,049: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:09:05,049: main_mil_rep: DEBUG: Training accuracy:  0.5401459854014599
+2021-01-19 19:09:05,049: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:09:08,210: main_mil_rep: DEBUG: Epoch 33 Update 1500 Cost 23.74555206298828 L2 46119.91015625 TIME 0.19065642356872559
+2021-01-19 19:09:11,957: main_mil_rep: DEBUG: Epoch  33
+2021-01-19 19:09:11,958: main_mil_rep: DEBUG: Valid cost  23.67226808721369
+2021-01-19 19:09:11,958: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:09:11,958: main_mil_rep: DEBUG: Test cost  23.665109461004082
+2021-01-19 19:09:11,958: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:09:11,958: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:09:18,379: main_mil_rep: DEBUG: Epoch 33 Update 1520 Cost 23.458145141601562 L2 45526.3828125 TIME 0.7146315574645996
+2021-01-19 19:09:23,203: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:09:23,203: main_mil_rep: DEBUG: Training accuracy:  0.5416058394160584
+2021-01-19 19:09:23,203: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:09:25,547: main_mil_rep: DEBUG: Epoch 34 Update 1540 Cost 23.175457000732422 L2 44949.1171875 TIME 0.23924827575683594
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: Epoch  34
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: Valid cost  23.027097008445047
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: Test cost  23.020128770308062
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:09:29,952: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:09:34,185: main_mil_rep: DEBUG: Epoch 34 Update 1560 Cost 22.811508178710938 L2 44321.2578125 TIME 0.21775245666503906
+2021-01-19 19:09:42,060: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:09:42,061: main_mil_rep: DEBUG: Training accuracy:  0.5467153284671533
+2021-01-19 19:09:42,061: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:09:43,313: main_mil_rep: DEBUG: Epoch 35 Update 1580 Cost 22.564979553222656 L2 43769.91015625 TIME 0.18294262886047363
+2021-01-19 19:09:48,323: main_mil_rep: DEBUG: Epoch  35
+2021-01-19 19:09:48,324: main_mil_rep: DEBUG: Valid cost  22.405801599675957
+2021-01-19 19:09:48,324: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:09:48,324: main_mil_rep: DEBUG: Test cost  22.399008664217863
+2021-01-19 19:09:48,324: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:09:48,324: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:09:50,837: main_mil_rep: DEBUG: Epoch 35 Update 1600 Cost 22.29544448852539 L2 43211.3203125 TIME 0.17878222465515137
+2021-01-19 19:10:00,066: main_mil_rep: DEBUG: Epoch 35 Update 1620 Cost 21.971147537231445 L2 42610.171875 TIME 0.14241600036621094
+2021-01-19 19:10:00,067: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:10:00,067: main_mil_rep: DEBUG: Training accuracy:  0.5496350364963504
+2021-01-19 19:10:00,067: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:10:05,894: main_mil_rep: DEBUG: Epoch  36
+2021-01-19 19:10:05,894: main_mil_rep: DEBUG: Valid cost  21.804458791559394
+2021-01-19 19:10:05,895: main_mil_rep: DEBUG: Valid accuracy  0.48863636363636365
+2021-01-19 19:10:05,895: main_mil_rep: DEBUG: Test cost  21.797425530173562
+2021-01-19 19:10:05,895: main_mil_rep: DEBUG: Test accuracy  0.5170454545454546
+2021-01-19 19:10:05,895: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:10:06,983: main_mil_rep: DEBUG: Epoch 36 Update 1640 Cost 21.741308212280273 L2 42082.1484375 TIME 0.12749624252319336
+2021-01-19 19:10:15,447: main_mil_rep: DEBUG: Epoch 36 Update 1660 Cost 21.480361938476562 L2 41559.54296875 TIME 0.5095179080963135
+2021-01-19 19:10:18,597: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:10:18,598: main_mil_rep: DEBUG: Training accuracy:  0.5357664233576642
+2021-01-19 19:10:18,598: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:10:24,094: main_mil_rep: DEBUG: Epoch  37
+2021-01-19 19:10:24,095: main_mil_rep: DEBUG: Valid cost  21.244609832763672
+2021-01-19 19:10:24,095: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:10:24,095: main_mil_rep: DEBUG: Test cost  21.235754186456855
+2021-01-19 19:10:24,095: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:10:24,095: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:10:24,471: main_mil_rep: DEBUG: Epoch 37 Update 1680 Cost 21.213294982910156 L2 41048.484375 TIME 0.12658143043518066
+2021-01-19 19:10:31,865: main_mil_rep: DEBUG: Epoch 37 Update 1700 Cost 20.90146827697754 L2 40502.8125 TIME 0.18369245529174805
+2021-01-19 19:10:36,240: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:10:36,240: main_mil_rep: DEBUG: Training accuracy:  0.5532846715328467
+2021-01-19 19:10:36,240: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:10:38,255: main_mil_rep: DEBUG: Epoch 38 Update 1720 Cost 20.680131912231445 L2 39991.28515625 TIME 0.1076202392578125
+2021-01-19 19:10:41,252: main_mil_rep: DEBUG: Epoch  38
+2021-01-19 19:10:41,252: main_mil_rep: DEBUG: Valid cost  20.671723452481356
+2021-01-19 19:10:41,252: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:10:41,253: main_mil_rep: DEBUG: Test cost  20.6622297113592
+2021-01-19 19:10:41,253: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:10:41,253: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:10:47,917: main_mil_rep: DEBUG: Epoch 38 Update 1740 Cost 20.423336029052734 L2 39444.50390625 TIME 0.5155787467956543
+2021-01-19 19:10:55,095: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:10:55,096: main_mil_rep: DEBUG: Training accuracy:  0.5562043795620438
+2021-01-19 19:10:55,096: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:10:56,191: main_mil_rep: DEBUG: Epoch 39 Update 1760 Cost 20.139101028442383 L2 38917.2734375 TIME 0.10015153884887695
+2021-01-19 19:11:00,108: main_mil_rep: DEBUG: Epoch  39
+2021-01-19 19:11:00,109: main_mil_rep: DEBUG: Valid cost  20.096448378129438
+2021-01-19 19:11:00,109: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:11:00,109: main_mil_rep: DEBUG: Test cost  20.086633335460316
+2021-01-19 19:11:00,109: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:11:00,109: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:11:04,888: main_mil_rep: DEBUG: Epoch 39 Update 1780 Cost 19.89019012451172 L2 38408.70703125 TIME 0.17367339134216309
+2021-01-19 19:11:14,059: main_mil_rep: DEBUG: Epoch 39 Update 1800 Cost 19.53290367126465 L2 37898.53515625 TIME 0.1710367202758789
+2021-01-19 19:11:14,059: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:11:14,060: main_mil_rep: DEBUG: Training accuracy:  0.554014598540146
+2021-01-19 19:11:14,060: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:11:18,962: main_mil_rep: DEBUG: Epoch  40
+2021-01-19 19:11:18,963: main_mil_rep: DEBUG: Valid cost  19.55694007873535
+2021-01-19 19:11:18,963: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:11:18,963: main_mil_rep: DEBUG: Test cost  19.54587797685103
+2021-01-19 19:11:18,963: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:11:18,963: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:11:21,410: main_mil_rep: DEBUG: Epoch 40 Update 1820 Cost 19.423128128051758 L2 37399.5 TIME 0.07010507583618164
+2021-01-19 19:11:30,145: main_mil_rep: DEBUG: Epoch 40 Update 1840 Cost 19.124618530273438 L2 36920.64453125 TIME 0.11887955665588379
+2021-01-19 19:11:33,106: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:11:33,106: main_mil_rep: DEBUG: Training accuracy:  0.5503649635036496
+2021-01-19 19:11:33,106: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: Epoch  41
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: Valid cost  19.032311179421164
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: Test cost  19.02119983326305
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:11:37,192: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:11:39,378: main_mil_rep: DEBUG: Epoch 41 Update 1860 Cost 18.928083419799805 L2 36457.9765625 TIME 0.17291569709777832
+2021-01-19 19:11:48,687: main_mil_rep: DEBUG: Epoch 41 Update 1880 Cost 18.65898895263672 L2 35974.65625 TIME 0.600595235824585
+2021-01-19 19:11:52,568: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:11:52,569: main_mil_rep: DEBUG: Training accuracy:  0.5386861313868613
+2021-01-19 19:11:52,569: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: Epoch  42
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: Valid cost  18.521889079700816
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: Test cost  18.511363289572976
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:11:56,295: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:11:58,085: main_mil_rep: DEBUG: Epoch 42 Update 1900 Cost 18.429420471191406 L2 35476.61328125 TIME 0.23351287841796875
+2021-01-19 19:12:05,624: main_mil_rep: DEBUG: Epoch 42 Update 1920 Cost 18.209022521972656 L2 35008.4921875 TIME 0.5245463848114014
+2021-01-19 19:12:14,874: main_mil_rep: DEBUG: Epoch  42
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Valid cost  18.01906325600364
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Test cost  18.010094035755504
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: Training accuracy:  0.5474452554744526
+2021-01-19 19:12:14,875: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:12:16,016: main_mil_rep: DEBUG: Epoch 43 Update 1940 Cost 17.952075958251953 L2 34562.5078125 TIME 0.08772110939025879
+2021-01-19 19:12:21,096: main_mil_rep: DEBUG: Epoch 43 Update 1960 Cost 17.75133514404297 L2 34146.79296875 TIME 0.3501572608947754
+2021-01-19 19:12:32,621: main_mil_rep: DEBUG: Epoch  43
+2021-01-19 19:12:32,621: main_mil_rep: DEBUG: Valid cost  17.55632816661488
+2021-01-19 19:12:32,622: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:12:32,622: main_mil_rep: DEBUG: Test cost  17.544953606345437
+2021-01-19 19:12:32,622: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:12:32,622: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:12:33,219: main_mil_rep: DEBUG: Epoch 43 Update 1980 Cost 17.5947208404541 L2 33704.9453125 TIME 0.18641257286071777
+2021-01-19 19:12:33,219: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:12:33,219: main_mil_rep: DEBUG: Training accuracy:  0.5430656934306569
+2021-01-19 19:12:33,219: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:12:37,130: main_mil_rep: DEBUG: Epoch 44 Update 2000 Cost 17.36441993713379 L2 33325.64453125 TIME 0.16335296630859375
+2021-01-19 19:12:47,331: main_mil_rep: DEBUG: Epoch 44 Update 2020 Cost 17.16488265991211 L2 32906.7578125 TIME 0.11420917510986328
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: Epoch  44
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: Valid cost  17.124847758900035
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: Test cost  17.111685319380328
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:12:50,898: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:12:53,142: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:12:53,143: main_mil_rep: DEBUG: Training accuracy:  0.545985401459854
+2021-01-19 19:12:53,143: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:12:56,705: main_mil_rep: DEBUG: Epoch 45 Update 2040 Cost 16.960132598876953 L2 32491.65234375 TIME 0.17437410354614258
+2021-01-19 19:13:04,824: main_mil_rep: DEBUG: Epoch 45 Update 2060 Cost 16.733489990234375 L2 32106.66796875 TIME 0.55356764793396
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: Epoch  45
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: Valid cost  16.68534278869629
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: Test cost  16.673931815407492
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:13:08,705: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:13:11,662: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:13:11,663: main_mil_rep: DEBUG: Training accuracy:  0.5430656934306569
+2021-01-19 19:13:11,663: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:13:13,644: main_mil_rep: DEBUG: Epoch 46 Update 2080 Cost 16.533557891845703 L2 31727.375 TIME 0.18384003639221191
+2021-01-19 19:13:20,235: main_mil_rep: DEBUG: Epoch 46 Update 2100 Cost 16.32988739013672 L2 31340.802734375 TIME 0.5208101272583008
+2021-01-19 19:13:26,072: main_mil_rep: DEBUG: Epoch  46
+2021-01-19 19:13:26,073: main_mil_rep: DEBUG: Valid cost  16.284090388904918
+2021-01-19 19:13:26,073: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:13:26,073: main_mil_rep: DEBUG: Test cost  16.27505285089666
+2021-01-19 19:13:26,073: main_mil_rep: DEBUG: Test accuracy  0.6079545454545454
+2021-01-19 19:13:26,073: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:13:30,697: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:13:30,697: main_mil_rep: DEBUG: Training accuracy:  0.5437956204379562
+2021-01-19 19:13:30,697: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:13:31,806: main_mil_rep: DEBUG: Epoch 47 Update 2120 Cost 16.146728515625 L2 30952.1953125 TIME 0.13377833366394043
+2021-01-19 19:13:36,749: main_mil_rep: DEBUG: Epoch 47 Update 2140 Cost 15.98213005065918 L2 30595.666015625 TIME 0.6529464721679688
+2021-01-19 19:13:42,331: main_mil_rep: DEBUG: Epoch  47
+2021-01-19 19:13:42,331: main_mil_rep: DEBUG: Valid cost  15.894385251131924
+2021-01-19 19:13:42,331: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:13:42,332: main_mil_rep: DEBUG: Test cost  15.881655953147195
+2021-01-19 19:13:42,332: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:13:42,332: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:13:48,450: main_mil_rep: DEBUG: Epoch 47 Update 2160 Cost 15.745465278625488 L2 30200.736328125 TIME 0.20881056785583496
+2021-01-19 19:13:48,451: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:13:48,451: main_mil_rep: DEBUG: Training accuracy:  0.5613138686131387
+2021-01-19 19:13:48,451: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:13:52,488: main_mil_rep: DEBUG: Epoch 48 Update 2180 Cost 15.633820533752441 L2 29884.552734375 TIME 0.08902263641357422
+2021-01-19 19:14:00,341: main_mil_rep: DEBUG: Epoch  48
+2021-01-19 19:14:00,342: main_mil_rep: DEBUG: Valid cost  15.519739497791637
+2021-01-19 19:14:00,342: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:14:00,342: main_mil_rep: DEBUG: Test cost  15.503683523698287
+2021-01-19 19:14:00,342: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:14:00,342: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:14:03,311: main_mil_rep: DEBUG: Epoch 48 Update 2200 Cost 15.45290756225586 L2 29550.943359375 TIME 0.354046106338501
+2021-01-19 19:14:06,221: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:14:06,221: main_mil_rep: DEBUG: Training accuracy:  0.5532846715328467
+2021-01-19 19:14:06,221: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:14:09,178: main_mil_rep: DEBUG: Epoch 49 Update 2220 Cost 15.255441665649414 L2 29209.984375 TIME 0.1709458827972412
+2021-01-19 19:14:18,510: main_mil_rep: DEBUG: Epoch  49
+2021-01-19 19:14:18,511: main_mil_rep: DEBUG: Valid cost  15.16030164198442
+2021-01-19 19:14:18,511: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:14:18,511: main_mil_rep: DEBUG: Test cost  15.14632814580744
+2021-01-19 19:14:18,511: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:14:18,511: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:14:20,339: main_mil_rep: DEBUG: Epoch 49 Update 2240 Cost 15.086000442504883 L2 28885.845703125 TIME 0.5044100284576416
+2021-01-19 19:14:24,463: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:14:24,464: main_mil_rep: DEBUG: Training accuracy:  0.5635036496350365
+2021-01-19 19:14:24,464: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:14:26,865: main_mil_rep: DEBUG: Epoch 50 Update 2260 Cost 14.973466873168945 L2 28567.328125 TIME 0.18171310424804688
+2021-01-19 19:14:34,455: main_mil_rep: DEBUG: Epoch  50
+2021-01-19 19:14:34,456: main_mil_rep: DEBUG: Valid cost  14.808388363231312
+2021-01-19 19:14:34,456: main_mil_rep: DEBUG: Valid accuracy  0.5511363636363636
+2021-01-19 19:14:34,456: main_mil_rep: DEBUG: Test cost  14.796294472434305
+2021-01-19 19:14:34,456: main_mil_rep: DEBUG: Test accuracy  0.6022727272727273
+2021-01-19 19:14:34,456: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:14:35,070: main_mil_rep: DEBUG: Epoch 50 Update 2280 Cost 14.800713539123535 L2 28228.31640625 TIME 0.5900471210479736
+2021-01-19 19:14:42,158: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:14:42,158: main_mil_rep: DEBUG: Training accuracy:  0.5562043795620438
+2021-01-19 19:14:42,158: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:14:43,233: main_mil_rep: DEBUG: Epoch 51 Update 2300 Cost 14.666505813598633 L2 27925.4375 TIME 0.09814572334289551
+2021-01-19 19:14:49,233: main_mil_rep: DEBUG: Epoch 51 Update 2320 Cost 14.495468139648438 L2 27624.77734375 TIME 0.6927988529205322
+2021-01-19 19:14:53,224: main_mil_rep: DEBUG: Epoch  51
+2021-01-19 19:14:53,224: main_mil_rep: DEBUG: Valid cost  14.478553425181996
+2021-01-19 19:14:53,224: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:14:53,224: main_mil_rep: DEBUG: Test cost  14.463027347217906
+2021-01-19 19:14:53,225: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:14:53,225: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:15:01,308: main_mil_rep: DEBUG: Epoch 51 Update 2340 Cost 14.228713035583496 L2 27286.978515625 TIME 0.15423274040222168
+2021-01-19 19:15:01,309: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:15:01,309: main_mil_rep: DEBUG: Training accuracy:  0.5467153284671533
+2021-01-19 19:15:01,309: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:15:04,993: main_mil_rep: DEBUG: Epoch 52 Update 2360 Cost 14.204573631286621 L2 27034.228515625 TIME 0.16054964065551758
+2021-01-19 19:15:10,228: main_mil_rep: DEBUG: Epoch  52
+2021-01-19 19:15:10,229: main_mil_rep: DEBUG: Valid cost  14.16529352014715
+2021-01-19 19:15:10,229: main_mil_rep: DEBUG: Valid accuracy  0.5397727272727273
+2021-01-19 19:15:10,229: main_mil_rep: DEBUG: Test cost  14.150514082475143
+2021-01-19 19:15:10,229: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:15:10,229: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:15:16,832: main_mil_rep: DEBUG: Epoch 52 Update 2380 Cost 14.02855396270752 L2 26748.349609375 TIME 0.0846865177154541
+2021-01-19 19:15:19,830: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:15:19,830: main_mil_rep: DEBUG: Training accuracy:  0.5766423357664233
+2021-01-19 19:15:19,831: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:15:22,769: main_mil_rep: DEBUG: Epoch 53 Update 2400 Cost 13.915842056274414 L2 26485.56640625 TIME 0.14251255989074707
+2021-01-19 19:15:27,793: main_mil_rep: DEBUG: Epoch  53
+2021-01-19 19:15:27,794: main_mil_rep: DEBUG: Valid cost  13.891940810463645
+2021-01-19 19:15:27,794: main_mil_rep: DEBUG: Valid accuracy  0.4772727272727273
+2021-01-19 19:15:27,794: main_mil_rep: DEBUG: Test cost  13.882091435519131
+2021-01-19 19:15:27,794: main_mil_rep: DEBUG: Test accuracy  0.48863636363636365
+2021-01-19 19:15:27,794: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:15:33,656: main_mil_rep: DEBUG: Epoch 53 Update 2420 Cost 13.820423126220703 L2 26221.33984375 TIME 0.548027753829956
+2021-01-19 19:15:37,985: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:15:37,986: main_mil_rep: DEBUG: Training accuracy:  0.5467153284671533
+2021-01-19 19:15:37,987: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:15:39,815: main_mil_rep: DEBUG: Epoch 54 Update 2440 Cost 13.674293518066406 L2 25981.9140625 TIME 0.1062314510345459
+2021-01-19 19:15:45,416: main_mil_rep: DEBUG: Epoch  54
+2021-01-19 19:15:45,417: main_mil_rep: DEBUG: Valid cost  13.608476465398615
+2021-01-19 19:15:45,417: main_mil_rep: DEBUG: Valid accuracy  0.4375
+2021-01-19 19:15:45,417: main_mil_rep: DEBUG: Test cost  13.595499038696289
+2021-01-19 19:15:45,417: main_mil_rep: DEBUG: Test accuracy  0.5284090909090909
+2021-01-19 19:15:45,417: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:15:49,808: main_mil_rep: DEBUG: Epoch 54 Update 2460 Cost 13.519495010375977 L2 25692.166015625 TIME 0.5524930953979492
+2021-01-19 19:15:56,071: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:15:56,072: main_mil_rep: DEBUG: Training accuracy:  0.5671532846715328
+2021-01-19 19:15:56,072: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:15:57,196: main_mil_rep: DEBUG: Epoch 55 Update 2480 Cost 13.379461288452148 L2 25445.259765625 TIME 0.1618962287902832
+2021-01-19 19:16:03,017: main_mil_rep: DEBUG: Epoch  55
+2021-01-19 19:16:03,018: main_mil_rep: DEBUG: Valid cost  13.32855293967507
+2021-01-19 19:16:03,018: main_mil_rep: DEBUG: Valid accuracy  0.48295454545454547
+2021-01-19 19:16:03,018: main_mil_rep: DEBUG: Test cost  13.311461188576438
+2021-01-19 19:16:03,018: main_mil_rep: DEBUG: Test accuracy  0.6193181818181818
+2021-01-19 19:16:03,018: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:16:06,358: main_mil_rep: DEBUG: Epoch 55 Update 2500 Cost 13.288654327392578 L2 25200.53125 TIME 0.5828838348388672
+2021-01-19 19:16:14,768: main_mil_rep: DEBUG: Epoch 55 Update 2520 Cost 13.078679084777832 L2 24942.01953125 TIME 0.21013140678405762
+2021-01-19 19:16:14,769: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:16:14,769: main_mil_rep: DEBUG: Training accuracy:  0.5751824817518248
+2021-01-19 19:16:14,769: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:16:21,267: main_mil_rep: DEBUG: Epoch  56
+2021-01-19 19:16:21,268: main_mil_rep: DEBUG: Valid cost  13.08559140292081
+2021-01-19 19:16:21,268: main_mil_rep: DEBUG: Valid accuracy  0.42613636363636365
+2021-01-19 19:16:21,268: main_mil_rep: DEBUG: Test cost  13.075248198075728
+2021-01-19 19:16:21,268: main_mil_rep: DEBUG: Test accuracy  0.4375
+2021-01-19 19:16:21,268: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:16:21,910: main_mil_rep: DEBUG: Epoch 56 Update 2540 Cost 13.090675354003906 L2 24711.23828125 TIME 0.09668684005737305
+2021-01-19 19:16:31,468: main_mil_rep: DEBUG: Epoch 56 Update 2560 Cost 12.913151741027832 L2 24477.017578125 TIME 0.1546788215637207
+2021-01-19 19:16:34,102: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:16:34,102: main_mil_rep: DEBUG: Training accuracy:  0.57007299270073
+2021-01-19 19:16:34,102: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:16:37,321: main_mil_rep: DEBUG: Epoch 57 Update 2580 Cost 12.74574089050293 L2 24233.380859375 TIME 0.1739521026611328
+2021-01-19 19:16:40,078: main_mil_rep: DEBUG: Epoch  57
+2021-01-19 19:16:40,079: main_mil_rep: DEBUG: Valid cost  12.84776782989502
+2021-01-19 19:16:40,079: main_mil_rep: DEBUG: Valid accuracy  0.4375
+2021-01-19 19:16:40,079: main_mil_rep: DEBUG: Test cost  12.838483637029475
+2021-01-19 19:16:40,079: main_mil_rep: DEBUG: Test accuracy  0.4318181818181818
+2021-01-19 19:16:40,079: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:16:46,451: main_mil_rep: DEBUG: Epoch 57 Update 2600 Cost 12.682445526123047 L2 24046.16796875 TIME 0.5030481815338135
+2021-01-19 19:16:51,768: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:16:51,769: main_mil_rep: DEBUG: Training accuracy:  0.57007299270073
+2021-01-19 19:16:51,769: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:16:53,747: main_mil_rep: DEBUG: Epoch 58 Update 2620 Cost 12.559871673583984 L2 23810.470703125 TIME 0.12807083129882812
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: Epoch  58
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: Valid cost  12.577167597683994
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: Valid accuracy  0.5284090909090909
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: Test cost  12.558458241549404
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:16:57,047: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:17:03,068: main_mil_rep: DEBUG: Epoch 58 Update 2640 Cost 12.488564491271973 L2 23625.03515625 TIME 0.15347027778625488
+2021-01-19 19:17:09,796: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:17:09,797: main_mil_rep: DEBUG: Training accuracy:  0.5802919708029197
+2021-01-19 19:17:09,797: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:17:11,024: main_mil_rep: DEBUG: Epoch 59 Update 2660 Cost 12.374322891235352 L2 23434.37890625 TIME 0.21629929542541504
+2021-01-19 19:17:15,338: main_mil_rep: DEBUG: Epoch  59
+2021-01-19 19:17:15,339: main_mil_rep: DEBUG: Valid cost  12.376693725585938
+2021-01-19 19:17:15,339: main_mil_rep: DEBUG: Valid accuracy  0.4715909090909091
+2021-01-19 19:17:15,339: main_mil_rep: DEBUG: Test cost  12.36065621809526
+2021-01-19 19:17:15,339: main_mil_rep: DEBUG: Test accuracy  0.6306818181818182
+2021-01-19 19:17:15,339: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:17:20,321: main_mil_rep: DEBUG: Epoch 59 Update 2680 Cost 12.319562911987305 L2 23253.69921875 TIME 0.5001156330108643
+2021-01-19 19:17:29,203: main_mil_rep: DEBUG: Epoch 59 Update 2700 Cost 12.115473747253418 L2 23046.31640625 TIME 0.20971965789794922
+2021-01-19 19:17:29,204: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:17:29,204: main_mil_rep: DEBUG: Training accuracy:  0.5781021897810219
+2021-01-19 19:17:29,204: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:17:34,016: main_mil_rep: DEBUG: Epoch  60
+2021-01-19 19:17:34,017: main_mil_rep: DEBUG: Valid cost  12.20510569485751
+2021-01-19 19:17:34,017: main_mil_rep: DEBUG: Valid accuracy  0.42613636363636365
+2021-01-19 19:17:34,017: main_mil_rep: DEBUG: Test cost  12.185690793124111
+2021-01-19 19:17:34,017: main_mil_rep: DEBUG: Test accuracy  0.5113636363636364
+2021-01-19 19:17:34,017: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:17:36,172: main_mil_rep: DEBUG: Epoch 60 Update 2720 Cost 12.099678993225098 L2 22908.935546875 TIME 0.11612582206726074
+2021-01-19 19:17:44,531: main_mil_rep: DEBUG: Epoch 60 Update 2740 Cost 12.110147476196289 L2 22737.453125 TIME 0.3171689510345459
+2021-01-19 19:17:47,474: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:17:47,474: main_mil_rep: DEBUG: Training accuracy:  0.572992700729927
+2021-01-19 19:17:47,475: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:17:52,045: main_mil_rep: DEBUG: Epoch  61
+2021-01-19 19:17:52,046: main_mil_rep: DEBUG: Valid cost  12.0325176932595
+2021-01-19 19:17:52,046: main_mil_rep: DEBUG: Valid accuracy  0.5170454545454546
+2021-01-19 19:17:52,047: main_mil_rep: DEBUG: Test cost  12.010489030317826
+2021-01-19 19:17:52,047: main_mil_rep: DEBUG: Test accuracy  0.6079545454545454
+2021-01-19 19:17:52,047: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:17:53,820: main_mil_rep: DEBUG: Epoch 61 Update 2760 Cost 12.000431060791016 L2 22603.392578125 TIME 0.1476132869720459
+2021-01-19 19:18:01,240: main_mil_rep: DEBUG: Epoch 61 Update 2780 Cost 11.90246868133545 L2 22468.712890625 TIME 0.8682460784912109
+2021-01-19 19:18:05,618: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:18:05,618: main_mil_rep: DEBUG: Training accuracy:  0.5722627737226277
+2021-01-19 19:18:05,618: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:18:09,532: main_mil_rep: DEBUG: Epoch  62
+2021-01-19 19:18:09,533: main_mil_rep: DEBUG: Valid cost  11.861976623535156
+2021-01-19 19:18:09,533: main_mil_rep: DEBUG: Valid accuracy  0.5284090909090909
+2021-01-19 19:18:09,533: main_mil_rep: DEBUG: Test cost  11.841775720769709
+2021-01-19 19:18:09,533: main_mil_rep: DEBUG: Test accuracy  0.5625
+2021-01-19 19:18:09,533: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:18:10,296: main_mil_rep: DEBUG: Epoch 62 Update 2800 Cost 11.802248001098633 L2 22297.3984375 TIME 0.15187430381774902
+2021-01-19 19:18:15,843: main_mil_rep: DEBUG: Epoch 62 Update 2820 Cost 11.715646743774414 L2 22171.78125 TIME 0.20708966255187988
+2021-01-19 19:18:23,667: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:18:23,668: main_mil_rep: DEBUG: Training accuracy:  0.5905109489051095
+2021-01-19 19:18:23,668: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:18:27,689: main_mil_rep: DEBUG: Epoch  63
+2021-01-19 19:18:27,689: main_mil_rep: DEBUG: Valid cost  11.723818692294033
+2021-01-19 19:18:27,690: main_mil_rep: DEBUG: Valid accuracy  0.4772727272727273
+2021-01-19 19:18:27,690: main_mil_rep: DEBUG: Test cost  11.705614176663486
+2021-01-19 19:18:27,690: main_mil_rep: DEBUG: Test accuracy  0.6136363636363636
+2021-01-19 19:18:27,690: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:18:28,058: main_mil_rep: DEBUG: Epoch 63 Update 2840 Cost 11.641817092895508 L2 22027.732421875 TIME 0.1625075340270996
+2021-01-19 19:18:32,744: main_mil_rep: DEBUG: Epoch 63 Update 2860 Cost 11.588167190551758 L2 21882.841796875 TIME 0.1442577838897705
+2021-01-19 19:18:41,484: main_mil_rep: DEBUG: Epoch 63 Update 2880 Cost 11.442604064941406 L2 21751.83203125 TIME 0.14950108528137207
+2021-01-19 19:18:41,485: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:18:41,485: main_mil_rep: DEBUG: Training accuracy:  0.6072992700729927
+2021-01-19 19:18:41,485: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:18:44,955: main_mil_rep: DEBUG: Epoch  64
+2021-01-19 19:18:44,956: main_mil_rep: DEBUG: Valid cost  11.571702176874334
+2021-01-19 19:18:44,956: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:18:44,956: main_mil_rep: DEBUG: Test cost  11.551618229259144
+2021-01-19 19:18:44,956: main_mil_rep: DEBUG: Test accuracy  0.5568181818181818
+2021-01-19 19:18:44,956: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:18:48,682: main_mil_rep: DEBUG: Epoch 64 Update 2900 Cost 11.480613708496094 L2 21620.6171875 TIME 0.08167839050292969
+2021-01-19 19:18:56,931: main_mil_rep: DEBUG: Epoch 64 Update 2920 Cost 11.355021476745605 L2 21510.634765625 TIME 0.10787153244018555
+2021-01-19 19:19:02,456: main_mil_rep: DEBUG: Epoch  64
+2021-01-19 19:19:02,457: main_mil_rep: DEBUG: Valid cost  11.437935395674272
+2021-01-19 19:19:02,457: main_mil_rep: DEBUG: Valid accuracy  0.5056818181818182
+2021-01-19 19:19:02,457: main_mil_rep: DEBUG: Test cost  11.414631756869229
+2021-01-19 19:19:02,457: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:19:02,457: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:19:02,649: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:19:02,649: main_mil_rep: DEBUG: Training accuracy:  0.5963503649635037
+2021-01-19 19:19:02,649: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:19:05,891: main_mil_rep: DEBUG: Epoch 65 Update 2940 Cost 11.369630813598633 L2 21374.46875 TIME 0.12255215644836426
+2021-01-19 19:19:13,450: main_mil_rep: DEBUG: Epoch 65 Update 2960 Cost 11.292730331420898 L2 21274.015625 TIME 0.2354145050048828
+2021-01-19 19:19:19,548: main_mil_rep: DEBUG: Epoch  65
+2021-01-19 19:19:19,549: main_mil_rep: DEBUG: Valid cost  11.301538640802557
+2021-01-19 19:19:19,549: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:19:19,549: main_mil_rep: DEBUG: Test cost  11.280392733487217
+2021-01-19 19:19:19,549: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:19:19,549: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:19:20,950: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:19:20,950: main_mil_rep: DEBUG: Training accuracy:  0.5781021897810219
+2021-01-19 19:19:20,950: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:19:22,865: main_mil_rep: DEBUG: Epoch 66 Update 2980 Cost 11.249305725097656 L2 21144.03125 TIME 0.09932303428649902
+2021-01-19 19:19:29,907: main_mil_rep: DEBUG: Epoch 66 Update 3000 Cost 11.206581115722656 L2 21032.94140625 TIME 0.5252718925476074
+2021-01-19 19:19:36,209: main_mil_rep: DEBUG: Epoch  66
+2021-01-19 19:19:36,210: main_mil_rep: DEBUG: Valid cost  11.17947092923251
+2021-01-19 19:19:36,210: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:19:36,210: main_mil_rep: DEBUG: Test cost  11.158992767333984
+2021-01-19 19:19:36,210: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:19:36,210: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:19:39,169: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:19:39,169: main_mil_rep: DEBUG: Training accuracy:  0.5861313868613138
+2021-01-19 19:19:39,169: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:19:40,308: main_mil_rep: DEBUG: Epoch 67 Update 3020 Cost 11.082469940185547 L2 20921.02734375 TIME 0.132080078125
+2021-01-19 19:19:46,581: main_mil_rep: DEBUG: Epoch 67 Update 3040 Cost 11.086750030517578 L2 20808.974609375 TIME 0.6476986408233643
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: Epoch  67
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: Valid cost  11.06374099037864
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: Valid accuracy  0.4375
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: Test cost  11.043144659562545
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: Test accuracy  0.5511363636363636
+2021-01-19 19:19:54,544: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:19:58,333: main_mil_rep: DEBUG: Epoch 67 Update 3060 Cost 10.889409065246582 L2 20675.75 TIME 0.2168903350830078
+2021-01-19 19:19:58,334: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:19:58,334: main_mil_rep: DEBUG: Training accuracy:  0.6065693430656934
+2021-01-19 19:19:58,334: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:20:02,292: main_mil_rep: DEBUG: Epoch 68 Update 3080 Cost 11.176891326904297 L2 20578.12109375 TIME 0.09479618072509766
+2021-01-19 19:20:12,601: main_mil_rep: DEBUG: Epoch  68
+2021-01-19 19:20:12,602: main_mil_rep: DEBUG: Valid cost  10.95015898617831
+2021-01-19 19:20:12,602: main_mil_rep: DEBUG: Valid accuracy  0.5511363636363636
+2021-01-19 19:20:12,602: main_mil_rep: DEBUG: Test cost  10.922809600830078
+2021-01-19 19:20:12,602: main_mil_rep: DEBUG: Test accuracy  0.5965909090909091
+2021-01-19 19:20:12,602: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:20:14,105: main_mil_rep: DEBUG: Epoch 68 Update 3100 Cost 10.912038803100586 L2 20478.052734375 TIME 0.11843633651733398
+2021-01-19 19:20:16,753: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:20:16,753: main_mil_rep: DEBUG: Training accuracy:  0.6
+2021-01-19 19:20:16,753: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:20:19,930: main_mil_rep: DEBUG: Epoch 69 Update 3120 Cost 10.81697940826416 L2 20385.82421875 TIME 0.19945716857910156
+2021-01-19 19:20:29,310: main_mil_rep: DEBUG: Epoch  69
+2021-01-19 19:20:29,310: main_mil_rep: DEBUG: Valid cost  10.859047456221147
+2021-01-19 19:20:29,310: main_mil_rep: DEBUG: Valid accuracy  0.5
+2021-01-19 19:20:29,310: main_mil_rep: DEBUG: Test cost  10.830124768343838
+2021-01-19 19:20:29,311: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:20:29,311: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:20:29,898: main_mil_rep: DEBUG: Epoch 69 Update 3140 Cost 10.825311660766602 L2 20302.9453125 TIME 0.5738294124603271
+2021-01-19 19:20:35,060: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:20:35,061: main_mil_rep: DEBUG: Training accuracy:  0.6065693430656934
+2021-01-19 19:20:35,061: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:20:37,073: main_mil_rep: DEBUG: Epoch 70 Update 3160 Cost 10.755119323730469 L2 20213.783203125 TIME 0.23674345016479492
+2021-01-19 19:20:42,404: main_mil_rep: DEBUG: Epoch 70 Update 3180 Cost 10.708171844482422 L2 20151.78125 TIME 0.5369541645050049
+2021-01-19 19:20:46,149: main_mil_rep: DEBUG: Epoch  70
+2021-01-19 19:20:46,149: main_mil_rep: DEBUG: Valid cost  10.787030913613059
+2021-01-19 19:20:46,150: main_mil_rep: DEBUG: Valid accuracy  0.44886363636363635
+2021-01-19 19:20:46,150: main_mil_rep: DEBUG: Test cost  10.762569774280895
+2021-01-19 19:20:46,150: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:20:46,150: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:20:52,471: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:20:52,472: main_mil_rep: DEBUG: Training accuracy:  0.5963503649635037
+2021-01-19 19:20:52,472: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:20:53,556: main_mil_rep: DEBUG: Epoch 71 Update 3200 Cost 10.621131896972656 L2 20059.34765625 TIME 0.18875598907470703
+2021-01-19 19:20:59,653: main_mil_rep: DEBUG: Epoch 71 Update 3220 Cost 10.686238288879395 L2 19973.85546875 TIME 0.1956164836883545
+2021-01-19 19:21:04,682: main_mil_rep: DEBUG: Epoch  71
+2021-01-19 19:21:04,683: main_mil_rep: DEBUG: Valid cost  10.670308459888805
+2021-01-19 19:21:04,683: main_mil_rep: DEBUG: Valid accuracy  0.5113636363636364
+2021-01-19 19:21:04,683: main_mil_rep: DEBUG: Test cost  10.65467661077326
+2021-01-19 19:21:04,683: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:21:04,683: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:21:10,075: main_mil_rep: DEBUG: Epoch 71 Update 3240 Cost 10.520500183105469 L2 19875.939453125 TIME 0.19330787658691406
+2021-01-19 19:21:10,076: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:21:10,076: main_mil_rep: DEBUG: Training accuracy:  0.6255474452554745
+2021-01-19 19:21:10,076: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:21:14,331: main_mil_rep: DEBUG: Epoch 72 Update 3260 Cost 10.597404479980469 L2 19782.10546875 TIME 0.08489418029785156
+2021-01-19 19:21:20,021: main_mil_rep: DEBUG: Epoch  72
+2021-01-19 19:21:20,021: main_mil_rep: DEBUG: Valid cost  10.582887476140803
+2021-01-19 19:21:20,021: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:21:20,021: main_mil_rep: DEBUG: Test cost  10.554778012362393
+2021-01-19 19:21:20,022: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:21:20,022: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:21:25,775: main_mil_rep: DEBUG: Epoch 72 Update 3280 Cost 10.514617919921875 L2 19703.3359375 TIME 0.420764684677124
+2021-01-19 19:21:28,746: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:21:28,747: main_mil_rep: DEBUG: Training accuracy:  0.6072992700729927
+2021-01-19 19:21:28,747: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:21:31,990: main_mil_rep: DEBUG: Epoch 73 Update 3300 Cost 10.432588577270508 L2 19614.431640625 TIME 0.1282668113708496
+2021-01-19 19:21:38,698: main_mil_rep: DEBUG: Epoch  73
+2021-01-19 19:21:38,699: main_mil_rep: DEBUG: Valid cost  10.501594023271041
+2021-01-19 19:21:38,699: main_mil_rep: DEBUG: Valid accuracy  0.4715909090909091
+2021-01-19 19:21:38,699: main_mil_rep: DEBUG: Test cost  10.476128838279031
+2021-01-19 19:21:38,699: main_mil_rep: DEBUG: Test accuracy  0.5397727272727273
+2021-01-19 19:21:38,699: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:21:41,699: main_mil_rep: DEBUG: Epoch 73 Update 3320 Cost 10.503511428833008 L2 19531.6953125 TIME 0.2341015338897705
+2021-01-19 19:21:47,284: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:21:47,285: main_mil_rep: DEBUG: Training accuracy:  0.618978102189781
+2021-01-19 19:21:47,285: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:21:49,279: main_mil_rep: DEBUG: Epoch 74 Update 3340 Cost 10.406486511230469 L2 19467.34765625 TIME 0.13768458366394043
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: Epoch  74
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: Valid cost  10.431262449784713
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: Valid accuracy  0.4715909090909091
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: Test cost  10.427091251720082
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: Test accuracy  0.45454545454545453
+2021-01-19 19:21:56,530: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:21:58,406: main_mil_rep: DEBUG: Epoch 74 Update 3360 Cost 10.41877555847168 L2 19398.158203125 TIME 0.7395505905151367
+2021-01-19 19:22:05,012: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:22:05,013: main_mil_rep: DEBUG: Training accuracy:  0.6197080291970803
+2021-01-19 19:22:05,014: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:22:06,167: main_mil_rep: DEBUG: Epoch 75 Update 3380 Cost 10.243844985961914 L2 19322.21484375 TIME 0.10164833068847656
+2021-01-19 19:22:12,742: main_mil_rep: DEBUG: Epoch  75
+2021-01-19 19:22:12,742: main_mil_rep: DEBUG: Valid cost  10.334603569724344
+2021-01-19 19:22:12,743: main_mil_rep: DEBUG: Valid accuracy  0.5170454545454546
+2021-01-19 19:22:12,743: main_mil_rep: DEBUG: Test cost  10.311612822792746
+2021-01-19 19:22:12,743: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:22:12,743: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:22:14,542: main_mil_rep: DEBUG: Epoch 75 Update 3400 Cost 10.266298294067383 L2 19231.57421875 TIME 0.40705251693725586
+2021-01-19 19:22:24,386: main_mil_rep: DEBUG: Epoch 75 Update 3420 Cost 10.101353645324707 L2 19148.650390625 TIME 0.19309258460998535
+2021-01-19 19:22:24,386: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:22:24,386: main_mil_rep: DEBUG: Training accuracy:  0.627007299270073
+2021-01-19 19:22:24,387: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:22:28,752: main_mil_rep: DEBUG: Epoch 76 Update 3440 Cost 9.98361873626709 L2 19052.6796875 TIME 0.0906217098236084
+2021-01-19 19:22:31,813: main_mil_rep: DEBUG: Epoch  76
+2021-01-19 19:22:31,814: main_mil_rep: DEBUG: Valid cost  10.260653235695578
+2021-01-19 19:22:31,814: main_mil_rep: DEBUG: Valid accuracy  0.4715909090909091
+2021-01-19 19:22:31,814: main_mil_rep: DEBUG: Test cost  10.232185450467197
+2021-01-19 19:22:31,814: main_mil_rep: DEBUG: Test accuracy  0.5170454545454546
+2021-01-19 19:22:31,814: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:22:39,115: main_mil_rep: DEBUG: Epoch 76 Update 3460 Cost 10.148109436035156 L2 19002.638671875 TIME 0.5290384292602539
+2021-01-19 19:22:41,997: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:22:41,998: main_mil_rep: DEBUG: Training accuracy:  0.6248175182481752
+2021-01-19 19:22:41,998: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:22:45,018: main_mil_rep: DEBUG: Epoch 77 Update 3480 Cost 10.082433700561523 L2 18923.994140625 TIME 0.19265341758728027
+2021-01-19 19:22:48,868: main_mil_rep: DEBUG: Epoch  77
+2021-01-19 19:22:48,869: main_mil_rep: DEBUG: Valid cost  10.151308753273703
+2021-01-19 19:22:48,869: main_mil_rep: DEBUG: Valid accuracy  0.5454545454545454
+2021-01-19 19:22:48,869: main_mil_rep: DEBUG: Test cost  10.141553098505193
+2021-01-19 19:22:48,869: main_mil_rep: DEBUG: Test accuracy  0.5965909090909091
+2021-01-19 19:22:48,869: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:22:55,369: main_mil_rep: DEBUG: Epoch 77 Update 3500 Cost 10.218487739562988 L2 18850.94140625 TIME 0.13686895370483398
+2021-01-19 19:23:00,343: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:23:00,343: main_mil_rep: DEBUG: Training accuracy:  0.6496350364963503
+2021-01-19 19:23:00,343: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:23:02,710: main_mil_rep: DEBUG: Epoch 78 Update 3520 Cost 9.98188304901123 L2 18778.65625 TIME 0.18844246864318848
+2021-01-19 19:23:06,971: main_mil_rep: DEBUG: Epoch  78
+2021-01-19 19:23:06,972: main_mil_rep: DEBUG: Valid cost  10.102628187699752
+2021-01-19 19:23:06,972: main_mil_rep: DEBUG: Valid accuracy  0.5340909090909091
+2021-01-19 19:23:06,972: main_mil_rep: DEBUG: Test cost  10.060606176202947
+2021-01-19 19:23:06,972: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:23:06,972: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:23:11,854: main_mil_rep: DEBUG: Epoch 78 Update 3540 Cost 9.90567398071289 L2 18717.953125 TIME 0.1512298583984375
+2021-01-19 19:23:18,417: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:23:18,418: main_mil_rep: DEBUG: Training accuracy:  0.637956204379562
+2021-01-19 19:23:18,418: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:23:19,603: main_mil_rep: DEBUG: Epoch 79 Update 3560 Cost 9.920646667480469 L2 18640.66015625 TIME 0.22104930877685547
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: Epoch  79
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: Valid cost  10.010342251170766
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: Valid accuracy  0.48295454545454547
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: Test cost  10.006380861455744
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: Test accuracy  0.5284090909090909
+2021-01-19 19:23:24,364: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:23:27,995: main_mil_rep: DEBUG: Epoch 79 Update 3580 Cost 9.914373397827148 L2 18578.80859375 TIME 0.610095739364624
+2021-01-19 19:23:37,277: main_mil_rep: DEBUG: Epoch 79 Update 3600 Cost 9.91713809967041 L2 18530.939453125 TIME 0.20318341255187988
+2021-01-19 19:23:37,278: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:23:37,278: main_mil_rep: DEBUG: Training accuracy:  0.6430656934306569
+2021-01-19 19:23:37,278: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:23:42,973: main_mil_rep: DEBUG: Epoch  80
+2021-01-19 19:23:42,974: main_mil_rep: DEBUG: Valid cost  9.965320933948863
+2021-01-19 19:23:42,975: main_mil_rep: DEBUG: Valid accuracy  0.5
+2021-01-19 19:23:42,975: main_mil_rep: DEBUG: Test cost  9.932976722717285
+2021-01-19 19:23:42,975: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:23:42,975: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:23:44,419: main_mil_rep: DEBUG: Epoch 80 Update 3620 Cost 9.688190460205078 L2 18468.07421875 TIME 0.1058952808380127
+2021-01-19 19:23:51,835: main_mil_rep: DEBUG: Epoch 80 Update 3640 Cost 9.858132362365723 L2 18426.94140625 TIME 0.5228636264801025
+2021-01-19 19:23:54,816: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:23:54,816: main_mil_rep: DEBUG: Training accuracy:  0.6510948905109489
+2021-01-19 19:23:54,816: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:23:59,645: main_mil_rep: DEBUG: Epoch  81
+2021-01-19 19:23:59,645: main_mil_rep: DEBUG: Valid cost  9.905014731667258
+2021-01-19 19:23:59,646: main_mil_rep: DEBUG: Valid accuracy  0.5340909090909091
+2021-01-19 19:23:59,646: main_mil_rep: DEBUG: Test cost  9.889829462224787
+2021-01-19 19:23:59,646: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:23:59,646: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:24:00,781: main_mil_rep: DEBUG: Epoch 81 Update 3660 Cost 9.66739273071289 L2 18381.591796875 TIME 0.19233441352844238
+2021-01-19 19:24:07,630: main_mil_rep: DEBUG: Epoch 81 Update 3680 Cost 9.852742195129395 L2 18312.76953125 TIME 0.526416540145874
+2021-01-19 19:24:13,290: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:24:13,290: main_mil_rep: DEBUG: Training accuracy:  0.6357664233576642
+2021-01-19 19:24:13,290: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:24:17,988: main_mil_rep: DEBUG: Epoch  82
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: Valid cost  9.923668601296164
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: Valid accuracy  0.42045454545454547
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: Test cost  9.953174244273793
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: Test accuracy  0.4090909090909091
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: learning_rate:  0.3
+2021-01-19 19:24:17,989: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:24:17,989: main_mil_rep: DEBUG: bad_counter:  1
+2021-01-19 19:24:18,076: main_mil_rep: DEBUG: lrate change to:   0.27
+2021-01-19 19:24:18,674: main_mil_rep: DEBUG: Epoch 82 Update 3700 Cost 9.843348503112793 L2 18264.8203125 TIME 0.22876644134521484
+2021-01-19 19:24:24,324: main_mil_rep: DEBUG: Epoch 82 Update 3720 Cost 9.729877471923828 L2 18219.4296875 TIME 0.597663402557373
+2021-01-19 19:24:31,240: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:24:31,241: main_mil_rep: DEBUG: Training accuracy:  0.6562043795620438
+2021-01-19 19:24:31,242: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:24:32,463: main_mil_rep: DEBUG: Epoch 83 Update 3740 Cost 9.707340240478516 L2 18177.564453125 TIME 0.16668081283569336
+2021-01-19 19:24:35,538: main_mil_rep: DEBUG: Epoch  83
+2021-01-19 19:24:35,539: main_mil_rep: DEBUG: Valid cost  9.80607795715332
+2021-01-19 19:24:35,539: main_mil_rep: DEBUG: Valid accuracy  0.5
+2021-01-19 19:24:35,539: main_mil_rep: DEBUG: Test cost  9.78647821599787
+2021-01-19 19:24:35,539: main_mil_rep: DEBUG: Test accuracy  0.5681818181818182
+2021-01-19 19:24:35,539: main_mil_rep: DEBUG: learning_rate:  0.27
+2021-01-19 19:24:39,610: main_mil_rep: DEBUG: Epoch 83 Update 3760 Cost 9.677288055419922 L2 18134.654296875 TIME 0.475783109664917
+2021-01-19 19:24:48,577: main_mil_rep: DEBUG: Epoch 83 Update 3780 Cost 9.948781967163086 L2 18081.037109375 TIME 0.14748406410217285
+2021-01-19 19:24:48,578: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:24:48,578: main_mil_rep: DEBUG: Training accuracy:  0.6642335766423357
+2021-01-19 19:24:48,578: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:24:52,436: main_mil_rep: DEBUG: Epoch  84
+2021-01-19 19:24:52,436: main_mil_rep: DEBUG: Valid cost  9.770458741621537
+2021-01-19 19:24:52,436: main_mil_rep: DEBUG: Valid accuracy  0.48863636363636365
+2021-01-19 19:24:52,437: main_mil_rep: DEBUG: Test cost  9.750752449035645
+2021-01-19 19:24:52,437: main_mil_rep: DEBUG: Test accuracy  0.5397727272727273
+2021-01-19 19:24:52,437: main_mil_rep: DEBUG: learning_rate:  0.27
+2021-01-19 19:24:55,288: main_mil_rep: DEBUG: Epoch 84 Update 3800 Cost 9.507333755493164 L2 18040.255859375 TIME 0.08797478675842285
+2021-01-19 19:25:04,802: main_mil_rep: DEBUG: Epoch 84 Update 3820 Cost 9.376967430114746 L2 18002.619140625 TIME 0.09656286239624023
+2021-01-19 19:25:07,605: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:25:07,605: main_mil_rep: DEBUG: Training accuracy:  0.6620437956204379
+2021-01-19 19:25:07,606: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:25:11,076: main_mil_rep: DEBUG: Epoch  85
+2021-01-19 19:25:11,077: main_mil_rep: DEBUG: Valid cost  9.71319580078125
+2021-01-19 19:25:11,077: main_mil_rep: DEBUG: Valid accuracy  0.4772727272727273
+2021-01-19 19:25:11,077: main_mil_rep: DEBUG: Test cost  9.675247799266469
+2021-01-19 19:25:11,077: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:25:11,077: main_mil_rep: DEBUG: learning_rate:  0.27
+2021-01-19 19:25:13,756: main_mil_rep: DEBUG: Epoch 85 Update 3840 Cost 9.630800247192383 L2 17938.171875 TIME 0.24257278442382812
+2021-01-19 19:25:20,831: main_mil_rep: DEBUG: Epoch 85 Update 3860 Cost 9.669975280761719 L2 17914.03515625 TIME 0.7042498588562012
+2021-01-19 19:25:28,772: main_mil_rep: DEBUG: Epoch  85
+2021-01-19 19:25:28,773: main_mil_rep: DEBUG: Valid cost  9.75329927964644
+2021-01-19 19:25:28,773: main_mil_rep: DEBUG: Valid accuracy  0.5397727272727273
+2021-01-19 19:25:28,773: main_mil_rep: DEBUG: Test cost  9.692997672341086
+2021-01-19 19:25:28,773: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:25:28,773: main_mil_rep: DEBUG: learning_rate:  0.27
+2021-01-19 19:25:28,773: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:25:28,774: main_mil_rep: DEBUG: bad_counter:  2
+2021-01-19 19:25:28,861: main_mil_rep: DEBUG: lrate change to:   0.24300000000000002
+2021-01-19 19:25:28,862: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:25:28,862: main_mil_rep: DEBUG: Training accuracy:  0.6781021897810219
+2021-01-19 19:25:28,862: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:25:30,766: main_mil_rep: DEBUG: Epoch 86 Update 3880 Cost 9.507575035095215 L2 17883.044921875 TIME 0.2435624599456787
+2021-01-19 19:25:38,617: main_mil_rep: DEBUG: Epoch 86 Update 3900 Cost 9.614598274230957 L2 17823.919921875 TIME 0.6832337379455566
+2021-01-19 19:25:46,398: main_mil_rep: DEBUG: Epoch  86
+2021-01-19 19:25:46,399: main_mil_rep: DEBUG: Valid cost  9.64135794206099
+2021-01-19 19:25:46,399: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:25:46,399: main_mil_rep: DEBUG: Test cost  9.609169353138316
+2021-01-19 19:25:46,399: main_mil_rep: DEBUG: Test accuracy  0.5795454545454546
+2021-01-19 19:25:46,399: main_mil_rep: DEBUG: learning_rate:  0.24300000000000002
+2021-01-19 19:25:47,035: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:25:47,036: main_mil_rep: DEBUG: Training accuracy:  0.6883211678832116
+2021-01-19 19:25:47,036: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:25:48,267: main_mil_rep: DEBUG: Epoch 87 Update 3920 Cost 9.419878959655762 L2 17781.966796875 TIME 0.21468830108642578
+2021-01-19 19:25:52,588: main_mil_rep: DEBUG: Epoch 87 Update 3940 Cost 9.838264465332031 L2 17750.7265625 TIME 0.12086939811706543
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: Epoch  87
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: Valid cost  9.614520506425338
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: Valid accuracy  0.5397727272727273
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: Test cost  9.583865425803445
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:26:03,507: main_mil_rep: DEBUG: learning_rate:  0.24300000000000002
+2021-01-19 19:26:05,819: main_mil_rep: DEBUG: Epoch 87 Update 3960 Cost 9.361381530761719 L2 17723.45703125 TIME 0.19778895378112793
+2021-01-19 19:26:05,821: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:26:05,821: main_mil_rep: DEBUG: Training accuracy:  0.6664233576642336
+2021-01-19 19:26:05,821: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:26:09,861: main_mil_rep: DEBUG: Epoch 88 Update 3980 Cost 9.674355506896973 L2 17664.451171875 TIME 0.08604907989501953
+2021-01-19 19:26:22,383: main_mil_rep: DEBUG: Epoch  88
+2021-01-19 19:26:22,384: main_mil_rep: DEBUG: Valid cost  9.528223731301047
+2021-01-19 19:26:22,384: main_mil_rep: DEBUG: Valid accuracy  0.5
+2021-01-19 19:26:22,384: main_mil_rep: DEBUG: Test cost  9.521425593983043
+2021-01-19 19:26:22,384: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:26:22,384: main_mil_rep: DEBUG: learning_rate:  0.24300000000000002
+2021-01-19 19:26:22,462: main_mil_rep: DEBUG: Epoch 88 Update 4000 Cost 9.373515129089355 L2 17622.5390625 TIME 0.07683610916137695
+2021-01-19 19:26:25,267: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:26:25,268: main_mil_rep: DEBUG: Training accuracy:  0.6854014598540146
+2021-01-19 19:26:25,268: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:26:28,601: main_mil_rep: DEBUG: Epoch 89 Update 4020 Cost 9.363870620727539 L2 17568.837890625 TIME 0.2007291316986084
+2021-01-19 19:26:36,643: main_mil_rep: DEBUG: Epoch 89 Update 4040 Cost 9.437082290649414 L2 17539.650390625 TIME 0.5061342716217041
+2021-01-19 19:26:40,061: main_mil_rep: DEBUG: Epoch  89
+2021-01-19 19:26:40,062: main_mil_rep: DEBUG: Valid cost  9.53564470464533
+2021-01-19 19:26:40,062: main_mil_rep: DEBUG: Valid accuracy  0.4943181818181818
+2021-01-19 19:26:40,063: main_mil_rep: DEBUG: Test cost  9.509986877441406
+2021-01-19 19:26:40,063: main_mil_rep: DEBUG: Test accuracy  0.5
+2021-01-19 19:26:40,063: main_mil_rep: DEBUG: learning_rate:  0.24300000000000002
+2021-01-19 19:26:40,063: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:26:40,063: main_mil_rep: DEBUG: bad_counter:  3
+2021-01-19 19:26:40,151: main_mil_rep: DEBUG: lrate change to:   0.21870000000000003
+2021-01-19 19:26:44,403: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:26:44,404: main_mil_rep: DEBUG: Training accuracy:  0.6861313868613139
+2021-01-19 19:26:44,404: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:26:46,855: main_mil_rep: DEBUG: Epoch 90 Update 4060 Cost 9.258508682250977 L2 17495.84375 TIME 0.17026138305664062
+2021-01-19 19:26:54,294: main_mil_rep: DEBUG: Epoch 90 Update 4080 Cost 9.38653564453125 L2 17469.16015625 TIME 0.6952688694000244
+2021-01-19 19:26:59,466: main_mil_rep: DEBUG: Epoch  90
+2021-01-19 19:26:59,467: main_mil_rep: DEBUG: Valid cost  9.43177569996227
+2021-01-19 19:26:59,467: main_mil_rep: DEBUG: Valid accuracy  0.5056818181818182
+2021-01-19 19:26:59,467: main_mil_rep: DEBUG: Test cost  9.450401999733664
+2021-01-19 19:26:59,467: main_mil_rep: DEBUG: Test accuracy  0.5852272727272727
+2021-01-19 19:26:59,467: main_mil_rep: DEBUG: learning_rate:  0.21870000000000003
+2021-01-19 19:27:04,293: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:27:04,293: main_mil_rep: DEBUG: Training accuracy:  0.6854014598540146
+2021-01-19 19:27:04,293: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:27:05,457: main_mil_rep: DEBUG: Epoch 91 Update 4100 Cost 9.389577865600586 L2 17431.044921875 TIME 0.1145634651184082
+2021-01-19 19:27:10,197: main_mil_rep: DEBUG: Epoch 91 Update 4120 Cost 9.291860580444336 L2 17403.5703125 TIME 0.6394312381744385
+2021-01-19 19:27:16,876: main_mil_rep: DEBUG: Epoch  91
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: Valid cost  9.46088340065696
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: Valid accuracy  0.4943181818181818
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: Test cost  9.438565687699752
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: Test accuracy  0.5
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: learning_rate:  0.21870000000000003
+2021-01-19 19:27:16,877: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:27:16,877: main_mil_rep: DEBUG: bad_counter:  4
+2021-01-19 19:27:16,967: main_mil_rep: DEBUG: lrate change to:   0.19683000000000003
+2021-01-19 19:27:23,168: main_mil_rep: DEBUG: Epoch 91 Update 4140 Cost 8.936747550964355 L2 17369.4765625 TIME 0.15702056884765625
+2021-01-19 19:27:23,169: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:27:23,170: main_mil_rep: DEBUG: Training accuracy:  0.6963503649635037
+2021-01-19 19:27:23,170: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:27:27,278: main_mil_rep: DEBUG: Epoch 92 Update 4160 Cost 9.497674942016602 L2 17336.89453125 TIME 0.10980916023254395
+2021-01-19 19:27:35,336: main_mil_rep: DEBUG: Epoch  92
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: Valid cost  9.454974781383168
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: Valid accuracy  0.5
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: Test cost  9.454843000932174
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: Test accuracy  0.4715909090909091
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: learning_rate:  0.19683000000000003
+2021-01-19 19:27:35,337: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:27:35,337: main_mil_rep: DEBUG: bad_counter:  5
+2021-01-19 19:27:35,428: main_mil_rep: DEBUG: lrate change to:   0.17714700000000003
+2021-01-19 19:27:38,706: main_mil_rep: DEBUG: Epoch 92 Update 4180 Cost 9.409890174865723 L2 17318.193359375 TIME 0.46321630477905273
+2021-01-19 19:27:41,832: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:27:41,832: main_mil_rep: DEBUG: Training accuracy:  0.6897810218978102
+2021-01-19 19:27:41,832: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:27:45,252: main_mil_rep: DEBUG: Epoch 93 Update 4200 Cost 9.077549934387207 L2 17286.55078125 TIME 0.1654515266418457
+2021-01-19 19:27:53,194: main_mil_rep: DEBUG: Epoch  93
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: Valid cost  9.446011976762252
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: Valid accuracy  0.5113636363636364
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: Test cost  9.450127861716531
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: Test accuracy  0.4715909090909091
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: learning_rate:  0.17714700000000003
+2021-01-19 19:27:53,195: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:27:53,195: main_mil_rep: DEBUG: bad_counter:  6
+2021-01-19 19:27:53,284: main_mil_rep: DEBUG: lrate change to:   0.15943230000000003
+2021-01-19 19:27:55,986: main_mil_rep: DEBUG: Epoch 93 Update 4220 Cost 9.27155590057373 L2 17263.017578125 TIME 0.6958119869232178
+2021-01-19 19:28:01,069: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:28:01,069: main_mil_rep: DEBUG: Training accuracy:  0.6985401459854015
+2021-01-19 19:28:01,070: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:28:03,093: main_mil_rep: DEBUG: Epoch 94 Update 4240 Cost 9.017399787902832 L2 17243.181640625 TIME 0.1994788646697998
+2021-01-19 19:28:09,763: main_mil_rep: DEBUG: Epoch  94
+2021-01-19 19:28:09,764: main_mil_rep: DEBUG: Valid cost  9.369587117975408
+2021-01-19 19:28:09,764: main_mil_rep: DEBUG: Valid accuracy  0.5113636363636364
+2021-01-19 19:28:09,764: main_mil_rep: DEBUG: Test cost  9.350493951277299
+2021-01-19 19:28:09,764: main_mil_rep: DEBUG: Test accuracy  0.5397727272727273
+2021-01-19 19:28:09,764: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:28:11,106: main_mil_rep: DEBUG: Epoch 94 Update 4260 Cost 9.331047058105469 L2 17219.9375 TIME 0.10432291030883789
+2021-01-19 19:28:18,805: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:28:18,806: main_mil_rep: DEBUG: Training accuracy:  0.6941605839416058
+2021-01-19 19:28:18,806: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:28:19,932: main_mil_rep: DEBUG: Epoch 95 Update 4280 Cost 9.174890518188477 L2 17196.27734375 TIME 0.16247010231018066
+2021-01-19 19:28:25,050: main_mil_rep: DEBUG: Epoch 95 Update 4300 Cost 9.22012710571289 L2 17165.75390625 TIME 0.1878809928894043
+2021-01-19 19:28:28,262: main_mil_rep: DEBUG: Epoch  95
+2021-01-19 19:28:28,263: main_mil_rep: DEBUG: Valid cost  9.345675381747158
+2021-01-19 19:28:28,263: main_mil_rep: DEBUG: Valid accuracy  0.5284090909090909
+2021-01-19 19:28:28,263: main_mil_rep: DEBUG: Test cost  9.325375296852805
+2021-01-19 19:28:28,263: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:28:28,263: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:28:39,030: main_mil_rep: DEBUG: Epoch 95 Update 4320 Cost 9.059344291687012 L2 17143.580078125 TIME 0.12494325637817383
+2021-01-19 19:28:39,031: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:28:39,031: main_mil_rep: DEBUG: Training accuracy:  0.6956204379562044
+2021-01-19 19:28:39,031: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:28:43,248: main_mil_rep: DEBUG: Epoch 96 Update 4340 Cost 8.928693771362305 L2 17113.099609375 TIME 0.11277461051940918
+2021-01-19 19:28:47,465: main_mil_rep: DEBUG: Epoch  96
+2021-01-19 19:28:47,465: main_mil_rep: DEBUG: Valid cost  9.287828011946244
+2021-01-19 19:28:47,465: main_mil_rep: DEBUG: Valid accuracy  0.5056818181818182
+2021-01-19 19:28:47,465: main_mil_rep: DEBUG: Test cost  9.296882976185191
+2021-01-19 19:28:47,466: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:28:47,466: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:28:54,611: main_mil_rep: DEBUG: Epoch 96 Update 4360 Cost 9.840251922607422 L2 17086.3125 TIME 0.1473066806793213
+2021-01-19 19:28:57,587: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:28:57,587: main_mil_rep: DEBUG: Training accuracy:  0.6883211678832116
+2021-01-19 19:28:57,587: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:29:00,523: main_mil_rep: DEBUG: Epoch 97 Update 4380 Cost 9.127801895141602 L2 17063.240234375 TIME 0.1372513771057129
+2021-01-19 19:29:05,209: main_mil_rep: DEBUG: Epoch  97
+2021-01-19 19:29:05,210: main_mil_rep: DEBUG: Valid cost  9.251136866482822
+2021-01-19 19:29:05,210: main_mil_rep: DEBUG: Valid accuracy  0.48863636363636365
+2021-01-19 19:29:05,210: main_mil_rep: DEBUG: Test cost  9.25507606159557
+2021-01-19 19:29:05,210: main_mil_rep: DEBUG: Test accuracy  0.5227272727272727
+2021-01-19 19:29:05,210: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:29:11,691: main_mil_rep: DEBUG: Epoch 97 Update 4400 Cost 9.092653274536133 L2 17040.4375 TIME 0.6240949630737305
+2021-01-19 19:29:15,974: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:29:15,975: main_mil_rep: DEBUG: Training accuracy:  0.7131386861313869
+2021-01-19 19:29:15,975: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:29:18,253: main_mil_rep: DEBUG: Epoch 98 Update 4420 Cost 9.11510181427002 L2 17014.572265625 TIME 0.2219862937927246
+2021-01-19 19:29:23,205: main_mil_rep: DEBUG: Epoch  98
+2021-01-19 19:29:23,206: main_mil_rep: DEBUG: Valid cost  9.232167850841176
+2021-01-19 19:29:23,206: main_mil_rep: DEBUG: Valid accuracy  0.5056818181818182
+2021-01-19 19:29:23,206: main_mil_rep: DEBUG: Test cost  9.221416906876998
+2021-01-19 19:29:23,206: main_mil_rep: DEBUG: Test accuracy  0.5965909090909091
+2021-01-19 19:29:23,206: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:29:26,148: main_mil_rep: DEBUG: Epoch 98 Update 4440 Cost 9.122281074523926 L2 16988.59375 TIME 0.1469268798828125
+2021-01-19 19:29:34,338: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:29:34,338: main_mil_rep: DEBUG: Training accuracy:  0.7058394160583942
+2021-01-19 19:29:34,338: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:29:35,546: main_mil_rep: DEBUG: Epoch 99 Update 4460 Cost 9.105634689331055 L2 16963.294921875 TIME 0.26363086700439453
+2021-01-19 19:29:40,701: main_mil_rep: DEBUG: Epoch  99
+2021-01-19 19:29:40,701: main_mil_rep: DEBUG: Valid cost  9.247926712036133
+2021-01-19 19:29:40,701: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:29:40,701: main_mil_rep: DEBUG: Test cost  9.19920470497825
+2021-01-19 19:29:40,702: main_mil_rep: DEBUG: Test accuracy  0.5965909090909091
+2021-01-19 19:29:40,702: main_mil_rep: DEBUG: learning_rate:  0.15943230000000003
+2021-01-19 19:29:40,702: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:29:40,702: main_mil_rep: DEBUG: bad_counter:  7
+2021-01-19 19:29:40,795: main_mil_rep: DEBUG: lrate change to:   0.14348907000000002
+2021-01-19 19:29:43,704: main_mil_rep: DEBUG: Epoch 99 Update 4480 Cost 9.135290145874023 L2 16937.435546875 TIME 0.6201224327087402
+2021-01-19 19:29:53,565: main_mil_rep: DEBUG: Epoch 99 Update 4500 Cost 8.780970573425293 L2 16916.896484375 TIME 0.15836167335510254
+2021-01-19 19:29:53,566: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:29:53,566: main_mil_rep: DEBUG: Training accuracy:  0.708029197080292
+2021-01-19 19:29:53,566: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:29:59,606: main_mil_rep: DEBUG: Epoch  100
+2021-01-19 19:29:59,606: main_mil_rep: DEBUG: Valid cost  9.201491009105336
+2021-01-19 19:29:59,607: main_mil_rep: DEBUG: Valid accuracy  0.5284090909090909
+2021-01-19 19:29:59,607: main_mil_rep: DEBUG: Test cost  9.18209422718395
+2021-01-19 19:29:59,607: main_mil_rep: DEBUG: Test accuracy  0.5738636363636364
+2021-01-19 19:29:59,607: main_mil_rep: DEBUG: learning_rate:  0.14348907000000002
+2021-01-19 19:30:00,601: main_mil_rep: DEBUG: Epoch 100 Update 4520 Cost 8.682944297790527 L2 16890.16796875 TIME 0.08612799644470215
+2021-01-19 19:30:09,717: main_mil_rep: DEBUG: Epoch 100 Update 4540 Cost 9.304182052612305 L2 16870.953125 TIME 0.12510919570922852
+2021-01-19 19:30:12,449: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:30:12,450: main_mil_rep: DEBUG: Training accuracy:  0.7175182481751825
+2021-01-19 19:30:12,450: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:30:17,817: main_mil_rep: DEBUG: Epoch  101
+2021-01-19 19:30:17,818: main_mil_rep: DEBUG: Valid cost  9.131872350519354
+2021-01-19 19:30:17,818: main_mil_rep: DEBUG: Valid accuracy  0.5227272727272727
+2021-01-19 19:30:17,818: main_mil_rep: DEBUG: Test cost  9.161696434020996
+2021-01-19 19:30:17,818: main_mil_rep: DEBUG: Test accuracy  0.5568181818181818
+2021-01-19 19:30:17,818: main_mil_rep: DEBUG: learning_rate:  0.14348907000000002
+2021-01-19 19:30:18,103: main_mil_rep: DEBUG: Epoch 101 Update 4560 Cost 8.963991165161133 L2 16853.951171875 TIME 0.18565964698791504
+2021-01-19 19:30:24,366: main_mil_rep: DEBUG: Epoch 101 Update 4580 Cost 8.994461059570312 L2 16831.22265625 TIME 0.14705276489257812
+2021-01-19 19:30:29,681: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:30:29,681: main_mil_rep: DEBUG: Training accuracy:  0.727007299270073
+2021-01-19 19:30:29,681: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:30:31,948: main_mil_rep: DEBUG: Epoch 102 Update 4600 Cost 9.006959915161133 L2 16810.3671875 TIME 0.17674899101257324
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: Epoch  102
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: Valid cost  9.137628468600186
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: Valid accuracy  0.4943181818181818
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: Test cost  9.130975549871271
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: Test accuracy  0.5909090909090909
+2021-01-19 19:30:35,365: main_mil_rep: DEBUG: learning_rate:  0.14348907000000002
+2021-01-19 19:30:35,366: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:30:35,366: main_mil_rep: DEBUG: bad_counter:  8
+2021-01-19 19:30:35,456: main_mil_rep: DEBUG: lrate change to:   0.12914016300000003
+2021-01-19 19:30:41,131: main_mil_rep: DEBUG: Epoch 102 Update 4620 Cost 8.984654426574707 L2 16790.296875 TIME 0.16555452346801758
+2021-01-19 19:30:48,548: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:30:48,549: main_mil_rep: DEBUG: Training accuracy:  0.7197080291970803
+2021-01-19 19:30:48,549: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:30:49,927: main_mil_rep: DEBUG: Epoch 103 Update 4640 Cost 8.977052688598633 L2 16769.650390625 TIME 0.21117210388183594
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: Epoch  103
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: Valid cost  9.136974161321467
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: Valid accuracy  0.4772727272727273
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: Test cost  9.155367070978338
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: Test accuracy  0.48863636363636365
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: learning_rate:  0.12914016300000003
+2021-01-19 19:30:53,725: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:30:53,725: main_mil_rep: DEBUG: bad_counter:  9
+2021-01-19 19:30:53,816: main_mil_rep: DEBUG: lrate change to:   0.11622614670000003
+2021-01-19 19:30:57,338: main_mil_rep: DEBUG: Epoch 103 Update 4660 Cost 8.804533004760742 L2 16757.64453125 TIME 0.1759653091430664
+2021-01-19 19:31:06,952: main_mil_rep: DEBUG: Epoch 103 Update 4680 Cost 8.691514015197754 L2 16739.48828125 TIME 0.1872239112854004
+2021-01-19 19:31:06,952: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:31:06,952: main_mil_rep: DEBUG: Training accuracy:  0.7262773722627737
+2021-01-19 19:31:06,952: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:31:11,237: main_mil_rep: DEBUG: Epoch  104
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: Valid cost  9.137771866538309
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: Valid accuracy  0.5113636363636364
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: Test cost  9.126739675348455
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: Test accuracy  0.5170454545454546
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: learning_rate:  0.11622614670000003
+2021-01-19 19:31:11,238: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:31:11,238: main_mil_rep: DEBUG: bad_counter:  10
+2021-01-19 19:31:11,329: main_mil_rep: DEBUG: lrate change to:   0.10460353203000003
+2021-01-19 19:31:13,929: main_mil_rep: DEBUG: Epoch 104 Update 4700 Cost 8.946738243103027 L2 16721.01953125 TIME 0.09236288070678711
+2021-01-19 19:31:21,635: main_mil_rep: DEBUG: Epoch 104 Update 4720 Cost 9.145237922668457 L2 16708.36328125 TIME 0.1265866756439209
+2021-01-19 19:31:24,511: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:31:24,511: main_mil_rep: DEBUG: Training accuracy:  0.7328467153284671
+2021-01-19 19:31:24,511: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:31:28,641: main_mil_rep: DEBUG: Epoch  105
+2021-01-19 19:31:28,642: main_mil_rep: DEBUG: Valid cost  9.094175945628773
+2021-01-19 19:31:28,642: main_mil_rep: DEBUG: Valid accuracy  0.4659090909090909
+2021-01-19 19:31:28,642: main_mil_rep: DEBUG: Test cost  9.098440170288086
+2021-01-19 19:31:28,642: main_mil_rep: DEBUG: Test accuracy  0.4715909090909091
+2021-01-19 19:31:28,642: main_mil_rep: DEBUG: learning_rate:  0.10460353203000003
+2021-01-19 19:31:30,797: main_mil_rep: DEBUG: Epoch 105 Update 4740 Cost 8.999022483825684 L2 16689.783203125 TIME 0.2472851276397705
+2021-01-19 19:31:37,638: main_mil_rep: DEBUG: Epoch 105 Update 4760 Cost 8.950482368469238 L2 16673.1328125 TIME 0.6177148818969727
+2021-01-19 19:31:42,881: main_mil_rep: DEBUG: Seen samples:  1370
+2021-01-19 19:31:42,882: main_mil_rep: DEBUG: Training accuracy:  0.718978102189781
+2021-01-19 19:31:42,882: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
+2021-01-19 19:31:46,919: main_mil_rep: DEBUG: Epoch  106
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: Valid cost  9.12109444358132
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: Valid accuracy  0.4715909090909091
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: Test cost  9.074068849736994
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: Test accuracy  0.48295454545454547
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: learning_rate:  0.10460353203000003
+2021-01-19 19:31:46,920: main_mil_rep: INFO: wait_counter max, need to half the lr
+2021-01-19 19:31:46,920: main_mil_rep: DEBUG: bad_counter:  11
+2021-01-19 19:31:47,013: main_mil_rep: DEBUG: lrate change to:   0.09414317882700003
+2021-01-19 19:31:47,013: main_mil_rep: INFO: Early Stop!
+2021-01-19 19:31:47,013: main_mil_rep: DEBUG: Seen samples:  96
+2021-01-19 19:31:47,013: main_mil_rep: DEBUG: Training accuracy:  0.78125
+2021-01-19 19:31:47,013: main_mil_rep: DEBUG: results/milrep/Saved loss_plot pickle
